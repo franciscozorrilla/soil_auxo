@@ -1,0 +1,828 @@
+seq_name	length	topology	coordinates	n_genes	genetic_code	virus_score	fdr	n_hallmarks	marker_enrichment	taxonomy
+lane122s000520_bin.1.p_NODE_87_length_11534_cov_8.397835	11534	No terminal repeats	NA	16	11	0.9990	0.0010	10	22.5064	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.3.o_k141_421784-flag_1-multi_3.0000-len_3685	3685	No terminal repeats	NA	6	11	0.9990	0.0010	0	8.5914	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_401068-flag_1-multi_4.0000-len_5900	5900	No terminal repeats	NA	6	11	0.9990	0.0010	2	8.1718	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000603_bin.1.o_k141_241316-flag_1-multi_3.8160-len_7773	7773	No terminal repeats	NA	10	11	0.9990	0.0010	4	13.4008	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_248454-flag_1-multi_1.7693-len_4003	4003	No terminal repeats	NA	8	11	0.9990	0.0010	5	10.2519	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000601_bin.4.o_k141_168670-flag_1-multi_2.9874-len_12220	12220	No terminal repeats	NA	25	11	0.9990	0.0010	6	19.6704	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000607_bin.1.p_NODE_250_length_5224_cov_2.267146	5224	No terminal repeats	NA	3	11	0.9990	0.0010	0	5.1548	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000601_bin.4.o_k141_392721-flag_1-multi_3.9963-len_9829	9829	No terminal repeats	NA	11	11	0.9989	0.0010	3	11.9809	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.2.s_NODE_297_length_4034_cov_2.400051	4034	No terminal repeats	NA	3	11	0.9989	0.0010	0	4.6147	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_266182-flag_1-multi_2.0000-len_2883	2883	No terminal repeats	NA	6	11	0.9989	0.0010	3	8.9167	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000601_bin.4.o_k141_388282-flag_1-multi_6.0000-len_13426	13426	No terminal repeats	NA	14	11	0.9989	0.0010	5	16.5477	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_150317-flag_1-multi_4.0000-len_3983	3983	No terminal repeats	NA	9	11	0.9989	0.0010	5	10.8635	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000601_bin.3.s_NODE_16_length_16643_cov_4.140408	16643	No terminal repeats	NA	15	11	0.9989	0.0010	4	20.9854	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane121s003971_bin.1.s_NODE_26_length_4358_cov_5.435412	4358	No terminal repeats	NA	10	11	0.9989	0.0010	1	10.0103	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_95218-flag_1-multi_3.0000-len_3425	3425	No terminal repeats	NA	4	11	0.9989	0.0011	0	6.0723	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.2.s_NODE_357_length_3571_cov_2.607899	3571	No terminal repeats	NA	3	11	0.9989	0.0011	1	5.0030	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.2.s_NODE_314_length_3902_cov_1.589542	3902	No terminal repeats	NA	4	11	0.9989	0.0011	0	5.7961	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000601_bin.6.o_k141_176771-flag_1-multi_4.0000-len_4381	4381	No terminal repeats	NA	5	11	0.9989	0.0011	0	6.8585	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000602_bin.1.o_k141_474365-flag_0-multi_6.6006-len_7842	7842	No terminal repeats	NA	11	11	0.9989	0.0011	0	9.7117	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane821s003041_shovill_contig00027	61325	DTR	NA	98	11	0.9989	0.0011	16	79.1980	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane121s003953_shovill_contig00026	61325	DTR	NA	98	11	0.9989	0.0011	16	77.4797	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_204814-flag_1-multi_3.0000-len_3729	3729	No terminal repeats	NA	3	11	0.9989	0.0011	2	4.8722	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_333192-flag_1-multi_3.0000-len_5988	5988	No terminal repeats	NA	12	11	0.9989	0.0011	3	11.3148	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_455275-flag_1-multi_3.0000-len_3533	3533	No terminal repeats	NA	6	11	0.9989	0.0011	3	8.1084	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000602_bin.1.o_k141_232688-flag_0-multi_14.0000-len_13467	13467	No terminal repeats	NA	16	11	0.9989	0.0011	0	16.8714	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane821s003041_shovill_contig00001|provirus_85490_111775	26286	Provirus	85490-111775	33	11	0.9989	0.0011	11	46.1387	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane121s003953_shovill_contig00002|provirus_85490_111775	26286	Provirus	85490-111775	33	11	0.9989	0.0011	11	46.1387	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane121s003972_bin.2.s_NODE_243_length_3682_cov_2.010264	3682	No terminal repeats	NA	6	11	0.9989	0.0011	4	9.2891	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.3.o_k141_176979-flag_1-multi_2.0000-len_3052	3052	No terminal repeats	NA	4	11	0.9989	0.0011	3	6.4329	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_109214-flag_1-multi_3.0000-len_3591	3591	No terminal repeats	NA	7	11	0.9989	0.0011	2	7.2013	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000601_bin.6.o_k141_245925-flag_1-multi_3.0000-len_3145	3145	No terminal repeats	NA	4	11	0.9989	0.0011	0	5.1548	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane121s003972_bin.2.s_NODE_2_length_13512_cov_2.947451|provirus_3_4225	4223	Provirus	3-4225	7	11	0.9989	0.0011	2	8.3663	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_511928-flag_1-multi_4.0000-len_5781	5781	No terminal repeats	NA	5	11	0.9989	0.0011	1	7.2612	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.2.s_NODE_238_length_4562_cov_2.076700	4562	No terminal repeats	NA	8	11	0.9989	0.0011	0	8.9665	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_472927-flag_1-multi_3.0000-len_2589	2589	No terminal repeats	NA	5	11	0.9988	0.0011	5	7.9266	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_260371-flag_1-multi_3.0000-len_6075	6075	No terminal repeats	NA	11	11	0.9988	0.0011	1	7.5182	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.1.o_k141_483366-flag_0-multi_2.8834-len_3280	3280	No terminal repeats	NA	5	11	0.9988	0.0011	0	6.3849	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.1.o_k141_515532-flag_1-multi_5.0000-len_5103	5103	No terminal repeats	NA	8	11	0.9988	0.0011	0	10.8512	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane121s003971_bin.1.s_NODE_28_length_2572_cov_1.851303	2572	No terminal repeats	NA	5	11	0.9988	0.0011	3	6.8731	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_364261-flag_1-multi_3.0000-len_5882	5882	No terminal repeats	NA	11	11	0.9988	0.0011	3	10.5817	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000602_bin.1.o_k141_529593-flag_0-multi_1.9969-len_3979	3979	No terminal repeats	NA	7	11	0.9988	0.0011	1	8.2737	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_36582-flag_1-multi_5.0000-len_8013	8013	No terminal repeats	NA	11	11	0.9988	0.0011	2	10.7173	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000603_bin.1.o_k141_94798-flag_1-multi_5.0000-len_7134	7134	No terminal repeats	NA	14	11	0.9988	0.0011	4	11.2555	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000602_bin.1.o_k141_526949-flag_0-multi_1.9959-len_3055	3055	No terminal repeats	NA	5	11	0.9988	0.0011	1	8.2737	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000607_bin.1.p_NODE_675_length_3356_cov_1.826167	3356	No terminal repeats	NA	5	11	0.9988	0.0011	1	6.2981	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_22867-flag_1-multi_4.0000-len_5914	5914	No terminal repeats	NA	9	11	0.9988	0.0011	3	11.0618	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000602_bin.1.o_k141_175124-flag_1-multi_3.5540-len_4318	4318	No terminal repeats	NA	10	11	0.9988	0.0011	2	7.5576	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000602_bin.1.o_k141_414845-flag_0-multi_16.0000-len_9313	9313	No terminal repeats	NA	11	11	0.9988	0.0011	3	10.4551	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane121s003962_megahit_k141_101-flag=1-multi=5.0000-len=4189	4189	No terminal repeats	NA	8	11	0.9988	0.0011	4	10.5251	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000602_bin.1.o_k141_199365-flag_1-multi_4.0034-len_4207	4207	No terminal repeats	NA	7	11	0.9988	0.0011	1	6.8731	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000600_bin.3.p_NODE_125_length_6004_cov_1.756032	6004	No terminal repeats	NA	11	11	0.9988	0.0011	1	5.1516	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000602_bin.1.o_k141_421574-flag_0-multi_9.0000-len_6941	6941	No terminal repeats	NA	14	11	0.9987	0.0011	1	11.6236	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_126356-flag_1-multi_4.0000-len_9929	9929	No terminal repeats	NA	10	11	0.9987	0.0011	1	6.5525	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000721_shovill_contig00166	5621	No terminal repeats	NA	3	11	0.9987	0.0011	1	4.8474	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000537_shovill_contig00003|provirus_58050_94949	36900	Provirus	58050-94949	53	11	0.9987	0.0011	8	54.0777	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.3.o_k141_18853-flag_1-multi_5.0000-len_11267	11267	No terminal repeats	NA	12	11	0.9987	0.0011	4	11.2093	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000602_bin.1.o_k141_601846-flag_1-multi_7.0000-len_18625	18625	No terminal repeats	NA	29	11	0.9987	0.0011	1	18.0525	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.3.o_k141_460887-flag_1-multi_3.0000-len_3770	3770	No terminal repeats	NA	5	11	0.9987	0.0011	1	5.1485	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000603_bin.2.s_NODE_227_length_5521_cov_1.768736	5521	No terminal repeats	NA	12	11	0.9987	0.0011	1	5.1535	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000602_bin.1.o_k141_560681-flag_0-multi_10.0000-len_4282	4282	No terminal repeats	NA	5	11	0.9987	0.0012	3	5.9384	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_386981-flag_1-multi_4.0000-len_3787	3787	No terminal repeats	NA	4	11	0.9987	0.0012	3	5.4162	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000520_bin.1.p_NODE_85_length_12094_cov_10.067321	12094	No terminal repeats	NA	12	11	0.9987	0.0012	3	9.8243	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000602_bin.1.o_k141_66181-flag_1-multi_8.0000-len_5987	5987	No terminal repeats	NA	12	11	0.9987	0.0012	1	10.1592	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000602_bin.1.o_k141_487646-flag_0-multi_5.9997-len_12174	12174	No terminal repeats	NA	14	11	0.9987	0.0012	2	9.5694	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.3.o_k141_645510-flag_1-multi_4.0000-len_5183	5183	No terminal repeats	NA	9	11	0.9987	0.0012	0	9.5137	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane121s003960_shovill_contig00004|provirus_58263_72640	14378	Provirus	58263-72640	22	11	0.9987	0.0012	1	9.3985	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000604_bin.1.o_k141_278678-flag_1-multi_3.0000-len_6457	6457	No terminal repeats	NA	5	11	0.9987	0.0012	1	5.8862	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000600_bin.3.p_NODE_281_length_3547_cov_2.261671	3547	No terminal repeats	NA	4	11	0.9987	0.0012	0	5.1548	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane121s003960_shovill_contig00027|provirus_34_30682	30649	Provirus	34-30682	38	11	0.9987	0.0012	10	33.1858	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000602_bin.1.o_k141_445929-flag_0-multi_6.9917-len_8835	8835	No terminal repeats	NA	14	11	0.9987	0.0012	1	14.1275	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000520_bin.1.p_NODE_63_length_22896_cov_7.173890	22896	No terminal repeats	NA	28	11	0.9987	0.0012	1	21.9776	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000602_bin.1.o_k141_335143-flag_0-multi_7.5837-len_11373	11373	No terminal repeats	NA	18	11	0.9987	0.0012	2	9.3781	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000601_bin.1.o_k141_236036-flag_1-multi_3.0000-len_2889	2889	No terminal repeats	NA	4	11	0.9987	0.0012	0	6.6807	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane121s003963_shovill_contig00002|provirus_562802_631651	68850	Provirus	562802-631651	56	11	0.9987	0.0012	1	36.2539	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.1.o_k141_293141-flag_0-multi_5.7416-len_7881	7881	No terminal repeats	NA	12	11	0.9987	0.0012	0	4.7672	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000599_bin.1.p_NODE_90_length_5456_cov_2.829522	5456	No terminal repeats	NA	12	11	0.9987	0.0012	0	4.5532	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_428778-flag_1-multi_5.0000-len_7819	7819	No terminal repeats	NA	14	11	0.9987	0.0012	1	4.6844	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_182146-flag_1-multi_4.0000-len_6151	6151	No terminal repeats	NA	11	11	0.9987	0.0012	1	7.8839	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000601_bin.1.o_k141_197625-flag_1-multi_3.0000-len_4164	4164	No terminal repeats	NA	6	11	0.9987	0.0012	1	4.9332	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_199572-flag_1-multi_5.0000-len_5506	5506	No terminal repeats	NA	11	11	0.9986	0.0012	1	6.8385	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.3.o_k141_135849-flag_1-multi_6.0000-len_14014	14014	No terminal repeats	NA	21	11	0.9986	0.0012	1	21.6663	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000602_bin.1.o_k141_199215-flag_0-multi_12.9929-len_20294	20294	No terminal repeats	NA	34	11	0.9986	0.0012	8	30.4312	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.1.o_k141_312201-flag_1-multi_5.0000-len_3019	3019	No terminal repeats	NA	3	11	0.9986	0.0012	2	4.9203	Unclassified
+lane122s000602_bin.1.o_k141_258277-flag_0-multi_9.3269-len_5014	5014	No terminal repeats	NA	5	11	0.9986	0.0012	0	4.8234	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.3.o_k141_178523-flag_1-multi_1.1064-len_4613	4613	No terminal repeats	NA	9	11	0.9986	0.0012	2	10.7412	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000607_bin.1.p_NODE_10_length_14107_cov_3.792872	14107	No terminal repeats	NA	20	11	0.9986	0.0012	4	14.1375	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000602_bin.1.o_k141_569282-flag_0-multi_5.5088-len_3653	3653	No terminal repeats	NA	7	11	0.9986	0.0012	1	5.1548	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_245754-flag_1-multi_5.0000-len_7408	7408	No terminal repeats	NA	10	11	0.9986	0.0012	0	10.5121	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000602_bin.1.o_k141_489960-flag_0-multi_5.1358-len_5076	5076	No terminal repeats	NA	7	11	0.9986	0.0012	0	4.7315	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.1.o_k141_658450-flag_1-multi_3.8365-len_5169	5169	No terminal repeats	NA	7	11	0.9986	0.0012	1	6.4793	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000536_megahit_k141_191-flag=0-multi=187.9904-len=467785|provirus_459817_467398	7582	Provirus	459817-467398	12	11	0.9986	0.0012	1	8.5442	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane121s003953_shovill_contig00007|provirus_3790_35922	32133	Provirus	3790-35922	52	11	0.9986	0.0012	12	35.9414	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane821s003041_shovill_contig00009|provirus_3790_35922	32133	Provirus	3790-35922	52	11	0.9986	0.0012	12	35.9414	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_409047-flag_1-multi_6.0000-len_12717	12717	No terminal repeats	NA	16	11	0.9986	0.0012	8	21.4949	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.3.o_k141_216178-flag_1-multi_2.0000-len_3743	3743	No terminal repeats	NA	6	11	0.9986	0.0012	1	4.9739	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000607_bin.1.p_NODE_6_length_16306_cov_6.576930	16306	No terminal repeats	NA	23	11	0.9986	0.0012	4	19.0355	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_418233-flag_1-multi_6.0000-len_5494	5494	No terminal repeats	NA	3	11	0.9986	0.0012	2	3.9741	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000601_bin.4.o_k141_96018-flag_1-multi_6.0000-len_12743	12743	No terminal repeats	NA	29	11	0.9986	0.0012	0	10.4478	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.3.o_k141_437999-flag_1-multi_6.0000-len_3857	3857	No terminal repeats	NA	4	11	0.9986	0.0012	2	4.9506	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_419072-flag_1-multi_2.0000-len_2525	2525	No terminal repeats	NA	6	11	0.9986	0.0012	1	8.3309	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_476439-flag_1-multi_3.7319-len_2920	2920	No terminal repeats	NA	6	11	0.9985	0.0012	3	6.0506	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane121s003995_shovill_contig00001|provirus_160343_204267	43925	Provirus	160343-204267	72	11	0.9985	0.0012	12	58.2620	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000520_bin.1.p_NODE_61_length_23763_cov_7.069788	23763	No terminal repeats	NA	30	11	0.9985	0.0012	10	30.3864	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000536_megahit_k141_86-flag=0-multi=186.9201-len=56023|provirus_21396_55872	34477	Provirus	21396-55872	57	11	0.9985	0.0012	17	59.7306	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_336847-flag_1-multi_1.0000-len_2998	2998	No terminal repeats	NA	3	11	0.9985	0.0012	0	5.1427	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_415598-flag_1-multi_2.0000-len_1555	1555	No terminal repeats	NA	4	11	0.9985	0.0012	1	6.5118	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_126825-flag_1-multi_3.0000-len_4726	4726	No terminal repeats	NA	10	11	0.9985	0.0013	1	6.8792	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000721_shovill_contig00257	4257	No terminal repeats	NA	9	11	0.9985	0.0013	2	7.0650	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_246723-flag_1-multi_5.0000-len_4941	4941	No terminal repeats	NA	7	11	0.9985	0.0013	0	10.0220	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane121s003962_megahit_k141_37-flag=1-multi=4.7043-len=3002	3002	No terminal repeats	NA	5	11	0.9985	0.0013	4	6.3862	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000602_bin.1.o_k141_728419-flag_0-multi_7.9787-len_4080	4080	No terminal repeats	NA	6	11	0.9985	0.0013	2	4.6447	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000602_bin.1.o_k141_440511-flag_0-multi_12.6136-len_10878	10878	No terminal repeats	NA	15	11	0.9985	0.0013	3	9.2722	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.1.o_k141_72470-flag_0-multi_7.0000-len_9801	9801	No terminal repeats	NA	16	11	0.9985	0.0013	1	10.5757	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000601_bin.3.s_NODE_12_length_36509_cov_9.369346	36509	No terminal repeats	NA	48	11	0.9984	0.0013	11	43.9423	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000515_shovill_contig00001|provirus_412858_455329	42472	Provirus	412858-455329	61	11	0.9984	0.0013	16	65.8710	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane121s003972_shovill_contig00002|provirus_537953_573110	35158	Provirus	537953-573110	48	11	0.9984	0.0013	16	49.8969	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000520_bin.1.p_NODE_111_length_5063_cov_5.540313	5063	No terminal repeats	NA	9	11	0.9984	0.0013	0	4.4499	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.2.s_NODE_303_length_4013_cov_1.899390	4013	No terminal repeats	NA	6	11	0.9984	0.0013	0	5.1548	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.2.s_NODE_112_length_6510_cov_1.915747	6510	No terminal repeats	NA	13	11	0.9984	0.0013	1	5.8545	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000601_bin.1.o_k141_593899-flag_1-multi_4.0000-len_2532	2532	No terminal repeats	NA	4	11	0.9984	0.0013	0	6.0502	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane121s003972_bin.2.s_NODE_433_length_2730_cov_2.202035	2730	No terminal repeats	NA	5	11	0.9984	0.0013	1	8.0430	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000600_bin.1.s_NODE_19_length_36365_cov_5.949377	36365	No terminal repeats	NA	49	11	0.9984	0.0013	11	43.9423	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane821s003043_bin.1.s_NODE_2_length_616176_cov_1010.765517|provirus_270165_311744	41580	Provirus	270165-311744	58	11	0.9984	0.0013	8	39.1363	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_166273-flag_1-multi_4.0000-len_7442	7442	No terminal repeats	NA	8	11	0.9983	0.0013	0	4.8164	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_460483-flag_0-multi_3.9884-len_3241	3241	No terminal repeats	NA	4	11	0.9983	0.0013	2	4.8300	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000602_bin.1.o_k141_55745-flag_1-multi_7.0000-len_8721	8721	No terminal repeats	NA	20	11	0.9983	0.0013	0	11.0609	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.1.o_k141_507325-flag_0-multi_10.3678-len_9077	9077	No terminal repeats	NA	15	11	0.9983	0.0013	3	10.7477	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane821s003041_shovill_contig00011|provirus_24064_61102	37039	Provirus	24064-61102	60	11	0.9983	0.0013	17	51.8029	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane121s003953_shovill_contig00009|provirus_24064_61102	37039	Provirus	24064-61102	60	11	0.9983	0.0013	17	51.8029	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_478369-flag_1-multi_3.0000-len_3067	3067	No terminal repeats	NA	6	11	0.9983	0.0013	0	6.9503	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000517_bin.1.p_NODE_5_length_200462_cov_59.385373|provirus_169400_200460	31061	Provirus	169400-200460	44	11	0.9983	0.0013	10	45.0864	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.2.s_NODE_368_length_3494_cov_1.478490	3494	No terminal repeats	NA	11	11	0.9983	0.0013	1	8.0181	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000720_shovill_contig00001|provirus_1712182_1749343	37162	Provirus	1712182-1749343	53	11	0.9983	0.0013	16	57.5252	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000528_shovill_contig00002|provirus_533893_571054	37162	Provirus	533893-571054	53	11	0.9983	0.0013	16	57.5252	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000540_bin.2.p_NODE_2_length_1045098_cov_75.010510|provirus_533535_570696	37162	Provirus	533535-570696	53	11	0.9983	0.0013	16	57.5252	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000602_bin.1.o_k141_59794-flag_0-multi_14.9694-len_5627	5627	No terminal repeats	NA	11	11	0.9983	0.0013	0	8.5914	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_145068-flag_1-multi_7.0000-len_4953	4953	No terminal repeats	NA	4	11	0.9983	0.0013	2	3.9741	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane821s003035_bin.1.p_NODE_1_length_1547047_cov_986.860280|provirus_1013967_1051324	37358	Provirus	1013967-1051324	48	11	0.9983	0.0013	12	40.8185	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.1.o_k141_182672-flag_1-multi_7.0000-len_8728	8728	No terminal repeats	NA	10	11	0.9982	0.0013	0	5.1548	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane121s003977_shovill_contig00028|provirus_54416_69378	14963	Provirus	54416-69378	17	11	0.9982	0.0013	5	21.4879	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000538_bin.1.p_NODE_3_length_501519_cov_136.749281|provirus_356011_385883	29873	Provirus	356011-385883	41	11	0.9982	0.0013	13	38.5301	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane821s003041_shovill_contig00022|provirus_934_43172	42239	Provirus	934-43172	66	11	0.9982	0.0014	12	52.7281	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000519_bin.2.s_NODE_3_length_725751_cov_64.567532|provirus_3_28795	28793	Provirus	3-28795	38	11	0.9982	0.0014	11	32.9239	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_64512-flag_1-multi_4.0000-len_3658	3658	No terminal repeats	NA	6	11	0.9982	0.0014	1	7.6577	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane121s003958_shovill_contig00002|provirus_83260_100454	17195	Provirus	83260-100454	27	11	0.9982	0.0014	2	12.5163	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000600_bin.3.p_NODE_11_length_12950_cov_2.687563	12950	No terminal repeats	NA	21	11	0.9982	0.0014	0	6.1315	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000602_bin.1.o_k141_447284-flag_1-multi_19.0000-len_4161	4161	No terminal repeats	NA	3	11	0.9982	0.0014	0	4.0619	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000601_bin.3.s_NODE_17_length_7790_cov_2.679891	7790	No terminal repeats	NA	10	11	0.9982	0.0014	0	6.5337	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000519_bin.2.s_NODE_6_length_203114_cov_75.862872|provirus_43_33715	33673	Provirus	43-33715	47	11	0.9981	0.0014	10	45.4448	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.3.p_NODE_725_length_2819_cov_2.443107	2819	No terminal repeats	NA	4	11	0.9981	0.0014	0	5.1548	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000607_bin.1.p_NODE_661_length_3395_cov_2.537372	3395	No terminal repeats	NA	6	11	0.9981	0.0014	2	4.6174	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane821s003043_bin.1.s_NODE_4_length_254064_cov_1076.679208|provirus_171500_190869	19370	Provirus	171500-190869	30	11	0.9981	0.0014	3	13.7070	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.3.o_k141_441657-flag_1-multi_2.0000-len_2377	2377	No terminal repeats	NA	4	11	0.9981	0.0014	3	4.3948	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000537_shovill_contig00001|provirus_137734_142154	4421	Provirus	137734-142154	10	11	0.9981	0.0014	1	9.1149	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.2.s_NODE_381_length_3427_cov_1.884776	3427	No terminal repeats	NA	5	11	0.9981	0.0014	0	6.6058	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000545_shovill_contig00001|provirus_514952_550109	35158	Provirus	514952-550109	48	11	0.9980	0.0014	16	49.8969	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000602_bin.1.o_k141_23695-flag_0-multi_5.9814-len_3366	3366	No terminal repeats	NA	5	11	0.9980	0.0014	0	4.8371	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.3.o_k141_538358-flag_1-multi_1.0000-len_2230	2230	No terminal repeats	NA	4	11	0.9980	0.0014	3	5.1548	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane121s003965_shovill_contig00003|provirus_48215_81940	33726	Provirus	48215-81940	44	11	0.9980	0.0014	14	39.0067	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000519_bin.3.s_NODE_1_length_1116565_cov_55.245852|provirus_633793_666886	33094	Provirus	633793-666886	46	11	0.9980	0.0014	9	44.4479	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000517_bin.2.s_NODE_1_length_1116566_cov_69.660755|provirus_633794_666887	33094	Provirus	633794-666887	46	11	0.9980	0.0014	9	44.4479	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_81514-flag_1-multi_2.0000-len_2427	2427	No terminal repeats	NA	3	11	0.9980	0.0014	1	1.9576	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.2.s_NODE_269_length_4251_cov_1.826785	4251	No terminal repeats	NA	6	11	0.9980	0.0014	1	4.7460	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_176549-flag_1-multi_4.0000-len_4222	4222	No terminal repeats	NA	5	11	0.9980	0.0014	1	5.6116	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_380172-flag_1-multi_4.0000-len_2826	2826	No terminal repeats	NA	4	11	0.9980	0.0014	2	3.8661	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_162773-flag_1-multi_3.0000-len_3199	3199	No terminal repeats	NA	12	11	0.9980	0.0014	0	5.1548	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000602_bin.1.o_k141_770934-flag_1-multi_6.3795-len_17990	17990	No terminal repeats	NA	25	11	0.9980	0.0014	5	14.6330	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000602_bin.1.o_k141_257496-flag_1-multi_8.0000-len_22973	22973	No terminal repeats	NA	31	11	0.9980	0.0014	0	13.1028	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane121s003995_shovill_contig00013|provirus_106_17214	17109	Provirus	106-17214	24	11	0.9980	0.0014	3	12.5284	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.1.o_k141_16468-flag_1-multi_6.0000-len_6028	6028	No terminal repeats	NA	6	11	0.9980	0.0014	0	4.1871	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.3.o_k141_262002-flag_1-multi_2.0000-len_2160	2160	No terminal repeats	NA	4	11	0.9980	0.0014	3	4.4712	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_415354-flag_1-multi_5.0000-len_3649	3649	No terminal repeats	NA	6	11	0.9980	0.0015	0	5.1139	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.3.o_k141_436735-flag_1-multi_1.8957-len_2077	2077	No terminal repeats	NA	2	11	0.9979	0.0015	2	3.3237	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000522_shovill_contig00001|provirus_765929_806126	40198	Provirus	765929-806126	53	11	0.9979	0.0015	14	40.3884	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane121s003971_bin.1.s_NODE_2_length_1518972_cov_103.605725|provirus_1189119_1229139	40021	Provirus	1189119-1229139	55	11	0.9979	0.0015	10	49.8260	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane121s003996_shovill_contig00004|provirus_305190_347616	42427	Provirus	305190-347616	62	11	0.9979	0.0015	12	52.5842	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000520_bin.1.p_NODE_46_length_38154_cov_25.273892	38154	No terminal repeats	NA	50	11	0.9979	0.0015	15	52.4152	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_151081-flag_1-multi_5.0000-len_5362	5362	No terminal repeats	NA	10	11	0.9979	0.0015	0	4.2770	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000602_bin.1.o_k141_86322-flag_0-multi_52.0000-len_2094	2094	No terminal repeats	NA	2	11	0.9979	0.0015	2	3.4257	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.1.o_k141_518615-flag_0-multi_7.7122-len_25254	25254	No terminal repeats	NA	39	11	0.9979	0.0015	5	22.6083	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000602_bin.1.o_k141_211512-flag_0-multi_8.9866-len_7295	7295	No terminal repeats	NA	21	11	0.9979	0.0015	0	5.4800	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000602_bin.1.o_k141_485107-flag_1-multi_5.0000-len_6707	6707	No terminal repeats	NA	15	11	0.9979	0.0015	0	6.3170	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000601_bin.6.o_k141_655395-flag_1-multi_1.8177-len_4558	4558	No terminal repeats	NA	3	11	0.9979	0.0015	0	2.7616	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane121s003952_megahit_k141_100-flag=1-multi=231.9834-len=167339|provirus_85386_119111	33726	Provirus	85386-119111	44	11	0.9979	0.0015	14	39.0067	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000517_bin.1.p_NODE_3_length_725817_cov_52.494282|provirus_467491_512351	44861	Provirus	467491-512351	60	11	0.9979	0.0015	17	65.1308	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_124039-flag_1-multi_4.0000-len_2903	2903	No terminal repeats	NA	5	11	0.9979	0.0015	1	2.6740	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.1.o_k141_692514-flag_1-multi_3.0000-len_2556	2556	No terminal repeats	NA	5	11	0.9978	0.0015	0	2.9792	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000519_bin.2.s_NODE_3_length_725751_cov_64.567532|provirus_213467_258327	44861	Provirus	213467-258327	60	11	0.9978	0.0015	17	65.1308	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_261136-flag_1-multi_1.0000-len_2540	2540	No terminal repeats	NA	4	11	0.9978	0.0015	0	4.0120	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000602_bin.1.o_k141_21052-flag_0-multi_6.3310-len_3238	3238	No terminal repeats	NA	8	11	0.9978	0.0015	0	5.0179	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000603_bin.2.s_NODE_302_length_3906_cov_1.283886	3906	No terminal repeats	NA	5	11	0.9978	0.0015	0	4.4629	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_445603-flag_1-multi_3.0000-len_5875	5875	No terminal repeats	NA	14	11	0.9978	0.0015	2	4.4273	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000600_bin.3.p_NODE_221_length_4269_cov_2.123569	4269	No terminal repeats	NA	7	11	0.9978	0.0015	0	3.8305	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000601_bin.6.o_k141_141209-flag_1-multi_4.0000-len_3200	3200	No terminal repeats	NA	5	11	0.9978	0.0015	0	4.5317	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_278545-flag_1-multi_3.0000-len_6433	6433	No terminal repeats	NA	11	11	0.9978	0.0015	0	2.4991	Unclassified
+lane122s000607_bin.1.p_NODE_348_length_4617_cov_3.542731	4617	No terminal repeats	NA	8	11	0.9978	0.0015	1	6.2810	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.2.s_NODE_800_length_1928_cov_0.453269	1928	No terminal repeats	NA	3	11	0.9978	0.0015	1	3.0963	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000607_bin.1.p_NODE_4_length_21565_cov_3.535880	21565	No terminal repeats	NA	27	11	0.9978	0.0015	1	15.1603	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane821s003040_bin.1.o_k141_84-flag_1-multi_4.0000-len_1468	1468	No terminal repeats	NA	2	11	0.9978	0.0015	1	3.4366	Viruses;Monodnaviria;Sangervirae;Phixviricota;Malgrandaviricetes;Petitvirales;Microviridae
+lane122s000605_bin.1.o_k141_288429-flag_1-multi_49.0000-len_35819	35819	No terminal repeats	NA	57	11	0.9977	0.0016	6	31.4622	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.1.o_k141_516265-flag_1-multi_4.7055-len_7804	7804	No terminal repeats	NA	14	11	0.9977	0.0016	1	6.0003	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane121s003979_bin.1.s_NODE_1_length_1346747_cov_118.252067|provirus_374127_414063	39937	Provirus	374127-414063	48	11	0.9977	0.0016	13	34.3067	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane121s003980_megahit_k141_137-flag=0-multi=243.9786-len=578528|provirus_98875_138859	39985	Provirus	98875-138859	48	11	0.9977	0.0016	13	34.3067	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_244328-flag_1-multi_6.0000-len_12405	12405	No terminal repeats	NA	26	11	0.9977	0.0016	1	7.3316	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane121s003977_shovill_contig00001|provirus_2_15814	15813	Provirus	2-15814	27	11	0.9977	0.0016	5	10.5684	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.3.o_k141_702617-flag_1-multi_4.0000-len_3361	3361	No terminal repeats	NA	6	11	0.9977	0.0016	2	3.3358	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000602_bin.1.o_k141_129603-flag_0-multi_8.8949-len_2824	2824	No terminal repeats	NA	6	11	0.9977	0.0016	1	3.4366	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane121s003995_shovill_contig00007|provirus_167930_216590	48661	Provirus	167930-216590	64	11	0.9977	0.0016	10	49.8404	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000602_bin.1.o_k141_232030-flag_0-multi_11.0201-len_6054	6054	No terminal repeats	NA	7	11	0.9977	0.0016	0	4.1200	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane121s003972_bin.2.s_NODE_252_length_3621_cov_2.643059	3621	No terminal repeats	NA	8	11	0.9977	0.0016	1	8.4182	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane121s003971_bin.1.s_NODE_49_length_1497_cov_2.059155	1497	No terminal repeats	NA	2	11	0.9976	0.0016	1	2.4557	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.1.o_k141_47962-flag_0-multi_3.0000-len_2567	2567	No terminal repeats	NA	8	11	0.9976	0.0016	0	3.1471	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_891-flag_1-multi_2.9292-len_2315	2315	No terminal repeats	NA	5	11	0.9976	0.0016	1	2.9464	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane121s003971_bin.1.s_NODE_121_length_784_cov_1.295615	784	No terminal repeats	NA	2	11	0.9976	0.0016	2	3.4366	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000602_bin.1.o_k141_684429-flag_0-multi_3.4637-len_3654	3654	No terminal repeats	NA	2	11	0.9976	0.0016	1	2.6982	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.2.s_NODE_415_length_3255_cov_2.533354	3255	No terminal repeats	NA	5	11	0.9976	0.0016	1	4.1182	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane121s003976_shovill_contig00011|provirus_2_14603	14602	Provirus	2-14603	25	11	0.9976	0.0016	5	10.5684	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.2.s_NODE_463_length_2993_cov_1.472222	2993	No terminal repeats	NA	5	11	0.9976	0.0016	1	3.4366	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000607_bin.1.p_NODE_446_length_4185_cov_3.288218	4185	No terminal repeats	NA	4	11	0.9976	0.0016	0	3.1999	Unclassified
+lane122s000605_bin.2.o_k141_160975-flag_1-multi_6.8476-len_4275	4275	No terminal repeats	NA	8	11	0.9976	0.0016	0	3.0591	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane121s003953_shovill_contig00010|provirus_62799_115359	52561	Provirus	62799-115359	78	11	0.9976	0.0016	12	54.2829	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.2.s_NODE_1_length_37544_cov_13.428110	37544	No terminal repeats	NA	55	11	0.9976	0.0016	6	31.1896	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000607_bin.1.p_NODE_156_length_6185_cov_2.992141	6185	No terminal repeats	NA	14	11	0.9976	0.0016	3	5.3258	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_361995-flag_1-multi_4.0000-len_5112	5112	No terminal repeats	NA	7	11	0.9976	0.0016	0	7.4086	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_199144-flag_1-multi_3.0000-len_4048	4048	No terminal repeats	NA	10	11	0.9976	0.0016	0	3.8674	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane121s003954_shovill_contig00021|provirus_22909_66939	44031	Provirus	22909-66939	58	11	0.9975	0.0016	19	64.9155	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000541_shovill_contig00001|provirus_709904_749107	39204	Provirus	709904-749107	47	11	0.9975	0.0016	10	40.1880	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000602_bin.1.o_k141_346022-flag_0-multi_6.4361-len_4186	4186	No terminal repeats	NA	9	11	0.9975	0.0017	0	5.0211	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane121s003971_bin.1.s_NODE_27_length_2751_cov_43.425206	2751	No terminal repeats	NA	8	11	0.9975	0.0017	0	6.1015	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000531_bin.1.o_k141_151-flag_0-multi_166.9872-len_311393|provirus_208943_261972	53030	Provirus	208943-261972	79	11	0.9975	0.0017	10	53.6283	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000521_bin.1.s_NODE_1_length_1184269_cov_106.342662|provirus_1171619_1183885	12267	Provirus	1171619-1183885	17	11	0.9975	0.0017	1	11.2837	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.2.s_NODE_342_length_3677_cov_2.323889	3677	No terminal repeats	NA	4	11	0.9975	0.0017	1	2.8899	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000541_shovill_contig00004|provirus_331787_343202	11416	Provirus	331787-343202	16	11	0.9975	0.0017	0	8.0300	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000520_bin.1.p_NODE_20_length_86360_cov_25.981537|provirus_49408_86358	36951	Provirus	49408-86358	51	11	0.9974	0.0017	9	44.4066	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_266862-flag_1-multi_7.0000-len_6580	6580	No terminal repeats	NA	13	11	0.9974	0.0017	1	6.6292	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane121s003968_megahit_k141_172-flag=0-multi=280.9733-len=876979|provirus_318077_357260	39184	Provirus	318077-357260	62	11	0.9974	0.0017	8	43.7708	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.2.s_NODE_559_length_2587_cov_1.419124	2587	No terminal repeats	NA	3	11	0.9974	0.0017	0	3.4009	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000528_shovill_contig00001|provirus_100506_143754	43249	Provirus	100506-143754	53	11	0.9974	0.0017	10	44.3564	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000607_bin.1.p_NODE_104_length_6891_cov_3.071324	6891	No terminal repeats	NA	10	11	0.9974	0.0017	2	8.5033	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000602_bin.1.o_k141_207216-flag_0-multi_13.8293-len_1969	1969	No terminal repeats	NA	3	11	0.9974	0.0017	1	5.1548	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.1.o_k141_70694-flag_1-multi_2.9987-len_3270	3270	No terminal repeats	NA	4	11	0.9974	0.0017	1	2.5983	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000601_bin.5.o_k141_353379-flag_1-multi_8.7583-len_5044	5044	No terminal repeats	NA	3	11	0.9974	0.0017	0	1.4452	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000517_bin.1.p_NODE_2_length_853550_cov_63.413624|provirus_12184_42320	30137	Provirus	12184-42320	41	11	0.9974	0.0017	14	53.6442	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.2.s_NODE_987_length_1576_cov_0.717812	1576	No terminal repeats	NA	4	11	0.9974	0.0017	1	4.2784	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_372651-flag_1-multi_6.0000-len_6489	6489	No terminal repeats	NA	9	11	0.9974	0.0017	2	6.3587	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane121s003953_shovill_contig00002|provirus_115583_125445	9863	Provirus	115583-125445	17	11	0.9974	0.0017	1	11.9425	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane821s003041_shovill_contig00001|provirus_115583_125445	9863	Provirus	115583-125445	17	11	0.9974	0.0017	1	11.9425	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000540_bin.2.p_NODE_1_length_1058893_cov_77.315366|provirus_88789_131881	43093	Provirus	88789-131881	53	11	0.9974	0.0017	10	44.3564	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane121s003972_bin.2.s_NODE_570_length_2277_cov_3.300909	2277	No terminal repeats	NA	2	11	0.9973	0.0017	1	2.2261	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes;Straboviridae
+lane121s003968_megahit_k141_107-flag=0-multi=506.7778-len=54840	54840	DTR	NA	75	11	0.9973	0.0017	10	23.4881	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000519_bin.2.s_NODE_1_length_853921_cov_84.003566|provirus_12510_42523	30014	Provirus	12510-42523	41	11	0.9973	0.0017	15	53.6021	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.1.o_k141_143850-flag_1-multi_6.0000-len_14792	14792	No terminal repeats	NA	37	11	0.9973	0.0017	1	19.1749	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.2.s_NODE_555_length_2595_cov_1.520254	2595	No terminal repeats	NA	6	11	0.9973	0.0017	0	4.4117	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000602_bin.1.o_k141_185412-flag_0-multi_6.9921-len_9242	9242	No terminal repeats	NA	17	11	0.9973	0.0017	0	7.2142	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000603_bin.1.o_k141_139092-flag_1-multi_4.0000-len_5509	5509	No terminal repeats	NA	8	11	0.9973	0.0018	0	3.0720	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane121s003958_shovill_contig00003|provirus_301605_316818	15214	Provirus	301605-316818	17	11	0.9972	0.0018	5	21.4879	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_32149-flag_0-multi_4.9796-len_8758	8758	No terminal repeats	NA	14	11	0.9972	0.0018	0	7.8887	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000601_bin.7.o_k141_497937-flag_1-multi_8.0000-len_13611	13611	No terminal repeats	NA	32	11	0.9972	0.0018	0	9.6582	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000515_shovill_contig00005|provirus_12605_50976	38372	Provirus	12605-50976	48	11	0.9972	0.0018	6	23.6924	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.2.s_NODE_226_length_4739_cov_1.597598	4739	No terminal repeats	NA	13	11	0.9972	0.0018	1	7.2514	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000602_bin.1.o_k141_702265-flag_0-multi_5.3250-len_6489	6489	No terminal repeats	NA	12	11	0.9972	0.0018	0	6.3046	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000602_bin.1.o_k141_639222-flag_0-multi_22.9287-len_3846	3846	No terminal repeats	NA	9	11	0.9972	0.0018	1	2.2109	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000721_shovill_contig00345	3368	No terminal repeats	NA	6	11	0.9972	0.0018	1	8.1181	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000607_bin.1.p_NODE_178_length_5955_cov_3.608881	5955	No terminal repeats	NA	7	11	0.9972	0.0018	1	5.0667	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000607_bin.1.p_NODE_22_length_10834_cov_2.990146	10834	No terminal repeats	NA	16	11	0.9972	0.0018	3	14.1030	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000602_bin.1.o_k141_412329-flag_1-multi_6.0000-len_38115	38115	No terminal repeats	NA	45	11	0.9971	0.0018	3	25.1517	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000602_bin.1.o_k141_394477-flag_1-multi_7.9223-len_7834	7834	No terminal repeats	NA	14	11	0.9971	0.0018	0	4.4654	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_387255-flag_1-multi_4.0000-len_3027	3027	No terminal repeats	NA	5	11	0.9971	0.0018	1	2.5498	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_213556-flag_1-multi_1.9712-len_2568	2568	No terminal repeats	NA	4	11	0.9971	0.0018	1	2.3495	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000604_bin.1.o_k141_426593-flag_1-multi_3.0000-len_2057	2057	No terminal repeats	NA	5	11	0.9971	0.0018	1	4.8109	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_233097-flag_0-multi_1.7058-len_3384	3384	No terminal repeats	NA	6	11	0.9971	0.0018	2	5.0195	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000601_bin.1.o_k141_139926-flag_1-multi_3.0000-len_3106	3106	No terminal repeats	NA	12	11	0.9971	0.0018	0	4.2270	Unclassified
+lane122s000604_bin.1.o_k141_247308-flag_1-multi_2.0000-len_3219	3219	No terminal repeats	NA	5	11	0.9971	0.0018	1	6.8731	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000522_shovill_contig00020	55920	DTR	NA	74	11	0.9971	0.0018	10	23.6130	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000607_bin.1.p_NODE_25_length_10430_cov_2.961364	10430	No terminal repeats	NA	19	11	0.9970	0.0018	2	9.8090	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.1.o_k141_304404-flag_1-multi_6.0000-len_2627	2627	No terminal repeats	NA	7	11	0.9970	0.0018	0	2.9847	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.1.o_k141_62982-flag_0-multi_13.8462-len_12870	12870	No terminal repeats	NA	18	11	0.9970	0.0018	3	19.9600	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.1.o_k141_381749-flag_1-multi_7.0000-len_8617	8617	No terminal repeats	NA	11	11	0.9970	0.0018	0	5.5868	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000601_bin.1.o_k141_173284-flag_1-multi_2.0000-len_1655	1655	No terminal repeats	NA	4	11	0.9970	0.0019	3	4.3719	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000515_shovill_contig00002|provirus_12176_41282	29107	Provirus	12176-41282	39	11	0.9970	0.0019	14	50.6549	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000602_bin.1.o_k141_717134-flag_0-multi_25.9425-len_5356	5356	No terminal repeats	NA	13	11	0.9970	0.0019	0	6.3403	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_490912-flag_1-multi_2.0000-len_1903	1903	No terminal repeats	NA	3	11	0.9970	0.0019	1	3.4366	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000545_shovill_contig00001|provirus_311949_354086	42138	Provirus	311949-354086	60	11	0.9969	0.0019	8	45.9316	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000600_bin.3.p_NODE_212_length_4406_cov_2.185724	4406	No terminal repeats	NA	8	11	0.9969	0.0019	0	3.2075	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.3.o_k141_189228-flag_1-multi_3.0000-len_2462	2462	No terminal repeats	NA	4	11	0.9969	0.0019	1	6.6799	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_211693-flag_1-multi_6.0000-len_4737	4737	No terminal repeats	NA	9	11	0.9969	0.0019	0	3.3791	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane821s003044_shovill_contig00037|provirus_8643_24001	15359	Provirus	8643-24001	24	11	0.9969	0.0019	2	20.0486	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000602_bin.1.o_k141_520396-flag_0-multi_1.9946-len_2351	2351	No terminal repeats	NA	2	11	0.9969	0.0019	2	2.9493	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000602_bin.1.o_k141_752988-flag_0-multi_10.2800-len_8194	8194	No terminal repeats	NA	18	11	0.9969	0.0019	1	6.2839	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.1.o_k141_126984-flag_1-multi_5.0000-len_4478	4478	No terminal repeats	NA	5	11	0.9968	0.0019	0	4.9497	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000524_shovill_contig00002|provirus_128_34039	33912	Provirus	128-34039	45	11	0.9968	0.0019	11	37.2906	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000600_bin.1.s_NODE_1_length_662519_cov_5.597737|provirus_226182_275946	49765	Provirus	226182-275946	68	11	0.9967	0.0019	14	51.9247	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.1.o_k141_38182-flag_1-multi_1.9948-len_2451	2451	No terminal repeats	NA	3	11	0.9967	0.0019	1	2.2571	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000607_bin.1.p_NODE_67_length_7938_cov_1.944409	7938	No terminal repeats	NA	13	11	0.9967	0.0019	1	7.4072	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000607_bin.1.p_NODE_1_length_38288_cov_4.393238	38288	No terminal repeats	NA	55	11	0.9967	0.0019	3	25.7162	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_512599-flag_0-multi_3.4621-len_2571	2571	No terminal repeats	NA	3	11	0.9967	0.0019	0	3.1802	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_275958-flag_1-multi_1.0000-len_3121	3121	No terminal repeats	NA	4	11	0.9967	0.0019	3	4.5962	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_117176-flag_0-multi_9.6847-len_4676	4676	No terminal repeats	NA	5	11	0.9966	0.0019	3	3.9009	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane121s003976_shovill_contig00028|provirus_117_15079	14963	Provirus	117-15079	17	11	0.9966	0.0019	5	21.4879	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.2.s_NODE_145_length_5986_cov_2.039601	5986	No terminal repeats	NA	6	11	0.9966	0.0019	2	5.9419	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.3.o_k141_706337-flag_1-multi_8.0000-len_7352	7352	No terminal repeats	NA	10	11	0.9966	0.0019	1	4.8618	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.1.o_k141_497358-flag_1-multi_2.0000-len_3094	3094	No terminal repeats	NA	8	11	0.9966	0.0020	1	3.4072	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000523_bin.1.p_NODE_89_length_5919_cov_103.363916	5919	No terminal repeats	NA	5	11	0.9966	0.0020	2	4.2390	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.1.o_k141_178850-flag_1-multi_4.6210-len_7954	7954	No terminal repeats	NA	18	11	0.9966	0.0020	2	10.0082	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.1.o_k141_282956-flag_1-multi_5.0000-len_8823	8823	No terminal repeats	NA	14	11	0.9965	0.0020	0	6.0319	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane121s003964_megahit_k141_59-flag=0-multi=321.9768-len=331806|provirus_211694_248318	36625	Provirus	211694-248318	51	11	0.9965	0.0020	13	51.1828	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000607_bin.1.p_NODE_629_length_3491_cov_3.029877	3491	No terminal repeats	NA	4	11	0.9965	0.0020	1	2.9918	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000541_shovill_contig00002|provirus_274215_307571	33357	Provirus	274215-307571	47	11	0.9965	0.0020	9	25.2141	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000607_bin.3.o_k141_721218-flag_1-multi_1.0000-len_3090	3090	No terminal repeats	NA	2	11	0.9965	0.0020	0	3.0364	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_543280-flag_1-multi_3.0000-len_3595	3595	No terminal repeats	NA	8	11	0.9965	0.0020	0	1.7183	Unclassified
+lane821s003044_shovill_contig00045|provirus_17481_33310	15830	Provirus	17481-33310	19	11	0.9965	0.0020	3	8.6539	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.3.o_k141_616806-flag_1-multi_3.0000-len_4557	4557	No terminal repeats	NA	5	11	0.9964	0.0020	1	3.4171	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000544_bin.1.s_NODE_1_length_2128098_cov_95.834538|provirus_1651664_1685027	33364	Provirus	1651664-1685027	47	11	0.9964	0.0020	9	25.2141	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000721_shovill_contig00582	2013	No terminal repeats	NA	2	11	0.9964	0.0020	2	2.2524	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.2.s_NODE_916_length_1714_cov_1.341478	1714	No terminal repeats	NA	3	11	0.9964	0.0020	1	3.4366	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000602_bin.1.o_k141_653970-flag_0-multi_8.5458-len_7682	7682	No terminal repeats	NA	9	11	0.9964	0.0020	0	2.0474	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.3.o_k141_413304-flag_1-multi_1.0000-len_2450	2450	No terminal repeats	NA	3	11	0.9964	0.0020	2	5.0273	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000602_bin.1.o_k141_162027-flag_0-multi_5.9892-len_11280	11280	No terminal repeats	NA	25	11	0.9963	0.0020	0	3.9026	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_94452-flag_1-multi_3.0000-len_3054	3054	No terminal repeats	NA	5	11	0.9963	0.0020	0	3.0797	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane121s003972_bin.2.s_NODE_199_length_4046_cov_3.866465	4046	No terminal repeats	NA	6	11	0.9963	0.0020	2	5.1548	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000604_bin.1.o_k141_398586-flag_1-multi_3.0000-len_4253	4253	No terminal repeats	NA	6	11	0.9963	0.0020	1	4.6385	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000524_shovill_contig00001|provirus_1178559_1222201	43643	Provirus	1178559-1222201	55	11	0.9962	0.0021	13	39.8607	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane121s003971_bin.1.s_NODE_93_length_923_cov_2.469267	923	No terminal repeats	NA	2	11	0.9962	0.0021	1	1.7183	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.1.o_k141_332441-flag_0-multi_7.8658-len_35449	35449	No terminal repeats	NA	53	11	0.9962	0.0021	6	27.3526	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000602_bin.1.o_k141_677343-flag_1-multi_13.0000-len_131524	131524	No terminal repeats	NA	237	11	0.9962	0.0021	7	84.9867	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000519_bin.3.s_NODE_1_length_1116565_cov_55.245852|provirus_615125_628071	12947	Provirus	615125-628071	26	11	0.9962	0.0021	1	11.2138	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000517_bin.2.s_NODE_1_length_1116566_cov_69.660755|provirus_615126_628072	12947	Provirus	615126-628072	26	11	0.9962	0.0021	1	11.2138	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane821s003042_shovill_contig00003|provirus_83451_120075	36625	Provirus	83451-120075	51	11	0.9962	0.0021	13	51.1828	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane121s003971_bin.1.s_NODE_1_length_1525267_cov_97.535093|provirus_562631_607488	44858	Provirus	562631-607488	59	11	0.9962	0.0021	6	22.7099	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.3.o_k141_213726-flag_1-multi_7.0000-len_16862	16862	No terminal repeats	NA	29	11	0.9962	0.0021	0	14.6919	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000523_bin.1.p_NODE_46_length_42196_cov_105.201073|provirus_9985_25814	15830	Provirus	9985-25814	19	11	0.9961	0.0021	3	8.6539	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000517_bin.1.p_NODE_6_length_175637_cov_63.035361|provirus_77_15575	15499	Provirus	77-15575	29	11	0.9961	0.0021	2	15.8427	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000519_bin.2.s_NODE_7_length_117578_cov_88.367835|provirus_77_15575	15499	Provirus	77-15575	29	11	0.9961	0.0021	2	15.8427	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_46154-flag_1-multi_2.0000-len_3375	3375	No terminal repeats	NA	4	11	0.9961	0.0021	0	2.3004	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000607_bin.1.p_NODE_398_length_4401_cov_2.229880	4401	No terminal repeats	NA	12	11	0.9961	0.0021	0	6.7727	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000720_shovill_contig00001|provirus_1196944_1322139	125196	Provirus	1196944-1322139	182	11	0.9960	0.0021	6	154.4989	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_488574-flag_1-multi_2.9898-len_2501	2501	No terminal repeats	NA	4	11	0.9960	0.0021	1	5.1477	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_445125-flag_1-multi_2.0000-len_1994	1994	No terminal repeats	NA	4	11	0.9960	0.0021	1	3.3939	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000607_bin.1.p_NODE_3083_length_562_cov_3.235052	562	No terminal repeats	NA	1	11	0.9960	0.0021	1	1.7183	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000602_bin.1.o_k141_693144-flag_1-multi_1.0000-len_3040	3040	No terminal repeats	NA	4	11	0.9960	0.0022	0	3.1188	Unclassified
+lane122s000605_bin.2.o_k141_410925-flag_1-multi_7.0000-len_10827	10827	No terminal repeats	NA	15	11	0.9959	0.0022	1	4.1661	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000607_bin.1.p_NODE_720_length_3243_cov_2.504738	3243	No terminal repeats	NA	7	11	0.9959	0.0022	1	4.6030	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000607_bin.1.p_NODE_63_length_8180_cov_5.580155	8180	No terminal repeats	NA	17	11	0.9959	0.0022	0	4.9406	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000520_bin.1.p_NODE_31_length_61133_cov_24.657773|provirus_47704_61132	13429	Provirus	47704-61132	18	11	0.9959	0.0022	5	13.1944	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane121s003976_shovill_contig00077	5993	No terminal repeats	NA	7	11	0.9958	0.0022	2	4.2066	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000602_bin.1.o_k141_731102-flag_1-multi_2.8243-len_2907	2907	No terminal repeats	NA	7	11	0.9958	0.0022	0	2.6727	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000602_bin.1.o_k141_107703-flag_1-multi_7.0000-len_16606	16606	No terminal repeats	NA	30	11	0.9958	0.0022	1	12.3195	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000601_bin.5.o_k141_481115-flag_1-multi_7.9617-len_37249|provirus_159_12707	12549	Provirus	159-12707	19	11	0.9957	0.0022	1	7.7360	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.2.s_NODE_570_length_2516_cov_1.260763	2516	No terminal repeats	NA	2	11	0.9957	0.0022	1	1.7183	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000521_bin.1.s_NODE_30_length_28582_cov_102.738748	28582	No terminal repeats	NA	31	11	0.9957	0.0022	6	15.3850	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000601_bin.3.s_NODE_2_length_952216_cov_8.265472|provirus_386671_436435	49765	Provirus	386671-436435	68	11	0.9957	0.0022	14	51.9247	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_496105-flag_1-multi_2.0000-len_2597	2597	No terminal repeats	NA	3	11	0.9957	0.0022	2	3.2385	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000601_bin.6.o_k141_385753-flag_1-multi_3.0000-len_3471	3471	No terminal repeats	NA	6	11	0.9956	0.0022	0	1.7125	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_535191-flag_0-multi_5.0000-len_2597	2597	No terminal repeats	NA	5	11	0.9956	0.0022	0	2.2927	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000602_bin.1.o_k141_558485-flag_0-multi_8.0000-len_8702	8702	No terminal repeats	NA	23	11	0.9956	0.0022	0	8.8536	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_385418-flag_1-multi_1.0000-len_1674	1674	No terminal repeats	NA	4	11	0.9956	0.0022	3	5.7315	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.3.o_k141_70407-flag_1-multi_3.0000-len_3467	3467	No terminal repeats	NA	9	11	0.9955	0.0023	0	1.1866	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000607_bin.1.p_NODE_176_length_5986_cov_2.626840	5986	No terminal repeats	NA	6	11	0.9955	0.0023	0	4.8278	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000602_bin.1.o_k141_136129-flag_0-multi_3.6361-len_3208	3208	No terminal repeats	NA	7	11	0.9954	0.0023	0	5.1322	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000600_bin.4.o_k141_78508-flag_1-multi_4.0000-len_2701	2701	No terminal repeats	NA	6	11	0.9954	0.0023	0	4.3608	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000607_bin.1.p_NODE_732_length_3221_cov_1.843511	3221	No terminal repeats	NA	3	11	0.9954	0.0023	0	2.6879	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000607_bin.1.p_NODE_926_length_2784_cov_3.993720	2784	No terminal repeats	NA	4	11	0.9954	0.0023	1	4.7345	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000602_bin.1.o_k141_440554-flag_0-multi_12.9551-len_3349	3349	No terminal repeats	NA	9	11	0.9953	0.0023	0	4.4597	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.3.p_NODE_1224_length_2001_cov_1.178274	2001	No terminal repeats	NA	5	11	0.9953	0.0023	1	3.2541	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000602_bin.1.o_k141_361567-flag_1-multi_5.5114-len_5094	5094	No terminal repeats	NA	8	11	0.9952	0.0023	1	3.8102	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000721_shovill_contig00411	2828	No terminal repeats	NA	1	11	0.9952	0.0023	0	1.7183	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane121s003972_shovill_contig00008	83980	DTR	NA	99	11	0.9952	0.0023	16	75.4226	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000535_bin.1.p_NODE_2_length_433707_cov_141.771905|provirus_391167_405048	13882	Provirus	391167-405048	18	11	0.9951	0.0023	1	7.3631	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_12397-flag_1-multi_3.0000-len_1729	1729	No terminal repeats	NA	4	11	0.9951	0.0023	1	4.5765	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000517_bin.1.p_NODE_7_length_132102_cov_58.324226|provirus_106_6409	6304	Provirus	106-6409	17	11	0.9951	0.0023	0	6.6826	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000519_bin.2.s_NODE_4_length_238119_cov_77.412310|provirus_106_6409	6304	Provirus	106-6409	17	11	0.9951	0.0023	0	6.6826	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.3.o_k141_17886-flag_1-multi_3.0000-len_2336	2336	No terminal repeats	NA	2	11	0.9951	0.0024	2	3.1465	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000602_bin.1.o_k141_529251-flag_0-multi_5.9614-len_3253	3253	No terminal repeats	NA	6	11	0.9951	0.0024	0	3.4366	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000603_bin.1.o_k141_99232-flag_1-multi_5.0000-len_7616	7616	No terminal repeats	NA	15	11	0.9950	0.0024	1	5.1486	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.3.o_k141_246825-flag_1-multi_2.0000-len_2677	2677	No terminal repeats	NA	9	11	0.9949	0.0024	0	3.4366	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000607_bin.1.p_NODE_786_length_3110_cov_1.890867	3110	No terminal repeats	NA	3	11	0.9949	0.0024	0	2.9597	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_380862-flag_1-multi_4.0000-len_2906	2906	No terminal repeats	NA	5	11	0.9949	0.0024	0	4.2356	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000517_bin.2.s_NODE_2_length_1032879_cov_67.235151|provirus_706693_723913	17221	Provirus	706693-723913	22	11	0.9949	0.0024	10	24.5233	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane821s003037_bin.1.p_NODE_11_length_245756_cov_537.356083|provirus_228288_245754	17467	Provirus	228288-245754	27	11	0.9948	0.0024	6	33.5118	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000721_shovill_contig00182	5273	No terminal repeats	NA	9	11	0.9948	0.0024	2	8.6457	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000602_bin.1.o_k141_481981-flag_0-multi_10.8552-len_2765	2765	No terminal repeats	NA	7	11	0.9948	0.0024	0	3.4366	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.1.o_k141_58203-flag_1-multi_5.0000-len_12349	12349	No terminal repeats	NA	27	11	0.9948	0.0024	1	7.7378	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000600_bin.4.o_k141_530521-flag_1-multi_5.2076-len_11632	11632	No terminal repeats	NA	12	11	0.9948	0.0024	0	3.6017	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.1.o_k141_480530-flag_0-multi_5.9930-len_8684	8684	No terminal repeats	NA	18	11	0.9948	0.0024	0	5.8302	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000537_shovill_contig00012|provirus_181454_200025	18572	Provirus	181454-200025	28	11	0.9948	0.0024	6	32.0009	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000602_bin.1.o_k141_691629-flag_1-multi_6.0000-len_10917	10917	No terminal repeats	NA	22	11	0.9948	0.0025	0	3.4907	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_128118-flag_1-multi_2.0000-len_2423	2423	No terminal repeats	NA	7	11	0.9947	0.0025	1	9.9484	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane121s003962_megahit_k141_149-flag=1-multi=4.0000-len=2330	2330	No terminal repeats	NA	3	11	0.9946	0.0025	1	2.6374	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000721_shovill_contig00729	1476	No terminal repeats	NA	4	11	0.9946	0.0025	1	5.9844	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.3.o_k141_95408-flag_1-multi_4.0000-len_3597	3597	No terminal repeats	NA	8	11	0.9946	0.0025	0	3.4366	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.2.s_NODE_398_length_3348_cov_1.171813	3348	No terminal repeats	NA	3	11	0.9945	0.0025	0	2.9445	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000600_bin.4.o_k141_288235-flag_1-multi_2.0000-len_3484	3484	No terminal repeats	NA	6	11	0.9945	0.0025	0	1.7170	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000519_bin.3.s_NODE_2_length_1032879_cov_58.746783|provirus_308967_326187	17221	Provirus	308967-326187	22	11	0.9944	0.0025	10	24.5233	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000602_bin.1.o_k141_435032-flag_0-multi_3.9953-len_7749	7749	No terminal repeats	NA	10	11	0.9944	0.0025	0	5.8523	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.2.s_NODE_496_length_2827_cov_2.628000	2827	No terminal repeats	NA	4	11	0.9944	0.0025	1	4.7033	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_204972-flag_0-multi_1.9952-len_2667	2667	No terminal repeats	NA	5	11	0.9944	0.0025	0	2.6682	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane821s003037_bin.1.p_NODE_19_length_84922_cov_13.021262|provirus_9811_25840	16030	Provirus	9811-25840	20	11	0.9944	0.0025	9	26.5673	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_387510-flag_1-multi_2.0000-len_2219	2219	No terminal repeats	NA	4	11	0.9944	0.0025	2	5.4514	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.1.o_k141_104832-flag_1-multi_6.0000-len_7895	7895	No terminal repeats	NA	16	11	0.9943	0.0026	1	4.1543	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.1.o_k141_276622-flag_1-multi_6.0000-len_3568	3568	No terminal repeats	NA	3	11	0.9943	0.0026	0	2.5192	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.2.s_NODE_468_length_2977_cov_0.995172	2977	No terminal repeats	NA	4	11	0.9943	0.0026	1	3.9991	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000607_bin.1.p_NODE_299_length_4877_cov_1.744792	4877	No terminal repeats	NA	4	11	0.9942	0.0026	0	3.3912	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000528_shovill_contig00001|provirus_675017_703059	28043	Provirus	675017-703059	37	11	0.9941	0.0026	13	46.3485	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000540_bin.2.p_NODE_1_length_1058893_cov_77.315366|provirus_663144_691186	28043	Provirus	663144-691186	37	11	0.9941	0.0026	13	46.3485	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000721_shovill_contig01286	442	No terminal repeats	NA	1	11	0.9941	0.0026	1	1.7183	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000601_bin.3.s_NODE_13_length_30293_cov_2.896280	30293	No terminal repeats	NA	54	11	0.9941	0.0026	4	16.9030	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.2.s_NODE_724_length_2083_cov_1.676969	2083	No terminal repeats	NA	4	11	0.9941	0.0026	1	3.8509	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_58392-flag_1-multi_6.0000-len_3177	3177	No terminal repeats	NA	5	11	0.9940	0.0026	0	7.5805	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_363302-flag_1-multi_5.0000-len_14591	14591	No terminal repeats	NA	17	11	0.9940	0.0026	4	14.0762	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000607_bin.1.p_NODE_405_length_4358_cov_1.106050	4358	No terminal repeats	NA	14	11	0.9940	0.0026	0	2.6981	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000520_bin.1.p_NODE_103_length_6500_cov_6.155690	6500	No terminal repeats	NA	11	11	0.9939	0.0027	0	1.7183	Unclassified
+lane122s000607_bin.1.p_NODE_652_length_3419_cov_2.952124	3419	No terminal repeats	NA	6	11	0.9938	0.0027	1	3.8977	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000607_bin.1.p_NODE_426_length_4278_cov_3.015234	4278	No terminal repeats	NA	7	11	0.9938	0.0027	1	2.9976	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_184605-flag_1-multi_2.0000-len_3762	3762	No terminal repeats	NA	11	11	0.9938	0.0027	0	1.6283	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane121s003976_shovill_contig00019|provirus_15630_45281	29652	Provirus	15630-45281	29	11	0.9938	0.0027	6	15.6001	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000603_bin.3.o_k141_105334-flag_1-multi_2.0000-len_2684	2684	No terminal repeats	NA	5	11	0.9938	0.0027	3	4.2237	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_83632-flag_1-multi_5.0000-len_3372	3372	No terminal repeats	NA	7	11	0.9937	0.0027	0	4.6749	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.3.o_k141_591861-flag_1-multi_2.0000-len_1838	1838	No terminal repeats	NA	3	11	0.9937	0.0027	1	2.8804	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000517_bin.1.p_NODE_3_length_725817_cov_52.494282|provirus_692291_725815	33525	Provirus	692291-725815	44	11	0.9936	0.0027	11	22.3988	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.3.o_k141_569356-flag_1-multi_7.0000-len_13210	13210	No terminal repeats	NA	17	11	0.9936	0.0027	1	12.7604	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_517316-flag_1-multi_1.0000-len_1688	1688	No terminal repeats	NA	4	11	0.9936	0.0027	3	6.6821	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane121s003977_shovill_contig00075	5993	No terminal repeats	NA	7	11	0.9936	0.0027	2	4.2066	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000602_bin.1.o_k141_524827-flag_0-multi_2.9934-len_3775	3775	No terminal repeats	NA	6	11	0.9935	0.0028	0	1.1367	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane121s003971_bin.1.s_NODE_40_length_1900_cov_15.628634	1900	No terminal repeats	NA	3	11	0.9935	0.0028	1	2.1411	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000721_shovill_contig01060	701	No terminal repeats	NA	1	11	0.9935	0.0028	1	1.4839	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000607_bin.1.p_NODE_1036_length_2598_cov_3.548195	2598	No terminal repeats	NA	5	11	0.9934	0.0028	1	3.9911	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane121s003996_shovill_contig00001|provirus_4356_34432	30077	Provirus	4356-34432	41	11	0.9933	0.0028	14	53.6442	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000604_bin.1.o_k141_366755-flag_1-multi_4.0000-len_3617	3617	No terminal repeats	NA	7	11	0.9932	0.0028	1	6.3428	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane821s003040_bin.1.o_k141_114-flag_0-multi_889.9372-len_339651|provirus_324049_332280	8232	Provirus	324049-332280	11	11	0.9931	0.0028	3	10.2611	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000602_bin.1.o_k141_675555-flag_1-multi_5.0000-len_5552	5552	No terminal repeats	NA	9	11	0.9931	0.0028	0	3.1980	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_533495-flag_1-multi_2.0000-len_2538	2538	No terminal repeats	NA	4	11	0.9930	0.0028	2	4.5376	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.1.o_k141_563590-flag_1-multi_3.0000-len_2994	2994	No terminal repeats	NA	7	11	0.9930	0.0028	0	6.2035	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.3.o_k141_232539-flag_1-multi_2.0000-len_1742	1742	No terminal repeats	NA	2	11	0.9930	0.0028	2	2.7976	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_355057-flag_0-multi_4.0000-len_2641	2641	No terminal repeats	NA	5	11	0.9929	0.0029	0	4.5381	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_90284-flag_1-multi_6.0000-len_5898	5898	No terminal repeats	NA	10	11	0.9928	0.0029	0	2.9426	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000521_bin.1.s_NODE_9_length_232466_cov_105.359729|provirus_218845_232228	13384	Provirus	218845-232228	22	11	0.9928	0.0029	2	7.4375	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane121s003972_shovill_contig00005|provirus_1_15634	15634	Provirus	1-15634	22	11	0.9928	0.0029	10	24.6011	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000522_shovill_contig00002|provirus_817174_834750	17577	Provirus	817174-834750	21	11	0.9925	0.0029	2	9.4165	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.3.o_k141_402532-flag_1-multi_5.0000-len_4590	4590	No terminal repeats	NA	9	11	0.9925	0.0029	1	1.7183	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000523_bin.1.p_NODE_35_length_57300_cov_101.927354|provirus_33529_48887	15359	Provirus	33529-48887	24	11	0.9923	0.0029	2	20.0486	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000601_bin.10.s_NODE_127_length_11326_cov_1.985599	11326	No terminal repeats	NA	22	11	0.9923	0.0029	0	7.2959	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.2.s_NODE_144_length_5989_cov_2.458559	5989	No terminal repeats	NA	12	11	0.9923	0.0029	1	6.1829	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000541_shovill_contig00006|provirus_232058_265240	33183	Provirus	232058-265240	38	11	0.9922	0.0030	6	13.5720	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane121s003977_shovill_contig00018|provirus_42519_72170	29652	Provirus	42519-72170	29	11	0.9921	0.0030	6	15.6001	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane121s003995_shovill_contig00024|provirus_1_15929	15929	Provirus	1-15929	18	11	0.9919	0.0030	3	4.0001	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000602_bin.1.o_k141_225265-flag_1-multi_10.0000-len_21806	21806	No terminal repeats	NA	42	11	0.9919	0.0030	0	9.1188	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000600_bin.2.o_k141_141089-flag_1-multi_3.0000-len_1643	1643	No terminal repeats	NA	2	11	0.9918	0.0030	1	3.2848	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000607_bin.1.p_NODE_8_length_15929_cov_2.639667	15929	No terminal repeats	NA	20	11	0.9917	0.0030	1	6.8287	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.3.o_k141_29340-flag_1-multi_2.0000-len_1653	1653	No terminal repeats	NA	2	11	0.9917	0.0030	2	3.4366	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000607_bin.3.o_k141_321989-flag_0-multi_9.8351-len_7589	7589	No terminal repeats	NA	5	11	0.9915	0.0030	0	3.0459	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_447534-flag_1-multi_1.0000-len_2012	2012	No terminal repeats	NA	2	11	0.9915	0.0030	1	1.1041	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.2.s_NODE_533_length_2672_cov_1.759923	2672	No terminal repeats	NA	7	11	0.9915	0.0031	0	1.4821	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000607_bin.1.p_NODE_499_length_3966_cov_1.894317	3966	No terminal repeats	NA	6	11	0.9914	0.0031	2	5.1100	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000602_bin.1.o_k141_119316-flag_0-multi_22.2752-len_6158	6158	No terminal repeats	NA	16	11	0.9914	0.0031	0	7.1262	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_199867-flag_1-multi_6.0000-len_11756	11756	No terminal repeats	NA	18	11	0.9912	0.0031	0	3.4358	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.2.s_NODE_1035_length_1506_cov_1.072778	1506	No terminal repeats	NA	2	11	0.9911	0.0031	1	1.7183	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000607_bin.1.p_NODE_2962_length_615_cov_1.509294	615	No terminal repeats	NA	1	11	0.9911	0.0031	1	1.7183	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.1.o_k141_431814-flag_0-multi_6.9955-len_16319	16319	No terminal repeats	NA	32	11	0.9911	0.0031	0	12.0601	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000601_bin.1.o_k141_629601-flag_1-multi_3.0000-len_2821	2821	No terminal repeats	NA	11	11	0.9911	0.0031	0	1.3569	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000602_bin.1.o_k141_481240-flag_1-multi_6.0000-len_4352	4352	No terminal repeats	NA	9	11	0.9910	0.0032	2	2.7835	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_490404-flag_1-multi_4.0000-len_4291	4291	No terminal repeats	NA	7	11	0.9907	0.0032	0	1.2594	Unclassified
+lane121s003958_shovill_contig00018|provirus_382_28525	28144	Provirus	382-28525	37	11	0.9907	0.0032	0	11.6539	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.1.o_k141_86923-flag_1-multi_1.0000-len_2220	2220	No terminal repeats	NA	3	11	0.9907	0.0032	1	3.4277	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane121s003962_megahit_k141_1647-flag=1-multi=5.0000-len=4154	4154	No terminal repeats	NA	7	11	0.9906	0.0032	4	5.1792	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000607_bin.1.p_NODE_1768_length_1837_cov_2.805114	1837	No terminal repeats	NA	2	11	0.9906	0.0032	1	3.3917	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane821s003044_shovill_contig00083	11445	No terminal repeats	NA	13	11	0.9906	0.0032	2	5.2243	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000602_bin.1.o_k141_131479-flag_0-multi_7.6716-len_3168	3168	No terminal repeats	NA	6	11	0.9905	0.0033	0	3.1157	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000607_bin.1.p_NODE_743_length_3191_cov_1.925498	3191	No terminal repeats	NA	6	11	0.9903	0.0033	0	6.3461	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.2.s_NODE_412_length_3267_cov_1.804702	3267	No terminal repeats	NA	6	11	0.9900	0.0033	0	4.0531	Unclassified
+lane122s000607_bin.1.p_NODE_1045_length_2579_cov_2.009592	2579	No terminal repeats	NA	7	11	0.9899	0.0033	0	2.9636	Unclassified
+lane122s000605_bin.2.o_k141_500316-flag_1-multi_1.0000-len_1688	1688	No terminal repeats	NA	4	11	0.9898	0.0033	2	4.1749	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000607_bin.1.p_NODE_800_length_3069_cov_2.008021	3069	No terminal repeats	NA	4	11	0.9898	0.0033	0	2.8709	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.2.s_NODE_591_length_2437_cov_1.961017	2437	No terminal repeats	NA	5	11	0.9895	0.0033	1	2.2982	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000602_bin.1.o_k141_207660-flag_1-multi_5.0000-len_12665	12665	No terminal repeats	NA	22	11	0.9895	0.0034	1	5.1548	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.3.o_k141_118413-flag_1-multi_2.0000-len_3477	3477	No terminal repeats	NA	6	11	0.9895	0.0034	0	3.4366	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane121s003962_megahit_k141_1082-flag=1-multi=4.0000-len=1927	1927	No terminal repeats	NA	3	11	0.9895	0.0034	2	3.7396	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.2.s_NODE_14_length_12455_cov_2.152448	12455	No terminal repeats	NA	23	11	0.9893	0.0034	1	7.1354	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_375077-flag_1-multi_5.0000-len_2810	2810	No terminal repeats	NA	2	11	0.9892	0.0034	1	1.0958	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000607_bin.1.p_NODE_1679_length_1913_cov_1.737473	1913	No terminal repeats	NA	3	11	0.9890	0.0034	1	4.6072	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000544_bin.1.s_NODE_2_length_1020987_cov_112.926153|provirus_265725_326978	61254	Provirus	265725-326978	75	11	0.9890	0.0034	10	37.4605	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane121s003972_shovill_contig00003|provirus_533198_547763	14566	Provirus	533198-547763	17	11	0.9890	0.0035	3	21.7474	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000601_bin.7.o_k141_335457-flag_1-multi_2.0000-len_1809	1809	No terminal repeats	NA	3	11	0.9888	0.0035	1	3.4366	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000607_bin.1.p_NODE_2442_length_1208_cov_0.432361	1208	No terminal repeats	NA	4	11	0.9888	0.0035	2	3.4366	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000607_bin.1.p_NODE_288_length_4956_cov_1.546833	4956	No terminal repeats	NA	9	11	0.9887	0.0035	0	3.3763	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.1.o_k141_186256-flag_1-multi_3.0000-len_3381	3381	No terminal repeats	NA	5	11	0.9885	0.0035	0	2.0931	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_178938-flag_0-multi_2.9747-len_2039	2039	No terminal repeats	NA	2	11	0.9884	0.0035	2	3.3324	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.3.o_k141_409202-flag_1-multi_6.0000-len_4235	4235	No terminal repeats	NA	8	11	0.9884	0.0036	0	5.6666	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000607_bin.1.p_NODE_2128_length_1554_cov_5.971564	1554	No terminal repeats	NA	2	11	0.9883	0.0036	1	3.4366	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.3.o_k141_550473-flag_1-multi_5.0000-len_4370	4370	No terminal repeats	NA	3	11	0.9880	0.0036	0	1.7183	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000607_bin.1.p_NODE_2_length_31945_cov_7.627746	31945	No terminal repeats	NA	52	11	0.9879	0.0036	6	22.7465	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000721_shovill_contig00311	3692	No terminal repeats	NA	6	11	0.9879	0.0036	4	8.5914	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane121s003995_shovill_contig00012|provirus_88881_109615	20735	Provirus	88881-109615	19	11	0.9879	0.0036	4	10.9206	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000607_bin.1.p_NODE_18_length_11172_cov_5.126543	11172	No terminal repeats	NA	17	11	0.9876	0.0037	1	11.0542	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_450240-flag_0-multi_3.9841-len_3167	3167	No terminal repeats	NA	7	11	0.9868	0.0037	0	0.9499	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000602_bin.1.o_k141_511702-flag_0-multi_5.9684-len_3936	3936	No terminal repeats	NA	6	11	0.9868	0.0037	2	3.4366	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane121s003960_shovill_contig00045|provirus_14848_27537	12690	Provirus	14848-27537	18	11	0.9867	0.0037	1	12.1252	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_72750-flag_1-multi_5.0000-len_3068	3068	No terminal repeats	NA	3	11	0.9867	0.0037	0	1.7183	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.1.o_k141_125519-flag_1-multi_5.9963-len_3389	3389	No terminal repeats	NA	6	11	0.9867	0.0038	2	3.5425	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_17064-flag_1-multi_6.0000-len_4282	4282	No terminal repeats	NA	7	11	0.9863	0.0038	1	3.0884	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.1.o_k141_672770-flag_1-multi_4.0000-len_2799	2799	No terminal repeats	NA	5	11	0.9862	0.0038	0	4.8453	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.2.s_NODE_42_length_9289_cov_3.513569	9289	No terminal repeats	NA	21	11	0.9861	0.0038	2	8.9050	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.2.s_NODE_656_length_2242_cov_1.057275	2242	No terminal repeats	NA	3	11	0.9859	0.0038	1	3.3917	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000604_bin.1.o_k141_261273-flag_1-multi_4.0000-len_3096	3096	No terminal repeats	NA	6	11	0.9858	0.0039	0	0.9380	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane121s003962_megahit_k141_356-flag=1-multi=6.0000-len=8203	8203	No terminal repeats	NA	13	11	0.9854	0.0039	7	14.6204	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.2.s_NODE_67_length_7897_cov_1.739258	7897	No terminal repeats	NA	7	11	0.9854	0.0039	1	1.7183	Unclassified
+lane122s000524_shovill_contig00006|provirus_305309_373610	68302	Provirus	305309-373610	60	11	0.9854	0.0039	1	33.4737	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000602_bin.1.o_k141_245056-flag_0-multi_24.9417-len_5085	5085	No terminal repeats	NA	17	11	0.9853	0.0039	0	3.9577	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.2.s_NODE_893_length_1757_cov_1.600595	1757	No terminal repeats	NA	3	11	0.9850	0.0040	1	2.9994	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_419452-flag_1-multi_3.5100-len_5006	5006	No terminal repeats	NA	9	11	0.9850	0.0040	0	4.8630	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.2.s_NODE_458_length_3023_cov_1.306517	3023	No terminal repeats	NA	2	11	0.9848	0.0040	0	1.2414	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.2.s_NODE_519_length_2723_cov_2.201058	2723	No terminal repeats	NA	3	11	0.9848	0.0040	2	5.1499	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_287032-flag_1-multi_3.0000-len_1722	1722	No terminal repeats	NA	4	11	0.9847	0.0041	1	3.0306	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.2.s_NODE_663_length_2225_cov_1.734171	2225	No terminal repeats	NA	2	11	0.9847	0.0041	1	1.7183	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000604_bin.1.o_k141_250127-flag_1-multi_3.0000-len_3263	3263	No terminal repeats	NA	8	11	0.9845	0.0041	0	1.6922	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane821s003041_shovill_contig00003|provirus_195812_216128	20317	Provirus	195812-216128	30	11	0.9845	0.0041	0	7.8708	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_329379-flag_1-multi_6.0000-len_12701	12701	No terminal repeats	NA	17	11	0.9842	0.0041	4	16.7153	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_542538-flag_1-multi_3.0000-len_2110	2110	No terminal repeats	NA	5	11	0.9840	0.0042	1	3.9931	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.3.p_NODE_674_length_2978_cov_1.489142	2978	No terminal repeats	NA	4	11	0.9839	0.0042	0	2.6974	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000602_bin.1.o_k141_728344-flag_0-multi_7.9823-len_4877	4877	No terminal repeats	NA	13	11	0.9839	0.0042	0	2.7868	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_56260-flag_1-multi_2.0000-len_3133	3133	No terminal repeats	NA	7	11	0.9837	0.0042	0	3.4200	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_112074-flag_1-multi_1.0000-len_1667	1667	No terminal repeats	NA	3	11	0.9836	0.0043	1	3.4321	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_188524-flag_1-multi_4.0000-len_3831	3831	No terminal repeats	NA	6	11	0.9832	0.0043	0	4.4254	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane121s003954_shovill_contig00001|provirus_409893_422235	12343	Provirus	409893-422235	22	11	0.9831	0.0043	4	8.6504	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_203257-flag_0-multi_1.9299-len_2210	2210	No terminal repeats	NA	3	11	0.9831	0.0043	2	2.5988	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane121s003972_bin.2.s_NODE_258_length_3576_cov_2.871392	3576	No terminal repeats	NA	6	11	0.9828	0.0044	1	5.3014	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000545_shovill_contig00003|provirus_370539_400287	29749	Provirus	370539-400287	38	11	0.9827	0.0044	13	46.3485	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000607_bin.1.p_NODE_2980_length_607_cov_1.088679	607	No terminal repeats	NA	1	11	0.9824	0.0044	1	1.7183	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.3.o_k141_227718-flag_1-multi_2.0000-len_2514	2514	No terminal repeats	NA	2	11	0.9816	0.0044	0	1.5359	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.1.o_k141_440822-flag_1-multi_2.0000-len_1610	1610	No terminal repeats	NA	1	11	0.9812	0.0045	1	1.7183	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000721_shovill_contig00195	5069	No terminal repeats	NA	8	11	0.9812	0.0045	2	7.1265	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000604_bin.1.o_k141_340776-flag_1-multi_4.0000-len_4252	4252	No terminal repeats	NA	6	11	0.9810	0.0045	1	1.7000	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_100674-flag_1-multi_1.6084-len_2051	2051	No terminal repeats	NA	3	11	0.9809	0.0045	1	1.7183	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000607_bin.1.p_NODE_449_length_4167_cov_3.257702	4167	No terminal repeats	NA	8	11	0.9807	0.0046	1	5.7610	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000600_bin.2.o_k141_408564-flag_1-multi_2.0000-len_1756	1756	No terminal repeats	NA	3	11	0.9806	0.0046	2	2.1845	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.3.o_k141_362294-flag_1-multi_5.0000-len_9796	9796	No terminal repeats	NA	17	11	0.9804	0.0046	0	3.4029	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_70599-flag_1-multi_2.7865-len_3598	3598	No terminal repeats	NA	1	11	0.9802	0.0047	1	1.0958	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_149098-flag_1-multi_4.0000-len_3895	3895	No terminal repeats	NA	10	11	0.9796	0.0047	0	4.3726	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000602_bin.1.o_k141_415570-flag_1-multi_6.0000-len_6011	6011	No terminal repeats	NA	11	11	0.9792	0.0047	1	3.8834	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.3.o_k141_677225-flag_1-multi_3.0000-len_3747	3747	No terminal repeats	NA	3	11	0.9789	0.0047	0	1.7183	Unclassified
+lane122s000605_bin.2.o_k141_428880-flag_1-multi_2.0000-len_2292	2292	No terminal repeats	NA	2	11	0.9789	0.0048	1	3.4292	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.1.o_k141_251561-flag_1-multi_5.0000-len_7015	7015	No terminal repeats	NA	13	11	0.9789	0.0048	0	1.7682	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane121s003962_megahit_k141_1515-flag=1-multi=4.0000-len=1169	1169	No terminal repeats	NA	3	11	0.9786	0.0048	1	2.8834	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000604_bin.1.o_k141_32582-flag_1-multi_1.0000-len_2338	2338	No terminal repeats	NA	3	11	0.9784	0.0049	1	1.7074	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.3.p_NODE_2201_length_562_cov_2.080412	562	No terminal repeats	NA	1	11	0.9782	0.0049	1	1.7183	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000720_shovill_contig00001|provirus_369348_397390	28043	Provirus	369348-397390	37	11	0.9779	0.0049	13	46.3485	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000607_bin.1.p_NODE_1075_length_2535_cov_2.143613	2535	No terminal repeats	NA	5	11	0.9778	0.0050	1	4.3829	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000607_bin.1.p_NODE_550_length_3786_cov_2.972499	3786	No terminal repeats	NA	8	11	0.9777	0.0050	0	2.0799	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.3.o_k141_150900-flag_1-multi_6.0000-len_10126	10126	No terminal repeats	NA	25	11	0.9776	0.0050	0	8.7088	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.3.o_k141_250615-flag_1-multi_3.0000-len_3965	3965	No terminal repeats	NA	6	11	0.9776	0.0051	1	2.9248	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane821s003044_shovill_contig00103	3653	No terminal repeats	NA	6	11	0.9776	0.0051	2	4.1828	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000607_bin.1.p_NODE_305_length_4853_cov_2.699958	4853	No terminal repeats	NA	8	11	0.9775	0.0051	3	7.4289	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.2.s_NODE_149_length_5918_cov_1.866632	5918	No terminal repeats	NA	12	11	0.9775	0.0051	1	5.3049	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_159782-flag_1-multi_3.0000-len_1709	1709	No terminal repeats	NA	3	11	0.9772	0.0052	2	2.5696	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane121s003995_shovill_contig00006|provirus_168305_186737	18433	Provirus	168305-186737	18	11	0.9770	0.0052	9	22.9578	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000607_bin.1.p_NODE_798_length_3077_cov_3.019333	3077	No terminal repeats	NA	7	11	0.9767	0.0052	0	1.2917	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000607_bin.1.p_NODE_903_length_2834_cov_3.269496	2834	No terminal repeats	NA	7	11	0.9767	0.0053	1	3.0240	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000600_bin.3.p_NODE_102_length_6705_cov_1.968467	6705	No terminal repeats	NA	9	11	0.9766	0.0053	0	6.9846	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000604_bin.1.o_k141_258826-flag_1-multi_3.0000-len_1853	1853	No terminal repeats	NA	3	11	0.9765	0.0053	1	1.5176	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000721_shovill_contig00963	906	No terminal repeats	NA	2	11	0.9756	0.0054	1	2.3479	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000607_bin.1.p_NODE_390_length_4423_cov_4.215831	4423	No terminal repeats	NA	6	11	0.9754	0.0054	3	6.1899	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_80023-flag_1-multi_1.0000-len_1644	1644	No terminal repeats	NA	3	11	0.9754	0.0054	1	3.4321	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.2.s_NODE_1443_length_650_cov_0.935428	650	No terminal repeats	NA	1	11	0.9752	0.0055	1	1.1011	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.3.o_k141_340456-flag_1-multi_3.0000-len_3753	3753	No terminal repeats	NA	10	11	0.9752	0.0055	0	4.2102	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.3.o_k141_609203-flag_1-multi_3.0000-len_3442	3442	No terminal repeats	NA	7	11	0.9750	0.0055	0	1.7075	Unclassified
+lane122s000605_bin.2.o_k141_14325-flag_0-multi_1.7009-len_1766	1766	No terminal repeats	NA	3	11	0.9749	0.0056	2	2.4745	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.2.s_NODE_526_length_2702_cov_2.155048	2702	No terminal repeats	NA	6	11	0.9745	0.0056	0	1.1023	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_469776-flag_1-multi_6.0000-len_5972	5972	No terminal repeats	NA	7	11	0.9743	0.0057	0	1.2169	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000607_bin.1.p_NODE_382_length_4451_cov_1.877686	4451	No terminal repeats	NA	7	11	0.9742	0.0057	0	3.9977	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.3.o_k141_91640-flag_1-multi_3.0000-len_3514	3514	No terminal repeats	NA	9	11	0.9741	0.0057	1	1.9209	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_169941-flag_1-multi_4.0000-len_2837	2837	No terminal repeats	NA	5	11	0.9740	0.0058	1	4.0516	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000602_bin.1.o_k141_767518-flag_1-multi_9.0000-len_2971	2971	No terminal repeats	NA	5	11	0.9740	0.0058	0	1.6516	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000607_bin.1.p_NODE_1004_length_2651_cov_1.433955	2651	No terminal repeats	NA	9	11	0.9738	0.0058	1	4.8125	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000601_bin.4.o_k141_484268-flag_1-multi_9.0000-len_15519	15519	No terminal repeats	NA	11	11	0.9737	0.0059	6	16.1086	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_107149-flag_1-multi_1.6320-len_1660	1660	No terminal repeats	NA	3	11	0.9736	0.0059	1	1.7183	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000601_bin.6.o_k141_161110-flag_1-multi_3.0000-len_3028	3028	No terminal repeats	NA	11	11	0.9733	0.0059	0	3.4156	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000600_bin.2.o_k141_151848-flag_1-multi_1.0000-len_1610	1610	No terminal repeats	NA	4	11	0.9729	0.0060	2	3.1848	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.1.o_k141_72329-flag_0-multi_6.0000-len_5531	5531	No terminal repeats	NA	12	11	0.9725	0.0060	0	2.8255	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000602_bin.1.o_k141_38576-flag_0-multi_4.5559-len_2753	2753	No terminal repeats	NA	8	11	0.9724	0.0060	0	4.6854	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.3.p_NODE_1196_length_2027_cov_2.634872	2027	No terminal repeats	NA	2	11	0.9724	0.0061	1	1.7183	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000602_bin.1.o_k141_487-flag_0-multi_17.5016-len_3317	3317	No terminal repeats	NA	11	11	0.9720	0.0061	0	3.4150	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane121s003953_shovill_contig00011|provirus_58971_79287	20317	Provirus	58971-79287	30	11	0.9720	0.0062	0	7.8708	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.3.o_k141_618934-flag_1-multi_7.0000-len_2746	2746	No terminal repeats	NA	3	11	0.9718	0.0062	0	1.7183	Unclassified
+lane122s000602_bin.1.o_k141_459657-flag_0-multi_6.9518-len_3129	3129	No terminal repeats	NA	5	11	0.9712	0.0062	0	3.0003	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.2.s_NODE_350_length_3606_cov_1.441768	3606	No terminal repeats	NA	11	11	0.9711	0.0063	0	1.1755	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000601_bin.1.o_k141_282478-flag_1-multi_2.0000-len_2520	2520	No terminal repeats	NA	7	11	0.9692	0.0063	0	2.7782	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.2.s_NODE_562_length_2582_cov_1.457086	2582	No terminal repeats	NA	5	11	0.9690	0.0064	0	1.7183	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.2.s_NODE_180_length_5465_cov_2.739050	5465	No terminal repeats	NA	10	11	0.9689	0.0064	0	3.1725	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.2.s_NODE_502_length_2803_cov_2.494864	2803	No terminal repeats	NA	2	11	0.9682	0.0064	0	1.2828	Unclassified
+lane122s000605_bin.1.o_k141_372335-flag_1-multi_4.0000-len_4070	4070	No terminal repeats	NA	9	11	0.9673	0.0065	0	2.9146	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000520_bin.1.p_NODE_107_length_5726_cov_7.415295	5726	No terminal repeats	NA	12	11	0.9669	0.0065	0	5.1548	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.2.s_NODE_1586_length_540_cov_1.174946	540	No terminal repeats	NA	1	11	0.9664	0.0066	1	1.7183	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_490478-flag_1-multi_1.0000-len_1902	1902	No terminal repeats	NA	3	11	0.9663	0.0066	1	2.8579	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.3.o_k141_555957-flag_1-multi_1.0000-len_1662	1662	No terminal repeats	NA	3	11	0.9662	0.0067	1	2.7895	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000601_bin.1.o_k141_265249-flag_1-multi_4.0000-len_2133	2133	No terminal repeats	NA	2	11	0.9658	0.0067	1	1.7183	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000607_bin.1.p_NODE_19_length_11085_cov_3.032794	11085	No terminal repeats	NA	23	11	0.9653	0.0068	1	3.3264	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_103064-flag_1-multi_2.0000-len_2094	2094	No terminal repeats	NA	2	11	0.9651	0.0068	1	1.7156	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.3.o_k141_409588-flag_1-multi_2.0000-len_1827	1827	No terminal repeats	NA	2	11	0.9651	0.0069	2	2.6683	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_458570-flag_1-multi_6.0000-len_5043	5043	No terminal repeats	NA	8	11	0.9650	0.0069	2	3.9117	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_146586-flag_1-multi_4.0000-len_4849	4849	No terminal repeats	NA	7	11	0.9649	0.0070	0	1.7149	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000607_bin.1.p_NODE_472_length_4074_cov_2.674506	4074	No terminal repeats	NA	2	11	0.9649	0.0070	0	2.5094	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane121s003979_bin.1.s_NODE_1_length_1346747_cov_118.252067|provirus_1205971_1220893	14923	Provirus	1205971-1220893	20	11	0.9648	0.0070	2	5.8993	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.3.p_NODE_1758_length_1391_cov_4.462709	1391	No terminal repeats	NA	3	11	0.9646	0.0071	2	3.3917	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.2.s_NODE_543_length_2644_cov_1.646669	2644	No terminal repeats	NA	6	11	0.9643	0.0071	0	3.6267	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.1.o_k141_129177-flag_1-multi_8.0000-len_9355	9355	No terminal repeats	NA	11	11	0.9641	0.0072	2	12.9950	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000602_bin.1.o_k141_314489-flag_0-multi_7.3612-len_14606	14606	No terminal repeats	NA	19	11	0.9641	0.0072	1	10.5862	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_306967-flag_1-multi_2.0000-len_1680	1680	No terminal repeats	NA	6	11	0.9638	0.0073	1	1.5293	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_85327-flag_0-multi_1.9918-len_1613	1613	No terminal repeats	NA	2	11	0.9633	0.0073	1	2.2748	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_120871-flag_1-multi_3.0000-len_2822	2822	No terminal repeats	NA	5	11	0.9630	0.0074	3	6.9877	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000600_bin.2.o_k141_65088-flag_1-multi_3.0000-len_2137	2137	No terminal repeats	NA	4	11	0.9621	0.0074	2	3.7141	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_344743-flag_0-multi_2.9852-len_1765	1765	No terminal repeats	NA	3	11	0.9619	0.0075	1	1.3639	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000607_bin.1.p_NODE_538_length_3814_cov_1.675408	3814	No terminal repeats	NA	1	11	0.9595	0.0075	0	1.7159	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.1.o_k141_260850-flag_1-multi_6.0000-len_9018	9018	No terminal repeats	NA	19	11	0.9593	0.0076	0	5.7048	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.3.p_NODE_2158_length_599_cov_2.750958	599	No terminal repeats	NA	2	11	0.9593	0.0076	1	1.7183	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.3.o_k141_526062-flag_1-multi_3.0000-len_2705	2705	No terminal repeats	NA	10	11	0.9582	0.0077	0	2.5036	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000523_bin.1.p_NODE_94_length_4983_cov_91.754179	4983	No terminal repeats	NA	8	11	0.9581	0.0078	0	3.2740	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000602_bin.1.o_k141_89096-flag_0-multi_9.0417-len_10729	10729	No terminal repeats	NA	22	11	0.9578	0.0078	0	5.3464	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_65630-flag_1-multi_2.0000-len_2632	2632	No terminal repeats	NA	1	11	0.9560	0.0079	0	1.7183	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000607_bin.1.p_NODE_72_length_7797_cov_2.705181	7797	No terminal repeats	NA	13	11	0.9559	0.0079	0	4.0909	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane821s003043_bin.1.s_NODE_15_length_9367_cov_39.742842	9367	No terminal repeats	NA	7	11	0.9557	0.0080	0	3.4010	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.3.o_k141_536550-flag_1-multi_7.0000-len_3559	3559	No terminal repeats	NA	6	11	0.9553	0.0080	0	3.4057	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane121s003963_shovill_contig00001|provirus_385855_411982	26128	Provirus	385855-411982	33	11	0.9550	0.0081	10	47.5171	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000602_bin.1.o_k141_207227-flag_0-multi_6.4044-len_2134	2134	No terminal repeats	NA	4	11	0.9550	0.0082	1	5.1548	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000601_bin.6.o_k141_496782-flag_1-multi_4.0000-len_2709	2709	No terminal repeats	NA	4	11	0.9538	0.0082	2	5.1532	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_247358-flag_1-multi_7.0000-len_4554	4554	No terminal repeats	NA	10	11	0.9532	0.0083	1	4.2842	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.1.o_k141_166992-flag_1-multi_2.0000-len_3245	3245	No terminal repeats	NA	6	11	0.9532	0.0084	0	1.3250	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000607_bin.1.p_NODE_1249_length_2304_cov_1.084419	2304	No terminal repeats	NA	4	11	0.9519	0.0084	2	4.8663	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000602_bin.1.o_k141_740957-flag_1-multi_4.0000-len_3463	3463	No terminal repeats	NA	7	11	0.9517	0.0085	1	1.7183	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000607_bin.1.p_NODE_2510_length_1114_cov_1.941176	1114	No terminal repeats	NA	3	11	0.9517	0.0085	2	4.4942	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_53441-flag_1-multi_4.0000-len_1677	1677	No terminal repeats	NA	1	11	0.9515	0.0086	1	1.1011	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.2.s_NODE_1055_length_1465_cov_2.075648	1465	No terminal repeats	NA	1	11	0.9499	0.0087	1	1.1011	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.3.o_k141_354072-flag_1-multi_1.0000-len_2108	2108	No terminal repeats	NA	1	11	0.9493	0.0087	1	1.2791	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000602_bin.1.o_k141_36101-flag_0-multi_3.0787-len_4971	4971	No terminal repeats	NA	7	11	0.9490	0.0088	0	0.9066	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000602_bin.1.o_k141_554693-flag_0-multi_3.0000-len_2710	2710	No terminal repeats	NA	7	11	0.9483	0.0089	1	4.3938	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.2.s_NODE_610_length_2369_cov_1.410122	2369	No terminal repeats	NA	4	11	0.9474	0.0089	1	3.3916	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000600_bin.4.o_k141_431766-flag_1-multi_3.0000-len_2978	2978	No terminal repeats	NA	1	11	0.9472	0.0090	0	1.7183	Unclassified
+lane122s000605_bin.2.o_k141_326937-flag_1-multi_3.0000-len_2773	2773	No terminal repeats	NA	9	11	0.9467	0.0091	0	3.4083	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.2.s_NODE_789_length_1954_cov_1.570591	1954	No terminal repeats	NA	4	11	0.9467	0.0092	2	3.4366	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000601_bin.6.o_k141_11381-flag_1-multi_3.0000-len_2216	2216	No terminal repeats	NA	6	11	0.9463	0.0092	6	8.3063	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000607_bin.1.p_NODE_3099_length_558_cov_2.430353	558	No terminal repeats	NA	1	11	0.9460	0.0093	1	1.7183	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000607_bin.1.p_NODE_2987_length_603_cov_2.520913	603	No terminal repeats	NA	1	11	0.9441	0.0094	1	1.7183	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000602_bin.1.o_k141_50604-flag_1-multi_4.0000-len_4787	4787	No terminal repeats	NA	11	11	0.9439	0.0094	0	2.8225	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.1.o_k141_400874-flag_1-multi_4.0000-len_3063	3063	No terminal repeats	NA	8	11	0.9437	0.0095	2	2.3043	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000607_bin.1.p_NODE_440_length_4212_cov_2.731802	4212	No terminal repeats	NA	7	11	0.9430	0.0096	0	2.5697	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.3.p_NODE_2048_length_756_cov_2.325479	756	No terminal repeats	NA	2	11	0.9427	0.0097	2	2.6961	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000607_bin.1.p_NODE_1477_length_2074_cov_1.246370	2074	No terminal repeats	NA	2	11	0.9422	0.0097	1	3.4366	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000520_bin.1.p_NODE_1_length_260173_cov_40.633651|provirus_175273_189745	14473	Provirus	175273-189745	16	11	0.9421	0.0098	7	17.8751	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.1.o_k141_74197-flag_0-multi_5.0173-len_5337	5337	No terminal repeats	NA	4	11	0.9410	0.0099	2	6.5445	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000602_bin.1.o_k141_789336-flag_0-multi_3.9741-len_2920	2920	No terminal repeats	NA	9	11	0.9408	0.0100	0	1.7183	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000721_shovill_contig01090	655	No terminal repeats	NA	1	11	0.9406	0.0100	1	1.7176	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000607_bin.1.p_NODE_21_length_11034_cov_3.101123	11034	No terminal repeats	NA	14	11	0.9391	0.0101	1	8.0187	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.2.s_NODE_539_length_2652_cov_1.867961	2652	No terminal repeats	NA	6	11	0.9387	0.0102	0	1.7183	Unclassified
+lane122s000603_bin.3.o_k141_14774-flag_1-multi_2.0000-len_2000	2000	No terminal repeats	NA	4	11	0.9387	0.0103	2	4.6000	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.1.o_k141_375538-flag_1-multi_3.0000-len_1928	1928	No terminal repeats	NA	4	11	0.9387	0.0103	1	2.8565	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.3.p_NODE_768_length_2716_cov_1.537325	2716	No terminal repeats	NA	6	11	0.9386	0.0104	1	2.4674	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.1.o_k141_379337-flag_1-multi_3.0000-len_3150	3150	No terminal repeats	NA	7	11	0.9386	0.0105	0	3.1006	Unclassified
+lane122s000601_bin.6.o_k141_636463-flag_1-multi_3.0000-len_3237	3237	No terminal repeats	NA	1	11	0.9376	0.0106	0	1.7128	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane121s003962_megahit_k141_450-flag=1-multi=6.0000-len=6458	6458	No terminal repeats	NA	11	11	0.9373	0.0107	3	7.2331	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000607_bin.1.p_NODE_23_length_10717_cov_3.828853	10717	No terminal repeats	NA	18	11	0.9362	0.0107	0	3.1574	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.2.s_NODE_183_length_5420_cov_2.264271	5420	No terminal repeats	NA	9	11	0.9341	0.0108	0	2.9627	Unclassified
+lane122s000606_bin.3.o_k141_627459-flag_1-multi_3.0000-len_5862	5862	No terminal repeats	NA	6	11	0.9336	0.0109	2	3.4303	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.2.s_NODE_635_length_2283_cov_2.149139	2283	No terminal repeats	NA	5	11	0.9333	0.0110	1	1.3697	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000602_bin.1.o_k141_188855-flag_1-multi_18.0000-len_3033	3033	No terminal repeats	NA	9	11	0.9331	0.0111	1	3.2001	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.1.o_k141_107298-flag_1-multi_4.0000-len_1785	1785	No terminal repeats	NA	5	11	0.9328	0.0112	2	4.8502	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000607_bin.1.p_NODE_33_length_9598_cov_2.801807	9598	No terminal repeats	NA	21	11	0.9295	0.0113	0	5.2327	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.1.o_k141_302687-flag_1-multi_5.0000-len_6225	6225	No terminal repeats	NA	10	11	0.9289	0.0113	0	3.4366	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.3.o_k141_595370-flag_1-multi_5.0000-len_2683	2683	No terminal repeats	NA	4	11	0.9285	0.0114	0	3.4366	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_302732-flag_1-multi_3.0000-len_2416	2416	No terminal repeats	NA	3	11	0.9278	0.0115	1	1.1995	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane121s003971_bin.1.s_NODE_62_length_1260_cov_22.413356	1260	No terminal repeats	NA	1	11	0.9275	0.0116	1	1.3358	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000607_bin.3.o_k141_424923-flag_1-multi_3.0000-len_1816	1816	No terminal repeats	NA	2	11	0.9262	0.0117	1	1.4793	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane121s003980_megahit_k141_133-flag=1-multi=255.0000-len=171254|provirus_32807_47729	14923	Provirus	32807-47729	20	11	0.9259	0.0118	2	5.8993	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_367912-flag_1-multi_3.0000-len_1968	1968	No terminal repeats	NA	3	11	0.9250	0.0119	1	1.7183	Unclassified
+lane122s000602_bin.1.o_k141_736685-flag_0-multi_6.9440-len_3977	3977	No terminal repeats	NA	7	11	0.9249	0.0120	0	0.9574	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000721_shovill_contig00299	3803	No terminal repeats	NA	8	11	0.9231	0.0121	4	9.8903	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000602_bin.1.o_k141_357172-flag_0-multi_12.9829-len_9288	9288	DTR	NA	12	11	0.9230	0.0122	1	2.8738	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.2.s_NODE_688_length_2163_cov_1.695590	2163	No terminal repeats	NA	5	11	0.9228	0.0123	1	3.3169	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.3.o_k141_207889-flag_1-multi_2.0000-len_2690	2690	No terminal repeats	NA	6	11	0.9220	0.0124	0	2.5782	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_106400-flag_1-multi_3.0000-len_2385	2385	No terminal repeats	NA	5	11	0.9219	0.0125	1	1.7183	Unclassified
+lane122s000520_bin.1.p_NODE_109_length_5496_cov_6.613766	5496	No terminal repeats	NA	9	11	0.9214	0.0126	2	3.3939	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_289868-flag_1-multi_2.0000-len_2424	2424	No terminal repeats	NA	3	11	0.9201	0.0127	1	2.2748	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_335699-flag_1-multi_2.0000-len_1728	1728	No terminal repeats	NA	4	11	0.9195	0.0128	1	1.3603	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000607_bin.1.p_NODE_2426_length_1225_cov_1.935540	1225	No terminal repeats	NA	1	11	0.9184	0.0129	1	1.3168	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000603_bin.1.o_k141_244210-flag_1-multi_8.0000-len_7731	7731	No terminal repeats	NA	13	11	0.9167	0.0130	0	1.7146	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000607_bin.1.p_NODE_140_length_6338_cov_2.772560	6338	No terminal repeats	NA	9	11	0.9161	0.0131	1	3.2615	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000607_bin.1.p_NODE_213_length_5613_cov_2.127529	5613	No terminal repeats	NA	11	11	0.9160	0.0132	2	5.1100	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.3.p_NODE_633_length_3107_cov_2.029703	3107	No terminal repeats	NA	7	11	0.9159	0.0133	2	6.2282	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000602_bin.1.o_k141_323124-flag_1-multi_6.0000-len_12035	12035	No terminal repeats	NA	21	11	0.9138	0.0134	0	5.1709	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000607_bin.3.o_k141_29617-flag_1-multi_3.0000-len_6443	6443	No terminal repeats	NA	9	11	0.9134	0.0135	2	5.6813	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000607_bin.1.p_NODE_1012_length_2634_cov_1.945639	2634	No terminal repeats	NA	6	11	0.9131	0.0136	3	6.4596	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000601_bin.2.o_k141_356863-flag_1-multi_4.0000-len_3116	3116	No terminal repeats	NA	3	11	0.9116	0.0137	0	1.6752	Unclassified
+lane122s000605_bin.2.o_k141_62246-flag_1-multi_2.0000-len_1679	1679	No terminal repeats	NA	5	11	0.9105	0.0138	2	4.6221	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000607_bin.1.p_NODE_1107_length_2491_cov_1.343828	2491	No terminal repeats	NA	1	11	0.9104	0.0139	1	1.2306	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000721_shovill_contig01194	529	No terminal repeats	NA	1	11	0.9091	0.0140	1	1.5028	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.2.s_NODE_500_length_2805_cov_1.858504	2805	No terminal repeats	NA	3	11	0.9085	0.0142	0	2.3828	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_524925-flag_1-multi_2.0000-len_1532	1532	No terminal repeats	NA	2	11	0.9082	0.0143	1	2.7554	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000607_bin.1.p_NODE_97_length_7033_cov_4.258626	7033	No terminal repeats	NA	15	11	0.9054	0.0144	0	2.1950	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane121s003971_bin.1.s_NODE_44_length_1825_cov_95.297483	1825	No terminal repeats	NA	3	11	0.9037	0.0145	1	1.2802	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000603_bin.3.o_k141_50746-flag_1-multi_2.0000-len_4843	4843	No terminal repeats	NA	9	11	0.9030	0.0146	1	2.2949	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_540673-flag_1-multi_6.0000-len_2798	2798	No terminal repeats	NA	2	11	0.9018	0.0147	0	3.3364	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000601_bin.9.p_NODE_164_length_2704_cov_1.292729	2704	No terminal repeats	NA	2	11	0.9016	0.0149	0	1.6585	Unclassified
+lane121s003972_bin.2.s_NODE_121_length_5056_cov_3.192207	5056	No terminal repeats	NA	8	11	0.9006	0.0150	1	2.4478	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.3.o_k141_587041-flag_1-multi_1.0000-len_1791	1791	No terminal repeats	NA	2	11	0.8984	0.0151	1	1.4240	Unclassified
+lane122s000602_bin.1.o_k141_762966-flag_1-multi_5.0000-len_2711	2711	No terminal repeats	NA	4	11	0.8982	0.0152	0	1.4410	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000602_bin.1.o_k141_705074-flag_0-multi_7.4296-len_1682	1682	No terminal repeats	NA	4	11	0.8978	0.0154	2	3.4232	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000601_bin.8.s_NODE_96_length_2895_cov_0.181334	2895	No terminal repeats	NA	5	11	0.8970	0.0155	0	1.7183	Unclassified
+lane122s000607_bin.1.p_NODE_2190_length_1497_cov_2.027465	1497	No terminal repeats	NA	3	11	0.8966	0.0156	1	1.2586	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000602_bin.1.o_k141_247253-flag_0-multi_8.3851-len_4703	4703	No terminal repeats	NA	7	11	0.8947	0.0157	0	2.6757	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000607_bin.2.p_NODE_480_length_1646_cov_1.312301	1646	No terminal repeats	NA	5	11	0.8928	0.0159	1	1.3394	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000607_bin.1.p_NODE_772_length_3139_cov_2.675702	3139	No terminal repeats	NA	7	11	0.8914	0.0160	1	1.6735	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000721_shovill_contig01029	747	No terminal repeats	NA	2	11	0.8912	0.0161	1	3.4120	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000607_bin.1.p_NODE_1743_length_1856_cov_1.631254	1856	No terminal repeats	NA	2	11	0.8859	0.0163	1	1.0889	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000721_shovill_contig01021	763	No terminal repeats	NA	2	11	0.8850	0.0164	1	1.7163	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.3.p_NODE_2131_length_628_cov_4.074410	628	No terminal repeats	NA	1	11	0.8850	0.0165	1	1.3168	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000601_bin.6.o_k141_8592-flag_1-multi_3.0000-len_1756	1756	No terminal repeats	NA	4	11	0.8850	0.0167	2	4.6437	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000602_bin.1.o_k141_459458-flag_0-multi_2.9118-len_3181	3181	No terminal repeats	NA	5	11	0.8850	0.0168	0	3.0003	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000544_bin.1.s_NODE_71_length_711_cov_5.007886	711	No terminal repeats	NA	1	11	0.8846	0.0169	1	1.2263	Unclassified
+lane122s000605_bin.2.o_k141_369721-flag_1-multi_1.0000-len_1879	1879	No terminal repeats	NA	3	11	0.8844	0.0171	2	3.0611	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.2.s_NODE_564_length_2575_cov_1.538431	2575	No terminal repeats	NA	6	11	0.8839	0.0172	0	4.3894	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000602_bin.1.o_k141_124355-flag_1-multi_4.0000-len_5187	5187	No terminal repeats	NA	15	11	0.8831	0.0174	0	1.0266	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000607_bin.1.p_NODE_172_length_6005_cov_2.189777	6005	No terminal repeats	NA	4	11	0.8810	0.0175	0	0.0000	Unclassified
+lane122s000607_bin.1.p_NODE_2801_length_734_cov_0.579909	734	No terminal repeats	NA	1	11	0.8790	0.0176	1	1.7183	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000600_bin.3.p_NODE_156_length_5389_cov_3.052523	5389	No terminal repeats	NA	13	11	0.8789	0.0178	0	2.8536	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.3.o_k141_11268-flag_1-multi_2.0000-len_3470	3470	No terminal repeats	NA	13	11	0.8779	0.0179	0	0.0000	Unclassified
+lane122s000605_bin.2.o_k141_207572-flag_1-multi_1.0000-len_1745	1745	No terminal repeats	NA	2	11	0.8775	0.0181	1	1.7183	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000520_bin.1.p_NODE_104_length_5996_cov_3.599932	5996	No terminal repeats	NA	16	11	0.8751	0.0182	0	3.4805	Unclassified
+lane122s000606_bin.2.s_NODE_944_length_1657_cov_1.087342	1657	No terminal repeats	NA	3	11	0.8735	0.0184	1	3.4334	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_406173-flag_0-multi_1.0000-len_2229	2229	No terminal repeats	NA	4	11	0.8716	0.0185	2	4.8677	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000607_bin.1.p_NODE_827_length_2990_cov_2.882939	2990	No terminal repeats	NA	8	11	0.8693	0.0187	0	0.0000	Unclassified
+lane122s000602_bin.1.o_k141_47730-flag_0-multi_8.9906-len_6069	6069	No terminal repeats	NA	9	11	0.8693	0.0188	0	1.0519	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.1.o_k141_299254-flag_1-multi_3.0000-len_1631	1631	No terminal repeats	NA	3	11	0.8692	0.0190	1	1.7183	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000607_bin.1.p_NODE_2785_length_748_cov_1.210134	748	No terminal repeats	NA	2	11	0.8690	0.0191	1	1.4562	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_496830-flag_1-multi_7.0000-len_3380	3380	No terminal repeats	NA	2	11	0.8685	0.0193	0	1.7183	Unclassified
+lane122s000605_bin.2.o_k141_361735-flag_1-multi_2.0000-len_1716	1716	No terminal repeats	NA	4	11	0.8656	0.0195	1	1.3428	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000721_shovill_contig00984	851	No terminal repeats	NA	2	11	0.8650	0.0196	1	1.1720	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane121s003977_shovill_contig00071	8829	No terminal repeats	NA	12	11	0.8643	0.0198	0	4.2603	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.1.o_k141_563376-flag_1-multi_3.0000-len_2225	2225	No terminal repeats	NA	3	11	0.8639	0.0199	1	3.0351	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_344452-flag_1-multi_8.0000-len_10574	10574	No terminal repeats	NA	12	11	0.8633	0.0201	0	1.2243	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_241983-flag_1-multi_4.0000-len_3547	3547	No terminal repeats	NA	3	11	0.8631	0.0202	0	3.3527	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000600_bin.4.o_k141_417778-flag_1-multi_2.0000-len_2730	2730	No terminal repeats	NA	6	11	0.8629	0.0204	2	2.9974	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.3.o_k141_301723-flag_1-multi_3.0000-len_3087	3087	No terminal repeats	NA	2	11	0.8625	0.0206	1	2.5589	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000602_bin.1.o_k141_315306-flag_1-multi_6.0000-len_6465	6465	No terminal repeats	NA	19	11	0.8599	0.0207	0	0.2051	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000601_bin.6.o_k141_74599-flag_1-multi_1.9630-len_3929	3929	No terminal repeats	NA	5	11	0.8595	0.0209	0	5.6458	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000602_bin.1.o_k141_337907-flag_1-multi_6.0000-len_4718	4718	No terminal repeats	NA	14	11	0.8592	0.0210	0	1.2491	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000607_bin.1.p_NODE_2802_length_731_cov_2.816514	731	No terminal repeats	NA	2	11	0.8590	0.0212	1	1.7183	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_443952-flag_1-multi_2.0000-len_1801	1801	No terminal repeats	NA	2	11	0.8587	0.0214	1	1.1884	Unclassified
+lane122s000607_bin.1.p_NODE_2301_length_1368_cov_1.924090	1368	No terminal repeats	NA	2	11	0.8558	0.0215	1	1.6756	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000602_bin.1.o_k141_274909-flag_0-multi_4.9357-len_1635	1635	No terminal repeats	NA	2	11	0.8555	0.0217	1	1.7099	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000607_bin.1.p_NODE_709_length_3265_cov_2.073087	3265	No terminal repeats	NA	4	11	0.8548	0.0219	1	1.7183	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000601_bin.6.o_k141_579664-flag_0-multi_1.0000-len_1990	1990	No terminal repeats	NA	3	11	0.8525	0.0220	1	1.4825	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.3.p_NODE_449_length_3742_cov_2.059482	3742	No terminal repeats	NA	6	11	0.8487	0.0222	0	2.5951	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000607_bin.1.p_NODE_603_length_3586_cov_2.006555	3586	No terminal repeats	NA	8	11	0.8482	0.0224	0	4.6037	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000602_bin.1.o_k141_348583-flag_0-multi_7.9537-len_1957	1957	No terminal repeats	NA	2	11	0.8478	0.0226	1	3.4111	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000602_bin.1.o_k141_763352-flag_1-multi_3.0000-len_2931	2931	No terminal repeats	NA	7	11	0.8452	0.0227	0	1.2940	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.2.s_NODE_843_length_1840_cov_0.711288	1840	No terminal repeats	NA	4	11	0.8445	0.0229	1	3.3917	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_336140-flag_1-multi_4.0000-len_3406	3406	No terminal repeats	NA	13	11	0.8434	0.0231	0	1.4797	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.2.s_NODE_567_length_2562_cov_1.461972	2562	No terminal repeats	NA	5	11	0.8417	0.0233	1	2.3050	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.1.o_k141_172089-flag_0-multi_3.0000-len_3848	3848	No terminal repeats	NA	7	11	0.8329	0.0235	0	0.0000	Unclassified
+lane121s003962_megahit_k141_1488-flag=1-multi=6.0000-len=4531	4531	No terminal repeats	NA	6	11	0.8321	0.0236	0	1.1973	Unclassified
+lane122s000601_bin.1.o_k141_133319-flag_1-multi_4.0000-len_2698	2698	No terminal repeats	NA	3	11	0.8321	0.0238	0	1.7183	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.3.p_NODE_506_length_3529_cov_1.731750	3529	No terminal repeats	NA	8	11	0.8318	0.0240	0	2.4760	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000721_shovill_contig01342	404	No terminal repeats	NA	1	11	0.8316	0.0242	1	1.7068	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000607_bin.1.p_NODE_891_length_2861_cov_2.494971	2861	No terminal repeats	NA	2	11	0.8285	0.0244	0	1.5704	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.3.o_k141_54928-flag_1-multi_3.0000-len_3190	3190	No terminal repeats	NA	7	11	0.8283	0.0246	0	1.9104	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_352628-flag_1-multi_4.0000-len_2844	2844	No terminal repeats	NA	10	11	0.8281	0.0248	0	3.4366	Unclassified
+lane122s000601_bin.2.o_k141_639579-flag_1-multi_3.0000-len_1891	1891	No terminal repeats	NA	3	11	0.8273	0.0250	1	1.3754	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000607_bin.1.p_NODE_559_length_3749_cov_1.978758	3749	No terminal repeats	NA	8	11	0.8261	0.0252	0	6.4096	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_326461-flag_1-multi_5.0000-len_2907	2907	No terminal repeats	NA	2	11	0.8226	0.0254	0	1.7183	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane821s003044_shovill_contig00093	7981	No terminal repeats	NA	8	11	0.8216	0.0256	1	3.7001	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000607_bin.3.o_k141_114497-flag_1-multi_3.0000-len_3535	3535	No terminal repeats	NA	3	11	0.8149	0.0258	0	4.5243	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000607_bin.1.p_NODE_2118_length_1561_cov_1.836253	1561	No terminal repeats	NA	2	11	0.8123	0.0260	1	1.5052	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000607_bin.1.p_NODE_2647_length_925_cov_1.206368	925	No terminal repeats	NA	1	11	0.8074	0.0262	1	1.7183	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane821s003037_bin.1.p_NODE_9_length_289150_cov_492.033050|provirus_270045_289150	19106	Provirus	270045-289150	18	11	0.8065	0.0264	0	5.8680	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000607_bin.1.p_NODE_2711_length_839_cov_1.190289	839	No terminal repeats	NA	1	11	0.8063	0.0266	1	1.7183	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000601_bin.2.o_k141_400546-flag_1-multi_5.0000-len_2208	2208	No terminal repeats	NA	3	11	0.8057	0.0269	1	1.2306	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000601_bin.2.o_k141_193049-flag_1-multi_4.0000-len_3591	3591	No terminal repeats	NA	8	11	0.8054	0.0271	0	0.0000	Unclassified
+lane122s000605_bin.3.p_NODE_1279_length_1952_cov_1.183467	1952	No terminal repeats	NA	3	11	0.8047	0.0273	2	3.0606	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.3.o_k141_218303-flag_1-multi_2.0000-len_1613	1613	No terminal repeats	NA	3	11	0.8011	0.0275	1	3.4265	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_476317-flag_1-multi_4.0000-len_2269	2269	No terminal repeats	NA	3	11	0.8010	0.0277	1	1.5293	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000721_shovill_contig01150	580	No terminal repeats	NA	2	11	0.8000	0.0280	1	1.4031	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000721_shovill_contig01169	559	No terminal repeats	NA	1	11	0.7986	0.0282	1	1.7163	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000607_bin.1.p_NODE_639_length_3455_cov_1.319420	3455	No terminal repeats	NA	4	11	0.7984	0.0284	1	2.6070	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.2.s_NODE_583_length_2464_cov_1.609552	2464	No terminal repeats	NA	3	11	0.7974	0.0286	1	1.3727	Unclassified
+lane122s000605_bin.2.o_k141_123851-flag_1-multi_2.0000-len_1504	1504	No terminal repeats	NA	3	11	0.7950	0.0289	3	3.5565	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000600_bin.2.o_k141_336666-flag_1-multi_3.0000-len_3664	3664	No terminal repeats	NA	2	11	0.7935	0.0291	0	0.0000	Unclassified
+lane821s003038_bin.1.o_k141_336-flag_0-multi_2162.8472-len_6529	6529	No terminal repeats	NA	10	11	0.7931	0.0293	0	1.7041	Unclassified
+lane122s000607_bin.1.p_NODE_2882_length_666_cov_1.853990	666	No terminal repeats	NA	2	11	0.7915	0.0295	1	1.6735	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000607_bin.1.p_NODE_112_length_6773_cov_2.668309	6773	No terminal repeats	NA	13	11	0.7897	0.0298	0	2.3086	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000603_bin.3.o_k141_94820-flag_1-multi_2.0000-len_1734	1734	No terminal repeats	NA	2	11	0.7883	0.0300	1	2.7283	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_173189-flag_1-multi_5.0000-len_3422	3422	No terminal repeats	NA	3	11	0.7845	0.0302	1	2.4379	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000600_bin.4.o_k141_274943-flag_1-multi_4.0000-len_2603	2603	No terminal repeats	NA	4	11	0.7808	0.0305	0	0.8624	Unclassified
+lane122s000606_bin.2.s_NODE_557_length_2591_cov_1.787192	2591	No terminal repeats	NA	2	11	0.7767	0.0307	0	1.6750	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000601_bin.1.o_k141_147143-flag_1-multi_4.0000-len_2198	2198	No terminal repeats	NA	2	11	0.7762	0.0310	1	1.7183	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000601_bin.6.o_k141_297640-flag_1-multi_2.0000-len_2574	2574	No terminal repeats	NA	4	11	0.7754	0.0312	0	3.1484	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.3.p_NODE_1104_length_2149_cov_1.093147	2149	No terminal repeats	NA	4	11	0.7743	0.0315	1	1.7165	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000603_bin.2.s_NODE_256_length_4872_cov_2.564338	4872	No terminal repeats	NA	3	11	0.7737	0.0317	0	3.4366	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.3.p_NODE_1749_length_1408_cov_8.119459	1408	No terminal repeats	NA	2	11	0.7684	0.0319	2	3.3939	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000607_bin.1.p_NODE_2297_length_1369_cov_1.510062	1369	No terminal repeats	NA	3	11	0.7638	0.0322	1	1.5290	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_370759-flag_1-multi_2.7164-len_2821	2821	No terminal repeats	NA	6	11	0.7626	0.0325	0	1.5048	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.2.s_NODE_227_length_4704_cov_1.376702	4704	No terminal repeats	NA	10	11	0.7621	0.0327	0	1.3606	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000602_bin.1.o_k141_390464-flag_1-multi_4.0000-len_3656	3656	No terminal repeats	NA	6	11	0.7617	0.0330	0	1.7183	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000607_bin.1.p_NODE_468_length_4087_cov_2.861347	4087	No terminal repeats	NA	4	11	0.7564	0.0332	0	1.7183	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000602_bin.1.o_k141_791304-flag_0-multi_6.9875-len_5909	5909	No terminal repeats	NA	9	11	0.7560	0.0335	0	1.7183	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_134275-flag_1-multi_3.0000-len_2890	2890	No terminal repeats	NA	7	11	0.7555	0.0338	1	5.6867	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.2.o_k141_443809-flag_1-multi_3.0000-len_2418	2418	No terminal repeats	NA	5	11	0.7534	0.0340	1	1.7183	Unclassified
+lane122s000600_bin.2.o_k141_13501-flag_1-multi_2.0000-len_2530	2530	No terminal repeats	NA	1	11	0.7525	0.0343	0	0.0000	Unclassified
+lane122s000605_bin.1.o_k141_306107-flag_0-multi_11.1153-len_3689	3689	No terminal repeats	NA	2	11	0.7510	0.0346	0	1.7183	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.2.s_NODE_535_length_2670_cov_1.769765	2670	No terminal repeats	NA	5	11	0.7490	0.0348	1	1.3139	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000603_bin.3.o_k141_52558-flag_1-multi_1.0000-len_2108	2108	No terminal repeats	NA	7	11	0.7489	0.0351	1	1.2350	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000607_bin.1.p_NODE_3284_length_504_cov_1.025761	504	No terminal repeats	NA	1	11	0.7484	0.0354	1	1.6742	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000600_bin.2.o_k141_160792-flag_1-multi_2.0000-len_2533	2533	No terminal repeats	NA	6	11	0.7459	0.0356	2	5.3266	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.3.o_k141_569564-flag_1-multi_4.0000-len_3715	3715	No terminal repeats	NA	8	11	0.7435	0.0359	0	1.7183	Unclassified
+lane122s000607_bin.1.p_NODE_1668_length_1925_cov_1.426407	1925	No terminal repeats	NA	3	11	0.7323	0.0362	1	2.5921	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000607_bin.1.p_NODE_2994_length_601_cov_3.211832	601	No terminal repeats	NA	1	11	0.7316	0.0365	1	1.6746	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000606_bin.1.o_k141_294354-flag_1-multi_2.0000-len_1560	1560	No terminal repeats	NA	4	11	0.7238	0.0368	1	1.2758	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000607_bin.2.p_NODE_520_length_1531_cov_1.196011	1531	No terminal repeats	NA	4	11	0.7233	0.0371	1	1.4621	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000721_shovill_contig00268	4124	No terminal repeats	NA	6	11	0.7205	0.0374	4	7.3639	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane121s003980_megahit_k141_15-flag=0-multi=416.0000-len=2611	2611	No terminal repeats	NA	1	11	0.7181	0.0377	0	0.0000	Unclassified
+lane122s000607_bin.1.p_NODE_370_length_4511_cov_2.229590	4511	No terminal repeats	NA	10	11	0.7181	0.0380	0	2.5745	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000600_bin.3.p_NODE_648_length_698_cov_0.800322	698	No terminal repeats	NA	2	11	0.7146	0.0383	1	1.7183	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000721_shovill_contig00786	1322	No terminal repeats	NA	2	11	0.7133	0.0386	1	1.0485	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.3.p_NODE_1154_length_2083_cov_1.782154	2083	No terminal repeats	NA	2	11	0.7108	0.0389	1	1.3388	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000601_bin.1.o_k141_214750-flag_1-multi_2.0000-len_2751	2751	No terminal repeats	NA	3	11	0.7107	0.0392	0	1.7183	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000602_bin.1.o_k141_467629-flag_1-multi_2.0000-len_1702	1702	No terminal repeats	NA	4	11	0.7097	0.0395	1	1.7133	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000601_bin.1.o_k141_372121-flag_1-multi_4.0000-len_2801	2801	No terminal repeats	NA	2	11	0.7096	0.0398	0	1.7183	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000601_bin.9.p_NODE_232_length_2235_cov_1.505097	2235	No terminal repeats	NA	2	11	0.7042	0.0401	1	1.7183	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane122s000605_bin.3.p_NODE_1995_length_882_cov_15.294410	882	No terminal repeats	NA	2	11	0.7032	0.0404	1	1.6756	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
+lane821s003037_bin.1.p_NODE_30_length_25962_cov_9.401236	25962	No terminal repeats	NA	18	11	0.7029	0.0407	0	2.5414	Viruses
+lane122s000606_bin.2.s_NODE_346_length_3653_cov_1.307886	3653	No terminal repeats	NA	5	11	0.7027	0.0410	0	1.6261	Unclassified

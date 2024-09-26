@@ -1,0 +1,18 @@
+Sample_ID	metabolite	auxo_lab	name	genome	compound	auxo_model	agree	Marker.lineage	Completeness	Contamination	Strain.heterogeneity	Quality	Codes	Habitats	Sites	AAs_auxo	Vitamin_auxo	Nucleotide_auxo	Species_16S	Type	contigs	size
+lane122s000518	Gln	1	L-Glutamine	lane122s000518_bin.1.p	gln__L	1	1	o__Actinomycetales (UID1593)	98.99	0.67	0	HQ	11C	Meadow	Meadow_1	0	1	0	M10A 100 Microbacterium yannicii	Isolate	36	4500373
+lane122s000525	Asn	1	L-Asparagine	lane122s000525_bin.1.p	asn__L	1	1	o__Actinomycetales (UID1593)	99.41	1.01	0	HQ	8E	Meadow	Meadow_1	0	1	0	M10A 100 did not work	Isolate	10	3882684
+lane122s000525	Gln	1	L-Glutamine	lane122s000525_bin.1.p	gln__L	1	1	o__Actinomycetales (UID1593)	99.41	1.01	0	HQ	8E	Meadow	Meadow_1	0	1	0	M10A 100 did not work	Isolate	10	3882684
+lane122s000525	Ile	1	L-Isoleucine	lane122s000525_bin.1.p	ile__L	1	1	o__Actinomycetales (UID1593)	99.41	1.01	0	HQ	8E	Meadow	Meadow_1	0	1	0	M10A 100 did not work	Isolate	10	3882684
+lane122s000525	Phe	1	L-Phenylalanine	lane122s000525_bin.1.p	phe__L	1	1	o__Actinomycetales (UID1593)	99.41	1.01	0	HQ	8E	Meadow	Meadow_1	0	1	0	M10A 100 did not work	Isolate	10	3882684
+lane121s003951	Gln	1	L-Glutamine	lane121s003951_bin.1.p	gln__L	1	1	o__Actinomycetales (UID1593)	98.99	0.67	0	HQ	2A	Meadow	Meadow_1	0	1	0	M10A 99 Microbacterium yannicii	Isolate	43	4496250
+lane121s003955	Gln	1	L-Glutamine	lane121s003955_bin.1.s	gln__L	1	1	o__Actinomycetales (UID1593)	99.24	0.51	0	HQ	2E	Meadow	Meadow_1	1	0	0	M10A 133 Microbacterium yannicii	Isolate	57	4762446
+lane122s000517	Thr	1	L-Threonine	lane122s000517_bin.2.s	thr__L	1	1	c__Alphaproteobacteria (UID3305)	99.13	0	0	HQ	11F	Meadow	Meadow_3	0	1	0	M30C 132 Phyllobacterium brassicacearum	Isolate	28	5086001
+lane121s003995	Thr	1	L-Threonine	lane121s003995_shovill	thr__L	1	1	f__Rhizobiaceae (UID3563)	98.37	0.26	0	HQ	4Q	Meadow	Meadow_2	0	1	0	M20C 24 Rhizobium	Isolate	119	6285161
+lane122s000535	His	1	L-Histidine	lane122s000535_bin.1.p	his__L	1	1	o__Actinomycetales (UID1593)	99.49	0.51	0	HQ	6B	Conifer forest	F9	1	0	0	F9C 224 Agromyces aureus	Isolate	76	4098708
+lane122s000521	Lys	1	L-Lysine	lane122s000521_bin.2.p	lys__L	1	1	f__Rhizobiaceae (UID3564)	99.15	0.45	0	HQ	8Y	Meadow	Meadow_2	1	1	0	M20A 25 did not work	Isolate	44	6223298
+lane122s000530	Thr	1	L-Threonine	lane122s000530_shovill	thr__L	1	1	c__Bacilli (UID259)	100	0.33	0	HQ	9T	Meadow	Meadow_2	1	0	0	M20B 173 Exiguobacterium undae	Isolate	104	3096170
+lane122s000530	Val	1	L-Valine	lane122s000530_shovill	val__L	1	1	c__Bacilli (UID259)	100	0.33	0	HQ	9T	Meadow	Meadow_2	1	0	0	M20B 173 Exiguobacterium undae	Isolate	104	3096170
+lane821s003036	Gln	1	L-Glutamine	lane821s003036_shovill	gln__L	1	1	o__Actinomycetales (UID1593)	98.99	0.67	0	HQ	B	Meadow	Meadow_1	0	1	0	M10A 100* Microbacterium yannicii	Deep_isolate	20	4509593
+lane821s003043	Phe	1	L-Phenylalanine	lane821s003043_bin.1.s	phe__L	1	1	o__Actinomycetales (UID1593)	99.24	0	0	HQ	I	Meadow	Meadow_1	1	1	1	M10B 12 Agromyces terreus	Deep_isolate	26	3459168
+lane821s003043	Trp	1	L-Tryptophan	lane821s003043_bin.1.s	trp__L	1	1	o__Actinomycetales (UID1593)	99.24	0	0	HQ	I	Meadow	Meadow_1	1	1	1	M10B 12 Agromyces terreus	Deep_isolate	26	3459168
+lane821s003043	Val	1	L-Valine	lane821s003043_bin.1.s	val__L	1	1	o__Actinomycetales (UID1593)	99.24	0	0	HQ	I	Meadow	Meadow_1	1	1	1	M10B 12 Agromyces terreus	Deep_isolate	26	3459168

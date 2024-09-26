@@ -1,0 +1,5 @@
+count	combination	count_total	count_combo	percent	combo_num
+0	single	58	17	29.310344827586203	1
+0	pairwise	3305	2153	65.14372163388805	2
+0	triplet	3363	2912	86.58935474278918	3
+0	quadruplet	3363	3199	95.12340172465062	4
