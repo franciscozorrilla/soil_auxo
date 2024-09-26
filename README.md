@@ -16,7 +16,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent viverra elit a
 
 ## 🧪 Usage & description
 
-This repo contains supplementary files, sequences, and metabolic models associated with isolates and metagenomic samples from our study. Raw sequences have been desposited in the [European Nucleotide Archive](https://www.ebi.ac.uk/ena/browser/home) (ENA) under accession codes XXXXXXXX. 
+This repo contains supplementary files, sequences, and metabolic models associated with isolates and metagenomic samples from our study. Raw sequences have been desposited in the [European Nucleotide Archive](https://www.ebi.ac.uk/ena/browser/home) (ENA) under accession code PRJEB80563. 
 
 Clone repo:
 
