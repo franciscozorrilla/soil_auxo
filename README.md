@@ -6,7 +6,9 @@ Repository with code & data for the publication *Obligate cross-feeding of essen
 
 If you use this resource, please cite:
 
- > Yousif, G., Zorrilla, F., Dash, S. et al. Obligate cross-feeding of essential metabolites is common in soil microbial communities. Manuscript under preparation (2024).
+ > Yousif, G.\*, Zorrilla, F.\*, Dash, S. et al. Obligate cross-feeding of essential metabolites is common in soil microbial communities. Manuscript under preparation (2024).
+
+\* These authors contributed equally.
 
 ## 🧬 Abstract
 
