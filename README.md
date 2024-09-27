@@ -43,3 +43,5 @@ $ tree soil_auxo/ -L 1
 
 10 directories, 2 files
 ```
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.13847512.svg)](https://doi.org/10.5281/zenodo.13847512)
