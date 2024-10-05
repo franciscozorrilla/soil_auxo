@@ -1,0 +1,186 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Cmd+Shift+Enter*. 
+
+```{r}
+
+
+### saturation plot for metabolic complementarity
+
+# create data structure with auxo measurements and sample metadata
+auxo_data = left_join(auxolab,metadata,by="Sample_ID") %>% filter(metabolite!="AAs_auxo",metabolite!="Nucleotide_auxo",metabolite!="Vitamin_auxo") %>% mutate(auxo_lab = as.numeric(auxo_lab)-1)
+write_delim(auxo_data,"auxo_data.tsv")
+
+# create list of unique sample IDs for randomly creating n-wise combinations
+samples = auxo_data %>% select(Sample_ID) %>% unique()
+
+# single species distribution is already quite flat, lets see where the median goes for pairwise
+one = auxo_data %>% group_by(Sample_ID) %>% summarize(count=sum(auxo_lab))
+ggplot(one,aes(y=count,x=1))+ geom_point() + geom_boxplot(alpha=0.5,outlier.alpha = 0) 
+
+# pairwise species, go to bash for computing count
+two = data.frame(samples$Sample_ID,samples$Sample_ID) %>% expand(samples.Sample_ID,samples.Sample_ID.1) %>% rename(Sample_ID1=samples.Sample_ID,Sample_ID2=samples.Sample_ID.1) %>% filter(Sample_ID1!=Sample_ID2)
+write_delim(two,"pairwise_samples.tsv")
+
+## run loop in bash and read in results
+#while read combo;do 
+#	sample1=$(echo $combo|cut -d ' ' -f1);
+#	sample2=$(echo $combo|cut -d ' ' -f2);
+#	count=0
+#	while read aa;do 
+#		sample1aux=$(less auxo_data.tsv|tail -n +2|grep $sample1|grep $aa|cut -d ' ' -f3);
+#		sample2aux=$(less auxo_data.tsv|tail -n +2|grep $sample2|grep $aa|cut -d ' ' -f3);
+#		num=$((sample1aux + sample2aux))
+#		if [ "$num" -gt 1 ]; then
+#			count=$(($count+1))
+#		fi
+#	done< <(less auxo_data.tsv|tail -n +2|cut -d ' ' -f4|sort|uniq);
+#	echo $count
+#done< <(less pairwise_samples.tsv|tail -n +2) >> pairwise_auxo.tsv
+pairwise_auxo = read.delim("sat_sim/pairwise_auxo.tsv")
+
+# triplet species sampled down to same as pairwise, go to bash for computing count
+three = data.frame(samples$Sample_ID,samples$Sample_ID,samples$Sample_ID) %>% expand(samples.Sample_ID,samples.Sample_ID.1,samples.Sample_ID.2) %>% rename(Sample_ID1=samples.Sample_ID,Sample_ID2=samples.Sample_ID.1,Sample_ID3=samples.Sample_ID.2) %>% filter(Sample_ID1!=Sample_ID2,Sample_ID1!=Sample_ID3,Sample_ID2!=Sample_ID3) %>% sample_n(3364)
+write_delim(three,"triplet_samples.tsv")
+
+## run loop in bash and read in results
+#while read combo;do 
+#	sample1=$(echo $combo|cut -d ' ' -f1);
+#	sample2=$(echo $combo|cut -d ' ' -f2);
+#	sample3=$(echo $combo|cut -d ' ' -f3);
+#	count=0
+#	while read aa;do 
+#		sample1aux=$(less auxo_data.tsv|tail -n +2|grep $sample1|grep $aa|cut -d ' ' -f3);
+#		sample2aux=$(less auxo_data.tsv|tail -n +2|grep $sample2|grep $aa|cut -d ' ' -f3);
+#		sample3aux=$(less auxo_data.tsv|tail -n +2|grep $sample3|grep $aa|cut -d ' ' -f3);
+#		num=$((sample1aux + sample2aux + sample3aux))
+#		if [ "$num" -gt 2 ]; then
+#			count=$(($count+1))
+#		fi
+#	done< <(less auxo_data.tsv|tail -n +2|cut -d ' ' -f4|sort|uniq);
+#	echo $count
+#done< <(less triplet_samples.tsv|tail -n +2) >> triplet_auxo.tsv
+triplet_auxo = read.delim("sat_sim/triplet_auxo.tsv")
+
+# quadruplet species sampled down to same as pairwise, go to bash for computing count
+four = data.frame(samples$Sample_ID,samples$Sample_ID,samples$Sample_ID,samples$Sample_ID) %>% expand(samples.Sample_ID,samples.Sample_ID.1,samples.Sample_ID.2,samples.Sample_ID.3) %>% rename(Sample_ID1=samples.Sample_ID,Sample_ID2=samples.Sample_ID.1,Sample_ID3=samples.Sample_ID.2,Sample_ID4=samples.Sample_ID.3) %>% filter(Sample_ID1!=Sample_ID2,Sample_ID1!=Sample_ID3,Sample_ID1!=Sample_ID4,Sample_ID2!=Sample_ID3,Sample_ID2!=Sample_ID4,Sample_ID3!=Sample_ID4) %>% sample_n(3364)
+write_delim(four,"quad_samples.tsv")
+
+## run loop in bash and read in results
+#while read combo;do 
+#	sample1=$(echo $combo|cut -d ' ' -f1);
+#	sample2=$(echo $combo|cut -d ' ' -f2);
+#	sample3=$(echo $combo|cut -d ' ' -f3);
+#	sample4=$(echo $combo|cut -d ' ' -f4);
+#	count=0
+#	while read aa;do 
+#		sample1aux=$(less auxo_data.tsv|tail -n +2|grep $sample1|grep $aa|cut -d ' ' -f3);
+#		sample2aux=$(less auxo_data.tsv|tail -n +2|grep $sample2|grep $aa|cut -d ' ' -f3);
+#		sample3aux=$(less auxo_data.tsv|tail -n +2|grep $sample3|grep $aa|cut -d ' ' -f3);
+#		sample4aux=$(less auxo_data.tsv|tail -n +2|grep $sample4|grep $aa|cut -d ' ' -f3);
+#		num=$((sample1aux + sample2aux + sample3aux + sample4aux))
+#		if [ "$num" -gt 3 ]; then
+#			count=$(($count+1))
+#		fi
+#	done< <(less auxo_data.tsv|tail -n +2|cut -d ' ' -f4|sort|uniq);
+#	echo $count
+#done< <(less quad_samples.tsv|tail -n +2) >> quad_auxo.tsv
+quad_auxo = read.delim("sat_sim/quad_auxo.tsv")
+
+
+# penta species sampled down to same as pairwise, go to bash for computing count, 5 doesnt want to expand :( 
+five = data.frame(samples$Sample_ID,samples$Sample_ID,samples$Sample_ID,samples$Sample_ID,samples$Sample_ID) %>% expand(Sample_ID,Sample_ID.1,Sample_ID.2,Sample_ID.3,Sample_ID.4) %>% filter(Sample_ID1!=Sample_ID2,Sample_ID1!=Sample_ID3,Sample_ID1!=Sample_ID4,Sample_ID1!=Sample_ID5,Sample_ID2!=Sample_ID3,Sample_ID2!=Sample_ID4,Sample_ID2!=Sample_ID5,Sample_ID3!=Sample_ID4,Sample_ID3!=Sample_ID5,Sample_ID4!=Sample_ID5) %>% sample_n(3364)
+write_delim(five,"penta_samples.tsv")
+
+## run loop in bash and read in results
+#while read combo;do 
+#	sample1=$(echo $combo|cut -d ' ' -f1);
+#	sample2=$(echo $combo|cut -d ' ' -f2);
+#	sample3=$(echo $combo|cut -d ' ' -f3);
+#	sample4=$(echo $combo|cut -d ' ' -f4);
+#	sample5=$(echo $combo|cut -d ' ' -f5);
+#	count=0
+#	while read aa;do 
+#		sample1aux=$(less auxo_data.tsv|tail -n +2|grep $sample1|grep $aa|cut -d ' ' -f3);
+#		sample2aux=$(less auxo_data.tsv|tail -n +2|grep $sample2|grep $aa|cut -d ' ' -f3);
+#		sample3aux=$(less auxo_data.tsv|tail -n +2|grep $sample3|grep $aa|cut -d ' ' -f3);
+#		sample4aux=$(less auxo_data.tsv|tail -n +2|grep $sample4|grep $aa|cut -d ' ' -f3);
+#		sample5aux=$(less auxo_data.tsv|tail -n +2|grep $sample5|grep $aa|cut -d ' ' -f3);
+#		num=$((sample1aux + sample2aux + sample3aux + sample4aux + sample5aux))
+#		if [ "$num" -gt 4 ]; then
+#			count=$(($count+1))
+#		fi
+#	done< <(less auxo_data.tsv|tail -n +2|cut -d ' ' -f4|sort|uniq);
+#	echo $count
+#done< <(less penta_samples.tsv|tail -n +2) >> penta_auxo.tsv
+penta_auxo = read.delim("sat_sim/penta_auxo.tsv")
+
+
+# combine to plot
+auxo_sat_one = data.frame(one$count,"single") %>% rename(count=one.count,combination=X.single.)
+auxo_sat_two = data.frame(pairwise_auxo,"pairwise") %>% rename(count=X0,combination=X.pairwise.)
+auxo_sat_three = data.frame(triplet_auxo,"triplet") %>% rename(count=X0,combination=X.triplet.)
+auxo_sat_four = data.frame(quad_auxo,"quadruplet") %>% rename(count=X0,combination=X.quadruplet.)
+auxo_sat_five = data.frame(penta_auxo,"quintuplet") %>% rename(count=X0,combination=X.quintuplet.)
+
+auxo_sat = bind_rows(auxo_sat_one,auxo_sat_two,auxo_sat_three,auxo_sat_four,auxo_sat_five) %>% mutate(combination=fct_relevel(combination,c("single","pairwise","triplet","quadruplet","quintuplet")))
+
+ggplot(auxo_sat,aes(x=combination,y=count,fill=combination)) + geom_boxplot()  + ylab("# resulting amino acid auxotrophies") + xlab("combinations")
+
+ggsave("auxo_sat.pdf",height = 6,width = 8)
+ggsave("auxo_sat.png",height = 6,width = 8)
+
+write_delim(auxo_sat%>%filter(combination!="quintuplet"),"auxo_sat_data.tsv",delim = "\t")
+
+
+#recreate plot in terms of % surviving coms
+auxo_data = read.delim("~/Documents/soil_auxo/auxo_sat_data.tsv")
+auxo_data %>% group_by(combination) %>% mutate(count_total=n()) %>% group_by(count,combination) %>% mutate(count_combo=n()) %>% unique() %>% mutate(percent=100*(count_combo/count_total)) %>% filter(count==0) %>% mutate(combo_num=ifelse(combination=="single",1,ifelse(combination=="pairwise",2,ifelse(combination=="triplet",3,4)))) -> auxo_df
+  
+ggplot(auxo_data %>% group_by(combination) %>% mutate(count_total=n()) %>% group_by(count,combination) %>% mutate(count_combo=n()) %>% unique() %>% mutate(percent=100*(count_combo/count_total)) %>% filter(count==0)) + geom_point(aes(x=combination,y=percent))
+
+
+ggscatter(auxo_df,x="combo_num",y="percent",add="reg.line",conf.int = FALSE) + stat_cor(method="pearson") + ylim(0,100) + ylab("Percent of communities\nwith no AA auxotrophies") + xlab("Combination size") + theme_bw(base_size = 15)
+
+ggsave("~/Documents/soil_auxo/final_figs_data/auxo_sat.png",height=3,width = 3)
+ggsave("~/Documents/soil_auxo/final_figs_data/auxo_sat.pdf",height=6,width = 6)
+
+write_delim(auxo_df,delim="\t",quote = "none",file = "~/Documents/soil_auxo/final_figs_data/auxo_df.tsv")
+
+read.delim("~/Documents/soil_auxo/auxo_df.tsv") -> auxo_df
+
+ggscatter(
+  auxo_df %>% 
+    pivot_longer(c(percent_comp,percent_lab),values_to = "percent",names_to = "Screen") %>% 
+    mutate(Screen=gsub("percent_","",Screen),Screen=gsub("comp","Computational",Screen),
+           Screen=gsub("lab","Experimental",Screen)), x="combo_num",y="percent",
+  add="reg.line",conf.int = FALSE,color="Screen") + stat_cor(method="pearson",aes(color=Screen)) + 
+  ylim(0,100) + ylab("Percent of communities with\nfully resolved AA auxotrophies (%)") + 
+  xlab("Community size") + theme_bw() + theme(legend.position = "bottom")-> newfig3a
+
+ggsave("~/Documents/soil_auxo/final_figs_data/auxo_sat_combined.png",height=5,width = 5)
+ggsave("~/Documents/soil_auxo/final_figs_data/auxo_sat_combined.pdf",height=5,width = 5)
+
+# same as above but with ggplot for merging with others
+ggplot(
+  auxo_df %>% 
+    pivot_longer(c(percent_comp,percent_lab),values_to = "percent",names_to = "Screen") %>% 
+    mutate(Screen=gsub("percent_","",Screen),Screen=gsub("comp","Computational",Screen),
+           Screen=gsub("lab","Experimental",Screen)), aes(x=combo_num,y=percent,color=Screen)) + geom_point() + stat_cor(method="pearson",aes(color=Screen)) + 
+  ylim(0,100) + ylab("Percent of communities with\nfully resolved AA auxotrophies (%)") + 
+  xlab("Community size") + theme_bw(base_size = 15) + theme(legend.position = "top") -> newfig3a
+
+
+```
+
+Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Cmd+Option+I*.
+
+When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Cmd+Shift+K* to preview the HTML file). 
+
+The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
+

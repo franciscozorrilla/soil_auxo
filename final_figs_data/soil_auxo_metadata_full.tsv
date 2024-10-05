@@ -1,0 +1,74 @@
+Codes	Habitats	Sites	AAs_auxo	Vitamin_auxo	Nucleotide_auxo	Species_16S	Sample_ID	Type
+11C	Meadow	Meadow_1	0	1	0	M10A 100 Microbacterium yannicii	lane122s000518	Isolate
+11F	Meadow	Meadow_3	0	1	0	M30C 132 Phyllobacterium brassicacearum	lane122s000517	Isolate
+2A	Meadow	Meadow_1	0	1	0	M10A 99 Microbacterium yannicii	lane121s003951	Isolate
+2B	NA	NA	NA	NA	NA	NA	lane121s003952	Isolate
+2C	Meadow	Meadow_2	1	0	0	M20A 119 Lysinibacillus pakistanensis	lane121s003953	Isolate
+2D	Meadow	Meadow_2	1	0	0	M20A 101 Bacillus pumilus	lane121s003954	Isolate
+2E	Meadow	Meadow_1	1	0	0	M10A 133 Microbacterium yannicii	lane121s003955	Isolate
+3A	Meadow	Meadow_1	1	0	0	M10B 21 Paenibacillus peoriae	lane121s003958	Isolate
+3C	Meadow	Meadow_2	1	0	0	M20A 145 Lysinibacillus pakistanensis	lane121s003960	Isolate
+3E	Conifer forest	F3	1	0	0	F3B 10 Phyllobacterium bourgognense	lane121s003962	Isolate
+3G	Deciduous forest	F8	1	0	0	F8A 26 Paenibacillus borealis	lane121s003963	Isolate
+3I	Meadow	Meadow_2	1	0	0	M20A 265 Enterobacter cloacae	lane121s003964	Isolate
+3II	Conifer forest	F3	NA	NA	NA	F3C 189 did not work	lane121s003965	Isolate
+3J	Deciduous forest	F8	1	0	0	F8B 103 Bacillus mycoides / Bacillus weihenstephanensis	lane121s003971	Isolate
+3N	Conifer forest	F3	1	0	0	F3A 6 Bacillus mycoides	lane121s003968	Isolate
+4A	Conifer forest	F5	1	0	0	F5C 79 Bacillus subtilis	lane121s003972	Isolate
+4E	Meadow	Meadow_3	1	0	0	M30C 77 Paenibacillus terrae	lane121s003976	Isolate
+4F	Meadow	Meadow_1	NA	NA	NA	M10C 60 Rhizobium azooxidifex	lane121s003977	Isolate
+4G	Meadow	Meadow_3	1	0	0	M30C 31did not work	lane121s003978	Isolate
+4I	Meadow	Meadow_3	1	0	0	M30C 97 Bacillus mycoides / Bacillus weihenstephanensis	lane121s003979	Isolate
+4J	Conifer forest	F5	1	0	0	F5B 133 Luteibacter rhizovicinus	lane121s003980	Isolate
+4N	Conifer forest	F5	1	0	0	F5B 26 Luteibacter rhizovicinus	lane121s003984	Isolate
+4P	Conifer forest	F5	1	0	0	F5B 26 Luteibacter rhizovicinus	lane121s003986	Isolate
+4Q	Meadow	Meadow_2	0	1	0	M20C 24 Rhizobium	lane121s003995	Isolate
+4R	Meadow	Meadow_3	1	0	0	M30A 76 Bacillus sp.	lane121s003996	Isolate
+5H	Conifer forest	F5	0	1	0	F5C 22 Does not work	lane122s000537	Isolate
+5L	Meadow	Meadow_3	1	0	0	M30C 117 Cupriavidus respiraculi	lane122s000536	Isolate
+5M	Meadow	Meadow_2	1	0	0	M20C 128 Bacillus mycoides/ Bacillus weihenstephanensis	lane122s000544	Isolate
+5N	Conifer forest	F3	1	0	0	F3C 100 Brevibacterium] frigoritolerans	lane122s000539	Isolate
+5P	Meadow	Meadow_1	1	0	0	M10C 65 Mycetocola manganoxydans	lane122s000533	Isolate
+5T	Deciduous forest	F7	1	0	0	F7C 8M Bacillus mycoides/Bacillus weihenstephanensis 100%	lane122s000538	Isolate
+5Z	Meadow	Meadow_1	1	0	0	M10C 60 Rhizobium azooxidifex	lane122s000520	Isolate
+6B	Conifer forest	F9	1	0	0	F9C 224 Agromyces aureus	lane122s000535	Isolate
+6E	Conifer forest	F9	1	0	0	F9C 41 Agromyces iriomotensis	lane122s000543	Isolate
+6G	Meadow	Meadow_1	NA	NA	NA	M10A 100 Doesn’t work	lane122s000534	Isolate
+6H	Conifer forest	F5	1	0	0	F5A 127 Dyella marensis	lane122s000540	Isolate
+6K	Meadow	Meadow_1	0	1	0	M10A 101 Phycicola gilvus	lane122s000542	Isolate
+6N	Meadow	Meadow_1	1	0	0	M10B 93 Bacillus mycoide/ Bacillus weihenstephanensis	lane122s000541	Isolate
+7C	Conifer forest	F9	1	0	0	F9C 46 Bosea vestrisii / Bosea eneae	lane122s000523	Isolate
+7M	Conifer forest	F5	1	0	0	F5A 106 Luteibacter anthropi	lane122s000528	Isolate
+8E	Meadow	Meadow_1	0	1	0	M10A 100 did not work	lane122s000525	Isolate
+8O	Conifer forest	F9	1	0	0	F9B 71a Bacillus mycoides/Bacillus weihenstephanensis	lane122s000522	Isolate
+8R	NA	NA	NA	NA	NA	NA	lane122s000519	Isolate
+8V	Conifer forest	F5	NA	NA	NA	F5A 29 Rhodanobacter caeni	lane122s000527	Isolate
+8Y	Meadow	Meadow_2	1	1	0	M20A 25 did not work	lane122s000521	Isolate
+9G	Meadow	Meadow_2	1	0	0	M20B 192 [Brevibacterium] frigoritolerans contaminated	lane122s000529	Isolate
+9H	Conifer forest	F5	1	0	0	F5C 276 Bacillus subtilise	lane122s000545	Isolate
+9M	Meadow	Meadow_2	1	0	0	M20A 228 Bacillus pumilus	lane122s000515	Isolate
+9O	Meadow	Meadow_2	1	0	0	M20B 78 Prolinoborus fasciculus	lane122s000532	Isolate
+9R	Meadow	Meadow_2	1	0	0	M20B 82 Bacillus toyonensis	lane122s000524	Isolate
+9T	Meadow	Meadow_2	1	0	0	M20B 173 Exiguobacterium undae	lane122s000530	Isolate
+11G	Deciduous forest	F8	1	0	0	F8B 92 Kocuria rhizophila	lane122s000516	Isolate
+11H	Meadow	Meadow_3	1	0	0	M30C 31 Ensifer adhaerens	lane122s000531	Isolate
+BL	Lab strain	NA	1	0	0	"Bacillus lab strain, leu auxotroph"	lane122s000720	Polymorphism
+F3	Conifer forest	F3	NA	NA	NA	NA	lane122s000603	Metagenomic
+F4	Deciduous forest	F4	NA	NA	NA	NA	lane122s000606	Metagenomic
+F5	Conifer forest	F5	NA	NA	NA	NA	lane122s000602	Metagenomic
+F7	Deciduous forest	F7	NA	NA	NA	NA	lane122s000607	Metagenomic
+F8	Deciduous forest	F8	NA	NA	NA	NA	lane122s000604	Metagenomic
+F9	Conifer forest	F9	NA	NA	NA	NA	lane122s000605	Metagenomic
+Meadow1	Meadow	Meadow_1	NA	NA	NA	NA	lane122s000599	Metagenomic
+Meadow2	Meadow	Meadow_2	NA	NA	NA	NA	lane122s000600	Metagenomic
+Meadow3	Meadow	Meadow_3	NA	NA	NA	NA	lane122s000601	Metagenomic
+No9	Lab strain	NA	1	0	0	"Bacillus lab strain, leu auxotroph"	lane122s000721	Polymorphism
+A	Meadow	Meadow_1	1	0	0	M10A 63 Bacillus mycoides/ Bacillus weihenstephanensis	lane821s003035	Deep_isolate
+B	Meadow	Meadow_1	0	1	0	M10A 100* Microbacterium yannicii	lane821s003036	Deep_isolate
+C	Deciduous forest	F8	1	1	0	F8C 103* Paenibacillus borealis	lane821s003037	Deep_isolate
+D	Conifer forest	F3	1	0	0	F3C 100* Brevibacterium] frigoritolerans	lane821s003038	Deep_isolate
+F	Conifer forest	F3	1	1	0	F3A 106* Bacillus huizhouensis	lane821s003040	Deep_isolate
+G	Meadow	Meadow_2	1	0	0	M20A 165* Lysinibacillus pakistanensis	lane821s003041	Deep_isolate
+H	Conifer forest	F3	1	0	1	F3A 18 Doesn’t work	lane821s003042	Deep_isolate
+I	Meadow	Meadow_1	1	1	1	M10B 12 Agromyces terreus	lane821s003043	Deep_isolate
+K	Conifer forest	F9	1	0	0	F9C 200 Bosea vestrisii / Bosea eneae	lane821s003044	Deep_isolate

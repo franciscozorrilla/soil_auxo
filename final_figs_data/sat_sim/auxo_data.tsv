@@ -1,0 +1,1161 @@
+Sample_ID metabolite auxo_lab name Codes Habitats Sites AAs_auxo Vitamin_auxo Nucleotide_auxo Species_16S Type
+lane122s000518 Ala 0 L-Alanine 11C Meadow Meadow_1 0 1 0 "M10A 100 Microbacterium yannicii" Isolate
+lane122s000518 Arg 0 L-Arginine 11C Meadow Meadow_1 0 1 0 "M10A 100 Microbacterium yannicii" Isolate
+lane122s000518 Asp 0 "L-Aspartic acid" 11C Meadow Meadow_1 0 1 0 "M10A 100 Microbacterium yannicii" Isolate
+lane122s000518 Asn 0 L-Asparagine 11C Meadow Meadow_1 0 1 0 "M10A 100 Microbacterium yannicii" Isolate
+lane122s000518 Cys 1 L-Cysteine 11C Meadow Meadow_1 0 1 0 "M10A 100 Microbacterium yannicii" Isolate
+lane122s000518 Glu 0 L-Glutamate 11C Meadow Meadow_1 0 1 0 "M10A 100 Microbacterium yannicii" Isolate
+lane122s000518 Gln 1 L-Glutamine 11C Meadow Meadow_1 0 1 0 "M10A 100 Microbacterium yannicii" Isolate
+lane122s000518 Gly 0 Glycine 11C Meadow Meadow_1 0 1 0 "M10A 100 Microbacterium yannicii" Isolate
+lane122s000518 His 0 L-Histidine 11C Meadow Meadow_1 0 1 0 "M10A 100 Microbacterium yannicii" Isolate
+lane122s000518 Ile 1 L-Isoleucine 11C Meadow Meadow_1 0 1 0 "M10A 100 Microbacterium yannicii" Isolate
+lane122s000518 Leu 0 L-Leucine 11C Meadow Meadow_1 0 1 0 "M10A 100 Microbacterium yannicii" Isolate
+lane122s000518 Lys 0 L-Lysine 11C Meadow Meadow_1 0 1 0 "M10A 100 Microbacterium yannicii" Isolate
+lane122s000518 Met 0 L-Methionine 11C Meadow Meadow_1 0 1 0 "M10A 100 Microbacterium yannicii" Isolate
+lane122s000518 Phe 0 L-Phenylalanine 11C Meadow Meadow_1 0 1 0 "M10A 100 Microbacterium yannicii" Isolate
+lane122s000518 Pro 0 L-Proline 11C Meadow Meadow_1 0 1 0 "M10A 100 Microbacterium yannicii" Isolate
+lane122s000518 Ser 0 L-Serine 11C Meadow Meadow_1 0 1 0 "M10A 100 Microbacterium yannicii" Isolate
+lane122s000518 Thr 0 L-Threonine 11C Meadow Meadow_1 0 1 0 "M10A 100 Microbacterium yannicii" Isolate
+lane122s000518 Trp 0 L-Tryptophan 11C Meadow Meadow_1 0 1 0 "M10A 100 Microbacterium yannicii" Isolate
+lane122s000518 Tyr 0 L-Tyrosine 11C Meadow Meadow_1 0 1 0 "M10A 100 Microbacterium yannicii" Isolate
+lane122s000518 Val 0 L-Valine 11C Meadow Meadow_1 0 1 0 "M10A 100 Microbacterium yannicii" Isolate
+lane122s000525 Ala 1 L-Alanine 8E Meadow Meadow_1 0 1 0 "M10A 100 did not work" Isolate
+lane122s000525 Arg 0 L-Arginine 8E Meadow Meadow_1 0 1 0 "M10A 100 did not work" Isolate
+lane122s000525 Asp 1 "L-Aspartic acid" 8E Meadow Meadow_1 0 1 0 "M10A 100 did not work" Isolate
+lane122s000525 Asn 1 L-Asparagine 8E Meadow Meadow_1 0 1 0 "M10A 100 did not work" Isolate
+lane122s000525 Cys 1 L-Cysteine 8E Meadow Meadow_1 0 1 0 "M10A 100 did not work" Isolate
+lane122s000525 Glu 1 L-Glutamate 8E Meadow Meadow_1 0 1 0 "M10A 100 did not work" Isolate
+lane122s000525 Gln 1 L-Glutamine 8E Meadow Meadow_1 0 1 0 "M10A 100 did not work" Isolate
+lane122s000525 Gly 0 Glycine 8E Meadow Meadow_1 0 1 0 "M10A 100 did not work" Isolate
+lane122s000525 His 0 L-Histidine 8E Meadow Meadow_1 0 1 0 "M10A 100 did not work" Isolate
+lane122s000525 Ile 1 L-Isoleucine 8E Meadow Meadow_1 0 1 0 "M10A 100 did not work" Isolate
+lane122s000525 Leu 0 L-Leucine 8E Meadow Meadow_1 0 1 0 "M10A 100 did not work" Isolate
+lane122s000525 Lys 1 L-Lysine 8E Meadow Meadow_1 0 1 0 "M10A 100 did not work" Isolate
+lane122s000525 Met 1 L-Methionine 8E Meadow Meadow_1 0 1 0 "M10A 100 did not work" Isolate
+lane122s000525 Phe 1 L-Phenylalanine 8E Meadow Meadow_1 0 1 0 "M10A 100 did not work" Isolate
+lane122s000525 Pro 0 L-Proline 8E Meadow Meadow_1 0 1 0 "M10A 100 did not work" Isolate
+lane122s000525 Ser 0 L-Serine 8E Meadow Meadow_1 0 1 0 "M10A 100 did not work" Isolate
+lane122s000525 Thr 0 L-Threonine 8E Meadow Meadow_1 0 1 0 "M10A 100 did not work" Isolate
+lane122s000525 Trp 1 L-Tryptophan 8E Meadow Meadow_1 0 1 0 "M10A 100 did not work" Isolate
+lane122s000525 Tyr 1 L-Tyrosine 8E Meadow Meadow_1 0 1 0 "M10A 100 did not work" Isolate
+lane122s000525 Val 0 L-Valine 8E Meadow Meadow_1 0 1 0 "M10A 100 did not work" Isolate
+lane121s003984 Ala 0 L-Alanine 4N "Conifer forest" F5 1 0 0 "F5B 26 Luteibacter rhizovicinus" Isolate
+lane121s003984 Arg 0 L-Arginine 4N "Conifer forest" F5 1 0 0 "F5B 26 Luteibacter rhizovicinus" Isolate
+lane121s003984 Asp 0 "L-Aspartic acid" 4N "Conifer forest" F5 1 0 0 "F5B 26 Luteibacter rhizovicinus" Isolate
+lane121s003984 Asn 0 L-Asparagine 4N "Conifer forest" F5 1 0 0 "F5B 26 Luteibacter rhizovicinus" Isolate
+lane121s003984 Cys 0 L-Cysteine 4N "Conifer forest" F5 1 0 0 "F5B 26 Luteibacter rhizovicinus" Isolate
+lane121s003984 Glu 0 L-Glutamate 4N "Conifer forest" F5 1 0 0 "F5B 26 Luteibacter rhizovicinus" Isolate
+lane121s003984 Gln 0 L-Glutamine 4N "Conifer forest" F5 1 0 0 "F5B 26 Luteibacter rhizovicinus" Isolate
+lane121s003984 Gly 0 Glycine 4N "Conifer forest" F5 1 0 0 "F5B 26 Luteibacter rhizovicinus" Isolate
+lane121s003984 His 0 L-Histidine 4N "Conifer forest" F5 1 0 0 "F5B 26 Luteibacter rhizovicinus" Isolate
+lane121s003984 Ile 0 L-Isoleucine 4N "Conifer forest" F5 1 0 0 "F5B 26 Luteibacter rhizovicinus" Isolate
+lane121s003984 Leu 0 L-Leucine 4N "Conifer forest" F5 1 0 0 "F5B 26 Luteibacter rhizovicinus" Isolate
+lane121s003984 Lys 0 L-Lysine 4N "Conifer forest" F5 1 0 0 "F5B 26 Luteibacter rhizovicinus" Isolate
+lane121s003984 Met 0 L-Methionine 4N "Conifer forest" F5 1 0 0 "F5B 26 Luteibacter rhizovicinus" Isolate
+lane121s003984 Phe 0 L-Phenylalanine 4N "Conifer forest" F5 1 0 0 "F5B 26 Luteibacter rhizovicinus" Isolate
+lane121s003984 Pro 0 L-Proline 4N "Conifer forest" F5 1 0 0 "F5B 26 Luteibacter rhizovicinus" Isolate
+lane121s003984 Ser 0 L-Serine 4N "Conifer forest" F5 1 0 0 "F5B 26 Luteibacter rhizovicinus" Isolate
+lane121s003984 Thr 0 L-Threonine 4N "Conifer forest" F5 1 0 0 "F5B 26 Luteibacter rhizovicinus" Isolate
+lane121s003984 Trp 0 L-Tryptophan 4N "Conifer forest" F5 1 0 0 "F5B 26 Luteibacter rhizovicinus" Isolate
+lane121s003984 Tyr 0 L-Tyrosine 4N "Conifer forest" F5 1 0 0 "F5B 26 Luteibacter rhizovicinus" Isolate
+lane121s003984 Val 0 L-Valine 4N "Conifer forest" F5 1 0 0 "F5B 26 Luteibacter rhizovicinus" Isolate
+lane121s003986 Ala 0 L-Alanine 4P "Conifer forest" F5 1 0 0 "F5B 26 Luteibacter rhizovicinus" Isolate
+lane121s003986 Arg 0 L-Arginine 4P "Conifer forest" F5 1 0 0 "F5B 26 Luteibacter rhizovicinus" Isolate
+lane121s003986 Asp 0 "L-Aspartic acid" 4P "Conifer forest" F5 1 0 0 "F5B 26 Luteibacter rhizovicinus" Isolate
+lane121s003986 Asn 0 L-Asparagine 4P "Conifer forest" F5 1 0 0 "F5B 26 Luteibacter rhizovicinus" Isolate
+lane121s003986 Cys 0 L-Cysteine 4P "Conifer forest" F5 1 0 0 "F5B 26 Luteibacter rhizovicinus" Isolate
+lane121s003986 Glu 0 L-Glutamate 4P "Conifer forest" F5 1 0 0 "F5B 26 Luteibacter rhizovicinus" Isolate
+lane121s003986 Gln 0 L-Glutamine 4P "Conifer forest" F5 1 0 0 "F5B 26 Luteibacter rhizovicinus" Isolate
+lane121s003986 Gly 0 Glycine 4P "Conifer forest" F5 1 0 0 "F5B 26 Luteibacter rhizovicinus" Isolate
+lane121s003986 His 0 L-Histidine 4P "Conifer forest" F5 1 0 0 "F5B 26 Luteibacter rhizovicinus" Isolate
+lane121s003986 Ile 0 L-Isoleucine 4P "Conifer forest" F5 1 0 0 "F5B 26 Luteibacter rhizovicinus" Isolate
+lane121s003986 Leu 0 L-Leucine 4P "Conifer forest" F5 1 0 0 "F5B 26 Luteibacter rhizovicinus" Isolate
+lane121s003986 Lys 0 L-Lysine 4P "Conifer forest" F5 1 0 0 "F5B 26 Luteibacter rhizovicinus" Isolate
+lane121s003986 Met 0 L-Methionine 4P "Conifer forest" F5 1 0 0 "F5B 26 Luteibacter rhizovicinus" Isolate
+lane121s003986 Phe 0 L-Phenylalanine 4P "Conifer forest" F5 1 0 0 "F5B 26 Luteibacter rhizovicinus" Isolate
+lane121s003986 Pro 0 L-Proline 4P "Conifer forest" F5 1 0 0 "F5B 26 Luteibacter rhizovicinus" Isolate
+lane121s003986 Ser 0 L-Serine 4P "Conifer forest" F5 1 0 0 "F5B 26 Luteibacter rhizovicinus" Isolate
+lane121s003986 Thr 0 L-Threonine 4P "Conifer forest" F5 1 0 0 "F5B 26 Luteibacter rhizovicinus" Isolate
+lane121s003986 Trp 0 L-Tryptophan 4P "Conifer forest" F5 1 0 0 "F5B 26 Luteibacter rhizovicinus" Isolate
+lane121s003986 Tyr 0 L-Tyrosine 4P "Conifer forest" F5 1 0 0 "F5B 26 Luteibacter rhizovicinus" Isolate
+lane121s003986 Val 0 L-Valine 4P "Conifer forest" F5 1 0 0 "F5B 26 Luteibacter rhizovicinus" Isolate
+lane121s003951 Ala 0 L-Alanine 2A Meadow Meadow_1 0 1 0 "M10A 99 Microbacterium yannicii" Isolate
+lane121s003951 Arg 0 L-Arginine 2A Meadow Meadow_1 0 1 0 "M10A 99 Microbacterium yannicii" Isolate
+lane121s003951 Asp 0 "L-Aspartic acid" 2A Meadow Meadow_1 0 1 0 "M10A 99 Microbacterium yannicii" Isolate
+lane121s003951 Asn 0 L-Asparagine 2A Meadow Meadow_1 0 1 0 "M10A 99 Microbacterium yannicii" Isolate
+lane121s003951 Cys 1 L-Cysteine 2A Meadow Meadow_1 0 1 0 "M10A 99 Microbacterium yannicii" Isolate
+lane121s003951 Glu 0 L-Glutamate 2A Meadow Meadow_1 0 1 0 "M10A 99 Microbacterium yannicii" Isolate
+lane121s003951 Gln 1 L-Glutamine 2A Meadow Meadow_1 0 1 0 "M10A 99 Microbacterium yannicii" Isolate
+lane121s003951 Gly 0 Glycine 2A Meadow Meadow_1 0 1 0 "M10A 99 Microbacterium yannicii" Isolate
+lane121s003951 His 0 L-Histidine 2A Meadow Meadow_1 0 1 0 "M10A 99 Microbacterium yannicii" Isolate
+lane121s003951 Ile 0 L-Isoleucine 2A Meadow Meadow_1 0 1 0 "M10A 99 Microbacterium yannicii" Isolate
+lane121s003951 Leu 0 L-Leucine 2A Meadow Meadow_1 0 1 0 "M10A 99 Microbacterium yannicii" Isolate
+lane121s003951 Lys 0 L-Lysine 2A Meadow Meadow_1 0 1 0 "M10A 99 Microbacterium yannicii" Isolate
+lane121s003951 Met 0 L-Methionine 2A Meadow Meadow_1 0 1 0 "M10A 99 Microbacterium yannicii" Isolate
+lane121s003951 Phe 0 L-Phenylalanine 2A Meadow Meadow_1 0 1 0 "M10A 99 Microbacterium yannicii" Isolate
+lane121s003951 Pro 0 L-Proline 2A Meadow Meadow_1 0 1 0 "M10A 99 Microbacterium yannicii" Isolate
+lane121s003951 Ser 0 L-Serine 2A Meadow Meadow_1 0 1 0 "M10A 99 Microbacterium yannicii" Isolate
+lane121s003951 Thr 0 L-Threonine 2A Meadow Meadow_1 0 1 0 "M10A 99 Microbacterium yannicii" Isolate
+lane121s003951 Trp 0 L-Tryptophan 2A Meadow Meadow_1 0 1 0 "M10A 99 Microbacterium yannicii" Isolate
+lane121s003951 Tyr 0 L-Tyrosine 2A Meadow Meadow_1 0 1 0 "M10A 99 Microbacterium yannicii" Isolate
+lane121s003951 Val 0 L-Valine 2A Meadow Meadow_1 0 1 0 "M10A 99 Microbacterium yannicii" Isolate
+lane121s003955 Ala 0 L-Alanine 2E Meadow Meadow_1 1 0 0 "M10A 133 Microbacterium yannicii" Isolate
+lane121s003955 Arg 0 L-Arginine 2E Meadow Meadow_1 1 0 0 "M10A 133 Microbacterium yannicii" Isolate
+lane121s003955 Asp 0 "L-Aspartic acid" 2E Meadow Meadow_1 1 0 0 "M10A 133 Microbacterium yannicii" Isolate
+lane121s003955 Asn 0 L-Asparagine 2E Meadow Meadow_1 1 0 0 "M10A 133 Microbacterium yannicii" Isolate
+lane121s003955 Cys 1 L-Cysteine 2E Meadow Meadow_1 1 0 0 "M10A 133 Microbacterium yannicii" Isolate
+lane121s003955 Glu 0 L-Glutamate 2E Meadow Meadow_1 1 0 0 "M10A 133 Microbacterium yannicii" Isolate
+lane121s003955 Gln 1 L-Glutamine 2E Meadow Meadow_1 1 0 0 "M10A 133 Microbacterium yannicii" Isolate
+lane121s003955 Gly 0 Glycine 2E Meadow Meadow_1 1 0 0 "M10A 133 Microbacterium yannicii" Isolate
+lane121s003955 His 0 L-Histidine 2E Meadow Meadow_1 1 0 0 "M10A 133 Microbacterium yannicii" Isolate
+lane121s003955 Ile 0 L-Isoleucine 2E Meadow Meadow_1 1 0 0 "M10A 133 Microbacterium yannicii" Isolate
+lane121s003955 Leu 0 L-Leucine 2E Meadow Meadow_1 1 0 0 "M10A 133 Microbacterium yannicii" Isolate
+lane121s003955 Lys 0 L-Lysine 2E Meadow Meadow_1 1 0 0 "M10A 133 Microbacterium yannicii" Isolate
+lane121s003955 Met 0 L-Methionine 2E Meadow Meadow_1 1 0 0 "M10A 133 Microbacterium yannicii" Isolate
+lane121s003955 Phe 0 L-Phenylalanine 2E Meadow Meadow_1 1 0 0 "M10A 133 Microbacterium yannicii" Isolate
+lane121s003955 Pro 0 L-Proline 2E Meadow Meadow_1 1 0 0 "M10A 133 Microbacterium yannicii" Isolate
+lane121s003955 Ser 0 L-Serine 2E Meadow Meadow_1 1 0 0 "M10A 133 Microbacterium yannicii" Isolate
+lane121s003955 Thr 0 L-Threonine 2E Meadow Meadow_1 1 0 0 "M10A 133 Microbacterium yannicii" Isolate
+lane121s003955 Trp 1 L-Tryptophan 2E Meadow Meadow_1 1 0 0 "M10A 133 Microbacterium yannicii" Isolate
+lane121s003955 Tyr 0 L-Tyrosine 2E Meadow Meadow_1 1 0 0 "M10A 133 Microbacterium yannicii" Isolate
+lane121s003955 Val 1 L-Valine 2E Meadow Meadow_1 1 0 0 "M10A 133 Microbacterium yannicii" Isolate
+lane121s003953 Ala 0 L-Alanine 2C Meadow Meadow_2 1 0 0 "M20A 119 Lysinibacillus pakistanensis" Isolate
+lane121s003953 Arg 1 L-Arginine 2C Meadow Meadow_2 1 0 0 "M20A 119 Lysinibacillus pakistanensis" Isolate
+lane121s003953 Asp 0 "L-Aspartic acid" 2C Meadow Meadow_2 1 0 0 "M20A 119 Lysinibacillus pakistanensis" Isolate
+lane121s003953 Asn 0 L-Asparagine 2C Meadow Meadow_2 1 0 0 "M20A 119 Lysinibacillus pakistanensis" Isolate
+lane121s003953 Cys 0 L-Cysteine 2C Meadow Meadow_2 1 0 0 "M20A 119 Lysinibacillus pakistanensis" Isolate
+lane121s003953 Glu 0 L-Glutamate 2C Meadow Meadow_2 1 0 0 "M20A 119 Lysinibacillus pakistanensis" Isolate
+lane121s003953 Gln 0 L-Glutamine 2C Meadow Meadow_2 1 0 0 "M20A 119 Lysinibacillus pakistanensis" Isolate
+lane121s003953 Gly 0 Glycine 2C Meadow Meadow_2 1 0 0 "M20A 119 Lysinibacillus pakistanensis" Isolate
+lane121s003953 His 0 L-Histidine 2C Meadow Meadow_2 1 0 0 "M20A 119 Lysinibacillus pakistanensis" Isolate
+lane121s003953 Ile 1 L-Isoleucine 2C Meadow Meadow_2 1 0 0 "M20A 119 Lysinibacillus pakistanensis" Isolate
+lane121s003953 Leu 0 L-Leucine 2C Meadow Meadow_2 1 0 0 "M20A 119 Lysinibacillus pakistanensis" Isolate
+lane121s003953 Lys 0 L-Lysine 2C Meadow Meadow_2 1 0 0 "M20A 119 Lysinibacillus pakistanensis" Isolate
+lane121s003953 Met 1 L-Methionine 2C Meadow Meadow_2 1 0 0 "M20A 119 Lysinibacillus pakistanensis" Isolate
+lane121s003953 Phe 0 L-Phenylalanine 2C Meadow Meadow_2 1 0 0 "M20A 119 Lysinibacillus pakistanensis" Isolate
+lane121s003953 Pro 0 L-Proline 2C Meadow Meadow_2 1 0 0 "M20A 119 Lysinibacillus pakistanensis" Isolate
+lane121s003953 Ser 0 L-Serine 2C Meadow Meadow_2 1 0 0 "M20A 119 Lysinibacillus pakistanensis" Isolate
+lane121s003953 Thr 0 L-Threonine 2C Meadow Meadow_2 1 0 0 "M20A 119 Lysinibacillus pakistanensis" Isolate
+lane121s003953 Trp 1 L-Tryptophan 2C Meadow Meadow_2 1 0 0 "M20A 119 Lysinibacillus pakistanensis" Isolate
+lane121s003953 Tyr 1 L-Tyrosine 2C Meadow Meadow_2 1 0 0 "M20A 119 Lysinibacillus pakistanensis" Isolate
+lane121s003953 Val 1 L-Valine 2C Meadow Meadow_2 1 0 0 "M20A 119 Lysinibacillus pakistanensis" Isolate
+lane121s003960 Ala 0 L-Alanine 3C Meadow Meadow_2 1 0 0 "M20A 145 Lysinibacillus pakistanensis" Isolate
+lane121s003960 Arg 0 L-Arginine 3C Meadow Meadow_2 1 0 0 "M20A 145 Lysinibacillus pakistanensis" Isolate
+lane121s003960 Asp 0 "L-Aspartic acid" 3C Meadow Meadow_2 1 0 0 "M20A 145 Lysinibacillus pakistanensis" Isolate
+lane121s003960 Asn 0 L-Asparagine 3C Meadow Meadow_2 1 0 0 "M20A 145 Lysinibacillus pakistanensis" Isolate
+lane121s003960 Cys 0 L-Cysteine 3C Meadow Meadow_2 1 0 0 "M20A 145 Lysinibacillus pakistanensis" Isolate
+lane121s003960 Glu 0 L-Glutamate 3C Meadow Meadow_2 1 0 0 "M20A 145 Lysinibacillus pakistanensis" Isolate
+lane121s003960 Gln 0 L-Glutamine 3C Meadow Meadow_2 1 0 0 "M20A 145 Lysinibacillus pakistanensis" Isolate
+lane121s003960 Gly 0 Glycine 3C Meadow Meadow_2 1 0 0 "M20A 145 Lysinibacillus pakistanensis" Isolate
+lane121s003960 His 0 L-Histidine 3C Meadow Meadow_2 1 0 0 "M20A 145 Lysinibacillus pakistanensis" Isolate
+lane121s003960 Ile 0 L-Isoleucine 3C Meadow Meadow_2 1 0 0 "M20A 145 Lysinibacillus pakistanensis" Isolate
+lane121s003960 Leu 0 L-Leucine 3C Meadow Meadow_2 1 0 0 "M20A 145 Lysinibacillus pakistanensis" Isolate
+lane121s003960 Lys 0 L-Lysine 3C Meadow Meadow_2 1 0 0 "M20A 145 Lysinibacillus pakistanensis" Isolate
+lane121s003960 Met 0 L-Methionine 3C Meadow Meadow_2 1 0 0 "M20A 145 Lysinibacillus pakistanensis" Isolate
+lane121s003960 Phe 0 L-Phenylalanine 3C Meadow Meadow_2 1 0 0 "M20A 145 Lysinibacillus pakistanensis" Isolate
+lane121s003960 Pro 0 L-Proline 3C Meadow Meadow_2 1 0 0 "M20A 145 Lysinibacillus pakistanensis" Isolate
+lane121s003960 Ser 0 L-Serine 3C Meadow Meadow_2 1 0 0 "M20A 145 Lysinibacillus pakistanensis" Isolate
+lane121s003960 Thr 0 L-Threonine 3C Meadow Meadow_2 1 0 0 "M20A 145 Lysinibacillus pakistanensis" Isolate
+lane121s003960 Trp 0 L-Tryptophan 3C Meadow Meadow_2 1 0 0 "M20A 145 Lysinibacillus pakistanensis" Isolate
+lane121s003960 Tyr 0 L-Tyrosine 3C Meadow Meadow_2 1 0 0 "M20A 145 Lysinibacillus pakistanensis" Isolate
+lane121s003960 Val 0 L-Valine 3C Meadow Meadow_2 1 0 0 "M20A 145 Lysinibacillus pakistanensis" Isolate
+lane121s003978 Ala 0 L-Alanine 4G Meadow Meadow_3 1 0 0 "M30C 31did not work" Isolate
+lane121s003978 Arg 0 L-Arginine 4G Meadow Meadow_3 1 0 0 "M30C 31did not work" Isolate
+lane121s003978 Asp 0 "L-Aspartic acid" 4G Meadow Meadow_3 1 0 0 "M30C 31did not work" Isolate
+lane121s003978 Asn 0 L-Asparagine 4G Meadow Meadow_3 1 0 0 "M30C 31did not work" Isolate
+lane121s003978 Cys 0 L-Cysteine 4G Meadow Meadow_3 1 0 0 "M30C 31did not work" Isolate
+lane121s003978 Glu 0 L-Glutamate 4G Meadow Meadow_3 1 0 0 "M30C 31did not work" Isolate
+lane121s003978 Gln 0 L-Glutamine 4G Meadow Meadow_3 1 0 0 "M30C 31did not work" Isolate
+lane121s003978 Gly 0 Glycine 4G Meadow Meadow_3 1 0 0 "M30C 31did not work" Isolate
+lane121s003978 His 0 L-Histidine 4G Meadow Meadow_3 1 0 0 "M30C 31did not work" Isolate
+lane121s003978 Ile 1 L-Isoleucine 4G Meadow Meadow_3 1 0 0 "M30C 31did not work" Isolate
+lane121s003978 Leu 0 L-Leucine 4G Meadow Meadow_3 1 0 0 "M30C 31did not work" Isolate
+lane121s003978 Lys 0 L-Lysine 4G Meadow Meadow_3 1 0 0 "M30C 31did not work" Isolate
+lane121s003978 Met 0 L-Methionine 4G Meadow Meadow_3 1 0 0 "M30C 31did not work" Isolate
+lane121s003978 Phe 0 L-Phenylalanine 4G Meadow Meadow_3 1 0 0 "M30C 31did not work" Isolate
+lane121s003978 Pro 0 L-Proline 4G Meadow Meadow_3 1 0 0 "M30C 31did not work" Isolate
+lane121s003978 Ser 0 L-Serine 4G Meadow Meadow_3 1 0 0 "M30C 31did not work" Isolate
+lane121s003978 Thr 0 L-Threonine 4G Meadow Meadow_3 1 0 0 "M30C 31did not work" Isolate
+lane121s003978 Trp 0 L-Tryptophan 4G Meadow Meadow_3 1 0 0 "M30C 31did not work" Isolate
+lane121s003978 Tyr 0 L-Tyrosine 4G Meadow Meadow_3 1 0 0 "M30C 31did not work" Isolate
+lane121s003978 Val 1 L-Valine 4G Meadow Meadow_3 1 0 0 "M30C 31did not work" Isolate
+lane122s000531 Ala 0 L-Alanine 11H Meadow Meadow_3 1 0 0 "M30C 31 Ensifer adhaerens" Isolate
+lane122s000531 Arg 0 L-Arginine 11H Meadow Meadow_3 1 0 0 "M30C 31 Ensifer adhaerens" Isolate
+lane122s000531 Asp 0 "L-Aspartic acid" 11H Meadow Meadow_3 1 0 0 "M30C 31 Ensifer adhaerens" Isolate
+lane122s000531 Asn 0 L-Asparagine 11H Meadow Meadow_3 1 0 0 "M30C 31 Ensifer adhaerens" Isolate
+lane122s000531 Cys 0 L-Cysteine 11H Meadow Meadow_3 1 0 0 "M30C 31 Ensifer adhaerens" Isolate
+lane122s000531 Glu 0 L-Glutamate 11H Meadow Meadow_3 1 0 0 "M30C 31 Ensifer adhaerens" Isolate
+lane122s000531 Gln 0 L-Glutamine 11H Meadow Meadow_3 1 0 0 "M30C 31 Ensifer adhaerens" Isolate
+lane122s000531 Gly 0 Glycine 11H Meadow Meadow_3 1 0 0 "M30C 31 Ensifer adhaerens" Isolate
+lane122s000531 His 0 L-Histidine 11H Meadow Meadow_3 1 0 0 "M30C 31 Ensifer adhaerens" Isolate
+lane122s000531 Ile 0 L-Isoleucine 11H Meadow Meadow_3 1 0 0 "M30C 31 Ensifer adhaerens" Isolate
+lane122s000531 Leu 0 L-Leucine 11H Meadow Meadow_3 1 0 0 "M30C 31 Ensifer adhaerens" Isolate
+lane122s000531 Lys 0 L-Lysine 11H Meadow Meadow_3 1 0 0 "M30C 31 Ensifer adhaerens" Isolate
+lane122s000531 Met 0 L-Methionine 11H Meadow Meadow_3 1 0 0 "M30C 31 Ensifer adhaerens" Isolate
+lane122s000531 Phe 0 L-Phenylalanine 11H Meadow Meadow_3 1 0 0 "M30C 31 Ensifer adhaerens" Isolate
+lane122s000531 Pro 0 L-Proline 11H Meadow Meadow_3 1 0 0 "M30C 31 Ensifer adhaerens" Isolate
+lane122s000531 Ser 0 L-Serine 11H Meadow Meadow_3 1 0 0 "M30C 31 Ensifer adhaerens" Isolate
+lane122s000531 Thr 0 L-Threonine 11H Meadow Meadow_3 1 0 0 "M30C 31 Ensifer adhaerens" Isolate
+lane122s000531 Trp 0 L-Tryptophan 11H Meadow Meadow_3 1 0 0 "M30C 31 Ensifer adhaerens" Isolate
+lane122s000531 Tyr 0 L-Tyrosine 11H Meadow Meadow_3 1 0 0 "M30C 31 Ensifer adhaerens" Isolate
+lane122s000531 Val 0 L-Valine 11H Meadow Meadow_3 1 0 0 "M30C 31 Ensifer adhaerens" Isolate
+lane121s003954 Ala 0 L-Alanine 2D Meadow Meadow_2 1 0 0 "M20A 101 Bacillus pumilus" Isolate
+lane121s003954 Arg 0 L-Arginine 2D Meadow Meadow_2 1 0 0 "M20A 101 Bacillus pumilus" Isolate
+lane121s003954 Asp 0 "L-Aspartic acid" 2D Meadow Meadow_2 1 0 0 "M20A 101 Bacillus pumilus" Isolate
+lane121s003954 Asn 0 L-Asparagine 2D Meadow Meadow_2 1 0 0 "M20A 101 Bacillus pumilus" Isolate
+lane121s003954 Cys 0 L-Cysteine 2D Meadow Meadow_2 1 0 0 "M20A 101 Bacillus pumilus" Isolate
+lane121s003954 Glu 0 L-Glutamate 2D Meadow Meadow_2 1 0 0 "M20A 101 Bacillus pumilus" Isolate
+lane121s003954 Gln 0 L-Glutamine 2D Meadow Meadow_2 1 0 0 "M20A 101 Bacillus pumilus" Isolate
+lane121s003954 Gly 0 Glycine 2D Meadow Meadow_2 1 0 0 "M20A 101 Bacillus pumilus" Isolate
+lane121s003954 His 0 L-Histidine 2D Meadow Meadow_2 1 0 0 "M20A 101 Bacillus pumilus" Isolate
+lane121s003954 Ile 0 L-Isoleucine 2D Meadow Meadow_2 1 0 0 "M20A 101 Bacillus pumilus" Isolate
+lane121s003954 Leu 0 L-Leucine 2D Meadow Meadow_2 1 0 0 "M20A 101 Bacillus pumilus" Isolate
+lane121s003954 Lys 0 L-Lysine 2D Meadow Meadow_2 1 0 0 "M20A 101 Bacillus pumilus" Isolate
+lane121s003954 Met 0 L-Methionine 2D Meadow Meadow_2 1 0 0 "M20A 101 Bacillus pumilus" Isolate
+lane121s003954 Phe 0 L-Phenylalanine 2D Meadow Meadow_2 1 0 0 "M20A 101 Bacillus pumilus" Isolate
+lane121s003954 Pro 0 L-Proline 2D Meadow Meadow_2 1 0 0 "M20A 101 Bacillus pumilus" Isolate
+lane121s003954 Ser 0 L-Serine 2D Meadow Meadow_2 1 0 0 "M20A 101 Bacillus pumilus" Isolate
+lane121s003954 Thr 0 L-Threonine 2D Meadow Meadow_2 1 0 0 "M20A 101 Bacillus pumilus" Isolate
+lane121s003954 Trp 0 L-Tryptophan 2D Meadow Meadow_2 1 0 0 "M20A 101 Bacillus pumilus" Isolate
+lane121s003954 Tyr 0 L-Tyrosine 2D Meadow Meadow_2 1 0 0 "M20A 101 Bacillus pumilus" Isolate
+lane121s003954 Val 1 L-Valine 2D Meadow Meadow_2 1 0 0 "M20A 101 Bacillus pumilus" Isolate
+lane121s003958 Ala 0 L-Alanine 3A Meadow Meadow_1 1 0 0 "M10B 21 Paenibacillus peoriae" Isolate
+lane121s003958 Arg 0 L-Arginine 3A Meadow Meadow_1 1 0 0 "M10B 21 Paenibacillus peoriae" Isolate
+lane121s003958 Asp 0 "L-Aspartic acid" 3A Meadow Meadow_1 1 0 0 "M10B 21 Paenibacillus peoriae" Isolate
+lane121s003958 Asn 0 L-Asparagine 3A Meadow Meadow_1 1 0 0 "M10B 21 Paenibacillus peoriae" Isolate
+lane121s003958 Cys 0 L-Cysteine 3A Meadow Meadow_1 1 0 0 "M10B 21 Paenibacillus peoriae" Isolate
+lane121s003958 Glu 0 L-Glutamate 3A Meadow Meadow_1 1 0 0 "M10B 21 Paenibacillus peoriae" Isolate
+lane121s003958 Gln 0 L-Glutamine 3A Meadow Meadow_1 1 0 0 "M10B 21 Paenibacillus peoriae" Isolate
+lane121s003958 Gly 0 Glycine 3A Meadow Meadow_1 1 0 0 "M10B 21 Paenibacillus peoriae" Isolate
+lane121s003958 His 0 L-Histidine 3A Meadow Meadow_1 1 0 0 "M10B 21 Paenibacillus peoriae" Isolate
+lane121s003958 Ile 1 L-Isoleucine 3A Meadow Meadow_1 1 0 0 "M10B 21 Paenibacillus peoriae" Isolate
+lane121s003958 Leu 0 L-Leucine 3A Meadow Meadow_1 1 0 0 "M10B 21 Paenibacillus peoriae" Isolate
+lane121s003958 Lys 0 L-Lysine 3A Meadow Meadow_1 1 0 0 "M10B 21 Paenibacillus peoriae" Isolate
+lane121s003958 Met 1 L-Methionine 3A Meadow Meadow_1 1 0 0 "M10B 21 Paenibacillus peoriae" Isolate
+lane121s003958 Phe 0 L-Phenylalanine 3A Meadow Meadow_1 1 0 0 "M10B 21 Paenibacillus peoriae" Isolate
+lane121s003958 Pro 1 L-Proline 3A Meadow Meadow_1 1 0 0 "M10B 21 Paenibacillus peoriae" Isolate
+lane121s003958 Ser 0 L-Serine 3A Meadow Meadow_1 1 0 0 "M10B 21 Paenibacillus peoriae" Isolate
+lane121s003958 Thr 0 L-Threonine 3A Meadow Meadow_1 1 0 0 "M10B 21 Paenibacillus peoriae" Isolate
+lane121s003958 Trp 0 L-Tryptophan 3A Meadow Meadow_1 1 0 0 "M10B 21 Paenibacillus peoriae" Isolate
+lane121s003958 Tyr 0 L-Tyrosine 3A Meadow Meadow_1 1 0 0 "M10B 21 Paenibacillus peoriae" Isolate
+lane121s003958 Val 0 L-Valine 3A Meadow Meadow_1 1 0 0 "M10B 21 Paenibacillus peoriae" Isolate
+lane122s000517 Ala 0 L-Alanine 11F Meadow Meadow_3 0 1 0 "M30C 132 Phyllobacterium brassicacearum" Isolate
+lane122s000517 Arg 0 L-Arginine 11F Meadow Meadow_3 0 1 0 "M30C 132 Phyllobacterium brassicacearum" Isolate
+lane122s000517 Asp 0 "L-Aspartic acid" 11F Meadow Meadow_3 0 1 0 "M30C 132 Phyllobacterium brassicacearum" Isolate
+lane122s000517 Asn 0 L-Asparagine 11F Meadow Meadow_3 0 1 0 "M30C 132 Phyllobacterium brassicacearum" Isolate
+lane122s000517 Cys 0 L-Cysteine 11F Meadow Meadow_3 0 1 0 "M30C 132 Phyllobacterium brassicacearum" Isolate
+lane122s000517 Glu 0 L-Glutamate 11F Meadow Meadow_3 0 1 0 "M30C 132 Phyllobacterium brassicacearum" Isolate
+lane122s000517 Gln 0 L-Glutamine 11F Meadow Meadow_3 0 1 0 "M30C 132 Phyllobacterium brassicacearum" Isolate
+lane122s000517 Gly 0 Glycine 11F Meadow Meadow_3 0 1 0 "M30C 132 Phyllobacterium brassicacearum" Isolate
+lane122s000517 His 0 L-Histidine 11F Meadow Meadow_3 0 1 0 "M30C 132 Phyllobacterium brassicacearum" Isolate
+lane122s000517 Ile 0 L-Isoleucine 11F Meadow Meadow_3 0 1 0 "M30C 132 Phyllobacterium brassicacearum" Isolate
+lane122s000517 Leu 0 L-Leucine 11F Meadow Meadow_3 0 1 0 "M30C 132 Phyllobacterium brassicacearum" Isolate
+lane122s000517 Lys 0 L-Lysine 11F Meadow Meadow_3 0 1 0 "M30C 132 Phyllobacterium brassicacearum" Isolate
+lane122s000517 Met 0 L-Methionine 11F Meadow Meadow_3 0 1 0 "M30C 132 Phyllobacterium brassicacearum" Isolate
+lane122s000517 Phe 0 L-Phenylalanine 11F Meadow Meadow_3 0 1 0 "M30C 132 Phyllobacterium brassicacearum" Isolate
+lane122s000517 Pro 0 L-Proline 11F Meadow Meadow_3 0 1 0 "M30C 132 Phyllobacterium brassicacearum" Isolate
+lane122s000517 Ser 0 L-Serine 11F Meadow Meadow_3 0 1 0 "M30C 132 Phyllobacterium brassicacearum" Isolate
+lane122s000517 Thr 1 L-Threonine 11F Meadow Meadow_3 0 1 0 "M30C 132 Phyllobacterium brassicacearum" Isolate
+lane122s000517 Trp 0 L-Tryptophan 11F Meadow Meadow_3 0 1 0 "M30C 132 Phyllobacterium brassicacearum" Isolate
+lane122s000517 Tyr 1 L-Tyrosine 11F Meadow Meadow_3 0 1 0 "M30C 132 Phyllobacterium brassicacearum" Isolate
+lane122s000517 Val 0 L-Valine 11F Meadow Meadow_3 0 1 0 "M30C 132 Phyllobacterium brassicacearum" Isolate
+lane121s003962 Ala 0 L-Alanine 3E "Conifer forest" F3 1 0 0 "F3B 10 Phyllobacterium bourgognense" Isolate
+lane121s003962 Arg 0 L-Arginine 3E "Conifer forest" F3 1 0 0 "F3B 10 Phyllobacterium bourgognense" Isolate
+lane121s003962 Asp 0 "L-Aspartic acid" 3E "Conifer forest" F3 1 0 0 "F3B 10 Phyllobacterium bourgognense" Isolate
+lane121s003962 Asn 0 L-Asparagine 3E "Conifer forest" F3 1 0 0 "F3B 10 Phyllobacterium bourgognense" Isolate
+lane121s003962 Cys 0 L-Cysteine 3E "Conifer forest" F3 1 0 0 "F3B 10 Phyllobacterium bourgognense" Isolate
+lane121s003962 Glu 0 L-Glutamate 3E "Conifer forest" F3 1 0 0 "F3B 10 Phyllobacterium bourgognense" Isolate
+lane121s003962 Gln 0 L-Glutamine 3E "Conifer forest" F3 1 0 0 "F3B 10 Phyllobacterium bourgognense" Isolate
+lane121s003962 Gly 0 Glycine 3E "Conifer forest" F3 1 0 0 "F3B 10 Phyllobacterium bourgognense" Isolate
+lane121s003962 His 0 L-Histidine 3E "Conifer forest" F3 1 0 0 "F3B 10 Phyllobacterium bourgognense" Isolate
+lane121s003962 Ile 0 L-Isoleucine 3E "Conifer forest" F3 1 0 0 "F3B 10 Phyllobacterium bourgognense" Isolate
+lane121s003962 Leu 0 L-Leucine 3E "Conifer forest" F3 1 0 0 "F3B 10 Phyllobacterium bourgognense" Isolate
+lane121s003962 Lys 0 L-Lysine 3E "Conifer forest" F3 1 0 0 "F3B 10 Phyllobacterium bourgognense" Isolate
+lane121s003962 Met 0 L-Methionine 3E "Conifer forest" F3 1 0 0 "F3B 10 Phyllobacterium bourgognense" Isolate
+lane121s003962 Phe 0 L-Phenylalanine 3E "Conifer forest" F3 1 0 0 "F3B 10 Phyllobacterium bourgognense" Isolate
+lane121s003962 Pro 0 L-Proline 3E "Conifer forest" F3 1 0 0 "F3B 10 Phyllobacterium bourgognense" Isolate
+lane121s003962 Ser 0 L-Serine 3E "Conifer forest" F3 1 0 0 "F3B 10 Phyllobacterium bourgognense" Isolate
+lane121s003962 Thr 0 L-Threonine 3E "Conifer forest" F3 1 0 0 "F3B 10 Phyllobacterium bourgognense" Isolate
+lane121s003962 Trp 0 L-Tryptophan 3E "Conifer forest" F3 1 0 0 "F3B 10 Phyllobacterium bourgognense" Isolate
+lane121s003962 Tyr 0 L-Tyrosine 3E "Conifer forest" F3 1 0 0 "F3B 10 Phyllobacterium bourgognense" Isolate
+lane121s003962 Val 0 L-Valine 3E "Conifer forest" F3 1 0 0 "F3B 10 Phyllobacterium bourgognense" Isolate
+lane121s003963 Ala 0 L-Alanine 3G "Deciduous forest" F8 1 0 0 "F8A 26 Paenibacillus borealis" Isolate
+lane121s003963 Arg 0 L-Arginine 3G "Deciduous forest" F8 1 0 0 "F8A 26 Paenibacillus borealis" Isolate
+lane121s003963 Asp 0 "L-Aspartic acid" 3G "Deciduous forest" F8 1 0 0 "F8A 26 Paenibacillus borealis" Isolate
+lane121s003963 Asn 0 L-Asparagine 3G "Deciduous forest" F8 1 0 0 "F8A 26 Paenibacillus borealis" Isolate
+lane121s003963 Cys 0 L-Cysteine 3G "Deciduous forest" F8 1 0 0 "F8A 26 Paenibacillus borealis" Isolate
+lane121s003963 Glu 0 L-Glutamate 3G "Deciduous forest" F8 1 0 0 "F8A 26 Paenibacillus borealis" Isolate
+lane121s003963 Gln 0 L-Glutamine 3G "Deciduous forest" F8 1 0 0 "F8A 26 Paenibacillus borealis" Isolate
+lane121s003963 Gly 0 Glycine 3G "Deciduous forest" F8 1 0 0 "F8A 26 Paenibacillus borealis" Isolate
+lane121s003963 His 0 L-Histidine 3G "Deciduous forest" F8 1 0 0 "F8A 26 Paenibacillus borealis" Isolate
+lane121s003963 Ile 0 L-Isoleucine 3G "Deciduous forest" F8 1 0 0 "F8A 26 Paenibacillus borealis" Isolate
+lane121s003963 Leu 0 L-Leucine 3G "Deciduous forest" F8 1 0 0 "F8A 26 Paenibacillus borealis" Isolate
+lane121s003963 Lys 0 L-Lysine 3G "Deciduous forest" F8 1 0 0 "F8A 26 Paenibacillus borealis" Isolate
+lane121s003963 Met 0 L-Methionine 3G "Deciduous forest" F8 1 0 0 "F8A 26 Paenibacillus borealis" Isolate
+lane121s003963 Phe 0 L-Phenylalanine 3G "Deciduous forest" F8 1 0 0 "F8A 26 Paenibacillus borealis" Isolate
+lane121s003963 Pro 1 L-Proline 3G "Deciduous forest" F8 1 0 0 "F8A 26 Paenibacillus borealis" Isolate
+lane121s003963 Ser 0 L-Serine 3G "Deciduous forest" F8 1 0 0 "F8A 26 Paenibacillus borealis" Isolate
+lane121s003963 Thr 0 L-Threonine 3G "Deciduous forest" F8 1 0 0 "F8A 26 Paenibacillus borealis" Isolate
+lane121s003963 Trp 0 L-Tryptophan 3G "Deciduous forest" F8 1 0 0 "F8A 26 Paenibacillus borealis" Isolate
+lane121s003963 Tyr 0 L-Tyrosine 3G "Deciduous forest" F8 1 0 0 "F8A 26 Paenibacillus borealis" Isolate
+lane121s003963 Val 0 L-Valine 3G "Deciduous forest" F8 1 0 0 "F8A 26 Paenibacillus borealis" Isolate
+lane121s003964 Ala 0 L-Alanine 3I Meadow Meadow_2 1 0 0 "M20A 265 Enterobacter cloacae" Isolate
+lane121s003964 Arg 0 L-Arginine 3I Meadow Meadow_2 1 0 0 "M20A 265 Enterobacter cloacae" Isolate
+lane121s003964 Asp 0 "L-Aspartic acid" 3I Meadow Meadow_2 1 0 0 "M20A 265 Enterobacter cloacae" Isolate
+lane121s003964 Asn 0 L-Asparagine 3I Meadow Meadow_2 1 0 0 "M20A 265 Enterobacter cloacae" Isolate
+lane121s003964 Cys 0 L-Cysteine 3I Meadow Meadow_2 1 0 0 "M20A 265 Enterobacter cloacae" Isolate
+lane121s003964 Glu 0 L-Glutamate 3I Meadow Meadow_2 1 0 0 "M20A 265 Enterobacter cloacae" Isolate
+lane121s003964 Gln 0 L-Glutamine 3I Meadow Meadow_2 1 0 0 "M20A 265 Enterobacter cloacae" Isolate
+lane121s003964 Gly 0 Glycine 3I Meadow Meadow_2 1 0 0 "M20A 265 Enterobacter cloacae" Isolate
+lane121s003964 His 0 L-Histidine 3I Meadow Meadow_2 1 0 0 "M20A 265 Enterobacter cloacae" Isolate
+lane121s003964 Ile 1 L-Isoleucine 3I Meadow Meadow_2 1 0 0 "M20A 265 Enterobacter cloacae" Isolate
+lane121s003964 Leu 1 L-Leucine 3I Meadow Meadow_2 1 0 0 "M20A 265 Enterobacter cloacae" Isolate
+lane121s003964 Lys 0 L-Lysine 3I Meadow Meadow_2 1 0 0 "M20A 265 Enterobacter cloacae" Isolate
+lane121s003964 Met 0 L-Methionine 3I Meadow Meadow_2 1 0 0 "M20A 265 Enterobacter cloacae" Isolate
+lane121s003964 Phe 0 L-Phenylalanine 3I Meadow Meadow_2 1 0 0 "M20A 265 Enterobacter cloacae" Isolate
+lane121s003964 Pro 0 L-Proline 3I Meadow Meadow_2 1 0 0 "M20A 265 Enterobacter cloacae" Isolate
+lane121s003964 Ser 0 L-Serine 3I Meadow Meadow_2 1 0 0 "M20A 265 Enterobacter cloacae" Isolate
+lane121s003964 Thr 0 L-Threonine 3I Meadow Meadow_2 1 0 0 "M20A 265 Enterobacter cloacae" Isolate
+lane121s003964 Trp 0 L-Tryptophan 3I Meadow Meadow_2 1 0 0 "M20A 265 Enterobacter cloacae" Isolate
+lane121s003964 Tyr 0 L-Tyrosine 3I Meadow Meadow_2 1 0 0 "M20A 265 Enterobacter cloacae" Isolate
+lane121s003964 Val 1 L-Valine 3I Meadow Meadow_2 1 0 0 "M20A 265 Enterobacter cloacae" Isolate
+lane121s003971 Ala 0 L-Alanine 3J "Deciduous forest" F8 1 0 0 "F8B 103 Bacillus mycoides / Bacillus weihenstephanensis" Isolate
+lane121s003971 Arg 1 L-Arginine 3J "Deciduous forest" F8 1 0 0 "F8B 103 Bacillus mycoides / Bacillus weihenstephanensis" Isolate
+lane121s003971 Asp 0 "L-Aspartic acid" 3J "Deciduous forest" F8 1 0 0 "F8B 103 Bacillus mycoides / Bacillus weihenstephanensis" Isolate
+lane121s003971 Asn 0 L-Asparagine 3J "Deciduous forest" F8 1 0 0 "F8B 103 Bacillus mycoides / Bacillus weihenstephanensis" Isolate
+lane121s003971 Cys 0 L-Cysteine 3J "Deciduous forest" F8 1 0 0 "F8B 103 Bacillus mycoides / Bacillus weihenstephanensis" Isolate
+lane121s003971 Glu 0 L-Glutamate 3J "Deciduous forest" F8 1 0 0 "F8B 103 Bacillus mycoides / Bacillus weihenstephanensis" Isolate
+lane121s003971 Gln 0 L-Glutamine 3J "Deciduous forest" F8 1 0 0 "F8B 103 Bacillus mycoides / Bacillus weihenstephanensis" Isolate
+lane121s003971 Gly 0 Glycine 3J "Deciduous forest" F8 1 0 0 "F8B 103 Bacillus mycoides / Bacillus weihenstephanensis" Isolate
+lane121s003971 His 1 L-Histidine 3J "Deciduous forest" F8 1 0 0 "F8B 103 Bacillus mycoides / Bacillus weihenstephanensis" Isolate
+lane121s003971 Ile 1 L-Isoleucine 3J "Deciduous forest" F8 1 0 0 "F8B 103 Bacillus mycoides / Bacillus weihenstephanensis" Isolate
+lane121s003971 Leu 1 L-Leucine 3J "Deciduous forest" F8 1 0 0 "F8B 103 Bacillus mycoides / Bacillus weihenstephanensis" Isolate
+lane121s003971 Lys 0 L-Lysine 3J "Deciduous forest" F8 1 0 0 "F8B 103 Bacillus mycoides / Bacillus weihenstephanensis" Isolate
+lane121s003971 Met 0 L-Methionine 3J "Deciduous forest" F8 1 0 0 "F8B 103 Bacillus mycoides / Bacillus weihenstephanensis" Isolate
+lane121s003971 Phe 0 L-Phenylalanine 3J "Deciduous forest" F8 1 0 0 "F8B 103 Bacillus mycoides / Bacillus weihenstephanensis" Isolate
+lane121s003971 Pro 0 L-Proline 3J "Deciduous forest" F8 1 0 0 "F8B 103 Bacillus mycoides / Bacillus weihenstephanensis" Isolate
+lane121s003971 Ser 0 L-Serine 3J "Deciduous forest" F8 1 0 0 "F8B 103 Bacillus mycoides / Bacillus weihenstephanensis" Isolate
+lane121s003971 Thr 0 L-Threonine 3J "Deciduous forest" F8 1 0 0 "F8B 103 Bacillus mycoides / Bacillus weihenstephanensis" Isolate
+lane121s003971 Trp 0 L-Tryptophan 3J "Deciduous forest" F8 1 0 0 "F8B 103 Bacillus mycoides / Bacillus weihenstephanensis" Isolate
+lane121s003971 Tyr 0 L-Tyrosine 3J "Deciduous forest" F8 1 0 0 "F8B 103 Bacillus mycoides / Bacillus weihenstephanensis" Isolate
+lane121s003971 Val 1 L-Valine 3J "Deciduous forest" F8 1 0 0 "F8B 103 Bacillus mycoides / Bacillus weihenstephanensis" Isolate
+lane121s003968 Ala 0 L-Alanine 3N "Conifer forest" F3 1 0 0 "F3A 6 Bacillus mycoides" Isolate
+lane121s003968 Arg 0 L-Arginine 3N "Conifer forest" F3 1 0 0 "F3A 6 Bacillus mycoides" Isolate
+lane121s003968 Asp 0 "L-Aspartic acid" 3N "Conifer forest" F3 1 0 0 "F3A 6 Bacillus mycoides" Isolate
+lane121s003968 Asn 0 L-Asparagine 3N "Conifer forest" F3 1 0 0 "F3A 6 Bacillus mycoides" Isolate
+lane121s003968 Cys 0 L-Cysteine 3N "Conifer forest" F3 1 0 0 "F3A 6 Bacillus mycoides" Isolate
+lane121s003968 Glu 1 L-Glutamate 3N "Conifer forest" F3 1 0 0 "F3A 6 Bacillus mycoides" Isolate
+lane121s003968 Gln 0 L-Glutamine 3N "Conifer forest" F3 1 0 0 "F3A 6 Bacillus mycoides" Isolate
+lane121s003968 Gly 0 Glycine 3N "Conifer forest" F3 1 0 0 "F3A 6 Bacillus mycoides" Isolate
+lane121s003968 His 0 L-Histidine 3N "Conifer forest" F3 1 0 0 "F3A 6 Bacillus mycoides" Isolate
+lane121s003968 Ile 0 L-Isoleucine 3N "Conifer forest" F3 1 0 0 "F3A 6 Bacillus mycoides" Isolate
+lane121s003968 Leu 1 L-Leucine 3N "Conifer forest" F3 1 0 0 "F3A 6 Bacillus mycoides" Isolate
+lane121s003968 Lys 0 L-Lysine 3N "Conifer forest" F3 1 0 0 "F3A 6 Bacillus mycoides" Isolate
+lane121s003968 Met 1 L-Methionine 3N "Conifer forest" F3 1 0 0 "F3A 6 Bacillus mycoides" Isolate
+lane121s003968 Phe 0 L-Phenylalanine 3N "Conifer forest" F3 1 0 0 "F3A 6 Bacillus mycoides" Isolate
+lane121s003968 Pro 0 L-Proline 3N "Conifer forest" F3 1 0 0 "F3A 6 Bacillus mycoides" Isolate
+lane121s003968 Ser 1 L-Serine 3N "Conifer forest" F3 1 0 0 "F3A 6 Bacillus mycoides" Isolate
+lane121s003968 Thr 0 L-Threonine 3N "Conifer forest" F3 1 0 0 "F3A 6 Bacillus mycoides" Isolate
+lane121s003968 Trp 0 L-Tryptophan 3N "Conifer forest" F3 1 0 0 "F3A 6 Bacillus mycoides" Isolate
+lane121s003968 Tyr 0 L-Tyrosine 3N "Conifer forest" F3 1 0 0 "F3A 6 Bacillus mycoides" Isolate
+lane121s003968 Val 0 L-Valine 3N "Conifer forest" F3 1 0 0 "F3A 6 Bacillus mycoides" Isolate
+lane121s003972 Ala 0 L-Alanine 4A "Conifer forest" F5 1 0 0 "F5C 79 Bacillus subtilis" Isolate
+lane121s003972 Arg 0 L-Arginine 4A "Conifer forest" F5 1 0 0 "F5C 79 Bacillus subtilis" Isolate
+lane121s003972 Asp 0 "L-Aspartic acid" 4A "Conifer forest" F5 1 0 0 "F5C 79 Bacillus subtilis" Isolate
+lane121s003972 Asn 0 L-Asparagine 4A "Conifer forest" F5 1 0 0 "F5C 79 Bacillus subtilis" Isolate
+lane121s003972 Cys 0 L-Cysteine 4A "Conifer forest" F5 1 0 0 "F5C 79 Bacillus subtilis" Isolate
+lane121s003972 Glu 0 L-Glutamate 4A "Conifer forest" F5 1 0 0 "F5C 79 Bacillus subtilis" Isolate
+lane121s003972 Gln 0 L-Glutamine 4A "Conifer forest" F5 1 0 0 "F5C 79 Bacillus subtilis" Isolate
+lane121s003972 Gly 0 Glycine 4A "Conifer forest" F5 1 0 0 "F5C 79 Bacillus subtilis" Isolate
+lane121s003972 His 0 L-Histidine 4A "Conifer forest" F5 1 0 0 "F5C 79 Bacillus subtilis" Isolate
+lane121s003972 Ile 0 L-Isoleucine 4A "Conifer forest" F5 1 0 0 "F5C 79 Bacillus subtilis" Isolate
+lane121s003972 Leu 0 L-Leucine 4A "Conifer forest" F5 1 0 0 "F5C 79 Bacillus subtilis" Isolate
+lane121s003972 Lys 0 L-Lysine 4A "Conifer forest" F5 1 0 0 "F5C 79 Bacillus subtilis" Isolate
+lane121s003972 Met 0 L-Methionine 4A "Conifer forest" F5 1 0 0 "F5C 79 Bacillus subtilis" Isolate
+lane121s003972 Phe 0 L-Phenylalanine 4A "Conifer forest" F5 1 0 0 "F5C 79 Bacillus subtilis" Isolate
+lane121s003972 Pro 0 L-Proline 4A "Conifer forest" F5 1 0 0 "F5C 79 Bacillus subtilis" Isolate
+lane121s003972 Ser 0 L-Serine 4A "Conifer forest" F5 1 0 0 "F5C 79 Bacillus subtilis" Isolate
+lane121s003972 Thr 0 L-Threonine 4A "Conifer forest" F5 1 0 0 "F5C 79 Bacillus subtilis" Isolate
+lane121s003972 Trp 0 L-Tryptophan 4A "Conifer forest" F5 1 0 0 "F5C 79 Bacillus subtilis" Isolate
+lane121s003972 Tyr 0 L-Tyrosine 4A "Conifer forest" F5 1 0 0 "F5C 79 Bacillus subtilis" Isolate
+lane121s003972 Val 0 L-Valine 4A "Conifer forest" F5 1 0 0 "F5C 79 Bacillus subtilis" Isolate
+lane121s003976 Ala 0 L-Alanine 4E Meadow Meadow_3 1 0 0 "M30C 77 Paenibacillus terrae" Isolate
+lane121s003976 Arg 0 L-Arginine 4E Meadow Meadow_3 1 0 0 "M30C 77 Paenibacillus terrae" Isolate
+lane121s003976 Asp 0 "L-Aspartic acid" 4E Meadow Meadow_3 1 0 0 "M30C 77 Paenibacillus terrae" Isolate
+lane121s003976 Asn 0 L-Asparagine 4E Meadow Meadow_3 1 0 0 "M30C 77 Paenibacillus terrae" Isolate
+lane121s003976 Cys 0 L-Cysteine 4E Meadow Meadow_3 1 0 0 "M30C 77 Paenibacillus terrae" Isolate
+lane121s003976 Glu 0 L-Glutamate 4E Meadow Meadow_3 1 0 0 "M30C 77 Paenibacillus terrae" Isolate
+lane121s003976 Gln 0 L-Glutamine 4E Meadow Meadow_3 1 0 0 "M30C 77 Paenibacillus terrae" Isolate
+lane121s003976 Gly 0 Glycine 4E Meadow Meadow_3 1 0 0 "M30C 77 Paenibacillus terrae" Isolate
+lane121s003976 His 0 L-Histidine 4E Meadow Meadow_3 1 0 0 "M30C 77 Paenibacillus terrae" Isolate
+lane121s003976 Ile 0 L-Isoleucine 4E Meadow Meadow_3 1 0 0 "M30C 77 Paenibacillus terrae" Isolate
+lane121s003976 Leu 0 L-Leucine 4E Meadow Meadow_3 1 0 0 "M30C 77 Paenibacillus terrae" Isolate
+lane121s003976 Lys 0 L-Lysine 4E Meadow Meadow_3 1 0 0 "M30C 77 Paenibacillus terrae" Isolate
+lane121s003976 Met 0 L-Methionine 4E Meadow Meadow_3 1 0 0 "M30C 77 Paenibacillus terrae" Isolate
+lane121s003976 Phe 0 L-Phenylalanine 4E Meadow Meadow_3 1 0 0 "M30C 77 Paenibacillus terrae" Isolate
+lane121s003976 Pro 0 L-Proline 4E Meadow Meadow_3 1 0 0 "M30C 77 Paenibacillus terrae" Isolate
+lane121s003976 Ser 0 L-Serine 4E Meadow Meadow_3 1 0 0 "M30C 77 Paenibacillus terrae" Isolate
+lane121s003976 Thr 0 L-Threonine 4E Meadow Meadow_3 1 0 0 "M30C 77 Paenibacillus terrae" Isolate
+lane121s003976 Trp 0 L-Tryptophan 4E Meadow Meadow_3 1 0 0 "M30C 77 Paenibacillus terrae" Isolate
+lane121s003976 Tyr 0 L-Tyrosine 4E Meadow Meadow_3 1 0 0 "M30C 77 Paenibacillus terrae" Isolate
+lane121s003976 Val 0 L-Valine 4E Meadow Meadow_3 1 0 0 "M30C 77 Paenibacillus terrae" Isolate
+lane121s003979 Ala 0 L-Alanine 4I Meadow Meadow_3 1 0 0 "M30C 97 Bacillus mycoides / Bacillus weihenstephanensis" Isolate
+lane121s003979 Arg 0 L-Arginine 4I Meadow Meadow_3 1 0 0 "M30C 97 Bacillus mycoides / Bacillus weihenstephanensis" Isolate
+lane121s003979 Asp 0 "L-Aspartic acid" 4I Meadow Meadow_3 1 0 0 "M30C 97 Bacillus mycoides / Bacillus weihenstephanensis" Isolate
+lane121s003979 Asn 0 L-Asparagine 4I Meadow Meadow_3 1 0 0 "M30C 97 Bacillus mycoides / Bacillus weihenstephanensis" Isolate
+lane121s003979 Cys 0 L-Cysteine 4I Meadow Meadow_3 1 0 0 "M30C 97 Bacillus mycoides / Bacillus weihenstephanensis" Isolate
+lane121s003979 Glu 0 L-Glutamate 4I Meadow Meadow_3 1 0 0 "M30C 97 Bacillus mycoides / Bacillus weihenstephanensis" Isolate
+lane121s003979 Gln 0 L-Glutamine 4I Meadow Meadow_3 1 0 0 "M30C 97 Bacillus mycoides / Bacillus weihenstephanensis" Isolate
+lane121s003979 Gly 0 Glycine 4I Meadow Meadow_3 1 0 0 "M30C 97 Bacillus mycoides / Bacillus weihenstephanensis" Isolate
+lane121s003979 His 0 L-Histidine 4I Meadow Meadow_3 1 0 0 "M30C 97 Bacillus mycoides / Bacillus weihenstephanensis" Isolate
+lane121s003979 Ile 0 L-Isoleucine 4I Meadow Meadow_3 1 0 0 "M30C 97 Bacillus mycoides / Bacillus weihenstephanensis" Isolate
+lane121s003979 Leu 0 L-Leucine 4I Meadow Meadow_3 1 0 0 "M30C 97 Bacillus mycoides / Bacillus weihenstephanensis" Isolate
+lane121s003979 Lys 0 L-Lysine 4I Meadow Meadow_3 1 0 0 "M30C 97 Bacillus mycoides / Bacillus weihenstephanensis" Isolate
+lane121s003979 Met 0 L-Methionine 4I Meadow Meadow_3 1 0 0 "M30C 97 Bacillus mycoides / Bacillus weihenstephanensis" Isolate
+lane121s003979 Phe 0 L-Phenylalanine 4I Meadow Meadow_3 1 0 0 "M30C 97 Bacillus mycoides / Bacillus weihenstephanensis" Isolate
+lane121s003979 Pro 0 L-Proline 4I Meadow Meadow_3 1 0 0 "M30C 97 Bacillus mycoides / Bacillus weihenstephanensis" Isolate
+lane121s003979 Ser 0 L-Serine 4I Meadow Meadow_3 1 0 0 "M30C 97 Bacillus mycoides / Bacillus weihenstephanensis" Isolate
+lane121s003979 Thr 0 L-Threonine 4I Meadow Meadow_3 1 0 0 "M30C 97 Bacillus mycoides / Bacillus weihenstephanensis" Isolate
+lane121s003979 Trp 0 L-Tryptophan 4I Meadow Meadow_3 1 0 0 "M30C 97 Bacillus mycoides / Bacillus weihenstephanensis" Isolate
+lane121s003979 Tyr 0 L-Tyrosine 4I Meadow Meadow_3 1 0 0 "M30C 97 Bacillus mycoides / Bacillus weihenstephanensis" Isolate
+lane121s003979 Val 1 L-Valine 4I Meadow Meadow_3 1 0 0 "M30C 97 Bacillus mycoides / Bacillus weihenstephanensis" Isolate
+lane121s003980 Ala 0 L-Alanine 4J "Conifer forest" F5 1 0 0 "F5B 133 Luteibacter rhizovicinus" Isolate
+lane121s003980 Arg 0 L-Arginine 4J "Conifer forest" F5 1 0 0 "F5B 133 Luteibacter rhizovicinus" Isolate
+lane121s003980 Asp 0 "L-Aspartic acid" 4J "Conifer forest" F5 1 0 0 "F5B 133 Luteibacter rhizovicinus" Isolate
+lane121s003980 Asn 0 L-Asparagine 4J "Conifer forest" F5 1 0 0 "F5B 133 Luteibacter rhizovicinus" Isolate
+lane121s003980 Cys 0 L-Cysteine 4J "Conifer forest" F5 1 0 0 "F5B 133 Luteibacter rhizovicinus" Isolate
+lane121s003980 Glu 0 L-Glutamate 4J "Conifer forest" F5 1 0 0 "F5B 133 Luteibacter rhizovicinus" Isolate
+lane121s003980 Gln 0 L-Glutamine 4J "Conifer forest" F5 1 0 0 "F5B 133 Luteibacter rhizovicinus" Isolate
+lane121s003980 Gly 0 Glycine 4J "Conifer forest" F5 1 0 0 "F5B 133 Luteibacter rhizovicinus" Isolate
+lane121s003980 His 0 L-Histidine 4J "Conifer forest" F5 1 0 0 "F5B 133 Luteibacter rhizovicinus" Isolate
+lane121s003980 Ile 0 L-Isoleucine 4J "Conifer forest" F5 1 0 0 "F5B 133 Luteibacter rhizovicinus" Isolate
+lane121s003980 Leu 0 L-Leucine 4J "Conifer forest" F5 1 0 0 "F5B 133 Luteibacter rhizovicinus" Isolate
+lane121s003980 Lys 0 L-Lysine 4J "Conifer forest" F5 1 0 0 "F5B 133 Luteibacter rhizovicinus" Isolate
+lane121s003980 Met 0 L-Methionine 4J "Conifer forest" F5 1 0 0 "F5B 133 Luteibacter rhizovicinus" Isolate
+lane121s003980 Phe 0 L-Phenylalanine 4J "Conifer forest" F5 1 0 0 "F5B 133 Luteibacter rhizovicinus" Isolate
+lane121s003980 Pro 0 L-Proline 4J "Conifer forest" F5 1 0 0 "F5B 133 Luteibacter rhizovicinus" Isolate
+lane121s003980 Ser 0 L-Serine 4J "Conifer forest" F5 1 0 0 "F5B 133 Luteibacter rhizovicinus" Isolate
+lane121s003980 Thr 0 L-Threonine 4J "Conifer forest" F5 1 0 0 "F5B 133 Luteibacter rhizovicinus" Isolate
+lane121s003980 Trp 0 L-Tryptophan 4J "Conifer forest" F5 1 0 0 "F5B 133 Luteibacter rhizovicinus" Isolate
+lane121s003980 Tyr 0 L-Tyrosine 4J "Conifer forest" F5 1 0 0 "F5B 133 Luteibacter rhizovicinus" Isolate
+lane121s003980 Val 0 L-Valine 4J "Conifer forest" F5 1 0 0 "F5B 133 Luteibacter rhizovicinus" Isolate
+lane121s003995 Ala 0 L-Alanine 4Q Meadow Meadow_2 0 1 0 "M20C 24 Rhizobium" Isolate
+lane121s003995 Arg 0 L-Arginine 4Q Meadow Meadow_2 0 1 0 "M20C 24 Rhizobium" Isolate
+lane121s003995 Asp 1 "L-Aspartic acid" 4Q Meadow Meadow_2 0 1 0 "M20C 24 Rhizobium" Isolate
+lane121s003995 Asn 1 L-Asparagine 4Q Meadow Meadow_2 0 1 0 "M20C 24 Rhizobium" Isolate
+lane121s003995 Cys 0 L-Cysteine 4Q Meadow Meadow_2 0 1 0 "M20C 24 Rhizobium" Isolate
+lane121s003995 Glu 0 L-Glutamate 4Q Meadow Meadow_2 0 1 0 "M20C 24 Rhizobium" Isolate
+lane121s003995 Gln 0 L-Glutamine 4Q Meadow Meadow_2 0 1 0 "M20C 24 Rhizobium" Isolate
+lane121s003995 Gly 0 Glycine 4Q Meadow Meadow_2 0 1 0 "M20C 24 Rhizobium" Isolate
+lane121s003995 His 1 L-Histidine 4Q Meadow Meadow_2 0 1 0 "M20C 24 Rhizobium" Isolate
+lane121s003995 Ile 1 L-Isoleucine 4Q Meadow Meadow_2 0 1 0 "M20C 24 Rhizobium" Isolate
+lane121s003995 Leu 1 L-Leucine 4Q Meadow Meadow_2 0 1 0 "M20C 24 Rhizobium" Isolate
+lane121s003995 Lys 0 L-Lysine 4Q Meadow Meadow_2 0 1 0 "M20C 24 Rhizobium" Isolate
+lane121s003995 Met 0 L-Methionine 4Q Meadow Meadow_2 0 1 0 "M20C 24 Rhizobium" Isolate
+lane121s003995 Phe 0 L-Phenylalanine 4Q Meadow Meadow_2 0 1 0 "M20C 24 Rhizobium" Isolate
+lane121s003995 Pro 0 L-Proline 4Q Meadow Meadow_2 0 1 0 "M20C 24 Rhizobium" Isolate
+lane121s003995 Ser 1 L-Serine 4Q Meadow Meadow_2 0 1 0 "M20C 24 Rhizobium" Isolate
+lane121s003995 Thr 1 L-Threonine 4Q Meadow Meadow_2 0 1 0 "M20C 24 Rhizobium" Isolate
+lane121s003995 Trp 0 L-Tryptophan 4Q Meadow Meadow_2 0 1 0 "M20C 24 Rhizobium" Isolate
+lane121s003995 Tyr 0 L-Tyrosine 4Q Meadow Meadow_2 0 1 0 "M20C 24 Rhizobium" Isolate
+lane121s003995 Val 1 L-Valine 4Q Meadow Meadow_2 0 1 0 "M20C 24 Rhizobium" Isolate
+lane121s003996 Ala 0 L-Alanine 4R Meadow Meadow_3 1 0 0 "M30A 76 Bacillus sp." Isolate
+lane121s003996 Arg 0 L-Arginine 4R Meadow Meadow_3 1 0 0 "M30A 76 Bacillus sp." Isolate
+lane121s003996 Asp 1 "L-Aspartic acid" 4R Meadow Meadow_3 1 0 0 "M30A 76 Bacillus sp." Isolate
+lane121s003996 Asn 0 L-Asparagine 4R Meadow Meadow_3 1 0 0 "M30A 76 Bacillus sp." Isolate
+lane121s003996 Cys 0 L-Cysteine 4R Meadow Meadow_3 1 0 0 "M30A 76 Bacillus sp." Isolate
+lane121s003996 Glu 0 L-Glutamate 4R Meadow Meadow_3 1 0 0 "M30A 76 Bacillus sp." Isolate
+lane121s003996 Gln 0 L-Glutamine 4R Meadow Meadow_3 1 0 0 "M30A 76 Bacillus sp." Isolate
+lane121s003996 Gly 1 Glycine 4R Meadow Meadow_3 1 0 0 "M30A 76 Bacillus sp." Isolate
+lane121s003996 His 0 L-Histidine 4R Meadow Meadow_3 1 0 0 "M30A 76 Bacillus sp." Isolate
+lane121s003996 Ile 0 L-Isoleucine 4R Meadow Meadow_3 1 0 0 "M30A 76 Bacillus sp." Isolate
+lane121s003996 Leu 1 L-Leucine 4R Meadow Meadow_3 1 0 0 "M30A 76 Bacillus sp." Isolate
+lane121s003996 Lys 0 L-Lysine 4R Meadow Meadow_3 1 0 0 "M30A 76 Bacillus sp." Isolate
+lane121s003996 Met 0 L-Methionine 4R Meadow Meadow_3 1 0 0 "M30A 76 Bacillus sp." Isolate
+lane121s003996 Phe 0 L-Phenylalanine 4R Meadow Meadow_3 1 0 0 "M30A 76 Bacillus sp." Isolate
+lane121s003996 Pro 0 L-Proline 4R Meadow Meadow_3 1 0 0 "M30A 76 Bacillus sp." Isolate
+lane121s003996 Ser 0 L-Serine 4R Meadow Meadow_3 1 0 0 "M30A 76 Bacillus sp." Isolate
+lane121s003996 Thr 1 L-Threonine 4R Meadow Meadow_3 1 0 0 "M30A 76 Bacillus sp." Isolate
+lane121s003996 Trp 1 L-Tryptophan 4R Meadow Meadow_3 1 0 0 "M30A 76 Bacillus sp." Isolate
+lane121s003996 Tyr 1 L-Tyrosine 4R Meadow Meadow_3 1 0 0 "M30A 76 Bacillus sp." Isolate
+lane121s003996 Val 1 L-Valine 4R Meadow Meadow_3 1 0 0 "M30A 76 Bacillus sp." Isolate
+lane122s000537 Ala 0 L-Alanine 5H "Conifer forest" F5 0 1 0 "F5C 22 Does not work" Isolate
+lane122s000537 Arg 1 L-Arginine 5H "Conifer forest" F5 0 1 0 "F5C 22 Does not work" Isolate
+lane122s000537 Asp 0 "L-Aspartic acid" 5H "Conifer forest" F5 0 1 0 "F5C 22 Does not work" Isolate
+lane122s000537 Asn 0 L-Asparagine 5H "Conifer forest" F5 0 1 0 "F5C 22 Does not work" Isolate
+lane122s000537 Cys 1 L-Cysteine 5H "Conifer forest" F5 0 1 0 "F5C 22 Does not work" Isolate
+lane122s000537 Glu 1 L-Glutamate 5H "Conifer forest" F5 0 1 0 "F5C 22 Does not work" Isolate
+lane122s000537 Gln 1 L-Glutamine 5H "Conifer forest" F5 0 1 0 "F5C 22 Does not work" Isolate
+lane122s000537 Gly 1 Glycine 5H "Conifer forest" F5 0 1 0 "F5C 22 Does not work" Isolate
+lane122s000537 His 1 L-Histidine 5H "Conifer forest" F5 0 1 0 "F5C 22 Does not work" Isolate
+lane122s000537 Ile 0 L-Isoleucine 5H "Conifer forest" F5 0 1 0 "F5C 22 Does not work" Isolate
+lane122s000537 Leu 1 L-Leucine 5H "Conifer forest" F5 0 1 0 "F5C 22 Does not work" Isolate
+lane122s000537 Lys 0 L-Lysine 5H "Conifer forest" F5 0 1 0 "F5C 22 Does not work" Isolate
+lane122s000537 Met 0 L-Methionine 5H "Conifer forest" F5 0 1 0 "F5C 22 Does not work" Isolate
+lane122s000537 Phe 1 L-Phenylalanine 5H "Conifer forest" F5 0 1 0 "F5C 22 Does not work" Isolate
+lane122s000537 Pro 1 L-Proline 5H "Conifer forest" F5 0 1 0 "F5C 22 Does not work" Isolate
+lane122s000537 Ser 0 L-Serine 5H "Conifer forest" F5 0 1 0 "F5C 22 Does not work" Isolate
+lane122s000537 Thr 1 L-Threonine 5H "Conifer forest" F5 0 1 0 "F5C 22 Does not work" Isolate
+lane122s000537 Trp 1 L-Tryptophan 5H "Conifer forest" F5 0 1 0 "F5C 22 Does not work" Isolate
+lane122s000537 Tyr 0 L-Tyrosine 5H "Conifer forest" F5 0 1 0 "F5C 22 Does not work" Isolate
+lane122s000537 Val 1 L-Valine 5H "Conifer forest" F5 0 1 0 "F5C 22 Does not work" Isolate
+lane122s000536 Ala 0 L-Alanine 5L Meadow Meadow_3 1 0 0 "M30C 117 Cupriavidus respiraculi" Isolate
+lane122s000536 Arg 0 L-Arginine 5L Meadow Meadow_3 1 0 0 "M30C 117 Cupriavidus respiraculi" Isolate
+lane122s000536 Asp 0 "L-Aspartic acid" 5L Meadow Meadow_3 1 0 0 "M30C 117 Cupriavidus respiraculi" Isolate
+lane122s000536 Asn 0 L-Asparagine 5L Meadow Meadow_3 1 0 0 "M30C 117 Cupriavidus respiraculi" Isolate
+lane122s000536 Cys 0 L-Cysteine 5L Meadow Meadow_3 1 0 0 "M30C 117 Cupriavidus respiraculi" Isolate
+lane122s000536 Glu 0 L-Glutamate 5L Meadow Meadow_3 1 0 0 "M30C 117 Cupriavidus respiraculi" Isolate
+lane122s000536 Gln 0 L-Glutamine 5L Meadow Meadow_3 1 0 0 "M30C 117 Cupriavidus respiraculi" Isolate
+lane122s000536 Gly 0 Glycine 5L Meadow Meadow_3 1 0 0 "M30C 117 Cupriavidus respiraculi" Isolate
+lane122s000536 His 0 L-Histidine 5L Meadow Meadow_3 1 0 0 "M30C 117 Cupriavidus respiraculi" Isolate
+lane122s000536 Ile 0 L-Isoleucine 5L Meadow Meadow_3 1 0 0 "M30C 117 Cupriavidus respiraculi" Isolate
+lane122s000536 Leu 0 L-Leucine 5L Meadow Meadow_3 1 0 0 "M30C 117 Cupriavidus respiraculi" Isolate
+lane122s000536 Lys 0 L-Lysine 5L Meadow Meadow_3 1 0 0 "M30C 117 Cupriavidus respiraculi" Isolate
+lane122s000536 Met 0 L-Methionine 5L Meadow Meadow_3 1 0 0 "M30C 117 Cupriavidus respiraculi" Isolate
+lane122s000536 Phe 0 L-Phenylalanine 5L Meadow Meadow_3 1 0 0 "M30C 117 Cupriavidus respiraculi" Isolate
+lane122s000536 Pro 0 L-Proline 5L Meadow Meadow_3 1 0 0 "M30C 117 Cupriavidus respiraculi" Isolate
+lane122s000536 Ser 0 L-Serine 5L Meadow Meadow_3 1 0 0 "M30C 117 Cupriavidus respiraculi" Isolate
+lane122s000536 Thr 0 L-Threonine 5L Meadow Meadow_3 1 0 0 "M30C 117 Cupriavidus respiraculi" Isolate
+lane122s000536 Trp 0 L-Tryptophan 5L Meadow Meadow_3 1 0 0 "M30C 117 Cupriavidus respiraculi" Isolate
+lane122s000536 Tyr 0 L-Tyrosine 5L Meadow Meadow_3 1 0 0 "M30C 117 Cupriavidus respiraculi" Isolate
+lane122s000536 Val 0 L-Valine 5L Meadow Meadow_3 1 0 0 "M30C 117 Cupriavidus respiraculi" Isolate
+lane122s000544 Ala 0 L-Alanine 5M Meadow Meadow_2 1 0 0 "M20C 128 Bacillus mycoides/ Bacillus weihenstephanensis" Isolate
+lane122s000544 Arg 1 L-Arginine 5M Meadow Meadow_2 1 0 0 "M20C 128 Bacillus mycoides/ Bacillus weihenstephanensis" Isolate
+lane122s000544 Asp 0 "L-Aspartic acid" 5M Meadow Meadow_2 1 0 0 "M20C 128 Bacillus mycoides/ Bacillus weihenstephanensis" Isolate
+lane122s000544 Asn 0 L-Asparagine 5M Meadow Meadow_2 1 0 0 "M20C 128 Bacillus mycoides/ Bacillus weihenstephanensis" Isolate
+lane122s000544 Cys 0 L-Cysteine 5M Meadow Meadow_2 1 0 0 "M20C 128 Bacillus mycoides/ Bacillus weihenstephanensis" Isolate
+lane122s000544 Glu 0 L-Glutamate 5M Meadow Meadow_2 1 0 0 "M20C 128 Bacillus mycoides/ Bacillus weihenstephanensis" Isolate
+lane122s000544 Gln 0 L-Glutamine 5M Meadow Meadow_2 1 0 0 "M20C 128 Bacillus mycoides/ Bacillus weihenstephanensis" Isolate
+lane122s000544 Gly 0 Glycine 5M Meadow Meadow_2 1 0 0 "M20C 128 Bacillus mycoides/ Bacillus weihenstephanensis" Isolate
+lane122s000544 His 0 L-Histidine 5M Meadow Meadow_2 1 0 0 "M20C 128 Bacillus mycoides/ Bacillus weihenstephanensis" Isolate
+lane122s000544 Ile 1 L-Isoleucine 5M Meadow Meadow_2 1 0 0 "M20C 128 Bacillus mycoides/ Bacillus weihenstephanensis" Isolate
+lane122s000544 Leu 1 L-Leucine 5M Meadow Meadow_2 1 0 0 "M20C 128 Bacillus mycoides/ Bacillus weihenstephanensis" Isolate
+lane122s000544 Lys 0 L-Lysine 5M Meadow Meadow_2 1 0 0 "M20C 128 Bacillus mycoides/ Bacillus weihenstephanensis" Isolate
+lane122s000544 Met 0 L-Methionine 5M Meadow Meadow_2 1 0 0 "M20C 128 Bacillus mycoides/ Bacillus weihenstephanensis" Isolate
+lane122s000544 Phe 0 L-Phenylalanine 5M Meadow Meadow_2 1 0 0 "M20C 128 Bacillus mycoides/ Bacillus weihenstephanensis" Isolate
+lane122s000544 Pro 0 L-Proline 5M Meadow Meadow_2 1 0 0 "M20C 128 Bacillus mycoides/ Bacillus weihenstephanensis" Isolate
+lane122s000544 Ser 0 L-Serine 5M Meadow Meadow_2 1 0 0 "M20C 128 Bacillus mycoides/ Bacillus weihenstephanensis" Isolate
+lane122s000544 Thr 0 L-Threonine 5M Meadow Meadow_2 1 0 0 "M20C 128 Bacillus mycoides/ Bacillus weihenstephanensis" Isolate
+lane122s000544 Trp 0 L-Tryptophan 5M Meadow Meadow_2 1 0 0 "M20C 128 Bacillus mycoides/ Bacillus weihenstephanensis" Isolate
+lane122s000544 Tyr 0 L-Tyrosine 5M Meadow Meadow_2 1 0 0 "M20C 128 Bacillus mycoides/ Bacillus weihenstephanensis" Isolate
+lane122s000544 Val 1 L-Valine 5M Meadow Meadow_2 1 0 0 "M20C 128 Bacillus mycoides/ Bacillus weihenstephanensis" Isolate
+lane122s000539 Ala 0 L-Alanine 5N "Conifer forest" F3 1 0 0 "F3C 100 Brevibacterium] frigoritolerans" Isolate
+lane122s000539 Arg 0 L-Arginine 5N "Conifer forest" F3 1 0 0 "F3C 100 Brevibacterium] frigoritolerans" Isolate
+lane122s000539 Asp 0 "L-Aspartic acid" 5N "Conifer forest" F3 1 0 0 "F3C 100 Brevibacterium] frigoritolerans" Isolate
+lane122s000539 Asn 0 L-Asparagine 5N "Conifer forest" F3 1 0 0 "F3C 100 Brevibacterium] frigoritolerans" Isolate
+lane122s000539 Cys 0 L-Cysteine 5N "Conifer forest" F3 1 0 0 "F3C 100 Brevibacterium] frigoritolerans" Isolate
+lane122s000539 Glu 0 L-Glutamate 5N "Conifer forest" F3 1 0 0 "F3C 100 Brevibacterium] frigoritolerans" Isolate
+lane122s000539 Gln 0 L-Glutamine 5N "Conifer forest" F3 1 0 0 "F3C 100 Brevibacterium] frigoritolerans" Isolate
+lane122s000539 Gly 0 Glycine 5N "Conifer forest" F3 1 0 0 "F3C 100 Brevibacterium] frigoritolerans" Isolate
+lane122s000539 His 0 L-Histidine 5N "Conifer forest" F3 1 0 0 "F3C 100 Brevibacterium] frigoritolerans" Isolate
+lane122s000539 Ile 0 L-Isoleucine 5N "Conifer forest" F3 1 0 0 "F3C 100 Brevibacterium] frigoritolerans" Isolate
+lane122s000539 Leu 0 L-Leucine 5N "Conifer forest" F3 1 0 0 "F3C 100 Brevibacterium] frigoritolerans" Isolate
+lane122s000539 Lys 0 L-Lysine 5N "Conifer forest" F3 1 0 0 "F3C 100 Brevibacterium] frigoritolerans" Isolate
+lane122s000539 Met 0 L-Methionine 5N "Conifer forest" F3 1 0 0 "F3C 100 Brevibacterium] frigoritolerans" Isolate
+lane122s000539 Phe 0 L-Phenylalanine 5N "Conifer forest" F3 1 0 0 "F3C 100 Brevibacterium] frigoritolerans" Isolate
+lane122s000539 Pro 0 L-Proline 5N "Conifer forest" F3 1 0 0 "F3C 100 Brevibacterium] frigoritolerans" Isolate
+lane122s000539 Ser 0 L-Serine 5N "Conifer forest" F3 1 0 0 "F3C 100 Brevibacterium] frigoritolerans" Isolate
+lane122s000539 Thr 0 L-Threonine 5N "Conifer forest" F3 1 0 0 "F3C 100 Brevibacterium] frigoritolerans" Isolate
+lane122s000539 Trp 0 L-Tryptophan 5N "Conifer forest" F3 1 0 0 "F3C 100 Brevibacterium] frigoritolerans" Isolate
+lane122s000539 Tyr 0 L-Tyrosine 5N "Conifer forest" F3 1 0 0 "F3C 100 Brevibacterium] frigoritolerans" Isolate
+lane122s000539 Val 0 L-Valine 5N "Conifer forest" F3 1 0 0 "F3C 100 Brevibacterium] frigoritolerans" Isolate
+lane122s000533 Ala 0 L-Alanine 5P Meadow Meadow_1 1 0 0 "M10C 65 Mycetocola manganoxydans" Isolate
+lane122s000533 Arg 0 L-Arginine 5P Meadow Meadow_1 1 0 0 "M10C 65 Mycetocola manganoxydans" Isolate
+lane122s000533 Asp 0 "L-Aspartic acid" 5P Meadow Meadow_1 1 0 0 "M10C 65 Mycetocola manganoxydans" Isolate
+lane122s000533 Asn 0 L-Asparagine 5P Meadow Meadow_1 1 0 0 "M10C 65 Mycetocola manganoxydans" Isolate
+lane122s000533 Cys 0 L-Cysteine 5P Meadow Meadow_1 1 0 0 "M10C 65 Mycetocola manganoxydans" Isolate
+lane122s000533 Glu 0 L-Glutamate 5P Meadow Meadow_1 1 0 0 "M10C 65 Mycetocola manganoxydans" Isolate
+lane122s000533 Gln 0 L-Glutamine 5P Meadow Meadow_1 1 0 0 "M10C 65 Mycetocola manganoxydans" Isolate
+lane122s000533 Gly 0 Glycine 5P Meadow Meadow_1 1 0 0 "M10C 65 Mycetocola manganoxydans" Isolate
+lane122s000533 His 0 L-Histidine 5P Meadow Meadow_1 1 0 0 "M10C 65 Mycetocola manganoxydans" Isolate
+lane122s000533 Ile 0 L-Isoleucine 5P Meadow Meadow_1 1 0 0 "M10C 65 Mycetocola manganoxydans" Isolate
+lane122s000533 Leu 0 L-Leucine 5P Meadow Meadow_1 1 0 0 "M10C 65 Mycetocola manganoxydans" Isolate
+lane122s000533 Lys 0 L-Lysine 5P Meadow Meadow_1 1 0 0 "M10C 65 Mycetocola manganoxydans" Isolate
+lane122s000533 Met 0 L-Methionine 5P Meadow Meadow_1 1 0 0 "M10C 65 Mycetocola manganoxydans" Isolate
+lane122s000533 Phe 0 L-Phenylalanine 5P Meadow Meadow_1 1 0 0 "M10C 65 Mycetocola manganoxydans" Isolate
+lane122s000533 Pro 0 L-Proline 5P Meadow Meadow_1 1 0 0 "M10C 65 Mycetocola manganoxydans" Isolate
+lane122s000533 Ser 0 L-Serine 5P Meadow Meadow_1 1 0 0 "M10C 65 Mycetocola manganoxydans" Isolate
+lane122s000533 Thr 0 L-Threonine 5P Meadow Meadow_1 1 0 0 "M10C 65 Mycetocola manganoxydans" Isolate
+lane122s000533 Trp 0 L-Tryptophan 5P Meadow Meadow_1 1 0 0 "M10C 65 Mycetocola manganoxydans" Isolate
+lane122s000533 Tyr 0 L-Tyrosine 5P Meadow Meadow_1 1 0 0 "M10C 65 Mycetocola manganoxydans" Isolate
+lane122s000533 Val 0 L-Valine 5P Meadow Meadow_1 1 0 0 "M10C 65 Mycetocola manganoxydans" Isolate
+lane122s000538 Ala 0 L-Alanine 5T "Deciduous forest" F7 1 0 0 "F7C 8M Bacillus mycoides/Bacillus weihenstephanensis 100%" Isolate
+lane122s000538 Arg 0 L-Arginine 5T "Deciduous forest" F7 1 0 0 "F7C 8M Bacillus mycoides/Bacillus weihenstephanensis 100%" Isolate
+lane122s000538 Asp 0 "L-Aspartic acid" 5T "Deciduous forest" F7 1 0 0 "F7C 8M Bacillus mycoides/Bacillus weihenstephanensis 100%" Isolate
+lane122s000538 Asn 0 L-Asparagine 5T "Deciduous forest" F7 1 0 0 "F7C 8M Bacillus mycoides/Bacillus weihenstephanensis 100%" Isolate
+lane122s000538 Cys 0 L-Cysteine 5T "Deciduous forest" F7 1 0 0 "F7C 8M Bacillus mycoides/Bacillus weihenstephanensis 100%" Isolate
+lane122s000538 Glu 0 L-Glutamate 5T "Deciduous forest" F7 1 0 0 "F7C 8M Bacillus mycoides/Bacillus weihenstephanensis 100%" Isolate
+lane122s000538 Gln 0 L-Glutamine 5T "Deciduous forest" F7 1 0 0 "F7C 8M Bacillus mycoides/Bacillus weihenstephanensis 100%" Isolate
+lane122s000538 Gly 0 Glycine 5T "Deciduous forest" F7 1 0 0 "F7C 8M Bacillus mycoides/Bacillus weihenstephanensis 100%" Isolate
+lane122s000538 His 0 L-Histidine 5T "Deciduous forest" F7 1 0 0 "F7C 8M Bacillus mycoides/Bacillus weihenstephanensis 100%" Isolate
+lane122s000538 Ile 1 L-Isoleucine 5T "Deciduous forest" F7 1 0 0 "F7C 8M Bacillus mycoides/Bacillus weihenstephanensis 100%" Isolate
+lane122s000538 Leu 1 L-Leucine 5T "Deciduous forest" F7 1 0 0 "F7C 8M Bacillus mycoides/Bacillus weihenstephanensis 100%" Isolate
+lane122s000538 Lys 0 L-Lysine 5T "Deciduous forest" F7 1 0 0 "F7C 8M Bacillus mycoides/Bacillus weihenstephanensis 100%" Isolate
+lane122s000538 Met 0 L-Methionine 5T "Deciduous forest" F7 1 0 0 "F7C 8M Bacillus mycoides/Bacillus weihenstephanensis 100%" Isolate
+lane122s000538 Phe 0 L-Phenylalanine 5T "Deciduous forest" F7 1 0 0 "F7C 8M Bacillus mycoides/Bacillus weihenstephanensis 100%" Isolate
+lane122s000538 Pro 0 L-Proline 5T "Deciduous forest" F7 1 0 0 "F7C 8M Bacillus mycoides/Bacillus weihenstephanensis 100%" Isolate
+lane122s000538 Ser 1 L-Serine 5T "Deciduous forest" F7 1 0 0 "F7C 8M Bacillus mycoides/Bacillus weihenstephanensis 100%" Isolate
+lane122s000538 Thr 1 L-Threonine 5T "Deciduous forest" F7 1 0 0 "F7C 8M Bacillus mycoides/Bacillus weihenstephanensis 100%" Isolate
+lane122s000538 Trp 0 L-Tryptophan 5T "Deciduous forest" F7 1 0 0 "F7C 8M Bacillus mycoides/Bacillus weihenstephanensis 100%" Isolate
+lane122s000538 Tyr 0 L-Tyrosine 5T "Deciduous forest" F7 1 0 0 "F7C 8M Bacillus mycoides/Bacillus weihenstephanensis 100%" Isolate
+lane122s000538 Val 1 L-Valine 5T "Deciduous forest" F7 1 0 0 "F7C 8M Bacillus mycoides/Bacillus weihenstephanensis 100%" Isolate
+lane122s000535 Ala 0 L-Alanine 6B "Conifer forest" F9 1 0 0 "F9C 224 Agromyces aureus" Isolate
+lane122s000535 Arg 1 L-Arginine 6B "Conifer forest" F9 1 0 0 "F9C 224 Agromyces aureus" Isolate
+lane122s000535 Asp 0 "L-Aspartic acid" 6B "Conifer forest" F9 1 0 0 "F9C 224 Agromyces aureus" Isolate
+lane122s000535 Asn 0 L-Asparagine 6B "Conifer forest" F9 1 0 0 "F9C 224 Agromyces aureus" Isolate
+lane122s000535 Cys 0 L-Cysteine 6B "Conifer forest" F9 1 0 0 "F9C 224 Agromyces aureus" Isolate
+lane122s000535 Glu 0 L-Glutamate 6B "Conifer forest" F9 1 0 0 "F9C 224 Agromyces aureus" Isolate
+lane122s000535 Gln 0 L-Glutamine 6B "Conifer forest" F9 1 0 0 "F9C 224 Agromyces aureus" Isolate
+lane122s000535 Gly 0 Glycine 6B "Conifer forest" F9 1 0 0 "F9C 224 Agromyces aureus" Isolate
+lane122s000535 His 1 L-Histidine 6B "Conifer forest" F9 1 0 0 "F9C 224 Agromyces aureus" Isolate
+lane122s000535 Ile 0 L-Isoleucine 6B "Conifer forest" F9 1 0 0 "F9C 224 Agromyces aureus" Isolate
+lane122s000535 Leu 0 L-Leucine 6B "Conifer forest" F9 1 0 0 "F9C 224 Agromyces aureus" Isolate
+lane122s000535 Lys 1 L-Lysine 6B "Conifer forest" F9 1 0 0 "F9C 224 Agromyces aureus" Isolate
+lane122s000535 Met 0 L-Methionine 6B "Conifer forest" F9 1 0 0 "F9C 224 Agromyces aureus" Isolate
+lane122s000535 Phe 0 L-Phenylalanine 6B "Conifer forest" F9 1 0 0 "F9C 224 Agromyces aureus" Isolate
+lane122s000535 Pro 1 L-Proline 6B "Conifer forest" F9 1 0 0 "F9C 224 Agromyces aureus" Isolate
+lane122s000535 Ser 1 L-Serine 6B "Conifer forest" F9 1 0 0 "F9C 224 Agromyces aureus" Isolate
+lane122s000535 Thr 0 L-Threonine 6B "Conifer forest" F9 1 0 0 "F9C 224 Agromyces aureus" Isolate
+lane122s000535 Trp 0 L-Tryptophan 6B "Conifer forest" F9 1 0 0 "F9C 224 Agromyces aureus" Isolate
+lane122s000535 Tyr 0 L-Tyrosine 6B "Conifer forest" F9 1 0 0 "F9C 224 Agromyces aureus" Isolate
+lane122s000535 Val 0 L-Valine 6B "Conifer forest" F9 1 0 0 "F9C 224 Agromyces aureus" Isolate
+lane122s000543 Ala 0 L-Alanine 6E "Conifer forest" F9 1 0 0 "F9C 41 Agromyces iriomotensis" Isolate
+lane122s000543 Arg 0 L-Arginine 6E "Conifer forest" F9 1 0 0 "F9C 41 Agromyces iriomotensis" Isolate
+lane122s000543 Asp 0 "L-Aspartic acid" 6E "Conifer forest" F9 1 0 0 "F9C 41 Agromyces iriomotensis" Isolate
+lane122s000543 Asn 0 L-Asparagine 6E "Conifer forest" F9 1 0 0 "F9C 41 Agromyces iriomotensis" Isolate
+lane122s000543 Cys 1 L-Cysteine 6E "Conifer forest" F9 1 0 0 "F9C 41 Agromyces iriomotensis" Isolate
+lane122s000543 Glu 0 L-Glutamate 6E "Conifer forest" F9 1 0 0 "F9C 41 Agromyces iriomotensis" Isolate
+lane122s000543 Gln 0 L-Glutamine 6E "Conifer forest" F9 1 0 0 "F9C 41 Agromyces iriomotensis" Isolate
+lane122s000543 Gly 0 Glycine 6E "Conifer forest" F9 1 0 0 "F9C 41 Agromyces iriomotensis" Isolate
+lane122s000543 His 0 L-Histidine 6E "Conifer forest" F9 1 0 0 "F9C 41 Agromyces iriomotensis" Isolate
+lane122s000543 Ile 0 L-Isoleucine 6E "Conifer forest" F9 1 0 0 "F9C 41 Agromyces iriomotensis" Isolate
+lane122s000543 Leu 0 L-Leucine 6E "Conifer forest" F9 1 0 0 "F9C 41 Agromyces iriomotensis" Isolate
+lane122s000543 Lys 0 L-Lysine 6E "Conifer forest" F9 1 0 0 "F9C 41 Agromyces iriomotensis" Isolate
+lane122s000543 Met 0 L-Methionine 6E "Conifer forest" F9 1 0 0 "F9C 41 Agromyces iriomotensis" Isolate
+lane122s000543 Phe 0 L-Phenylalanine 6E "Conifer forest" F9 1 0 0 "F9C 41 Agromyces iriomotensis" Isolate
+lane122s000543 Pro 0 L-Proline 6E "Conifer forest" F9 1 0 0 "F9C 41 Agromyces iriomotensis" Isolate
+lane122s000543 Ser 0 L-Serine 6E "Conifer forest" F9 1 0 0 "F9C 41 Agromyces iriomotensis" Isolate
+lane122s000543 Thr 0 L-Threonine 6E "Conifer forest" F9 1 0 0 "F9C 41 Agromyces iriomotensis" Isolate
+lane122s000543 Trp 0 L-Tryptophan 6E "Conifer forest" F9 1 0 0 "F9C 41 Agromyces iriomotensis" Isolate
+lane122s000543 Tyr 0 L-Tyrosine 6E "Conifer forest" F9 1 0 0 "F9C 41 Agromyces iriomotensis" Isolate
+lane122s000543 Val 1 L-Valine 6E "Conifer forest" F9 1 0 0 "F9C 41 Agromyces iriomotensis" Isolate
+lane122s000540 Ala 0 L-Alanine 6H "Conifer forest" F5 1 0 0 "F5A 127 Dyella marensis" Isolate
+lane122s000540 Arg 0 L-Arginine 6H "Conifer forest" F5 1 0 0 "F5A 127 Dyella marensis" Isolate
+lane122s000540 Asp 0 "L-Aspartic acid" 6H "Conifer forest" F5 1 0 0 "F5A 127 Dyella marensis" Isolate
+lane122s000540 Asn 0 L-Asparagine 6H "Conifer forest" F5 1 0 0 "F5A 127 Dyella marensis" Isolate
+lane122s000540 Cys 0 L-Cysteine 6H "Conifer forest" F5 1 0 0 "F5A 127 Dyella marensis" Isolate
+lane122s000540 Glu 0 L-Glutamate 6H "Conifer forest" F5 1 0 0 "F5A 127 Dyella marensis" Isolate
+lane122s000540 Gln 0 L-Glutamine 6H "Conifer forest" F5 1 0 0 "F5A 127 Dyella marensis" Isolate
+lane122s000540 Gly 1 Glycine 6H "Conifer forest" F5 1 0 0 "F5A 127 Dyella marensis" Isolate
+lane122s000540 His 0 L-Histidine 6H "Conifer forest" F5 1 0 0 "F5A 127 Dyella marensis" Isolate
+lane122s000540 Ile 0 L-Isoleucine 6H "Conifer forest" F5 1 0 0 "F5A 127 Dyella marensis" Isolate
+lane122s000540 Leu 1 L-Leucine 6H "Conifer forest" F5 1 0 0 "F5A 127 Dyella marensis" Isolate
+lane122s000540 Lys 0 L-Lysine 6H "Conifer forest" F5 1 0 0 "F5A 127 Dyella marensis" Isolate
+lane122s000540 Met 0 L-Methionine 6H "Conifer forest" F5 1 0 0 "F5A 127 Dyella marensis" Isolate
+lane122s000540 Phe 0 L-Phenylalanine 6H "Conifer forest" F5 1 0 0 "F5A 127 Dyella marensis" Isolate
+lane122s000540 Pro 0 L-Proline 6H "Conifer forest" F5 1 0 0 "F5A 127 Dyella marensis" Isolate
+lane122s000540 Ser 0 L-Serine 6H "Conifer forest" F5 1 0 0 "F5A 127 Dyella marensis" Isolate
+lane122s000540 Thr 0 L-Threonine 6H "Conifer forest" F5 1 0 0 "F5A 127 Dyella marensis" Isolate
+lane122s000540 Trp 0 L-Tryptophan 6H "Conifer forest" F5 1 0 0 "F5A 127 Dyella marensis" Isolate
+lane122s000540 Tyr 0 L-Tyrosine 6H "Conifer forest" F5 1 0 0 "F5A 127 Dyella marensis" Isolate
+lane122s000540 Val 0 L-Valine 6H "Conifer forest" F5 1 0 0 "F5A 127 Dyella marensis" Isolate
+lane122s000542 Ala 0 L-Alanine 6K Meadow Meadow_1 0 1 0 "M10A 101 Phycicola gilvus" Isolate
+lane122s000542 Arg 0 L-Arginine 6K Meadow Meadow_1 0 1 0 "M10A 101 Phycicola gilvus" Isolate
+lane122s000542 Asp 0 "L-Aspartic acid" 6K Meadow Meadow_1 0 1 0 "M10A 101 Phycicola gilvus" Isolate
+lane122s000542 Asn 0 L-Asparagine 6K Meadow Meadow_1 0 1 0 "M10A 101 Phycicola gilvus" Isolate
+lane122s000542 Cys 0 L-Cysteine 6K Meadow Meadow_1 0 1 0 "M10A 101 Phycicola gilvus" Isolate
+lane122s000542 Glu 0 L-Glutamate 6K Meadow Meadow_1 0 1 0 "M10A 101 Phycicola gilvus" Isolate
+lane122s000542 Gln 0 L-Glutamine 6K Meadow Meadow_1 0 1 0 "M10A 101 Phycicola gilvus" Isolate
+lane122s000542 Gly 0 Glycine 6K Meadow Meadow_1 0 1 0 "M10A 101 Phycicola gilvus" Isolate
+lane122s000542 His 0 L-Histidine 6K Meadow Meadow_1 0 1 0 "M10A 101 Phycicola gilvus" Isolate
+lane122s000542 Ile 0 L-Isoleucine 6K Meadow Meadow_1 0 1 0 "M10A 101 Phycicola gilvus" Isolate
+lane122s000542 Leu 0 L-Leucine 6K Meadow Meadow_1 0 1 0 "M10A 101 Phycicola gilvus" Isolate
+lane122s000542 Lys 0 L-Lysine 6K Meadow Meadow_1 0 1 0 "M10A 101 Phycicola gilvus" Isolate
+lane122s000542 Met 0 L-Methionine 6K Meadow Meadow_1 0 1 0 "M10A 101 Phycicola gilvus" Isolate
+lane122s000542 Phe 0 L-Phenylalanine 6K Meadow Meadow_1 0 1 0 "M10A 101 Phycicola gilvus" Isolate
+lane122s000542 Pro 0 L-Proline 6K Meadow Meadow_1 0 1 0 "M10A 101 Phycicola gilvus" Isolate
+lane122s000542 Ser 0 L-Serine 6K Meadow Meadow_1 0 1 0 "M10A 101 Phycicola gilvus" Isolate
+lane122s000542 Thr 0 L-Threonine 6K Meadow Meadow_1 0 1 0 "M10A 101 Phycicola gilvus" Isolate
+lane122s000542 Trp 0 L-Tryptophan 6K Meadow Meadow_1 0 1 0 "M10A 101 Phycicola gilvus" Isolate
+lane122s000542 Tyr 0 L-Tyrosine 6K Meadow Meadow_1 0 1 0 "M10A 101 Phycicola gilvus" Isolate
+lane122s000542 Val 0 L-Valine 6K Meadow Meadow_1 0 1 0 "M10A 101 Phycicola gilvus" Isolate
+lane122s000541 Ala 0 L-Alanine 6N Meadow Meadow_1 1 0 0 "M10B 93 Bacillus mycoide/ Bacillus weihenstephanensis" Isolate
+lane122s000541 Arg 1 L-Arginine 6N Meadow Meadow_1 1 0 0 "M10B 93 Bacillus mycoide/ Bacillus weihenstephanensis" Isolate
+lane122s000541 Asp 0 "L-Aspartic acid" 6N Meadow Meadow_1 1 0 0 "M10B 93 Bacillus mycoide/ Bacillus weihenstephanensis" Isolate
+lane122s000541 Asn 0 L-Asparagine 6N Meadow Meadow_1 1 0 0 "M10B 93 Bacillus mycoide/ Bacillus weihenstephanensis" Isolate
+lane122s000541 Cys 0 L-Cysteine 6N Meadow Meadow_1 1 0 0 "M10B 93 Bacillus mycoide/ Bacillus weihenstephanensis" Isolate
+lane122s000541 Glu 0 L-Glutamate 6N Meadow Meadow_1 1 0 0 "M10B 93 Bacillus mycoide/ Bacillus weihenstephanensis" Isolate
+lane122s000541 Gln 0 L-Glutamine 6N Meadow Meadow_1 1 0 0 "M10B 93 Bacillus mycoide/ Bacillus weihenstephanensis" Isolate
+lane122s000541 Gly 0 Glycine 6N Meadow Meadow_1 1 0 0 "M10B 93 Bacillus mycoide/ Bacillus weihenstephanensis" Isolate
+lane122s000541 His 0 L-Histidine 6N Meadow Meadow_1 1 0 0 "M10B 93 Bacillus mycoide/ Bacillus weihenstephanensis" Isolate
+lane122s000541 Ile 1 L-Isoleucine 6N Meadow Meadow_1 1 0 0 "M10B 93 Bacillus mycoide/ Bacillus weihenstephanensis" Isolate
+lane122s000541 Leu 1 L-Leucine 6N Meadow Meadow_1 1 0 0 "M10B 93 Bacillus mycoide/ Bacillus weihenstephanensis" Isolate
+lane122s000541 Lys 0 L-Lysine 6N Meadow Meadow_1 1 0 0 "M10B 93 Bacillus mycoide/ Bacillus weihenstephanensis" Isolate
+lane122s000541 Met 0 L-Methionine 6N Meadow Meadow_1 1 0 0 "M10B 93 Bacillus mycoide/ Bacillus weihenstephanensis" Isolate
+lane122s000541 Phe 0 L-Phenylalanine 6N Meadow Meadow_1 1 0 0 "M10B 93 Bacillus mycoide/ Bacillus weihenstephanensis" Isolate
+lane122s000541 Pro 0 L-Proline 6N Meadow Meadow_1 1 0 0 "M10B 93 Bacillus mycoide/ Bacillus weihenstephanensis" Isolate
+lane122s000541 Ser 0 L-Serine 6N Meadow Meadow_1 1 0 0 "M10B 93 Bacillus mycoide/ Bacillus weihenstephanensis" Isolate
+lane122s000541 Thr 0 L-Threonine 6N Meadow Meadow_1 1 0 0 "M10B 93 Bacillus mycoide/ Bacillus weihenstephanensis" Isolate
+lane122s000541 Trp 0 L-Tryptophan 6N Meadow Meadow_1 1 0 0 "M10B 93 Bacillus mycoide/ Bacillus weihenstephanensis" Isolate
+lane122s000541 Tyr 0 L-Tyrosine 6N Meadow Meadow_1 1 0 0 "M10B 93 Bacillus mycoide/ Bacillus weihenstephanensis" Isolate
+lane122s000541 Val 1 L-Valine 6N Meadow Meadow_1 1 0 0 "M10B 93 Bacillus mycoide/ Bacillus weihenstephanensis" Isolate
+lane122s000523 Ala 0 L-Alanine 7C "Conifer forest" F9 1 0 0 "F9C 46 Bosea vestrisii / Bosea eneae" Isolate
+lane122s000523 Arg 0 L-Arginine 7C "Conifer forest" F9 1 0 0 "F9C 46 Bosea vestrisii / Bosea eneae" Isolate
+lane122s000523 Asp 0 "L-Aspartic acid" 7C "Conifer forest" F9 1 0 0 "F9C 46 Bosea vestrisii / Bosea eneae" Isolate
+lane122s000523 Asn 0 L-Asparagine 7C "Conifer forest" F9 1 0 0 "F9C 46 Bosea vestrisii / Bosea eneae" Isolate
+lane122s000523 Cys 0 L-Cysteine 7C "Conifer forest" F9 1 0 0 "F9C 46 Bosea vestrisii / Bosea eneae" Isolate
+lane122s000523 Glu 0 L-Glutamate 7C "Conifer forest" F9 1 0 0 "F9C 46 Bosea vestrisii / Bosea eneae" Isolate
+lane122s000523 Gln 0 L-Glutamine 7C "Conifer forest" F9 1 0 0 "F9C 46 Bosea vestrisii / Bosea eneae" Isolate
+lane122s000523 Gly 0 Glycine 7C "Conifer forest" F9 1 0 0 "F9C 46 Bosea vestrisii / Bosea eneae" Isolate
+lane122s000523 His 0 L-Histidine 7C "Conifer forest" F9 1 0 0 "F9C 46 Bosea vestrisii / Bosea eneae" Isolate
+lane122s000523 Ile 0 L-Isoleucine 7C "Conifer forest" F9 1 0 0 "F9C 46 Bosea vestrisii / Bosea eneae" Isolate
+lane122s000523 Leu 0 L-Leucine 7C "Conifer forest" F9 1 0 0 "F9C 46 Bosea vestrisii / Bosea eneae" Isolate
+lane122s000523 Lys 0 L-Lysine 7C "Conifer forest" F9 1 0 0 "F9C 46 Bosea vestrisii / Bosea eneae" Isolate
+lane122s000523 Met 0 L-Methionine 7C "Conifer forest" F9 1 0 0 "F9C 46 Bosea vestrisii / Bosea eneae" Isolate
+lane122s000523 Phe 0 L-Phenylalanine 7C "Conifer forest" F9 1 0 0 "F9C 46 Bosea vestrisii / Bosea eneae" Isolate
+lane122s000523 Pro 0 L-Proline 7C "Conifer forest" F9 1 0 0 "F9C 46 Bosea vestrisii / Bosea eneae" Isolate
+lane122s000523 Ser 0 L-Serine 7C "Conifer forest" F9 1 0 0 "F9C 46 Bosea vestrisii / Bosea eneae" Isolate
+lane122s000523 Thr 0 L-Threonine 7C "Conifer forest" F9 1 0 0 "F9C 46 Bosea vestrisii / Bosea eneae" Isolate
+lane122s000523 Trp 0 L-Tryptophan 7C "Conifer forest" F9 1 0 0 "F9C 46 Bosea vestrisii / Bosea eneae" Isolate
+lane122s000523 Tyr 0 L-Tyrosine 7C "Conifer forest" F9 1 0 0 "F9C 46 Bosea vestrisii / Bosea eneae" Isolate
+lane122s000523 Val 0 L-Valine 7C "Conifer forest" F9 1 0 0 "F9C 46 Bosea vestrisii / Bosea eneae" Isolate
+lane122s000528 Ala 0 L-Alanine 7M "Conifer forest" F5 1 0 0 "F5A 106 Luteibacter anthropi" Isolate
+lane122s000528 Arg 0 L-Arginine 7M "Conifer forest" F5 1 0 0 "F5A 106 Luteibacter anthropi" Isolate
+lane122s000528 Asp 0 "L-Aspartic acid" 7M "Conifer forest" F5 1 0 0 "F5A 106 Luteibacter anthropi" Isolate
+lane122s000528 Asn 0 L-Asparagine 7M "Conifer forest" F5 1 0 0 "F5A 106 Luteibacter anthropi" Isolate
+lane122s000528 Cys 0 L-Cysteine 7M "Conifer forest" F5 1 0 0 "F5A 106 Luteibacter anthropi" Isolate
+lane122s000528 Glu 0 L-Glutamate 7M "Conifer forest" F5 1 0 0 "F5A 106 Luteibacter anthropi" Isolate
+lane122s000528 Gln 0 L-Glutamine 7M "Conifer forest" F5 1 0 0 "F5A 106 Luteibacter anthropi" Isolate
+lane122s000528 Gly 1 Glycine 7M "Conifer forest" F5 1 0 0 "F5A 106 Luteibacter anthropi" Isolate
+lane122s000528 His 0 L-Histidine 7M "Conifer forest" F5 1 0 0 "F5A 106 Luteibacter anthropi" Isolate
+lane122s000528 Ile 0 L-Isoleucine 7M "Conifer forest" F5 1 0 0 "F5A 106 Luteibacter anthropi" Isolate
+lane122s000528 Leu 1 L-Leucine 7M "Conifer forest" F5 1 0 0 "F5A 106 Luteibacter anthropi" Isolate
+lane122s000528 Lys 0 L-Lysine 7M "Conifer forest" F5 1 0 0 "F5A 106 Luteibacter anthropi" Isolate
+lane122s000528 Met 0 L-Methionine 7M "Conifer forest" F5 1 0 0 "F5A 106 Luteibacter anthropi" Isolate
+lane122s000528 Phe 1 L-Phenylalanine 7M "Conifer forest" F5 1 0 0 "F5A 106 Luteibacter anthropi" Isolate
+lane122s000528 Pro 0 L-Proline 7M "Conifer forest" F5 1 0 0 "F5A 106 Luteibacter anthropi" Isolate
+lane122s000528 Ser 0 L-Serine 7M "Conifer forest" F5 1 0 0 "F5A 106 Luteibacter anthropi" Isolate
+lane122s000528 Thr 0 L-Threonine 7M "Conifer forest" F5 1 0 0 "F5A 106 Luteibacter anthropi" Isolate
+lane122s000528 Trp 0 L-Tryptophan 7M "Conifer forest" F5 1 0 0 "F5A 106 Luteibacter anthropi" Isolate
+lane122s000528 Tyr 0 L-Tyrosine 7M "Conifer forest" F5 1 0 0 "F5A 106 Luteibacter anthropi" Isolate
+lane122s000528 Val 0 L-Valine 7M "Conifer forest" F5 1 0 0 "F5A 106 Luteibacter anthropi" Isolate
+lane122s000522 Ala 0 L-Alanine 8O "Conifer forest" F9 1 0 0 "F9B 71a Bacillus mycoides/Bacillus weihenstephanensis" Isolate
+lane122s000522 Arg 0 L-Arginine 8O "Conifer forest" F9 1 0 0 "F9B 71a Bacillus mycoides/Bacillus weihenstephanensis" Isolate
+lane122s000522 Asp 1 "L-Aspartic acid" 8O "Conifer forest" F9 1 0 0 "F9B 71a Bacillus mycoides/Bacillus weihenstephanensis" Isolate
+lane122s000522 Asn 0 L-Asparagine 8O "Conifer forest" F9 1 0 0 "F9B 71a Bacillus mycoides/Bacillus weihenstephanensis" Isolate
+lane122s000522 Cys 0 L-Cysteine 8O "Conifer forest" F9 1 0 0 "F9B 71a Bacillus mycoides/Bacillus weihenstephanensis" Isolate
+lane122s000522 Glu 0 L-Glutamate 8O "Conifer forest" F9 1 0 0 "F9B 71a Bacillus mycoides/Bacillus weihenstephanensis" Isolate
+lane122s000522 Gln 1 L-Glutamine 8O "Conifer forest" F9 1 0 0 "F9B 71a Bacillus mycoides/Bacillus weihenstephanensis" Isolate
+lane122s000522 Gly 0 Glycine 8O "Conifer forest" F9 1 0 0 "F9B 71a Bacillus mycoides/Bacillus weihenstephanensis" Isolate
+lane122s000522 His 1 L-Histidine 8O "Conifer forest" F9 1 0 0 "F9B 71a Bacillus mycoides/Bacillus weihenstephanensis" Isolate
+lane122s000522 Ile 1 L-Isoleucine 8O "Conifer forest" F9 1 0 0 "F9B 71a Bacillus mycoides/Bacillus weihenstephanensis" Isolate
+lane122s000522 Leu 0 L-Leucine 8O "Conifer forest" F9 1 0 0 "F9B 71a Bacillus mycoides/Bacillus weihenstephanensis" Isolate
+lane122s000522 Lys 0 L-Lysine 8O "Conifer forest" F9 1 0 0 "F9B 71a Bacillus mycoides/Bacillus weihenstephanensis" Isolate
+lane122s000522 Met 0 L-Methionine 8O "Conifer forest" F9 1 0 0 "F9B 71a Bacillus mycoides/Bacillus weihenstephanensis" Isolate
+lane122s000522 Phe 0 L-Phenylalanine 8O "Conifer forest" F9 1 0 0 "F9B 71a Bacillus mycoides/Bacillus weihenstephanensis" Isolate
+lane122s000522 Pro 1 L-Proline 8O "Conifer forest" F9 1 0 0 "F9B 71a Bacillus mycoides/Bacillus weihenstephanensis" Isolate
+lane122s000522 Ser 0 L-Serine 8O "Conifer forest" F9 1 0 0 "F9B 71a Bacillus mycoides/Bacillus weihenstephanensis" Isolate
+lane122s000522 Thr 0 L-Threonine 8O "Conifer forest" F9 1 0 0 "F9B 71a Bacillus mycoides/Bacillus weihenstephanensis" Isolate
+lane122s000522 Trp 0 L-Tryptophan 8O "Conifer forest" F9 1 0 0 "F9B 71a Bacillus mycoides/Bacillus weihenstephanensis" Isolate
+lane122s000522 Tyr 1 L-Tyrosine 8O "Conifer forest" F9 1 0 0 "F9B 71a Bacillus mycoides/Bacillus weihenstephanensis" Isolate
+lane122s000522 Val 0 L-Valine 8O "Conifer forest" F9 1 0 0 "F9B 71a Bacillus mycoides/Bacillus weihenstephanensis" Isolate
+lane122s000521 Ala 0 L-Alanine 8Y Meadow Meadow_2 1 1 0 "M20A 25 did not work" Isolate
+lane122s000521 Arg 1 L-Arginine 8Y Meadow Meadow_2 1 1 0 "M20A 25 did not work" Isolate
+lane122s000521 Asp 1 "L-Aspartic acid" 8Y Meadow Meadow_2 1 1 0 "M20A 25 did not work" Isolate
+lane122s000521 Asn 0 L-Asparagine 8Y Meadow Meadow_2 1 1 0 "M20A 25 did not work" Isolate
+lane122s000521 Cys 0 L-Cysteine 8Y Meadow Meadow_2 1 1 0 "M20A 25 did not work" Isolate
+lane122s000521 Glu 0 L-Glutamate 8Y Meadow Meadow_2 1 1 0 "M20A 25 did not work" Isolate
+lane122s000521 Gln 1 L-Glutamine 8Y Meadow Meadow_2 1 1 0 "M20A 25 did not work" Isolate
+lane122s000521 Gly 0 Glycine 8Y Meadow Meadow_2 1 1 0 "M20A 25 did not work" Isolate
+lane122s000521 His 0 L-Histidine 8Y Meadow Meadow_2 1 1 0 "M20A 25 did not work" Isolate
+lane122s000521 Ile 1 L-Isoleucine 8Y Meadow Meadow_2 1 1 0 "M20A 25 did not work" Isolate
+lane122s000521 Leu 1 L-Leucine 8Y Meadow Meadow_2 1 1 0 "M20A 25 did not work" Isolate
+lane122s000521 Lys 1 L-Lysine 8Y Meadow Meadow_2 1 1 0 "M20A 25 did not work" Isolate
+lane122s000521 Met 1 L-Methionine 8Y Meadow Meadow_2 1 1 0 "M20A 25 did not work" Isolate
+lane122s000521 Phe 1 L-Phenylalanine 8Y Meadow Meadow_2 1 1 0 "M20A 25 did not work" Isolate
+lane122s000521 Pro 1 L-Proline 8Y Meadow Meadow_2 1 1 0 "M20A 25 did not work" Isolate
+lane122s000521 Ser 0 L-Serine 8Y Meadow Meadow_2 1 1 0 "M20A 25 did not work" Isolate
+lane122s000521 Thr 0 L-Threonine 8Y Meadow Meadow_2 1 1 0 "M20A 25 did not work" Isolate
+lane122s000521 Trp 0 L-Tryptophan 8Y Meadow Meadow_2 1 1 0 "M20A 25 did not work" Isolate
+lane122s000521 Tyr 1 L-Tyrosine 8Y Meadow Meadow_2 1 1 0 "M20A 25 did not work" Isolate
+lane122s000521 Val 1 L-Valine 8Y Meadow Meadow_2 1 1 0 "M20A 25 did not work" Isolate
+lane122s000529 Ala 0 L-Alanine 9G Meadow Meadow_2 1 0 0 "M20B 192 [Brevibacterium] frigoritolerans contaminated" Isolate
+lane122s000529 Arg 0 L-Arginine 9G Meadow Meadow_2 1 0 0 "M20B 192 [Brevibacterium] frigoritolerans contaminated" Isolate
+lane122s000529 Asp 0 "L-Aspartic acid" 9G Meadow Meadow_2 1 0 0 "M20B 192 [Brevibacterium] frigoritolerans contaminated" Isolate
+lane122s000529 Asn 0 L-Asparagine 9G Meadow Meadow_2 1 0 0 "M20B 192 [Brevibacterium] frigoritolerans contaminated" Isolate
+lane122s000529 Cys 0 L-Cysteine 9G Meadow Meadow_2 1 0 0 "M20B 192 [Brevibacterium] frigoritolerans contaminated" Isolate
+lane122s000529 Glu 0 L-Glutamate 9G Meadow Meadow_2 1 0 0 "M20B 192 [Brevibacterium] frigoritolerans contaminated" Isolate
+lane122s000529 Gln 0 L-Glutamine 9G Meadow Meadow_2 1 0 0 "M20B 192 [Brevibacterium] frigoritolerans contaminated" Isolate
+lane122s000529 Gly 0 Glycine 9G Meadow Meadow_2 1 0 0 "M20B 192 [Brevibacterium] frigoritolerans contaminated" Isolate
+lane122s000529 His 0 L-Histidine 9G Meadow Meadow_2 1 0 0 "M20B 192 [Brevibacterium] frigoritolerans contaminated" Isolate
+lane122s000529 Ile 0 L-Isoleucine 9G Meadow Meadow_2 1 0 0 "M20B 192 [Brevibacterium] frigoritolerans contaminated" Isolate
+lane122s000529 Leu 0 L-Leucine 9G Meadow Meadow_2 1 0 0 "M20B 192 [Brevibacterium] frigoritolerans contaminated" Isolate
+lane122s000529 Lys 0 L-Lysine 9G Meadow Meadow_2 1 0 0 "M20B 192 [Brevibacterium] frigoritolerans contaminated" Isolate
+lane122s000529 Met 0 L-Methionine 9G Meadow Meadow_2 1 0 0 "M20B 192 [Brevibacterium] frigoritolerans contaminated" Isolate
+lane122s000529 Phe 0 L-Phenylalanine 9G Meadow Meadow_2 1 0 0 "M20B 192 [Brevibacterium] frigoritolerans contaminated" Isolate
+lane122s000529 Pro 0 L-Proline 9G Meadow Meadow_2 1 0 0 "M20B 192 [Brevibacterium] frigoritolerans contaminated" Isolate
+lane122s000529 Ser 1 L-Serine 9G Meadow Meadow_2 1 0 0 "M20B 192 [Brevibacterium] frigoritolerans contaminated" Isolate
+lane122s000529 Thr 0 L-Threonine 9G Meadow Meadow_2 1 0 0 "M20B 192 [Brevibacterium] frigoritolerans contaminated" Isolate
+lane122s000529 Trp 0 L-Tryptophan 9G Meadow Meadow_2 1 0 0 "M20B 192 [Brevibacterium] frigoritolerans contaminated" Isolate
+lane122s000529 Tyr 0 L-Tyrosine 9G Meadow Meadow_2 1 0 0 "M20B 192 [Brevibacterium] frigoritolerans contaminated" Isolate
+lane122s000529 Val 0 L-Valine 9G Meadow Meadow_2 1 0 0 "M20B 192 [Brevibacterium] frigoritolerans contaminated" Isolate
+lane122s000545 Ala 0 L-Alanine 9H "Conifer forest" F5 1 0 0 "F5C 276 Bacillus subtilise" Isolate
+lane122s000545 Arg 0 L-Arginine 9H "Conifer forest" F5 1 0 0 "F5C 276 Bacillus subtilise" Isolate
+lane122s000545 Asp 0 "L-Aspartic acid" 9H "Conifer forest" F5 1 0 0 "F5C 276 Bacillus subtilise" Isolate
+lane122s000545 Asn 0 L-Asparagine 9H "Conifer forest" F5 1 0 0 "F5C 276 Bacillus subtilise" Isolate
+lane122s000545 Cys 0 L-Cysteine 9H "Conifer forest" F5 1 0 0 "F5C 276 Bacillus subtilise" Isolate
+lane122s000545 Glu 0 L-Glutamate 9H "Conifer forest" F5 1 0 0 "F5C 276 Bacillus subtilise" Isolate
+lane122s000545 Gln 0 L-Glutamine 9H "Conifer forest" F5 1 0 0 "F5C 276 Bacillus subtilise" Isolate
+lane122s000545 Gly 0 Glycine 9H "Conifer forest" F5 1 0 0 "F5C 276 Bacillus subtilise" Isolate
+lane122s000545 His 0 L-Histidine 9H "Conifer forest" F5 1 0 0 "F5C 276 Bacillus subtilise" Isolate
+lane122s000545 Ile 0 L-Isoleucine 9H "Conifer forest" F5 1 0 0 "F5C 276 Bacillus subtilise" Isolate
+lane122s000545 Leu 0 L-Leucine 9H "Conifer forest" F5 1 0 0 "F5C 276 Bacillus subtilise" Isolate
+lane122s000545 Lys 0 L-Lysine 9H "Conifer forest" F5 1 0 0 "F5C 276 Bacillus subtilise" Isolate
+lane122s000545 Met 0 L-Methionine 9H "Conifer forest" F5 1 0 0 "F5C 276 Bacillus subtilise" Isolate
+lane122s000545 Phe 0 L-Phenylalanine 9H "Conifer forest" F5 1 0 0 "F5C 276 Bacillus subtilise" Isolate
+lane122s000545 Pro 0 L-Proline 9H "Conifer forest" F5 1 0 0 "F5C 276 Bacillus subtilise" Isolate
+lane122s000545 Ser 0 L-Serine 9H "Conifer forest" F5 1 0 0 "F5C 276 Bacillus subtilise" Isolate
+lane122s000545 Thr 0 L-Threonine 9H "Conifer forest" F5 1 0 0 "F5C 276 Bacillus subtilise" Isolate
+lane122s000545 Trp 0 L-Tryptophan 9H "Conifer forest" F5 1 0 0 "F5C 276 Bacillus subtilise" Isolate
+lane122s000545 Tyr 0 L-Tyrosine 9H "Conifer forest" F5 1 0 0 "F5C 276 Bacillus subtilise" Isolate
+lane122s000545 Val 0 L-Valine 9H "Conifer forest" F5 1 0 0 "F5C 276 Bacillus subtilise" Isolate
+lane122s000515 Ala 0 L-Alanine 9M Meadow Meadow_2 1 0 0 "M20A 228 Bacillus pumilus" Isolate
+lane122s000515 Arg 0 L-Arginine 9M Meadow Meadow_2 1 0 0 "M20A 228 Bacillus pumilus" Isolate
+lane122s000515 Asp 0 "L-Aspartic acid" 9M Meadow Meadow_2 1 0 0 "M20A 228 Bacillus pumilus" Isolate
+lane122s000515 Asn 0 L-Asparagine 9M Meadow Meadow_2 1 0 0 "M20A 228 Bacillus pumilus" Isolate
+lane122s000515 Cys 0 L-Cysteine 9M Meadow Meadow_2 1 0 0 "M20A 228 Bacillus pumilus" Isolate
+lane122s000515 Glu 0 L-Glutamate 9M Meadow Meadow_2 1 0 0 "M20A 228 Bacillus pumilus" Isolate
+lane122s000515 Gln 0 L-Glutamine 9M Meadow Meadow_2 1 0 0 "M20A 228 Bacillus pumilus" Isolate
+lane122s000515 Gly 0 Glycine 9M Meadow Meadow_2 1 0 0 "M20A 228 Bacillus pumilus" Isolate
+lane122s000515 His 0 L-Histidine 9M Meadow Meadow_2 1 0 0 "M20A 228 Bacillus pumilus" Isolate
+lane122s000515 Ile 0 L-Isoleucine 9M Meadow Meadow_2 1 0 0 "M20A 228 Bacillus pumilus" Isolate
+lane122s000515 Leu 0 L-Leucine 9M Meadow Meadow_2 1 0 0 "M20A 228 Bacillus pumilus" Isolate
+lane122s000515 Lys 0 L-Lysine 9M Meadow Meadow_2 1 0 0 "M20A 228 Bacillus pumilus" Isolate
+lane122s000515 Met 0 L-Methionine 9M Meadow Meadow_2 1 0 0 "M20A 228 Bacillus pumilus" Isolate
+lane122s000515 Phe 0 L-Phenylalanine 9M Meadow Meadow_2 1 0 0 "M20A 228 Bacillus pumilus" Isolate
+lane122s000515 Pro 0 L-Proline 9M Meadow Meadow_2 1 0 0 "M20A 228 Bacillus pumilus" Isolate
+lane122s000515 Ser 0 L-Serine 9M Meadow Meadow_2 1 0 0 "M20A 228 Bacillus pumilus" Isolate
+lane122s000515 Thr 0 L-Threonine 9M Meadow Meadow_2 1 0 0 "M20A 228 Bacillus pumilus" Isolate
+lane122s000515 Trp 0 L-Tryptophan 9M Meadow Meadow_2 1 0 0 "M20A 228 Bacillus pumilus" Isolate
+lane122s000515 Tyr 0 L-Tyrosine 9M Meadow Meadow_2 1 0 0 "M20A 228 Bacillus pumilus" Isolate
+lane122s000515 Val 0 L-Valine 9M Meadow Meadow_2 1 0 0 "M20A 228 Bacillus pumilus" Isolate
+lane122s000532 Ala 0 L-Alanine 9O Meadow Meadow_2 1 0 0 "M20B 78 Prolinoborus fasciculus" Isolate
+lane122s000532 Arg 0 L-Arginine 9O Meadow Meadow_2 1 0 0 "M20B 78 Prolinoborus fasciculus" Isolate
+lane122s000532 Asp 0 "L-Aspartic acid" 9O Meadow Meadow_2 1 0 0 "M20B 78 Prolinoborus fasciculus" Isolate
+lane122s000532 Asn 0 L-Asparagine 9O Meadow Meadow_2 1 0 0 "M20B 78 Prolinoborus fasciculus" Isolate
+lane122s000532 Cys 0 L-Cysteine 9O Meadow Meadow_2 1 0 0 "M20B 78 Prolinoborus fasciculus" Isolate
+lane122s000532 Glu 0 L-Glutamate 9O Meadow Meadow_2 1 0 0 "M20B 78 Prolinoborus fasciculus" Isolate
+lane122s000532 Gln 0 L-Glutamine 9O Meadow Meadow_2 1 0 0 "M20B 78 Prolinoborus fasciculus" Isolate
+lane122s000532 Gly 0 Glycine 9O Meadow Meadow_2 1 0 0 "M20B 78 Prolinoborus fasciculus" Isolate
+lane122s000532 His 0 L-Histidine 9O Meadow Meadow_2 1 0 0 "M20B 78 Prolinoborus fasciculus" Isolate
+lane122s000532 Ile 0 L-Isoleucine 9O Meadow Meadow_2 1 0 0 "M20B 78 Prolinoborus fasciculus" Isolate
+lane122s000532 Leu 0 L-Leucine 9O Meadow Meadow_2 1 0 0 "M20B 78 Prolinoborus fasciculus" Isolate
+lane122s000532 Lys 0 L-Lysine 9O Meadow Meadow_2 1 0 0 "M20B 78 Prolinoborus fasciculus" Isolate
+lane122s000532 Met 0 L-Methionine 9O Meadow Meadow_2 1 0 0 "M20B 78 Prolinoborus fasciculus" Isolate
+lane122s000532 Phe 0 L-Phenylalanine 9O Meadow Meadow_2 1 0 0 "M20B 78 Prolinoborus fasciculus" Isolate
+lane122s000532 Pro 0 L-Proline 9O Meadow Meadow_2 1 0 0 "M20B 78 Prolinoborus fasciculus" Isolate
+lane122s000532 Ser 0 L-Serine 9O Meadow Meadow_2 1 0 0 "M20B 78 Prolinoborus fasciculus" Isolate
+lane122s000532 Thr 0 L-Threonine 9O Meadow Meadow_2 1 0 0 "M20B 78 Prolinoborus fasciculus" Isolate
+lane122s000532 Trp 0 L-Tryptophan 9O Meadow Meadow_2 1 0 0 "M20B 78 Prolinoborus fasciculus" Isolate
+lane122s000532 Tyr 0 L-Tyrosine 9O Meadow Meadow_2 1 0 0 "M20B 78 Prolinoborus fasciculus" Isolate
+lane122s000532 Val 0 L-Valine 9O Meadow Meadow_2 1 0 0 "M20B 78 Prolinoborus fasciculus" Isolate
+lane122s000524 Ala 0 L-Alanine 9R Meadow Meadow_2 1 0 0 "M20B 82 Bacillus toyonensis" Isolate
+lane122s000524 Arg 0 L-Arginine 9R Meadow Meadow_2 1 0 0 "M20B 82 Bacillus toyonensis" Isolate
+lane122s000524 Asp 0 "L-Aspartic acid" 9R Meadow Meadow_2 1 0 0 "M20B 82 Bacillus toyonensis" Isolate
+lane122s000524 Asn 0 L-Asparagine 9R Meadow Meadow_2 1 0 0 "M20B 82 Bacillus toyonensis" Isolate
+lane122s000524 Cys 0 L-Cysteine 9R Meadow Meadow_2 1 0 0 "M20B 82 Bacillus toyonensis" Isolate
+lane122s000524 Glu 0 L-Glutamate 9R Meadow Meadow_2 1 0 0 "M20B 82 Bacillus toyonensis" Isolate
+lane122s000524 Gln 0 L-Glutamine 9R Meadow Meadow_2 1 0 0 "M20B 82 Bacillus toyonensis" Isolate
+lane122s000524 Gly 0 Glycine 9R Meadow Meadow_2 1 0 0 "M20B 82 Bacillus toyonensis" Isolate
+lane122s000524 His 0 L-Histidine 9R Meadow Meadow_2 1 0 0 "M20B 82 Bacillus toyonensis" Isolate
+lane122s000524 Ile 0 L-Isoleucine 9R Meadow Meadow_2 1 0 0 "M20B 82 Bacillus toyonensis" Isolate
+lane122s000524 Leu 0 L-Leucine 9R Meadow Meadow_2 1 0 0 "M20B 82 Bacillus toyonensis" Isolate
+lane122s000524 Lys 0 L-Lysine 9R Meadow Meadow_2 1 0 0 "M20B 82 Bacillus toyonensis" Isolate
+lane122s000524 Met 0 L-Methionine 9R Meadow Meadow_2 1 0 0 "M20B 82 Bacillus toyonensis" Isolate
+lane122s000524 Phe 0 L-Phenylalanine 9R Meadow Meadow_2 1 0 0 "M20B 82 Bacillus toyonensis" Isolate
+lane122s000524 Pro 0 L-Proline 9R Meadow Meadow_2 1 0 0 "M20B 82 Bacillus toyonensis" Isolate
+lane122s000524 Ser 0 L-Serine 9R Meadow Meadow_2 1 0 0 "M20B 82 Bacillus toyonensis" Isolate
+lane122s000524 Thr 0 L-Threonine 9R Meadow Meadow_2 1 0 0 "M20B 82 Bacillus toyonensis" Isolate
+lane122s000524 Trp 0 L-Tryptophan 9R Meadow Meadow_2 1 0 0 "M20B 82 Bacillus toyonensis" Isolate
+lane122s000524 Tyr 0 L-Tyrosine 9R Meadow Meadow_2 1 0 0 "M20B 82 Bacillus toyonensis" Isolate
+lane122s000524 Val 0 L-Valine 9R Meadow Meadow_2 1 0 0 "M20B 82 Bacillus toyonensis" Isolate
+lane122s000530 Ala 0 L-Alanine 9T Meadow Meadow_2 1 0 0 "M20B 173 Exiguobacterium undae" Isolate
+lane122s000530 Arg 0 L-Arginine 9T Meadow Meadow_2 1 0 0 "M20B 173 Exiguobacterium undae" Isolate
+lane122s000530 Asp 0 "L-Aspartic acid" 9T Meadow Meadow_2 1 0 0 "M20B 173 Exiguobacterium undae" Isolate
+lane122s000530 Asn 0 L-Asparagine 9T Meadow Meadow_2 1 0 0 "M20B 173 Exiguobacterium undae" Isolate
+lane122s000530 Cys 0 L-Cysteine 9T Meadow Meadow_2 1 0 0 "M20B 173 Exiguobacterium undae" Isolate
+lane122s000530 Glu 0 L-Glutamate 9T Meadow Meadow_2 1 0 0 "M20B 173 Exiguobacterium undae" Isolate
+lane122s000530 Gln 0 L-Glutamine 9T Meadow Meadow_2 1 0 0 "M20B 173 Exiguobacterium undae" Isolate
+lane122s000530 Gly 0 Glycine 9T Meadow Meadow_2 1 0 0 "M20B 173 Exiguobacterium undae" Isolate
+lane122s000530 His 0 L-Histidine 9T Meadow Meadow_2 1 0 0 "M20B 173 Exiguobacterium undae" Isolate
+lane122s000530 Ile 1 L-Isoleucine 9T Meadow Meadow_2 1 0 0 "M20B 173 Exiguobacterium undae" Isolate
+lane122s000530 Leu 1 L-Leucine 9T Meadow Meadow_2 1 0 0 "M20B 173 Exiguobacterium undae" Isolate
+lane122s000530 Lys 0 L-Lysine 9T Meadow Meadow_2 1 0 0 "M20B 173 Exiguobacterium undae" Isolate
+lane122s000530 Met 1 L-Methionine 9T Meadow Meadow_2 1 0 0 "M20B 173 Exiguobacterium undae" Isolate
+lane122s000530 Phe 0 L-Phenylalanine 9T Meadow Meadow_2 1 0 0 "M20B 173 Exiguobacterium undae" Isolate
+lane122s000530 Pro 1 L-Proline 9T Meadow Meadow_2 1 0 0 "M20B 173 Exiguobacterium undae" Isolate
+lane122s000530 Ser 0 L-Serine 9T Meadow Meadow_2 1 0 0 "M20B 173 Exiguobacterium undae" Isolate
+lane122s000530 Thr 1 L-Threonine 9T Meadow Meadow_2 1 0 0 "M20B 173 Exiguobacterium undae" Isolate
+lane122s000530 Trp 0 L-Tryptophan 9T Meadow Meadow_2 1 0 0 "M20B 173 Exiguobacterium undae" Isolate
+lane122s000530 Tyr 0 L-Tyrosine 9T Meadow Meadow_2 1 0 0 "M20B 173 Exiguobacterium undae" Isolate
+lane122s000530 Val 1 L-Valine 9T Meadow Meadow_2 1 0 0 "M20B 173 Exiguobacterium undae" Isolate
+lane122s000516 Ala 0 L-Alanine 11G "Deciduous forest" F8 1 0 0 "F8B 92 Kocuria rhizophila" Isolate
+lane122s000516 Arg 0 L-Arginine 11G "Deciduous forest" F8 1 0 0 "F8B 92 Kocuria rhizophila" Isolate
+lane122s000516 Asp 0 "L-Aspartic acid" 11G "Deciduous forest" F8 1 0 0 "F8B 92 Kocuria rhizophila" Isolate
+lane122s000516 Asn 0 L-Asparagine 11G "Deciduous forest" F8 1 0 0 "F8B 92 Kocuria rhizophila" Isolate
+lane122s000516 Cys 0 L-Cysteine 11G "Deciduous forest" F8 1 0 0 "F8B 92 Kocuria rhizophila" Isolate
+lane122s000516 Glu 0 L-Glutamate 11G "Deciduous forest" F8 1 0 0 "F8B 92 Kocuria rhizophila" Isolate
+lane122s000516 Gln 0 L-Glutamine 11G "Deciduous forest" F8 1 0 0 "F8B 92 Kocuria rhizophila" Isolate
+lane122s000516 Gly 0 Glycine 11G "Deciduous forest" F8 1 0 0 "F8B 92 Kocuria rhizophila" Isolate
+lane122s000516 His 0 L-Histidine 11G "Deciduous forest" F8 1 0 0 "F8B 92 Kocuria rhizophila" Isolate
+lane122s000516 Ile 0 L-Isoleucine 11G "Deciduous forest" F8 1 0 0 "F8B 92 Kocuria rhizophila" Isolate
+lane122s000516 Leu 0 L-Leucine 11G "Deciduous forest" F8 1 0 0 "F8B 92 Kocuria rhizophila" Isolate
+lane122s000516 Lys 0 L-Lysine 11G "Deciduous forest" F8 1 0 0 "F8B 92 Kocuria rhizophila" Isolate
+lane122s000516 Met 0 L-Methionine 11G "Deciduous forest" F8 1 0 0 "F8B 92 Kocuria rhizophila" Isolate
+lane122s000516 Phe 1 L-Phenylalanine 11G "Deciduous forest" F8 1 0 0 "F8B 92 Kocuria rhizophila" Isolate
+lane122s000516 Pro 0 L-Proline 11G "Deciduous forest" F8 1 0 0 "F8B 92 Kocuria rhizophila" Isolate
+lane122s000516 Ser 0 L-Serine 11G "Deciduous forest" F8 1 0 0 "F8B 92 Kocuria rhizophila" Isolate
+lane122s000516 Thr 0 L-Threonine 11G "Deciduous forest" F8 1 0 0 "F8B 92 Kocuria rhizophila" Isolate
+lane122s000516 Trp 0 L-Tryptophan 11G "Deciduous forest" F8 1 0 0 "F8B 92 Kocuria rhizophila" Isolate
+lane122s000516 Tyr 0 L-Tyrosine 11G "Deciduous forest" F8 1 0 0 "F8B 92 Kocuria rhizophila" Isolate
+lane122s000516 Val 0 L-Valine 11G "Deciduous forest" F8 1 0 0 "F8B 92 Kocuria rhizophila" Isolate
+lane821s003035 Ala 0 L-Alanine A Meadow Meadow_1 1 0 0 "M10A 63 Bacillus mycoides/ Bacillus weihenstephanensis" Deep_isolate
+lane821s003035 Arg 1 L-Arginine A Meadow Meadow_1 1 0 0 "M10A 63 Bacillus mycoides/ Bacillus weihenstephanensis" Deep_isolate
+lane821s003035 Asp 0 "L-Aspartic acid" A Meadow Meadow_1 1 0 0 "M10A 63 Bacillus mycoides/ Bacillus weihenstephanensis" Deep_isolate
+lane821s003035 Asn 0 L-Asparagine A Meadow Meadow_1 1 0 0 "M10A 63 Bacillus mycoides/ Bacillus weihenstephanensis" Deep_isolate
+lane821s003035 Cys 0 L-Cysteine A Meadow Meadow_1 1 0 0 "M10A 63 Bacillus mycoides/ Bacillus weihenstephanensis" Deep_isolate
+lane821s003035 Glu 0 L-Glutamate A Meadow Meadow_1 1 0 0 "M10A 63 Bacillus mycoides/ Bacillus weihenstephanensis" Deep_isolate
+lane821s003035 Gln 0 L-Glutamine A Meadow Meadow_1 1 0 0 "M10A 63 Bacillus mycoides/ Bacillus weihenstephanensis" Deep_isolate
+lane821s003035 Gly 0 Glycine A Meadow Meadow_1 1 0 0 "M10A 63 Bacillus mycoides/ Bacillus weihenstephanensis" Deep_isolate
+lane821s003035 His 1 L-Histidine A Meadow Meadow_1 1 0 0 "M10A 63 Bacillus mycoides/ Bacillus weihenstephanensis" Deep_isolate
+lane821s003035 Ile 1 L-Isoleucine A Meadow Meadow_1 1 0 0 "M10A 63 Bacillus mycoides/ Bacillus weihenstephanensis" Deep_isolate
+lane821s003035 Leu 1 L-Leucine A Meadow Meadow_1 1 0 0 "M10A 63 Bacillus mycoides/ Bacillus weihenstephanensis" Deep_isolate
+lane821s003035 Lys 0 L-Lysine A Meadow Meadow_1 1 0 0 "M10A 63 Bacillus mycoides/ Bacillus weihenstephanensis" Deep_isolate
+lane821s003035 Met 0 L-Methionine A Meadow Meadow_1 1 0 0 "M10A 63 Bacillus mycoides/ Bacillus weihenstephanensis" Deep_isolate
+lane821s003035 Phe 0 L-Phenylalanine A Meadow Meadow_1 1 0 0 "M10A 63 Bacillus mycoides/ Bacillus weihenstephanensis" Deep_isolate
+lane821s003035 Pro 0 L-Proline A Meadow Meadow_1 1 0 0 "M10A 63 Bacillus mycoides/ Bacillus weihenstephanensis" Deep_isolate
+lane821s003035 Ser 0 L-Serine A Meadow Meadow_1 1 0 0 "M10A 63 Bacillus mycoides/ Bacillus weihenstephanensis" Deep_isolate
+lane821s003035 Thr 0 L-Threonine A Meadow Meadow_1 1 0 0 "M10A 63 Bacillus mycoides/ Bacillus weihenstephanensis" Deep_isolate
+lane821s003035 Trp 0 L-Tryptophan A Meadow Meadow_1 1 0 0 "M10A 63 Bacillus mycoides/ Bacillus weihenstephanensis" Deep_isolate
+lane821s003035 Tyr 0 L-Tyrosine A Meadow Meadow_1 1 0 0 "M10A 63 Bacillus mycoides/ Bacillus weihenstephanensis" Deep_isolate
+lane821s003035 Val 1 L-Valine A Meadow Meadow_1 1 0 0 "M10A 63 Bacillus mycoides/ Bacillus weihenstephanensis" Deep_isolate
+lane821s003036 Ala 0 L-Alanine B Meadow Meadow_1 0 1 0 "M10A 100* Microbacterium yannicii" Deep_isolate
+lane821s003036 Arg 0 L-Arginine B Meadow Meadow_1 0 1 0 "M10A 100* Microbacterium yannicii" Deep_isolate
+lane821s003036 Asp 0 "L-Aspartic acid" B Meadow Meadow_1 0 1 0 "M10A 100* Microbacterium yannicii" Deep_isolate
+lane821s003036 Asn 0 L-Asparagine B Meadow Meadow_1 0 1 0 "M10A 100* Microbacterium yannicii" Deep_isolate
+lane821s003036 Cys 1 L-Cysteine B Meadow Meadow_1 0 1 0 "M10A 100* Microbacterium yannicii" Deep_isolate
+lane821s003036 Glu 0 L-Glutamate B Meadow Meadow_1 0 1 0 "M10A 100* Microbacterium yannicii" Deep_isolate
+lane821s003036 Gln 1 L-Glutamine B Meadow Meadow_1 0 1 0 "M10A 100* Microbacterium yannicii" Deep_isolate
+lane821s003036 Gly 0 Glycine B Meadow Meadow_1 0 1 0 "M10A 100* Microbacterium yannicii" Deep_isolate
+lane821s003036 His 0 L-Histidine B Meadow Meadow_1 0 1 0 "M10A 100* Microbacterium yannicii" Deep_isolate
+lane821s003036 Ile 1 L-Isoleucine B Meadow Meadow_1 0 1 0 "M10A 100* Microbacterium yannicii" Deep_isolate
+lane821s003036 Leu 0 L-Leucine B Meadow Meadow_1 0 1 0 "M10A 100* Microbacterium yannicii" Deep_isolate
+lane821s003036 Lys 0 L-Lysine B Meadow Meadow_1 0 1 0 "M10A 100* Microbacterium yannicii" Deep_isolate
+lane821s003036 Met 0 L-Methionine B Meadow Meadow_1 0 1 0 "M10A 100* Microbacterium yannicii" Deep_isolate
+lane821s003036 Phe 0 L-Phenylalanine B Meadow Meadow_1 0 1 0 "M10A 100* Microbacterium yannicii" Deep_isolate
+lane821s003036 Pro 0 L-Proline B Meadow Meadow_1 0 1 0 "M10A 100* Microbacterium yannicii" Deep_isolate
+lane821s003036 Ser 0 L-Serine B Meadow Meadow_1 0 1 0 "M10A 100* Microbacterium yannicii" Deep_isolate
+lane821s003036 Thr 0 L-Threonine B Meadow Meadow_1 0 1 0 "M10A 100* Microbacterium yannicii" Deep_isolate
+lane821s003036 Trp 0 L-Tryptophan B Meadow Meadow_1 0 1 0 "M10A 100* Microbacterium yannicii" Deep_isolate
+lane821s003036 Tyr 0 L-Tyrosine B Meadow Meadow_1 0 1 0 "M10A 100* Microbacterium yannicii" Deep_isolate
+lane821s003036 Val 0 L-Valine B Meadow Meadow_1 0 1 0 "M10A 100* Microbacterium yannicii" Deep_isolate
+lane821s003037 Ala 1 L-Alanine C "Deciduous forest" F8 1 1 0 "F8C 103* Paenibacillus borealis" Deep_isolate
+lane821s003037 Arg 1 L-Arginine C "Deciduous forest" F8 1 1 0 "F8C 103* Paenibacillus borealis" Deep_isolate
+lane821s003037 Asp 1 "L-Aspartic acid" C "Deciduous forest" F8 1 1 0 "F8C 103* Paenibacillus borealis" Deep_isolate
+lane821s003037 Asn 1 L-Asparagine C "Deciduous forest" F8 1 1 0 "F8C 103* Paenibacillus borealis" Deep_isolate
+lane821s003037 Cys 1 L-Cysteine C "Deciduous forest" F8 1 1 0 "F8C 103* Paenibacillus borealis" Deep_isolate
+lane821s003037 Glu 1 L-Glutamate C "Deciduous forest" F8 1 1 0 "F8C 103* Paenibacillus borealis" Deep_isolate
+lane821s003037 Gln 1 L-Glutamine C "Deciduous forest" F8 1 1 0 "F8C 103* Paenibacillus borealis" Deep_isolate
+lane821s003037 Gly 1 Glycine C "Deciduous forest" F8 1 1 0 "F8C 103* Paenibacillus borealis" Deep_isolate
+lane821s003037 His 1 L-Histidine C "Deciduous forest" F8 1 1 0 "F8C 103* Paenibacillus borealis" Deep_isolate
+lane821s003037 Ile 1 L-Isoleucine C "Deciduous forest" F8 1 1 0 "F8C 103* Paenibacillus borealis" Deep_isolate
+lane821s003037 Leu 1 L-Leucine C "Deciduous forest" F8 1 1 0 "F8C 103* Paenibacillus borealis" Deep_isolate
+lane821s003037 Lys 1 L-Lysine C "Deciduous forest" F8 1 1 0 "F8C 103* Paenibacillus borealis" Deep_isolate
+lane821s003037 Met 1 L-Methionine C "Deciduous forest" F8 1 1 0 "F8C 103* Paenibacillus borealis" Deep_isolate
+lane821s003037 Phe 1 L-Phenylalanine C "Deciduous forest" F8 1 1 0 "F8C 103* Paenibacillus borealis" Deep_isolate
+lane821s003037 Pro 1 L-Proline C "Deciduous forest" F8 1 1 0 "F8C 103* Paenibacillus borealis" Deep_isolate
+lane821s003037 Ser 1 L-Serine C "Deciduous forest" F8 1 1 0 "F8C 103* Paenibacillus borealis" Deep_isolate
+lane821s003037 Thr 1 L-Threonine C "Deciduous forest" F8 1 1 0 "F8C 103* Paenibacillus borealis" Deep_isolate
+lane821s003037 Trp 1 L-Tryptophan C "Deciduous forest" F8 1 1 0 "F8C 103* Paenibacillus borealis" Deep_isolate
+lane821s003037 Tyr 1 L-Tyrosine C "Deciduous forest" F8 1 1 0 "F8C 103* Paenibacillus borealis" Deep_isolate
+lane821s003037 Val 1 L-Valine C "Deciduous forest" F8 1 1 0 "F8C 103* Paenibacillus borealis" Deep_isolate
+lane821s003038 Ala 1 L-Alanine D "Conifer forest" F3 1 0 0 "F3C 100* Brevibacterium] frigoritolerans" Deep_isolate
+lane821s003038 Arg 1 L-Arginine D "Conifer forest" F3 1 0 0 "F3C 100* Brevibacterium] frigoritolerans" Deep_isolate
+lane821s003038 Asp 0 "L-Aspartic acid" D "Conifer forest" F3 1 0 0 "F3C 100* Brevibacterium] frigoritolerans" Deep_isolate
+lane821s003038 Asn 0 L-Asparagine D "Conifer forest" F3 1 0 0 "F3C 100* Brevibacterium] frigoritolerans" Deep_isolate
+lane821s003038 Cys 1 L-Cysteine D "Conifer forest" F3 1 0 0 "F3C 100* Brevibacterium] frigoritolerans" Deep_isolate
+lane821s003038 Glu 0 L-Glutamate D "Conifer forest" F3 1 0 0 "F3C 100* Brevibacterium] frigoritolerans" Deep_isolate
+lane821s003038 Gln 0 L-Glutamine D "Conifer forest" F3 1 0 0 "F3C 100* Brevibacterium] frigoritolerans" Deep_isolate
+lane821s003038 Gly 1 Glycine D "Conifer forest" F3 1 0 0 "F3C 100* Brevibacterium] frigoritolerans" Deep_isolate
+lane821s003038 His 1 L-Histidine D "Conifer forest" F3 1 0 0 "F3C 100* Brevibacterium] frigoritolerans" Deep_isolate
+lane821s003038 Ile 1 L-Isoleucine D "Conifer forest" F3 1 0 0 "F3C 100* Brevibacterium] frigoritolerans" Deep_isolate
+lane821s003038 Leu 0 L-Leucine D "Conifer forest" F3 1 0 0 "F3C 100* Brevibacterium] frigoritolerans" Deep_isolate
+lane821s003038 Lys 0 L-Lysine D "Conifer forest" F3 1 0 0 "F3C 100* Brevibacterium] frigoritolerans" Deep_isolate
+lane821s003038 Met 1 L-Methionine D "Conifer forest" F3 1 0 0 "F3C 100* Brevibacterium] frigoritolerans" Deep_isolate
+lane821s003038 Phe 0 L-Phenylalanine D "Conifer forest" F3 1 0 0 "F3C 100* Brevibacterium] frigoritolerans" Deep_isolate
+lane821s003038 Pro 1 L-Proline D "Conifer forest" F3 1 0 0 "F3C 100* Brevibacterium] frigoritolerans" Deep_isolate
+lane821s003038 Ser 1 L-Serine D "Conifer forest" F3 1 0 0 "F3C 100* Brevibacterium] frigoritolerans" Deep_isolate
+lane821s003038 Thr 0 L-Threonine D "Conifer forest" F3 1 0 0 "F3C 100* Brevibacterium] frigoritolerans" Deep_isolate
+lane821s003038 Trp 1 L-Tryptophan D "Conifer forest" F3 1 0 0 "F3C 100* Brevibacterium] frigoritolerans" Deep_isolate
+lane821s003038 Tyr 0 L-Tyrosine D "Conifer forest" F3 1 0 0 "F3C 100* Brevibacterium] frigoritolerans" Deep_isolate
+lane821s003038 Val 1 L-Valine D "Conifer forest" F3 1 0 0 "F3C 100* Brevibacterium] frigoritolerans" Deep_isolate
+lane821s003040 Ala 0 L-Alanine F "Conifer forest" F3 1 1 0 "F3A 106* Bacillus huizhouensis" Deep_isolate
+lane821s003040 Arg 0 L-Arginine F "Conifer forest" F3 1 1 0 "F3A 106* Bacillus huizhouensis" Deep_isolate
+lane821s003040 Asp 0 "L-Aspartic acid" F "Conifer forest" F3 1 1 0 "F3A 106* Bacillus huizhouensis" Deep_isolate
+lane821s003040 Asn 0 L-Asparagine F "Conifer forest" F3 1 1 0 "F3A 106* Bacillus huizhouensis" Deep_isolate
+lane821s003040 Cys 0 L-Cysteine F "Conifer forest" F3 1 1 0 "F3A 106* Bacillus huizhouensis" Deep_isolate
+lane821s003040 Glu 0 L-Glutamate F "Conifer forest" F3 1 1 0 "F3A 106* Bacillus huizhouensis" Deep_isolate
+lane821s003040 Gln 0 L-Glutamine F "Conifer forest" F3 1 1 0 "F3A 106* Bacillus huizhouensis" Deep_isolate
+lane821s003040 Gly 0 Glycine F "Conifer forest" F3 1 1 0 "F3A 106* Bacillus huizhouensis" Deep_isolate
+lane821s003040 His 0 L-Histidine F "Conifer forest" F3 1 1 0 "F3A 106* Bacillus huizhouensis" Deep_isolate
+lane821s003040 Ile 0 L-Isoleucine F "Conifer forest" F3 1 1 0 "F3A 106* Bacillus huizhouensis" Deep_isolate
+lane821s003040 Leu 1 L-Leucine F "Conifer forest" F3 1 1 0 "F3A 106* Bacillus huizhouensis" Deep_isolate
+lane821s003040 Lys 0 L-Lysine F "Conifer forest" F3 1 1 0 "F3A 106* Bacillus huizhouensis" Deep_isolate
+lane821s003040 Met 0 L-Methionine F "Conifer forest" F3 1 1 0 "F3A 106* Bacillus huizhouensis" Deep_isolate
+lane821s003040 Phe 0 L-Phenylalanine F "Conifer forest" F3 1 1 0 "F3A 106* Bacillus huizhouensis" Deep_isolate
+lane821s003040 Pro 0 L-Proline F "Conifer forest" F3 1 1 0 "F3A 106* Bacillus huizhouensis" Deep_isolate
+lane821s003040 Ser 0 L-Serine F "Conifer forest" F3 1 1 0 "F3A 106* Bacillus huizhouensis" Deep_isolate
+lane821s003040 Thr 0 L-Threonine F "Conifer forest" F3 1 1 0 "F3A 106* Bacillus huizhouensis" Deep_isolate
+lane821s003040 Trp 0 L-Tryptophan F "Conifer forest" F3 1 1 0 "F3A 106* Bacillus huizhouensis" Deep_isolate
+lane821s003040 Tyr 0 L-Tyrosine F "Conifer forest" F3 1 1 0 "F3A 106* Bacillus huizhouensis" Deep_isolate
+lane821s003040 Val 0 L-Valine F "Conifer forest" F3 1 1 0 "F3A 106* Bacillus huizhouensis" Deep_isolate
+lane821s003041 Ala 0 L-Alanine G Meadow Meadow_2 1 0 0 "M20A 165* Lysinibacillus pakistanensis" Deep_isolate
+lane821s003041 Arg 0 L-Arginine G Meadow Meadow_2 1 0 0 "M20A 165* Lysinibacillus pakistanensis" Deep_isolate
+lane821s003041 Asp 0 "L-Aspartic acid" G Meadow Meadow_2 1 0 0 "M20A 165* Lysinibacillus pakistanensis" Deep_isolate
+lane821s003041 Asn 0 L-Asparagine G Meadow Meadow_2 1 0 0 "M20A 165* Lysinibacillus pakistanensis" Deep_isolate
+lane821s003041 Cys 0 L-Cysteine G Meadow Meadow_2 1 0 0 "M20A 165* Lysinibacillus pakistanensis" Deep_isolate
+lane821s003041 Glu 0 L-Glutamate G Meadow Meadow_2 1 0 0 "M20A 165* Lysinibacillus pakistanensis" Deep_isolate
+lane821s003041 Gln 0 L-Glutamine G Meadow Meadow_2 1 0 0 "M20A 165* Lysinibacillus pakistanensis" Deep_isolate
+lane821s003041 Gly 0 Glycine G Meadow Meadow_2 1 0 0 "M20A 165* Lysinibacillus pakistanensis" Deep_isolate
+lane821s003041 His 0 L-Histidine G Meadow Meadow_2 1 0 0 "M20A 165* Lysinibacillus pakistanensis" Deep_isolate
+lane821s003041 Ile 0 L-Isoleucine G Meadow Meadow_2 1 0 0 "M20A 165* Lysinibacillus pakistanensis" Deep_isolate
+lane821s003041 Leu 0 L-Leucine G Meadow Meadow_2 1 0 0 "M20A 165* Lysinibacillus pakistanensis" Deep_isolate
+lane821s003041 Lys 0 L-Lysine G Meadow Meadow_2 1 0 0 "M20A 165* Lysinibacillus pakistanensis" Deep_isolate
+lane821s003041 Met 0 L-Methionine G Meadow Meadow_2 1 0 0 "M20A 165* Lysinibacillus pakistanensis" Deep_isolate
+lane821s003041 Phe 0 L-Phenylalanine G Meadow Meadow_2 1 0 0 "M20A 165* Lysinibacillus pakistanensis" Deep_isolate
+lane821s003041 Pro 0 L-Proline G Meadow Meadow_2 1 0 0 "M20A 165* Lysinibacillus pakistanensis" Deep_isolate
+lane821s003041 Ser 0 L-Serine G Meadow Meadow_2 1 0 0 "M20A 165* Lysinibacillus pakistanensis" Deep_isolate
+lane821s003041 Thr 0 L-Threonine G Meadow Meadow_2 1 0 0 "M20A 165* Lysinibacillus pakistanensis" Deep_isolate
+lane821s003041 Trp 0 L-Tryptophan G Meadow Meadow_2 1 0 0 "M20A 165* Lysinibacillus pakistanensis" Deep_isolate
+lane821s003041 Tyr 0 L-Tyrosine G Meadow Meadow_2 1 0 0 "M20A 165* Lysinibacillus pakistanensis" Deep_isolate
+lane821s003041 Val 1 L-Valine G Meadow Meadow_2 1 0 0 "M20A 165* Lysinibacillus pakistanensis" Deep_isolate
+lane821s003042 Ala 1 L-Alanine H "Conifer forest" F3 1 0 1 "F3A 18 Doesn<d5>t work" Deep_isolate
+lane821s003042 Arg 1 L-Arginine H "Conifer forest" F3 1 0 1 "F3A 18 Doesn<d5>t work" Deep_isolate
+lane821s003042 Asp 1 "L-Aspartic acid" H "Conifer forest" F3 1 0 1 "F3A 18 Doesn<d5>t work" Deep_isolate
+lane821s003042 Asn 1 L-Asparagine H "Conifer forest" F3 1 0 1 "F3A 18 Doesn<d5>t work" Deep_isolate
+lane821s003042 Cys 1 L-Cysteine H "Conifer forest" F3 1 0 1 "F3A 18 Doesn<d5>t work" Deep_isolate
+lane821s003042 Glu 1 L-Glutamate H "Conifer forest" F3 1 0 1 "F3A 18 Doesn<d5>t work" Deep_isolate
+lane821s003042 Gln 1 L-Glutamine H "Conifer forest" F3 1 0 1 "F3A 18 Doesn<d5>t work" Deep_isolate
+lane821s003042 Gly 1 Glycine H "Conifer forest" F3 1 0 1 "F3A 18 Doesn<d5>t work" Deep_isolate
+lane821s003042 His 1 L-Histidine H "Conifer forest" F3 1 0 1 "F3A 18 Doesn<d5>t work" Deep_isolate
+lane821s003042 Ile 1 L-Isoleucine H "Conifer forest" F3 1 0 1 "F3A 18 Doesn<d5>t work" Deep_isolate
+lane821s003042 Leu 1 L-Leucine H "Conifer forest" F3 1 0 1 "F3A 18 Doesn<d5>t work" Deep_isolate
+lane821s003042 Lys 1 L-Lysine H "Conifer forest" F3 1 0 1 "F3A 18 Doesn<d5>t work" Deep_isolate
+lane821s003042 Met 1 L-Methionine H "Conifer forest" F3 1 0 1 "F3A 18 Doesn<d5>t work" Deep_isolate
+lane821s003042 Phe 1 L-Phenylalanine H "Conifer forest" F3 1 0 1 "F3A 18 Doesn<d5>t work" Deep_isolate
+lane821s003042 Pro 1 L-Proline H "Conifer forest" F3 1 0 1 "F3A 18 Doesn<d5>t work" Deep_isolate
+lane821s003042 Ser 1 L-Serine H "Conifer forest" F3 1 0 1 "F3A 18 Doesn<d5>t work" Deep_isolate
+lane821s003042 Thr 1 L-Threonine H "Conifer forest" F3 1 0 1 "F3A 18 Doesn<d5>t work" Deep_isolate
+lane821s003042 Trp 1 L-Tryptophan H "Conifer forest" F3 1 0 1 "F3A 18 Doesn<d5>t work" Deep_isolate
+lane821s003042 Tyr 1 L-Tyrosine H "Conifer forest" F3 1 0 1 "F3A 18 Doesn<d5>t work" Deep_isolate
+lane821s003042 Val 1 L-Valine H "Conifer forest" F3 1 0 1 "F3A 18 Doesn<d5>t work" Deep_isolate
+lane821s003043 Ala 0 L-Alanine I Meadow Meadow_1 1 1 1 "M10B 12 Agromyces terreus" Deep_isolate
+lane821s003043 Arg 0 L-Arginine I Meadow Meadow_1 1 1 1 "M10B 12 Agromyces terreus" Deep_isolate
+lane821s003043 Asp 0 "L-Aspartic acid" I Meadow Meadow_1 1 1 1 "M10B 12 Agromyces terreus" Deep_isolate
+lane821s003043 Asn 0 L-Asparagine I Meadow Meadow_1 1 1 1 "M10B 12 Agromyces terreus" Deep_isolate
+lane821s003043 Cys 1 L-Cysteine I Meadow Meadow_1 1 1 1 "M10B 12 Agromyces terreus" Deep_isolate
+lane821s003043 Glu 0 L-Glutamate I Meadow Meadow_1 1 1 1 "M10B 12 Agromyces terreus" Deep_isolate
+lane821s003043 Gln 0 L-Glutamine I Meadow Meadow_1 1 1 1 "M10B 12 Agromyces terreus" Deep_isolate
+lane821s003043 Gly 0 Glycine I Meadow Meadow_1 1 1 1 "M10B 12 Agromyces terreus" Deep_isolate
+lane821s003043 His 1 L-Histidine I Meadow Meadow_1 1 1 1 "M10B 12 Agromyces terreus" Deep_isolate
+lane821s003043 Ile 0 L-Isoleucine I Meadow Meadow_1 1 1 1 "M10B 12 Agromyces terreus" Deep_isolate
+lane821s003043 Leu 1 L-Leucine I Meadow Meadow_1 1 1 1 "M10B 12 Agromyces terreus" Deep_isolate
+lane821s003043 Lys 0 L-Lysine I Meadow Meadow_1 1 1 1 "M10B 12 Agromyces terreus" Deep_isolate
+lane821s003043 Met 0 L-Methionine I Meadow Meadow_1 1 1 1 "M10B 12 Agromyces terreus" Deep_isolate
+lane821s003043 Phe 1 L-Phenylalanine I Meadow Meadow_1 1 1 1 "M10B 12 Agromyces terreus" Deep_isolate
+lane821s003043 Pro 0 L-Proline I Meadow Meadow_1 1 1 1 "M10B 12 Agromyces terreus" Deep_isolate
+lane821s003043 Ser 0 L-Serine I Meadow Meadow_1 1 1 1 "M10B 12 Agromyces terreus" Deep_isolate
+lane821s003043 Thr 1 L-Threonine I Meadow Meadow_1 1 1 1 "M10B 12 Agromyces terreus" Deep_isolate
+lane821s003043 Trp 1 L-Tryptophan I Meadow Meadow_1 1 1 1 "M10B 12 Agromyces terreus" Deep_isolate
+lane821s003043 Tyr 0 L-Tyrosine I Meadow Meadow_1 1 1 1 "M10B 12 Agromyces terreus" Deep_isolate
+lane821s003043 Val 1 L-Valine I Meadow Meadow_1 1 1 1 "M10B 12 Agromyces terreus" Deep_isolate
+lane821s003044 Ala 1 L-Alanine K "Conifer forest" F9 1 0 0 "F9C 200 Bosea vestrisii / Bosea eneae" Deep_isolate
+lane821s003044 Arg 1 L-Arginine K "Conifer forest" F9 1 0 0 "F9C 200 Bosea vestrisii / Bosea eneae" Deep_isolate
+lane821s003044 Asp 0 "L-Aspartic acid" K "Conifer forest" F9 1 0 0 "F9C 200 Bosea vestrisii / Bosea eneae" Deep_isolate
+lane821s003044 Asn 0 L-Asparagine K "Conifer forest" F9 1 0 0 "F9C 200 Bosea vestrisii / Bosea eneae" Deep_isolate
+lane821s003044 Cys 1 L-Cysteine K "Conifer forest" F9 1 0 0 "F9C 200 Bosea vestrisii / Bosea eneae" Deep_isolate
+lane821s003044 Glu 1 L-Glutamate K "Conifer forest" F9 1 0 0 "F9C 200 Bosea vestrisii / Bosea eneae" Deep_isolate
+lane821s003044 Gln 1 L-Glutamine K "Conifer forest" F9 1 0 0 "F9C 200 Bosea vestrisii / Bosea eneae" Deep_isolate
+lane821s003044 Gly 0 Glycine K "Conifer forest" F9 1 0 0 "F9C 200 Bosea vestrisii / Bosea eneae" Deep_isolate
+lane821s003044 His 0 L-Histidine K "Conifer forest" F9 1 0 0 "F9C 200 Bosea vestrisii / Bosea eneae" Deep_isolate
+lane821s003044 Ile 0 L-Isoleucine K "Conifer forest" F9 1 0 0 "F9C 200 Bosea vestrisii / Bosea eneae" Deep_isolate
+lane821s003044 Leu 1 L-Leucine K "Conifer forest" F9 1 0 0 "F9C 200 Bosea vestrisii / Bosea eneae" Deep_isolate
+lane821s003044 Lys 0 L-Lysine K "Conifer forest" F9 1 0 0 "F9C 200 Bosea vestrisii / Bosea eneae" Deep_isolate
+lane821s003044 Met 0 L-Methionine K "Conifer forest" F9 1 0 0 "F9C 200 Bosea vestrisii / Bosea eneae" Deep_isolate
+lane821s003044 Phe 1 L-Phenylalanine K "Conifer forest" F9 1 0 0 "F9C 200 Bosea vestrisii / Bosea eneae" Deep_isolate
+lane821s003044 Pro 1 L-Proline K "Conifer forest" F9 1 0 0 "F9C 200 Bosea vestrisii / Bosea eneae" Deep_isolate
+lane821s003044 Ser 0 L-Serine K "Conifer forest" F9 1 0 0 "F9C 200 Bosea vestrisii / Bosea eneae" Deep_isolate
+lane821s003044 Thr 0 L-Threonine K "Conifer forest" F9 1 0 0 "F9C 200 Bosea vestrisii / Bosea eneae" Deep_isolate
+lane821s003044 Trp 0 L-Tryptophan K "Conifer forest" F9 1 0 0 "F9C 200 Bosea vestrisii / Bosea eneae" Deep_isolate
+lane821s003044 Tyr 0 L-Tyrosine K "Conifer forest" F9 1 0 0 "F9C 200 Bosea vestrisii / Bosea eneae" Deep_isolate
+lane821s003044 Val 0 L-Valine K "Conifer forest" F9 1 0 0 "F9C 200 Bosea vestrisii / Bosea eneae" Deep_isolate
+lane121s003952 Ala 0 L-Alanine 2B NA NA NA NA NA NA Isolate
+lane121s003952 Arg 0 L-Arginine 2B NA NA NA NA NA NA Isolate
+lane121s003952 Asp 0 "L-Aspartic acid" 2B NA NA NA NA NA NA Isolate
+lane121s003952 Asn 0 L-Asparagine 2B NA NA NA NA NA NA Isolate
+lane121s003952 Cys 0 L-Cysteine 2B NA NA NA NA NA NA Isolate
+lane121s003952 Glu 0 L-Glutamate 2B NA NA NA NA NA NA Isolate
+lane121s003952 Gln 0 L-Glutamine 2B NA NA NA NA NA NA Isolate
+lane121s003952 Gly 0 Glycine 2B NA NA NA NA NA NA Isolate
+lane121s003952 His 0 L-Histidine 2B NA NA NA NA NA NA Isolate
+lane121s003952 Ile 1 L-Isoleucine 2B NA NA NA NA NA NA Isolate
+lane121s003952 Leu 1 L-Leucine 2B NA NA NA NA NA NA Isolate
+lane121s003952 Lys 0 L-Lysine 2B NA NA NA NA NA NA Isolate
+lane121s003952 Met 0 L-Methionine 2B NA NA NA NA NA NA Isolate
+lane121s003952 Phe 0 L-Phenylalanine 2B NA NA NA NA NA NA Isolate
+lane121s003952 Pro 0 L-Proline 2B NA NA NA NA NA NA Isolate
+lane121s003952 Ser 0 L-Serine 2B NA NA NA NA NA NA Isolate
+lane121s003952 Thr 0 L-Threonine 2B NA NA NA NA NA NA Isolate
+lane121s003952 Trp 0 L-Tryptophan 2B NA NA NA NA NA NA Isolate
+lane121s003952 Tyr 0 L-Tyrosine 2B NA NA NA NA NA NA Isolate
+lane121s003952 Val 1 L-Valine 2B NA NA NA NA NA NA Isolate
+lane121s003965 Ala 0 L-Alanine 3II "Conifer forest" F3 NA NA NA "F3C 189 did not work" Isolate
+lane121s003965 Arg 0 L-Arginine 3II "Conifer forest" F3 NA NA NA "F3C 189 did not work" Isolate
+lane121s003965 Asp 0 "L-Aspartic acid" 3II "Conifer forest" F3 NA NA NA "F3C 189 did not work" Isolate
+lane121s003965 Asn 0 L-Asparagine 3II "Conifer forest" F3 NA NA NA "F3C 189 did not work" Isolate
+lane121s003965 Cys 0 L-Cysteine 3II "Conifer forest" F3 NA NA NA "F3C 189 did not work" Isolate
+lane121s003965 Glu 0 L-Glutamate 3II "Conifer forest" F3 NA NA NA "F3C 189 did not work" Isolate
+lane121s003965 Gln 0 L-Glutamine 3II "Conifer forest" F3 NA NA NA "F3C 189 did not work" Isolate
+lane121s003965 Gly 1 Glycine 3II "Conifer forest" F3 NA NA NA "F3C 189 did not work" Isolate
+lane121s003965 His 0 L-Histidine 3II "Conifer forest" F3 NA NA NA "F3C 189 did not work" Isolate
+lane121s003965 Ile 1 L-Isoleucine 3II "Conifer forest" F3 NA NA NA "F3C 189 did not work" Isolate
+lane121s003965 Leu 0 L-Leucine 3II "Conifer forest" F3 NA NA NA "F3C 189 did not work" Isolate
+lane121s003965 Lys 0 L-Lysine 3II "Conifer forest" F3 NA NA NA "F3C 189 did not work" Isolate
+lane121s003965 Met 1 L-Methionine 3II "Conifer forest" F3 NA NA NA "F3C 189 did not work" Isolate
+lane121s003965 Phe 0 L-Phenylalanine 3II "Conifer forest" F3 NA NA NA "F3C 189 did not work" Isolate
+lane121s003965 Pro 0 L-Proline 3II "Conifer forest" F3 NA NA NA "F3C 189 did not work" Isolate
+lane121s003965 Ser 1 L-Serine 3II "Conifer forest" F3 NA NA NA "F3C 189 did not work" Isolate
+lane121s003965 Thr 0 L-Threonine 3II "Conifer forest" F3 NA NA NA "F3C 189 did not work" Isolate
+lane121s003965 Trp 0 L-Tryptophan 3II "Conifer forest" F3 NA NA NA "F3C 189 did not work" Isolate
+lane121s003965 Tyr 0 L-Tyrosine 3II "Conifer forest" F3 NA NA NA "F3C 189 did not work" Isolate
+lane121s003965 Val 0 L-Valine 3II "Conifer forest" F3 NA NA NA "F3C 189 did not work" Isolate
+lane122s000527 Ala 0 L-Alanine 8V "Conifer forest" F5 NA NA NA "F5A 29 Rhodanobacter caeni" Isolate
+lane122s000527 Arg 0 L-Arginine 8V "Conifer forest" F5 NA NA NA "F5A 29 Rhodanobacter caeni" Isolate
+lane122s000527 Asp 0 "L-Aspartic acid" 8V "Conifer forest" F5 NA NA NA "F5A 29 Rhodanobacter caeni" Isolate
+lane122s000527 Asn 0 L-Asparagine 8V "Conifer forest" F5 NA NA NA "F5A 29 Rhodanobacter caeni" Isolate
+lane122s000527 Cys 0 L-Cysteine 8V "Conifer forest" F5 NA NA NA "F5A 29 Rhodanobacter caeni" Isolate
+lane122s000527 Glu 0 L-Glutamate 8V "Conifer forest" F5 NA NA NA "F5A 29 Rhodanobacter caeni" Isolate
+lane122s000527 Gln 0 L-Glutamine 8V "Conifer forest" F5 NA NA NA "F5A 29 Rhodanobacter caeni" Isolate
+lane122s000527 Gly 1 Glycine 8V "Conifer forest" F5 NA NA NA "F5A 29 Rhodanobacter caeni" Isolate
+lane122s000527 His 0 L-Histidine 8V "Conifer forest" F5 NA NA NA "F5A 29 Rhodanobacter caeni" Isolate
+lane122s000527 Ile 0 L-Isoleucine 8V "Conifer forest" F5 NA NA NA "F5A 29 Rhodanobacter caeni" Isolate
+lane122s000527 Leu 1 L-Leucine 8V "Conifer forest" F5 NA NA NA "F5A 29 Rhodanobacter caeni" Isolate
+lane122s000527 Lys 0 L-Lysine 8V "Conifer forest" F5 NA NA NA "F5A 29 Rhodanobacter caeni" Isolate
+lane122s000527 Met 0 L-Methionine 8V "Conifer forest" F5 NA NA NA "F5A 29 Rhodanobacter caeni" Isolate
+lane122s000527 Phe 0 L-Phenylalanine 8V "Conifer forest" F5 NA NA NA "F5A 29 Rhodanobacter caeni" Isolate
+lane122s000527 Pro 0 L-Proline 8V "Conifer forest" F5 NA NA NA "F5A 29 Rhodanobacter caeni" Isolate
+lane122s000527 Ser 0 L-Serine 8V "Conifer forest" F5 NA NA NA "F5A 29 Rhodanobacter caeni" Isolate
+lane122s000527 Thr 1 L-Threonine 8V "Conifer forest" F5 NA NA NA "F5A 29 Rhodanobacter caeni" Isolate
+lane122s000527 Trp 0 L-Tryptophan 8V "Conifer forest" F5 NA NA NA "F5A 29 Rhodanobacter caeni" Isolate
+lane122s000527 Tyr 0 L-Tyrosine 8V "Conifer forest" F5 NA NA NA "F5A 29 Rhodanobacter caeni" Isolate
+lane122s000527 Val 0 L-Valine 8V "Conifer forest" F5 NA NA NA "F5A 29 Rhodanobacter caeni" Isolate

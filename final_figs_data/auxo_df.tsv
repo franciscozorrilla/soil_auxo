@@ -1,0 +1,5 @@
+combo_num	combination	count_total_comp	count_combo_comp	percent_comp	count_total_lab	count_combo_lab	percent_lab
+1	single	58	17	29.31034483	5	16	31.25
+2	pairwise	3305	2153	65.14372163	53	120	44.16666667
+3	triplet	3363	2912	86.58935474	68	120	56.66666667
+4	quadruplet	3363	3199	95.12340172	90	120	75
