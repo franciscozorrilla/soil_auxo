@@ -1,14 +1,13 @@
 # 🧫 soil_auxo
 
-Repository with code & data for the publication *Obligate cross-feeding of essential metabolites is common in soil microbial communities*.
+Repository with code & data for the publication *Obligate cross-feeding of metabolites is common in soil microbial communities*.
 
 ## 🖋️ Citation
 
 If you use this resource, please cite:
 
- > Yousif, G.\*, Zorrilla, F.\*, Dash, S. et al. Obligate cross-feeding of essential metabolites is common in soil microbial communities. Manuscript under preparation (2024).
-
-\* These authors contributed equally.
+ > Obligate cross-feeding of metabolites is common in soil microbial communities. Ghada Yousif*, Francisco Zorrilla*, Swagatika Dash, Leonardo Oña, Aditi Shekhar, Samir Giri, Rui Guan, Sharvari Harshe, Michael Itermann, Daphne Welter, Vladimir Benes, Kiran R. Patil, Christian Kost
+bioRxiv 2025.01.29.635426; doi: https://doi.org/10.1101/2025.01.29.635426 
 
 ## 🧬 Abstract
 
@@ -16,7 +15,7 @@ Many microorganisms are refractory to laboratory cultivation. One possible expla
 
 ## 🧪 Usage & description
 
-This repo contains supplementary files, sequences, and metabolic models associated with isolates and metagenomic samples from our study. Raw sequences have been desposited in the [European Nucleotide Archive](https://www.ebi.ac.uk/ena/browser/home) (ENA) under accession code PRJEB80563. 
+This repo contains supplementary files, sequences, and metabolic models associated with isolates and metagenomic samples from our study. Raw sequences have been desposited in the [European Nucleotide Archive](https://www.ebi.ac.uk/ena/browser/home) (ENA) under accession code [PRJEB80563](https://www.ebi.ac.uk/ena/browser/view/PRJEB80563). 
 
 Clone repo:
 
