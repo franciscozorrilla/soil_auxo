@@ -4,7 +4,7 @@ Repository with code & data for the publication *Obligate cross-feeding of metab
 
 ### System requirements
 
-To reproduce the analysis starting from raw sequencing data, you will need access to a high performance computer cluster. To reproduce plots starting from intermediate files, a standard laptop or desktop is required.
+To reproduce the analysis starting from raw sequencing data, you will need access to a high performance computer cluster and metaGEM v1.0.5. To reproduce plots starting from intermediate files, a standard laptop or desktop is required with Rstudio 2023.06.0+421. The complete list of software tools used and their version can be found in the methods section of the [manuscript](https://www.biorxiv.org/content/10.1101/2025.01.29.635426v1.full).
 
 ### Installation guide
 
