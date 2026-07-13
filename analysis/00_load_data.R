@@ -190,5 +190,12 @@ isfinder_hits %>% group_by(genome,query) %>% summarise(count=n()) %>% pivot_wide
 # total annotated genes per genome, normalized per Mbp (metabolic_modeling_soil.Rmd:378)
 eggnog %>% group_by(genome) %>% summarize(count=n()) %>% left_join(checkm) %>% mutate(count_norm=1000000*count/size) -> genes_count
 
+# geNomad plasmid/virus predictions (used by the Supp Fig 5 MGE analysis in both notebooks)
+# (metabolic_modeling_soil.Rmd:1106-1108, 1167-1169)
+genomad_plasmid_genes = read.delim("data/annotations/genomad/cat_mags_plasmid_genes.tsv")
+genomad_plasmid = read.delim("data/annotations/genomad/cat_mags_plasmid_summary.tsv") %>% mutate(Sample_ID=gsub("_.*$","",seq_name),genome=gsub("^([^_]+_[^_]+).*", "\\1",seq_name)) %>% left_join(.,metadata)
+genomad_virus_genes = read.delim("data/annotations/genomad/cat_mags_virus_genes.tsv")
+genomad_virus = read.delim("data/annotations/genomad/cat_mags_virus_summary.tsv") %>% mutate(Sample_ID=gsub("_.*$","",seq_name),genome=gsub("^([^_]+_[^_]+).*", "\\1",seq_name)) %>% left_join(.,metadata)
+
 # differentially abundant gene set (phylogenetic.Rmd:288) -- committed result
 diff_genes = read.delim("data/figure_data/diff_genes.tsv")

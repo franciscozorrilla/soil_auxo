@@ -19,6 +19,8 @@ library(caret)
 library(rstatix)
 library(ggpubr)
 library(ggrepel)
+library(scales)
+library(factoextra)
 library(tidyverse)
 
 # Load the shared data objects (reads the committed data under data/ and builds the objects
@@ -452,7 +454,7 @@ ggarrange(bxp4+theme(text=element_text(size=18),panel.border = element_blank(),p
 ggsave("outputs/fig4_final.png",height = 6,width = 10)
 ggsave("outputs/fig4_final.pdf",height = 6,width = 10)
 
-pdf("outputs/fig4_final.pdf",height = 6,width = 10,family = "arial")
+pdf("outputs/fig4_final.pdf",height = 6,width = 10,family = "sans")
 
 #######################################################################################################################################
 ################################################### STATISTICAL TESTS FOR RESULTS SECTION  ###################################################
