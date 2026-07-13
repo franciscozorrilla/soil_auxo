@@ -26,4 +26,6 @@ cores:
   gtdbtk: 8
 
 envs:
-  metagem: metagem                    # name of the metaGEM conda environment
+  metagem: metagem                    # metaGEM env: fastp, MEGAHIT, CarveMe, SMETANA, GTDB-Tk
+  shovill: shovill                    # Shovill single-isolate assembly env
+  drep: drep                          # dRep genome dereplication env

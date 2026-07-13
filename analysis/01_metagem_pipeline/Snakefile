@@ -72,7 +72,7 @@ rule smetana_global:
     shell:
         """
         # Activate metagem env
-        set +u;source activate carve151;set -u
+        set +u;source activate {config[envs][metagem]};set -u
 
         # Make sure we are in root folder
         cd {config[path][root]}
@@ -157,15 +157,15 @@ rule shovill:
         """
     shell:
         """
-        # load perl module & export var to workaround annoying perl errors
+        # load perl module to work around shovill perl errors (HPC-specific);
+        # if you still hit perl library errors, point PERL5LIB at your perl install
         module load perl/5.10.1
-        export PERL5LIB=/usr/local/Cluster-Apps/perl/5.10.1/bin/perl
-        
-        # manually set threads to 56
+
+        # thread count is HPC-specific; adjust for your system
         export OMP_NUM_THREADS=56
 
-        # Activate metagem environment
-        set +u;source activate shovill;set -u;
+        # Activate the shovill environment
+        set +u;source activate {config[envs][shovill]};set -u;
 
         # Make sure output folder exists
         mkdir -p {output}
@@ -202,8 +202,8 @@ rule drep_best:
         """
     shell:
         """     
-        # Activate metagem environment
-        set +u;source activate instrain;set -u;
+        # Activate the dRep environment
+        set +u;source activate {config[envs][drep]};set -u;
 
         # Make sure output folder exists
         mkdir -p {output}
