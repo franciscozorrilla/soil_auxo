@@ -190,6 +190,19 @@ isfinder_hits %>% group_by(genome,query) %>% summarise(count=n()) %>% pivot_wide
 # total annotated genes per genome, normalized per Mbp (metabolic_modeling_soil.Rmd:378)
 eggnog %>% group_by(genome) %>% summarize(count=n()) %>% left_join(checkm) %>% mutate(count_norm=1000000*count/size) -> genes_count
 
+# insertion sequences intersected with eggNOG annotations, per genome (phylogenetic.Rmd:511-525)
+isfinder_hits_filt = isfinder_hits %>% filter(seqid>=40)
+eggnog %>% unite("gene",genome:query) %>%
+  filter(gene %in% isfinder_hits_filt$reference) %>%
+  mutate(genome=gsub("^([^_]*_[^_]*)_.*$", "\\1", gene),gene=gsub("^([^_]*_[^_]*)_","",gene))%>%
+  relocate(genome,gene) %>% group_by(genome) %>% dplyr::summarise(count=n()) %>%
+  full_join(.,checkm,by="genome") %>% mutate_at("count", ~replace_na(.,0)) -> eggnog_IS_count
+eggnog %>% unite("gene",genome:query) %>%
+  filter(gene %in% isfinder_hits_filt$reference) %>%
+  mutate(genome=gsub("^([^_]*_[^_]*)_.*$", "\\1", gene),gene=gsub("^([^_]*_[^_]*)_","",gene))%>%  filter(grepl("E",COG_category)) %>%
+  relocate(genome,gene) %>% group_by(genome) %>% dplyr::summarise(count=n()) %>%
+  full_join(.,checkm,by="genome") %>% mutate_at("count", ~replace_na(.,0)) -> eggnog_IS_AA_count
+
 # geNomad plasmid/virus predictions (used by the Supp Fig 5 MGE analysis in both notebooks)
 # (metabolic_modeling_soil.Rmd:1106-1108, 1167-1169)
 genomad_plasmid_genes = read.delim("data/annotations/genomad/cat_mags_plasmid_genes.tsv")

@@ -239,6 +239,12 @@ eggnog %>% mutate(cog=gsub("@.*$","",eggNOG_OGs)) %>% group_by(genome,cog) %>% s
 
 egg_sum_cog %>% ungroup() %>% dplyr::select(cog) %>% unique() -> cog_list
 
+# The per-gene phyloglm loop below is slow: a bootstrapped phyloglm for each of ~10,000 genes
+# (> 10 min). By default we load the committed result (data/figure_data/genes_plr.tsv); set
+# recompute_genes_plr <- TRUE to re-run the loop from scratch.
+recompute_genes_plr <- FALSE
+
+if (recompute_genes_plr) {
 results <- data.frame(
   gene = character(),
   p.value = numeric(),
@@ -263,7 +269,7 @@ phyloglm(
     formula = AAs_auxo ~ count, # use presence for binary, count for copy number
     data = data ,
     phy = scaled_tree, method = "logistic_MPLE",boot = 100) -> test
-    
+
 sum_test = summary(test)
     #print(gene)
     #print(test$coefficients[2,4])
@@ -273,12 +279,12 @@ sum_test = summary(test)
 
 results$p.adj <- p.adjust(results$p.value, method = "BH")
 
-write_delim(results,"data/figure_data/genes_plr.tsv")
-
-# The per-gene loop above is slow (a bootstrapped phyloglm per gene). To reproduce the
-# downstream summaries and Supplementary Fig. 11 without re-running it, load the committed
-# results instead:
-# results <- read.delim("data/figure_data/genes_plr.tsv")
+# regenerated copy goes to outputs/ so the committed source-of-truth is not overwritten
+write_delim(results,"outputs/genes_plr.tsv")
+} else {
+# load the committed per-gene phyloglm result (space-delimited)
+results <- read.table("data/figure_data/genes_plr.tsv", header = TRUE)
+}
 
 # results_backup = results
 

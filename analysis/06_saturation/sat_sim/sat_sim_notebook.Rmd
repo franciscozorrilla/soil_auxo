@@ -11,6 +11,7 @@ Try executing this chunk by clicking the *Run* button within the chunk or by pla
 # This notebook uses the tidyverse and the shared `auxolab` and `metadata` objects built from
 # the committed data under data/. Run all notebooks from the repository root.
 library(tidyverse)
+library(ggpubr)
 source("analysis/00_load_data.R")
 ```
 
@@ -21,7 +22,7 @@ source("analysis/00_load_data.R")
 
 # create data structure with auxo measurements and sample metadata
 auxo_data = left_join(auxolab,metadata,by="Sample_ID") %>% filter(metabolite!="AAs_auxo",metabolite!="Nucleotide_auxo",metabolite!="Vitamin_auxo") %>% mutate(auxo_lab = as.numeric(auxo_lab)-1)
-write_delim(auxo_data,"analysis/06_saturation/sat_sim/auxo_data.tsv")
+write_delim(auxo_data,"outputs/auxo_data.tsv")
 
 # create list of unique sample IDs for randomly creating n-wise combinations
 samples = auxo_data %>% select(Sample_ID) %>% unique()
@@ -32,7 +33,7 @@ ggplot(one,aes(y=count,x=1))+ geom_point() + geom_boxplot(alpha=0.5,outlier.alph
 
 # pairwise species, go to bash for computing count
 two = data.frame(samples$Sample_ID,samples$Sample_ID) %>% expand(samples.Sample_ID,samples.Sample_ID.1) %>% rename(Sample_ID1=samples.Sample_ID,Sample_ID2=samples.Sample_ID.1) %>% filter(Sample_ID1!=Sample_ID2)
-write_delim(two,"analysis/06_saturation/sat_sim/pairwise_samples.tsv")
+write_delim(two,"outputs/pairwise_samples.tsv")
 
 ## run loop in bash and read in results
 #while read combo;do 
@@ -54,7 +55,7 @@ pairwise_auxo = read.delim("analysis/06_saturation/sat_sim/pairwise_auxo.tsv")
 # triplet species sampled down to same as pairwise, go to bash for computing count
 set.seed(42)  # reproducibility: fixed seed for bootstrap/sampling
 three = data.frame(samples$Sample_ID,samples$Sample_ID,samples$Sample_ID) %>% expand(samples.Sample_ID,samples.Sample_ID.1,samples.Sample_ID.2) %>% rename(Sample_ID1=samples.Sample_ID,Sample_ID2=samples.Sample_ID.1,Sample_ID3=samples.Sample_ID.2) %>% filter(Sample_ID1!=Sample_ID2,Sample_ID1!=Sample_ID3,Sample_ID2!=Sample_ID3) %>% sample_n(3364)
-write_delim(three,"analysis/06_saturation/sat_sim/triplet_samples.tsv")
+write_delim(three,"outputs/triplet_samples.tsv")
 
 ## run loop in bash and read in results
 #while read combo;do 
@@ -78,7 +79,7 @@ triplet_auxo = read.delim("analysis/06_saturation/sat_sim/triplet_auxo.tsv")
 # quadruplet species sampled down to same as pairwise, go to bash for computing count
 set.seed(42)  # reproducibility: fixed seed for bootstrap/sampling
 four = data.frame(samples$Sample_ID,samples$Sample_ID,samples$Sample_ID,samples$Sample_ID) %>% expand(samples.Sample_ID,samples.Sample_ID.1,samples.Sample_ID.2,samples.Sample_ID.3) %>% rename(Sample_ID1=samples.Sample_ID,Sample_ID2=samples.Sample_ID.1,Sample_ID3=samples.Sample_ID.2,Sample_ID4=samples.Sample_ID.3) %>% filter(Sample_ID1!=Sample_ID2,Sample_ID1!=Sample_ID3,Sample_ID1!=Sample_ID4,Sample_ID2!=Sample_ID3,Sample_ID2!=Sample_ID4,Sample_ID3!=Sample_ID4) %>% sample_n(3364)
-write_delim(four,"analysis/06_saturation/sat_sim/quad_samples.tsv")
+write_delim(four,"outputs/quad_samples.tsv")
 
 ## run loop in bash and read in results
 #while read combo;do 
@@ -105,7 +106,7 @@ quad_auxo = read.delim("analysis/06_saturation/sat_sim/quad_auxo.tsv")
 # penta species sampled down to same as pairwise, go to bash for computing count, 5 doesnt want to expand :( 
 set.seed(42)  # reproducibility: fixed seed for bootstrap/sampling
 five = data.frame(samples$Sample_ID,samples$Sample_ID,samples$Sample_ID,samples$Sample_ID,samples$Sample_ID) %>% expand(Sample_ID,Sample_ID.1,Sample_ID.2,Sample_ID.3,Sample_ID.4) %>% filter(Sample_ID1!=Sample_ID2,Sample_ID1!=Sample_ID3,Sample_ID1!=Sample_ID4,Sample_ID1!=Sample_ID5,Sample_ID2!=Sample_ID3,Sample_ID2!=Sample_ID4,Sample_ID2!=Sample_ID5,Sample_ID3!=Sample_ID4,Sample_ID3!=Sample_ID5,Sample_ID4!=Sample_ID5) %>% sample_n(3364)
-write_delim(five,"analysis/06_saturation/sat_sim/penta_samples.tsv")
+write_delim(five,"outputs/penta_samples.tsv")
 
 ## run loop in bash and read in results
 #while read combo;do 
@@ -145,7 +146,7 @@ ggplot(auxo_sat,aes(x=combination,y=count,fill=combination)) + geom_boxplot()  +
 ggsave("outputs/auxo_sat.pdf",height = 6,width = 8)
 ggsave("outputs/auxo_sat.png",height = 6,width = 8)
 
-write_delim(auxo_sat%>%filter(combination!="quintuplet"),"data/figure_data/auxo_sat_data.tsv",delim = "\t")
+write_delim(auxo_sat%>%filter(combination!="quintuplet"),"outputs/auxo_sat_data.tsv",delim = "\t")
 
 
 #recreate plot in terms of % surviving coms
@@ -160,7 +161,7 @@ ggscatter(auxo_df,x="combo_num",y="percent",add="reg.line",conf.int = FALSE) + s
 ggsave("outputs/auxo_sat.png",height=3,width = 3)
 ggsave("outputs/auxo_sat.pdf",height=6,width = 6)
 
-write_delim(auxo_df,delim="\t",quote = "none",file = "data/figure_data/auxo_df.tsv")
+write_delim(auxo_df,delim="\t",quote = "none",file = "outputs/auxo_df.tsv")
 
 read.delim("data/figure_data/auxo_df.tsv") -> auxo_df
 
