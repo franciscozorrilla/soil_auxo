@@ -717,9 +717,12 @@ memote = read.delim("data/gem_curation/memote_summary.tsv") %>%
 
 #remove duplicate bigg compounds: name = 1-deoxy-1-(N6-lysino)-D-fructose,DL-Glutamate,Hydrochloric acid,N-acetyl-seryl-aspartate
 
+if (FALSE) {  # --- Exploratory sensitivity analysis using lenient auxotrophy-call variants
+              #     (not a published figure; kept for reference). The published Fig 3 uses the
+              #     default calls. Set to TRUE to run. ---
 ### Load auxotophy prediction based on reframed + MMAB informed gapfilled gems, these results were re-generated and tested a
 ### a few different parameters of auxo prediciton min_abs_growth and min_rel_growth
-auxopred5 = read.delim("archive/auxopred_max_lenient.tsv") %>% 
+auxopred5 = read.delim("archive/auxopred_max_lenient.tsv") %>%
     mutate(present=1) %>% filter(metabolite!="") %>%
     pivot_wider(names_from = "metabolite",values_from = "present",values_fill = 0) %>% 
     rename(genome=model) %>%
@@ -949,6 +952,7 @@ confusionMatrix(auxo_lane821s003037$auxo_model,auxo_lane821s003037$auxo_lab,mode
 
 auxo_lane821s003042 = auxo %>% filter(Sample_ID=="lane821s003042")
 confusionMatrix(auxo_lane821s003042$auxo_model,auxo_lane821s003042$auxo_lab,mode="everything",positive = "1")
+}  # --- end exploratory sensitivity analysis ---
 
 ```
 
@@ -1011,8 +1015,9 @@ gprs %>% filter(grepl("bracnhed",database_links,ignore.case = TRUE)) %>% View()
 
 
 
-```{r}
-
+```{r eval=FALSE}
+# Exploratory gene-synteny visualisation (not a published figure); reads a non-committed
+# WiDb.csv, so it is shown but not evaluated.
 library(gggenes)
 
 # subsample using isolates to test
@@ -1039,8 +1044,9 @@ ggplot(example_genes, aes(xmin = start, xmax = end, y = molecule, fill = gene)) 
 ```
 
 
-```{r}
-
+```{r eval=FALSE}
+# Exploratory gene-synteny visualisation (not a published figure); reads a non-committed
+# WiDb.csv, so it is shown but not evaluated.
 library(gggenomes)
 
 # here we carry out a visualization analysis inspired by https://github.com/thackl/gggenomes/blob/master/data-raw/emales.org
@@ -1106,8 +1112,10 @@ gggenomes(emale_genes, emale_seqs_proper) +
 
 
 
-```{r}
-
+```{r eval=FALSE}
+# Exploratory: per-gene geNomad plasmid/virus enrichment and gene-synteny visualisation
+# (not a published figure; the published Supp Fig 5 MGE panels are in phylogenetic.Rmd). Shown
+# but not evaluated. The geNomad tables are loaded in analysis/00_load_data.R.
 genomad_plasmid_genes = read.delim("data/annotations/genomad/cat_mags_plasmid_genes.tsv")
 #genomad plasmids
 genomad_plasmid = read.delim("data/annotations/genomad/cat_mags_plasmid_summary.tsv") %>% mutate(Sample_ID=gsub("_.*$","",seq_name),genome=gsub("^([^_]+_[^_]+).*", "\\1",seq_name)) %>% left_join(.,metadata)
@@ -1269,8 +1277,9 @@ Histidine: "ko00340" or "M00026"
 Tryptophan, Phenylalanine, Tyrosine: "ko00350|ko00360|ko00380|ko00400" or "M00022|M00023|M00024|M00910|M00025|M00040"
 
 
-```{r}
-
+```{r eval=FALSE}
+# Exploratory: detailed per-isolate look at specific discrepant genomes (not a published
+# figure); reads per-isolate files that are not committed. Shown but not evaluated.
 # detailed look at lane821s003037_bin.1.p
 # viral contigs: NODES 9, 11, 19, 30
 # plasmid contigs: NODES 22, 29, 34, 35
@@ -1345,8 +1354,9 @@ Very interesting exploration above, do the same for the other problematic genome
 Below we take a histidine-centric view to compare the pathway strucutre and relationship with auxotrophy discrepancies.
 This and the trp operon are good examples to look at since they are some of the pathways known to be organized into operons!
  
-```{r}
-
+```{r eval=FALSE}
+# Exploratory: histidine- and lysine-centric gene-level look at auxotrophy discrepancies (not a
+# published figure); uses per-isolate gene files that are not committed. Shown but not evaluated.
 # overview of discrepancies only looking at histidine
 ggplot(auxo2 %>% filter(name=="L-Histidine") %>% left_join(.,metadata,by="Sample_ID") %>% mutate(state=ifelse(agree=="1" & auxo_lab=="1","TP",
                                                                               ifelse(agree=="1" & auxo_lab=="0","TN",
@@ -1708,8 +1718,12 @@ quad_auxo = read.delim("analysis/06_saturation/sat_sim/quad_auxo.tsv")
 
 # penta species sampled down to same as pairwise, go to bash for computing count, 5 doesnt want to expand :( 
 set.seed(42)  # reproducibility: fixed seed for bootstrap/sampling
+if (FALSE) {  # the 5-way (quintuplet) expansion references bare Sample_ID columns and does not run;
+              # it is not needed because penta_auxo is read from the committed file below and
+              # quintuplet is excluded from the published figure.
 five = data.frame(samples$Sample_ID,samples$Sample_ID,samples$Sample_ID,samples$Sample_ID,samples$Sample_ID) %>% expand(Sample_ID,Sample_ID.1,Sample_ID.2,Sample_ID.3,Sample_ID.4) %>% filter(Sample_ID1!=Sample_ID2,Sample_ID1!=Sample_ID3,Sample_ID1!=Sample_ID4,Sample_ID1!=Sample_ID5,Sample_ID2!=Sample_ID3,Sample_ID2!=Sample_ID4,Sample_ID2!=Sample_ID5,Sample_ID3!=Sample_ID4,Sample_ID3!=Sample_ID5,Sample_ID4!=Sample_ID5) %>% sample_n(3364)
 write_delim(five,"outputs/penta_samples.tsv")
+}
 
 ## run loop in bash and read in results
 #while read combo;do 

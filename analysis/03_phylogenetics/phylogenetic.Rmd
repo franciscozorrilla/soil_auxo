@@ -305,8 +305,8 @@ ggplot(diff_genes %>% rename(gene=Preferred_name) %>%
 
 AA_KEGG_modules_ID = c("M00020","M00018","M00021","M00338","M00609","M00017","M00019","M00535","M00570","M00432","M00016","M00525","M00526","M00527","M00030","M00433","M00031","M00844","M00845","M00015","M00026","M00022","M00023","M00024","M00910","M00025","M00040")
 
-# aa metabolism genes have less phylogenetic strucutre than other genes
-ggplot(results %>% 
+# aa metabolism genes have less phylogenetic strucutre than other genes -- exploratory (the aa_kegg gene->module map is not built here)
+if (FALSE) ggplot(results %>%
            mutate(phy_hl_median=log(2)/alpha,
                   phy_hl_low=log(2)/alpha_low,
                   phy_hl_high=log(2)/alpha_high) %>% left_join(aa_kegg %>% rename(gene=Preferred_name) %>% mutate(gene_cat=ifelse(is.na(KEGG_Module),"other","AA")))) + 
@@ -348,8 +348,8 @@ ggsave("outputs/sup_figS11.png",height=6, width = 6)
 #ggsave("outputs/sup_figS11.pdf",height=3.2, width = 5)
 #ggsave("outputs/sup_figS11.png",height=3.2, width = 5)
 
-# aa metabolism genes have lower unadjustd p val compared to other genes
-ggplot(results %>% 
+# aa metabolism genes have lower unadjustd p val compared to other genes -- exploratory (the aa_kegg gene->module map is not built here)
+if (FALSE) ggplot(results %>%
            mutate(phy_hl_median=log(2)/alpha,
                   phy_hl_low=log(2)/alpha_low,
                   phy_hl_high=log(2)/alpha_high) %>% left_join(aa_kegg %>% rename(gene=Preferred_name) %>% mutate(gene_cat=ifelse(is.na(KEGG_Module),"other","AA")))) + 
@@ -411,7 +411,9 @@ ggtree(tree,layout = "circular") %<+% gtdbtk  + geom_tiplab(aes(angle=angle),hju
 ```
 
 
-```{r}
+```{r eval=FALSE}
+# Exploratory: a superseded composite "new figure 3" draft that assembles panels from the other
+# notebooks (archived as newfig3/updated_fig3, not in the paper). Shown but not evaluated.
 # new figure 3 idea
 
 ggarrange(ggarrange(newfig3a,bxpIS,nrow=1,labels=c("A","B")),
@@ -570,6 +572,11 @@ bxpIS_anno + stat_pvalue_manual(stat.test, label = "p.adj.signif",size=5) + them
 ggsave("outputs/IS_all_boxplot.pdf",height = 4,width = 4)
 ggsave("outputs/IS_all_boxplot.png",height = 4,width = 4)
 
+# Supplementary Fig. 5 four-panel composite. Panels a (plasmid) and b (virus) are the bxp1/bxp2
+# boxplots built in ../04_genome_features/metabolic_modeling_soil.Rmd; panels c/d are built above.
+# The committed assembled figure is in figures/supp_fig_05/. This cross-notebook assembly is shown
+# but not evaluated here.
+if (FALSE) {
 #combine 2 above plots + mges_supfig
 
 ggarrange(bxp1+theme(text=element_text(size=18),panel.border = element_blank(),panel.grid.major = element_blank(),panel.grid.minor = element_blank(),axis.line = element_line(color = "black")),ggplot()+theme_void(),
@@ -583,6 +590,7 @@ ggsave("outputs/sup_fig5_final.png",height = 11,width = 10)
 
 ggsave("outputs/new_mges_sup_final.pdf",height = 11,width = 10)
 ggsave("outputs/new_mges_sup_final.png",height = 11,width = 10)
+}  # --- end Supplementary Fig. 5 cross-notebook composite ---
 
 # fetch stats
 eggnog_IS_count %>% mutate(AAs_auxo=ifelse(is.na(AAs_auxo),"Not assayed",ifelse(AAs_auxo==1,"Auxotroph","Prototroph")),AAs_auxo=factor(AAs_auxo,levels=c("Not assayed","Prototroph","Auxotroph")),count_norm=1000000*count/size) %>% group_by(AAs_auxo) %>% summarize(median=median(count_norm),iqr=IQR(count_norm))
@@ -859,8 +867,9 @@ eggnog = read.delim("data/annotations/eggnog_summary.tsv.gz") %>%
 ```
 
 
-```{r}
-
+```{r eval=FALSE}
+# Supplementary Fig. 4 tree render (ggtree/ggtreeExtra). The published figure is committed at
+# figures/supp_fig_04/tree.pdf; this intricate render is shown but not evaluated here.
 #with ggtreeextra
 library(ggtree)
 
@@ -1001,8 +1010,9 @@ In this version below I try adding the KEMET stuff in between lab + and GEMs
 need to also add text label for genome level, and clarify Evaluation is specific to GEMs not genomes
 
 
-```{r}
-
+```{r eval=FALSE}
+# Supplementary Fig. 4 tree render, alternate layout (ggtree/ggtreeExtra). The published figure is
+# committed at figures/supp_fig_04/tree.pdf; this intricate render is shown but not evaluated here.
 library(ggtree)
 library(ggtreeExtra)
 library(ggnewscale)
@@ -1238,8 +1248,8 @@ ggsave("outputs/phylogenetic_tree.png",height = 10,width = 16)
 ```
 
 
-```{r}
-
+```{r eval=FALSE}
+# Personal Gantt chart (not part of the paper); reads a non-committed file. Shown but not evaluated.
 # gant chart for personal background
 
 library(tidyverse)

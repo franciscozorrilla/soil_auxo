@@ -105,8 +105,12 @@ quad_auxo = read.delim("analysis/06_saturation/sat_sim/quad_auxo.tsv")
 
 # penta species sampled down to same as pairwise, go to bash for computing count, 5 doesnt want to expand :( 
 set.seed(42)  # reproducibility: fixed seed for bootstrap/sampling
+if (FALSE) {  # the 5-way (quintuplet) expansion references bare Sample_ID columns and does not run;
+              # it is not needed because penta_auxo is read from the committed file below and
+              # quintuplet is excluded from the published figure.
 five = data.frame(samples$Sample_ID,samples$Sample_ID,samples$Sample_ID,samples$Sample_ID,samples$Sample_ID) %>% expand(Sample_ID,Sample_ID.1,Sample_ID.2,Sample_ID.3,Sample_ID.4) %>% filter(Sample_ID1!=Sample_ID2,Sample_ID1!=Sample_ID3,Sample_ID1!=Sample_ID4,Sample_ID1!=Sample_ID5,Sample_ID2!=Sample_ID3,Sample_ID2!=Sample_ID4,Sample_ID2!=Sample_ID5,Sample_ID3!=Sample_ID4,Sample_ID3!=Sample_ID5,Sample_ID4!=Sample_ID5) %>% sample_n(3364)
 write_delim(five,"outputs/penta_samples.tsv")
+}
 
 ## run loop in bash and read in results
 #while read combo;do 
