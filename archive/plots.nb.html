@@ -1989,7 +1989,7 @@ eggnog = read.delim(&quot;final_figs_data/eggnog_summary.tsv&quot;) %&gt;%
 eggnog %&gt;% group_by(genome) %&gt;% summarize(count=n()) %&gt;% left_join(checkm) %&gt;% mutate(count_norm=1000000*count/size) -&gt; genes_count
 
 # write file for leo
-write_tsv(x = genes_count %&gt;% mutate(AAs_auxo=as.factor(AAs_auxo)) %&gt;% mutate(AAs_auxo=ifelse(is.na(AAs_auxo),&quot;Not assayed&quot;,ifelse(AAs_auxo==1,&quot;Auxotroph&quot;,&quot;Prototroph&quot;))) %&gt;% mutate(AAs_auxo=factor(AAs_auxo,levels=c(&quot;Not assayed&quot;,&quot;Prototroph&quot;,&quot;Auxotroph&quot;))),file=&quot;~/Documents/soil_auxo/final_figs_data/figure3panelC.tsv&quot;)
+write_tsv(x = genes_count %&gt;% mutate(AAs_auxo=as.factor(AAs_auxo)) %&gt;% mutate(AAs_auxo=ifelse(is.na(AAs_auxo),&quot;Not assayed&quot;,ifelse(AAs_auxo==1,&quot;Auxotroph&quot;,&quot;Prototroph&quot;))) %&gt;% mutate(AAs_auxo=factor(AAs_auxo,levels=c(&quot;Not assayed&quot;,&quot;Prototroph&quot;,&quot;Auxotroph&quot;))),file=&quot;~/Documents/soil_auxo/final_figs_data/figure4panelA.tsv&quot;)
 
 # Create Panel C and add statistical test
 ggplot(genes_count %&gt;% mutate(AAs_auxo=as.factor(AAs_auxo)) %&gt;% mutate(AAs_auxo=ifelse(is.na(AAs_auxo),&quot;Not assayed&quot;,ifelse(AAs_auxo==1,&quot;Auxotroph&quot;,&quot;Prototroph&quot;))) %&gt;% mutate(AAs_auxo=factor(AAs_auxo,levels=c(&quot;Not assayed&quot;,&quot;Prototroph&quot;,&quot;Auxotroph&quot;))),aes(x=AAs_auxo,y=count_norm)) + geom_boxplot(outlier.alpha = 0,alpha=0.8) + geom_jitter(alpha=0.5) + xlab(&quot;Amino acid auxotrophy status&quot;) + ylab(expression(Annotated~genes~(Mbp^-1))) -&gt; bxp4
@@ -2016,7 +2016,7 @@ isfinder_hits = read.delim(&quot;final_figs_data/ISfinder_k1000.tsv&quot;) %&gt;
 isfinder_hits %&gt;% group_by(genome)%&gt;% filter(seqid&gt;=40) %&gt;% dplyr::summarize(count=n()) %&gt;% full_join(checkm,by=&quot;genome&quot;) %&gt;% mutate_at(&quot;count&quot;, ~replace_na(.,0)) %&gt;% mutate(count_norm=count/size) -&gt; isfinder_count
 
 # write file for leo
-write_tsv(x=isfinder_count %&gt;% mutate(AAs_auxo=ifelse(is.na(AAs_auxo),&quot;Not assayed&quot;,ifelse(AAs_auxo==1,&quot;Auxotroph&quot;,&quot;Prototroph&quot;)),AAs_auxo=factor(AAs_auxo,levels=c(&quot;Not assayed&quot;,&quot;Prototroph&quot;,&quot;Auxotroph&quot;)),count_norm=1000000*count_norm),file = &quot;~/Documents/soil_auxo/final_figs_data/figure3panelD.tsv&quot;)
+write_tsv(x=isfinder_count %&gt;% mutate(AAs_auxo=ifelse(is.na(AAs_auxo),&quot;Not assayed&quot;,ifelse(AAs_auxo==1,&quot;Auxotroph&quot;,&quot;Prototroph&quot;)),AAs_auxo=factor(AAs_auxo,levels=c(&quot;Not assayed&quot;,&quot;Prototroph&quot;,&quot;Auxotroph&quot;)),count_norm=1000000*count_norm),file = &quot;~/Documents/soil_auxo/final_figs_data/figure4panelB.tsv&quot;)
 
 # Create plot
 ggplot(isfinder_count %&gt;% mutate(AAs_auxo=ifelse(is.na(AAs_auxo),&quot;Not assayed&quot;,ifelse(AAs_auxo==1,&quot;Auxotroph&quot;,&quot;Prototroph&quot;)),AAs_auxo=factor(AAs_auxo,levels=c(&quot;Not assayed&quot;,&quot;Prototroph&quot;,&quot;Auxotroph&quot;)),count_norm=1000000*count_norm),aes(x=AAs_auxo,y=count_norm)) + geom_boxplot(outlier.alpha = 0,alpha=0.8) + geom_jitter(alpha=0.5) + xlab(&quot;Amino acid auxotrophy status&quot;) + ylab(expression(Insertion~sequences~(Mbp^-1))) -&gt; bxpIS
