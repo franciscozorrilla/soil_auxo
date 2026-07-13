@@ -228,8 +228,9 @@ memote = read.delim("data/gem_curation/memote_summary.tsv") %>%
   select(-status,-time) %>%
   pivot_longer(!c(genome,test,title,section),values_to = "value",names_to = "names")
 
-get_summary_stats(memote %>% filter(title=="Total Reactions"))
-get_summary_stats(memote %>% filter(title=="Total Metabolites"))
+# restrict to the numeric metric column (the pivot also gathers the constant `metric`=1 flag)
+get_summary_stats(memote %>% filter(title=="Total Reactions") %>% filter(names=="numeric"))
+get_summary_stats(memote %>% filter(title=="Total Metabolites") %>% filter(names=="numeric"))
 
 # evaluate model predictions against lab
 confusionMatrix(auxo2$auxo_model,auxo2$auxo_lab,mode="everything",positive = "1")

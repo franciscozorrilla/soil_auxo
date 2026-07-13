@@ -62,6 +62,7 @@ soil_auxo/
 │   ├── annotations/              eggNOG, ISfinder, geNomad, MAG GFF (gzip-compressed)
 │   ├── figure_data/              intermediate tables consumed directly by plotting code
 │   ├── gem_curation/             GEM curation inputs (GPRs, media, memote)
+│   ├── media/                    per-genome growth / gap-filling media tables
 │   ├── qc/                       assembly / binning statistics
 │   └── smetana/                  SMETANA cross-feeding output
 └── supplementary_tables/     Supplementary_Tables.xlsx (S1–S4) + 260-gene table
