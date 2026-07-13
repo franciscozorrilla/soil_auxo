@@ -1,0 +1,1793 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Cmd+Shift+Enter*. 
+
+
+## Manual curation analysis combining checkm, eggnog, gtdbtk, memote, gem predicted auxos, and lab defined auxos
+
+
+```{r setup, message=FALSE, warning=FALSE}
+# Packages used throughout this notebook. The tidyverse is loaded last so that dplyr's
+# select()/filter() take precedence. Specialised plotting packages (ggalluvial, gggenes,
+# gggenomes) are loaded where they are first used, further below.
+library(caret)
+library(rstatix)
+library(ggpubr)
+library(ggrepel)
+library(tidyverse)
+```
+
+```{r}
+# get FN determined by GEMs but look into the KEGG biosynthesis modules for the 14/20 AAs with dedicated KEGG module
+full_join(kemet_auxo_all %>%drop_na() %>% filter(agree==0,auxo_kemet==1) %>% group_by(name) %>% summarise(count=n()),kemet_auxo_all %>%drop_na() %>% filter(agree==0,auxo_kemet==0) %>% group_by(name) %>% summarise(count=n()),by="name") %>% rename(no_genomic=count.x,yes_genomic=count.y) %>% mutate(yes_genomic = replace_na(yes_genomic, 0),no_genomic = replace_na(no_genomic, 0)) %>% group_by(name) %>% mutate(total_fp = sum(no_genomic,yes_genomic),percent=100*yes_genomic/total_fp) %>% full_join(.,auxo2 %>% group_by(name) %>% summarize(count=n())) %>% select(-count) %>% relocate(name,total_fp,percent,yes_genomic,no_genomic) %>% left_join(.,auxo2 %>% filter(auxo_lab==1,auxo_model==0) %>% group_by(name) %>% summarize(count=n())) %>% View()
+```
+
+```{r}
+library(caret)
+# lets have some cleaned up code for the evaluation of GEMs and genomes against lab predictions
+
+# load bigg mets
+bigg_mets = read.delim("data/figure_data/bigg_classes.tsv")
+# load metadata
+metadata = read.delim("data/figure_data/soil_auxo_metadata_full.tsv")
+# define exclude ions
+ions = c("zn2","so4","k","pi","o2","mn2","mg2","ca2","cl","h","cobalt2","cu2","fe2")
+
+### Load auxotrophy data from ghada's lab experiments, add column for merging with CarveMe/BiGG metabolites
+auxolab = read.delim("data/figure_data/auxolab_summary.tsv") %>% 
+  replace(is.na(.), 0) %>% 
+  select(c(Sample_ID,AAs_auxo:Nucleotide_auxo,Ala:Val)) %>%
+  pivot_longer(!Sample_ID,values_to = "auxo_lab", names_to = "metabolite") %>%
+  mutate(name=gsub("Ala","L-Alanine",metabolite)) %>%
+  mutate(name=gsub("Arg","L-Arginine",name)) %>%
+  mutate(name=gsub("Asp","L-Aspartic acid",name)) %>%
+  mutate(name=gsub("Asn","L-Asparagine",name)) %>%
+  mutate(name=gsub("Cys","L-Cysteine",name)) %>%
+  mutate(name=gsub("Glu","L-Glutamate",name)) %>%
+  mutate(name=gsub("Gln","L-Glutamine",name)) %>%
+  mutate(name=gsub("Gly","Glycine",name)) %>%
+  mutate(name=gsub("His","L-Histidine",name)) %>%
+  mutate(name=gsub("Ile","L-Isoleucine",name)) %>%
+  mutate(name=gsub("Leu","L-Leucine",name)) %>%
+  mutate(name=gsub("Lys","L-Lysine",name)) %>%
+  mutate(name=gsub("Met","L-Methionine",name)) %>%
+  mutate(name=gsub("Phe","L-Phenylalanine",name)) %>%
+  mutate(name=gsub("Pro","L-Proline",name)) %>%
+  mutate(name=gsub("Ser","L-Serine",name)) %>%
+  mutate(name=gsub("Thr","L-Threonine",name)) %>%
+  mutate(name=gsub("Trp","L-Tryptophan",name)) %>%
+  mutate(name=gsub("Tyr","L-Tyrosine",name)) %>%
+  mutate(name=gsub("Val","L-Valine",name)) %>%
+  mutate(name=gsub("AAs_auxo","*aminoacids",name)) %>%
+  mutate(name=gsub("Vitamin_auxo","*vitamins",name)) %>%
+  mutate(name=gsub("Nucleotide_auxo","*nucleotides",name)) %>%
+  mutate(auxo_lab=as.factor(auxo_lab))
+
+# Load auxotophy prediction based on reframed + MMAB informed gapfilled gems, add cols for amino acids that were not auxo predicted
+# note that auxopred below corresponds to the naive model predictions, and the other auxopred3,4,5 correspond to tweaking auxo call 
+# paramters but didnt find anything usefult here
+auxopred2 = read.delim("data/figure_data/auxopred_default.tsv") %>% 
+    mutate(present=1) %>% filter(metabolite!="") %>%
+    pivot_wider(names_from = "metabolite",values_from = "present",values_fill = 0) %>% 
+    mutate(ala__L=0,arg__L=0,asp__L=0,cys__L=0,glu__L=0,gly=0,leu__L=0,met__L=0,pro__L=0,ser__L=0,tyr__L=0) %>% 
+    pivot_longer(!model,values_to = "auxo_model",names_to = "compound") %>% 
+    rename(genome=model) %>%
+    left_join(.,bigg_mets %>% select(name,compound),by="compound") %>%
+    mutate(Sample_ID = gsub("_.*$","",genome), auxo_model = as.factor(auxo_model)) %>%
+    mutate(name=gsub("L-Glutamic acid","L-Glutamate",name)) %>% filter(!compound %in% ions)
+
+# join model prediction and lab observations
+auxo2 = left_join(auxolab,auxopred2 %>% filter(!compound%in%ions) ,by=c("name","Sample_ID")) %>% 
+    drop_na() %>%
+    mutate(agree=as.numeric(ifelse(auxo_lab==auxo_model,"1","0")))
+
+
+#### CHRISTIAN PLOT SUGGESTIOn
+
+# scatter with GEMs vs observations
+ggscatter(auxo2 %>% mutate(auxo_lab=as.integer(auxo_lab)-1,auxo_model=as.integer(auxo_model)-1) %>% 
+              ungroup() %>% group_by(genome) %>% summarise(auxo_lab_sum=sum(auxo_lab),auxo_model_sum=sum(auxo_model)),x="auxo_lab_sum",y="auxo_model_sum",add="reg.line",conf.int = FALSE) + stat_cor(method="pearson") + xlab("Total observed auxotrophies") + ylab("Total predicted auxotrophies") + theme_bw() -> scatter_1
+#ggMarginal(scatter_1,type = "violin",size=20) -> scatter_1
+
+# scatter with KEMET vs observations, note that due to lack of 
+# dedicated biosynthesis pathways some AA cannot be checked, i.e.
+# looks like they can be interconverted in one step so not clear
+# based on kemet output if auxo or not, potentially further work
+# could be done to identify presence/absence of the associated rxns
+# that interconvert between these AAs:
+### alanine, glutamate, glutamine, glycine, asparagine, aspartate
+ggscatter(kemet_auxo_all %>% mutate(auxo_lab=as.integer(auxo_lab)-1,auxo_kemet=as.integer(auxo_kemet)-1) %>% 
+              ungroup() %>% group_by(genome) %>% summarise(auxo_kemet_sum=sum(auxo_kemet)) %>%
+            left_join(.,auxo2 %>% mutate(auxo_lab=as.integer(auxo_lab)-1,auxo_model=as.integer(auxo_model)-1) %>% 
+              ungroup() %>% group_by(genome) %>% summarise(auxo_lab_sum=sum(auxo_lab),auxo_model_sum=sum(auxo_model)) %>%
+                select(genome,auxo_lab_sum)),x="auxo_lab_sum",y="auxo_kemet_sum",add="reg.line",conf.int = FALSE) + stat_cor(method="pearson") + xlab("Total observed auxotrophies") + ylab("Total predicted auxotrophies") + theme_bw() -> scatter_2
+#ggMarginal(scatter_2,type = "violin",size=20) -> scatter_2
+
+ggarrange(scatter_2,scatter_1,labels=c("A","B"))
+
+ggsave("outputs/scatter_annotations_GEMs.pdf",height = 4,width = 8)
+ggsave("outputs/scatter_annotations_GEMs.png",height = 4,width = 8)
+
+
+#### try ciombining scatter plots into 1
+
+
+
+######
+
+AA_KEGG_modules_ID = c("M00020","M00018","M00021","M00338","M00609","M00017","M00019","M00535","M00570","M00432","M00016","M00525","M00526","M00527","M00030","M00433","M00031","M00844","M00845","M00015","M00026","M00022","M00023","M00024","M00910","M00025","M00040")
+AA_KEGG_modules_meta = c("ser/thr","ser/thr","cys/met","cys/met","cys/met","cys/met","BCAA","BCAA","BCAA","BCAA","lysine","lysine","lysine","lysine","lysine","lysine","lysine","arg/pro","arg/pro","arg/pro","his","aromatic","aromatic","aromatic","aromatic","aromatic","aromatic")
+AA_KEGG_modules = data.frame(AA_KEGG_modules_ID,AA_KEGG_modules_meta) %>% rename(KEGG_Module=AA_KEGG_modules_ID)
+
+kemet = read.delim("data/figure_data/kemet_summary.tsv",header = FALSE) %>% select(-V8) %>% 
+    rename(genome=V1,KEGG_Module=V2,module_name=V3,completeness=V4,nPresent__nTotal=V5,missing_KEGG_ko=V6,present_KEGG_ko=V7) %>%
+    separate(.,nPresent__nTotal,into=c("n_present","n_total"),sep="__") %>% 
+    mutate(n_present=as.numeric(n_present),n_total=as.numeric(n_total),n_missing=n_total-n_present) %>% 
+    left_join(.,checkm,by="genome")
+
+# forgot M00432 for leucine biosynthesis
+#kemet %>% filter(KEGG_Module %in% AA_KEGG_modules$KEGG_Module) %>% 
+#    mutate(metabolite=ifelse(KEGG_Module=="M00017","Met",
+#                      ifelse(KEGG_Module=="M00015","Pro",
+#                      ifelse(grepl("M00016|M00030|M00031|M00525|M00526|M00527",KEGG_Module),"Lys",
+#                      ifelse(KEGG_Module=="M00018","Thr",
+#                      ifelse(KEGG_Module=="M00019","Ile,Val",
+#                      ifelse(KEGG_Module=="M00020","Ser",
+#                      ifelse(grepl("M00021|M00338|M00609",KEGG_Module),"Cys",
+#                      ifelse(KEGG_Module=="M00023","Trp",
+#                      ifelse(grepl("M00024|M00910",KEGG_Module),"Phe",
+#                      ifelse(grepl("M00025|M00040",KEGG_Module),"Tyr",
+#                      ifelse(KEGG_Module=="M00026","His",
+#                      ifelse(KEGG_Module=="M00570","Ile",
+#                      ifelse(grepl("M00844|M00845",KEGG_Module),"Arg","other")))))))))))))) %>% 
+#    relocate(metabolite) %>% filter(metabolite!="other",Sample_ID %in% auxo2$Sample_ID) %>% 
+#    separate_rows(metabolite,sep=",") %>% mutate(comp_num=ifelse(completeness=="COMPLETE",1,0)) %>% 
+#    group_by(genome,metabolite) %>% summarize(proto=sum(comp_num)) %>% mutate(auxo_kemet=ifelse(proto>0,0,1)) %>%
+#    mutate(Sample_ID = gsub("_.*$","",genome), auxo_kemet=as.factor(auxo_kemet)) %>%
+#  left_join(.,auxo2,by=c("Sample_ID","metabolite")) %>% select(-genome.x,-genome.y,-agree) %>% unique() -> kemet_auxo
+
+#fix
+kemet %>% filter(KEGG_Module %in% AA_KEGG_modules$KEGG_Module) %>% 
+    mutate(metabolite=ifelse(KEGG_Module=="M00017","Met",
+                      ifelse(KEGG_Module=="M00015","Pro",
+                      ifelse(grepl("M00016|M00030|M00031|M00525|M00526|M00527|M00433",KEGG_Module),"Lys",
+                      ifelse(KEGG_Module=="M00018","Thr",
+                      ifelse(KEGG_Module=="M00019","Ile,Val",
+                      ifelse(KEGG_Module=="M00020","Ser",
+                      ifelse(grepl("M00021|M00338|M00609",KEGG_Module),"Cys",
+                      ifelse(KEGG_Module=="M00023","Trp",
+                      ifelse(grepl("M00024|M00910",KEGG_Module),"Phe",
+                      ifelse(grepl("M00025|M00040",KEGG_Module),"Tyr",
+                      ifelse(KEGG_Module=="M00026","His",
+                      ifelse(KEGG_Module=="M00570|M00535","Ile",
+                      ifelse(grepl("M00844|M00845",KEGG_Module),"Arg",
+                      ifelse(grepl("M00432",KEGG_Module),"Leu","other"))))))))))))))) %>% 
+    relocate(metabolite) %>% filter(metabolite!="other") %>% 
+    separate_rows(metabolite,sep=",") %>% mutate(comp_num=ifelse(completeness=="COMPLETE",1,0)) %>% 
+    group_by(genome,metabolite) %>% summarize(proto=sum(comp_num)) %>% mutate(auxo_kemet=ifelse(proto>0,0,1)) %>%
+    mutate(Sample_ID = gsub("_.*$","",genome), auxo_kemet=as.factor(auxo_kemet)) %>%
+  left_join(.,auxo2,by=c("genome","metabolite")) -> kemet_auxo_all
+
+#add met names to metagonimic data
+kemet_auxo_all %>%
+  mutate(name=gsub("Ala","L-Alanine",metabolite)) %>%
+  mutate(name=gsub("Arg","L-Arginine",name)) %>%
+  mutate(name=gsub("Asp","L-Aspartic acid",name)) %>%
+  mutate(name=gsub("Asn","L-Asparagine",name)) %>%
+  mutate(name=gsub("Cys","L-Cysteine",name)) %>%
+  mutate(name=gsub("Glu","L-Glutamate",name)) %>%
+  mutate(name=gsub("Gln","L-Glutamine",name)) %>%
+  mutate(name=gsub("Gly","Glycine",name)) %>%
+  mutate(name=gsub("His","L-Histidine",name)) %>%
+  mutate(name=gsub("Ile","L-Isoleucine",name)) %>%
+  mutate(name=gsub("Leu","L-Leucine",name)) %>%
+  mutate(name=gsub("Lys","L-Lysine",name)) %>%
+  mutate(name=gsub("Met","L-Methionine",name)) %>%
+  mutate(name=gsub("Phe","L-Phenylalanine",name)) %>%
+  mutate(name=gsub("Pro","L-Proline",name)) %>%
+  mutate(name=gsub("Ser","L-Serine",name)) %>%
+  mutate(name=gsub("Thr","L-Threonine",name)) %>%
+  mutate(name=gsub("Trp","L-Tryptophan",name)) %>%
+  mutate(name=gsub("Tyr","L-Tyrosine",name)) %>%
+  mutate(name=gsub("Val","L-Valine",name)) %>%
+  mutate(name=gsub("AAs_auxo","*aminoacids",name)) %>%
+  mutate(name=gsub("Vitamin_auxo","*vitamins",name)) %>%
+  mutate(name=gsub("Nucleotide_auxo","*nucleotides",name)) -> kemet_auxo_all
+
+
+# Collapse the KEMET calls to one row per sample and amino acid for the annotation-vs-lab
+# comparison, using the same module-to-amino-acid mapping as kemet_auxo_all above.
+kemet %>% filter(KEGG_Module %in% AA_KEGG_modules$KEGG_Module) %>%
+    mutate(metabolite=ifelse(KEGG_Module=="M00017","Met",
+                      ifelse(KEGG_Module=="M00015","Pro",
+                      ifelse(grepl("M00016|M00030|M00031|M00525|M00526|M00527|M00433",KEGG_Module),"Lys",
+                      ifelse(KEGG_Module=="M00018","Thr",
+                      ifelse(KEGG_Module=="M00019","Ile,Val",
+                      ifelse(KEGG_Module=="M00020","Ser",
+                      ifelse(grepl("M00021|M00338|M00609",KEGG_Module),"Cys",
+                      ifelse(KEGG_Module=="M00023","Trp",
+                      ifelse(grepl("M00024|M00910",KEGG_Module),"Phe",
+                      ifelse(grepl("M00025|M00040",KEGG_Module),"Tyr",
+                      ifelse(KEGG_Module=="M00026","His",
+                      ifelse(KEGG_Module=="M00570|M00535","Ile",
+                      ifelse(grepl("M00844|M00845",KEGG_Module),"Arg",
+                      ifelse(grepl("M00432",KEGG_Module),"Leu","other"))))))))))))))) %>%
+    relocate(metabolite) %>% filter(metabolite!="other",Sample_ID %in% auxo2$Sample_ID) %>%
+    separate_rows(metabolite,sep=",") %>% mutate(comp_num=ifelse(completeness=="COMPLETE",1,0)) %>%
+    group_by(genome,metabolite) %>% summarize(proto=sum(comp_num),.groups="drop") %>% mutate(auxo_kemet=ifelse(proto>0,0,1)) %>%
+    mutate(Sample_ID = gsub("_.*$","",genome), auxo_kemet=as.factor(auxo_kemet)) %>%
+  left_join(.,auxo2,by=c("Sample_ID","metabolite")) %>% select(-genome.x,-genome.y,-agree) %>% unique() -> kemet_auxo
+
+# worse than the models!!
+confusionMatrix(kemet_auxo$auxo_kemet,kemet_auxo$auxo_lab,mode="everything",positive = "1")
+
+tp=33
+tn=512
+fp=149
+fn=141
+numerator <- (tp * tn) - (fp * fn)
+denominator <- sqrt((tp + fp) * (tp + fn) * (tn + fp) * (tn + fn))
+MCC = numerator/denominator
+MCC
+
+
+# read in memote and get stats for GEMs
+memote = read.delim("data/gem_curation/memote_summary.tsv") %>% 
+  mutate(numeric=as.numeric(numeric)) %>% 
+  rename(genome=model) %>% 
+  select(-status,-time) %>%
+  pivot_longer(!c(genome,test,title,section),values_to = "value",names_to = "names")
+
+get_summary_stats(memote %>% filter(title=="Total Reactions"))
+get_summary_stats(memote %>% filter(title=="Total Metabolites"))
+
+# evaluate model predictions against lab
+confusionMatrix(auxo2$auxo_model,auxo2$auxo_lab,mode="everything",positive = "1")
+
+tp=17
+tn=1013
+fp=0
+fn=210
+numerator <- (tp * tn) - (fp * fn)
+denominator <- sqrt((tp + fp) * (tp + fn) * (tn + fp) * (tn + fn))
+MCC = numerator/denominator
+MCC
+
+```
+
+
+```{r}
+
+### Load libs
+library(tidyverse)
+
+### Set wd
+# setwd("~/Documents/soil_auxo/manual_curation/")  # repointed: run from repo root
+
+### Load supp data files
+bigg_mets = read.delim("data/figure_data/bigg_classes.tsv")
+metadata = read.delim("data/figure_data/soil_auxo_metadata_full.tsv")
+
+#load contigs and bp
+contigs_bp = read.delim("data/figure_data/genome_contigs_bp.tsv")
+
+### Load checkm data with completeness and contam
+checkm = read.delim("data/figure_data/checkm_summary.tsv") %>% 
+  dplyr::rename(genome=Bin.Id) %>%
+  mutate(Quality=ifelse(Completeness>=90&Contamination<=5,"HQ","MQ")) %>%
+  mutate(Sample_ID=gsub("_.*$","",genome)) %>%
+  left_join(.,metadata,by="Sample_ID") %>% left_join(.,contigs_bp,by="genome")
+
+# Plot, as expected isolates are mostly HQ, MAGs mostly MQ
+ggplot(checkm,aes(x=Completeness,y=Contamination,color=Quality,shape=Type)) + 
+  geom_point()
+
+# check size and contigs
+ggplot(checkm,aes(x=size,y=contigs,color=Quality,shape=Type)) + 
+    geom_point() + scale_y_log10() + scale_x_log10()
+
+#########
+
+
+binplot = ggplot(checkm, aes(x=Sample_ID,fill= Quality)) +
+    geom_bar(stat = "count",color="black") +
+    ylab("Assembled genomes") + 
+    xlab("Sample") +
+    theme(legend.title = element_blank()) +
+    coord_flip() + theme_bw(base_size = 18) +
+    theme(legend.position = "none",strip.text.y = element_text(angle = 0)) + facet_grid(Type~.,scales = "free_y",space = "free") + scale_fill_manual(values=c("#66c2a5","#8da0cb"))
+
+compcont = ggplot(checkm) + 
+  geom_point(aes(Completeness,Contamination,color=Quality,shape=Type,size=4)) + theme_bw(base_size = 18) +
+  theme(legend.position = "none") + scale_color_manual(values=c("#66c2a5","#8da0cb"))
+
+
+contigsSize = ggplot(checkm) + 
+    geom_point(aes(contigs,size,color=Quality,shape=Type,size=4)) + scale_y_log10() + scale_x_log10() +
+    ylab("Size (bp)") + 
+    xlab("Contigs") + theme_bw(base_size = 18) +
+    theme(legend.position = "bottom") + guides(shape=guide_legend(nrow=4,title.position="top",title.hjust = 0.5),color=guide_legend(nrow=4,title.position="top",title.hjust = 0.5)) + scale_color_manual(values=c("#66c2a5","#8da0cb")) + 
+  scale_size_continuous(guide="none")
+
+
+#plot=grid.arrange(binplot,grid.arrange(compcont,contigsSize,nrow=2,ncol=1,heights=c(1,1.1)),nrow=1,widths=c(1,1)
+#ggsave("outputs/binningVis.pdf",plot=plot,height = 14.6,width = 10.4)
+#ggsave("outputs/binningVis.png",plot=plot,height = 14.6,width = 10.4)
+
+ggarrange(binplot+ theme(text=element_text(size=20)),ggarrange(compcont+ theme(text=element_text(size=20)),contigsSize+ theme(text=element_text(size=20)),nrow = 2,heights = c(1,1.25),labels = c("b","c"),font.label = list(size=25)),labels=c("a"),nrow=1,widths = c(1.4,1),font.label = list(size=25))
+ggsave("outputs/binningVis.pdf",height = 14.6,width = 10.4)
+ggsave("outputs/binningVis.png",height = 14.6,width = 10.4)
+
+write_delim(checkm,"data/figure_data/binningVis_data.tsv",delim = "\t")
+
+########
+
+
+### Load gtdbtk data with taxonomic assignments of genomes
+gtdbtk = read.delim("data/figure_data/gtdbtk_summary.tsv") %>% 
+  rename(genome=user_genome) %>% 
+  separate(.,classification,sep = ";",c("Domain","Phylum","Class","Order","Family","Genus","Species")) %>%
+  left_join(.,checkm,by="genome")
+
+# Plot quality with taxonomy, looks like there is more taxonomic diveristy in the metagenomic samples as expected
+ggplot(gtdbtk,aes(x=Completeness,y=Contamination,shape=Quality,color=Phylum)) + 
+  geom_point()
+
+### Load eggnogg gene annotations
+eggnog = read.delim("data/annotations/eggnog_summary.tsv.gz") %>%
+  mutate(cog_name=gsub("^A$","rna processing and modification",COG_category)) %>%
+  mutate(cog_name=gsub("^B$","chromatin structure and dynamics",cog_name)) %>%
+  mutate(cog_name=gsub("^C$","energy production and conversion",cog_name)) %>%
+  mutate(cog_name=gsub("^D$","cell cycle control and mitosis",cog_name)) %>%
+  mutate(cog_name=gsub("^E$","amino acid metabolism and transport",cog_name)) %>%
+  mutate(cog_name=gsub("^F$","nucleotide metabolism and transport",cog_name)) %>%
+  mutate(cog_name=gsub("^G$","carbohydrate metabolism and transport",cog_name)) %>%
+  mutate(cog_name=gsub("^H$","coenzyme metabolism",cog_name)) %>%
+  mutate(cog_name=gsub("^I$","lipid metabolism",cog_name)) %>%
+  mutate(cog_name=gsub("^J$","tranlsation",cog_name)) %>%
+  mutate(cog_name=gsub("^K$","transcription",cog_name)) %>%
+  mutate(cog_name=gsub("^L$","replication and repair",cog_name)) %>%
+  mutate(cog_name=gsub("^M$","cell wall/membrane/envelop biogenesis",cog_name)) %>%
+  mutate(cog_name=gsub("^N$","cell motility",cog_name)) %>%
+  mutate(cog_name=gsub("^O$","post-translational modification, protein turnover, chaperone functions",cog_name)) %>%
+  mutate(cog_name=gsub("^P$","inorganic ion transport and metabolism",cog_name)) %>%
+  mutate(cog_name=gsub("^Q$","secondary structure",cog_name)) %>%
+  mutate(cog_name=gsub("^T$","signal transduction",cog_name)) %>%
+  mutate(cog_name=gsub("^U$","intracellular trafficing and secretion",cog_name)) %>%
+  mutate(cog_name=gsub("^V$","defense mechanism",cog_name)) %>%
+  mutate(cog_name=gsub("^Y$","nuclear structure",cog_name)) %>%
+  mutate(cog_name=gsub("^Z$","cytoskeleton",cog_name)) %>%
+  mutate(cog_name=gsub("^R$","general functional prediction only",cog_name)) %>%
+  mutate(cog_name=gsub("^S$","function unknown ",cog_name)) %>%
+  mutate(cog_name=gsub("-","function unknown ",cog_name)) %>%
+  left_join(.,gtdbtk,by="genome")
+
+
+############ STATISTICAL TESTS FOR REPORTING IN TEXT
+
+#MANUALLY CHECK ISOLATES VS METAGENOMES
+
+# ACTUALLY WILL USE THIS FOR NEW SUPP FIG
+### EGGNOG COMPARISONS
+# TOTAL GENES BETWEEN AUXO VS PROTO
+eggnog %>% group_by(genome) %>% summarize(count=n()) %>% left_join(checkm) %>% mutate(count_norm=1000000*count/size) -> genes_count
+
+### CHECK SIZE COMPARISONS JUST BP
+ggplot(genes_count %>% mutate(AAs_auxo=as.factor(AAs_auxo)) %>% mutate(AAs_auxo=ifelse(is.na(AAs_auxo),"Not assayed",ifelse(AAs_auxo==1,"Auxotroph","Prototroph"))) %>% mutate(AAs_auxo=factor(AAs_auxo,levels=c("Not assayed","Prototroph","Auxotroph"))),aes(x=AAs_auxo,y=size/1000000)) + geom_boxplot(outlier.alpha = 0,alpha=0.5,aes(fill=AAs_auxo)) + geom_jitter(alpha=0.8,aes(color=AAs_auxo)) + scale_color_manual(values=c("gray","black","#DAC883")) + xlab("\nAmino acid auxotrophy status") + ylab("Genome size (Mbp)") + scale_fill_manual(values=c("gray","black","#DAC883")) -> bxp_size
+genes_count %>% mutate(AAs_auxo=as.factor(AAs_auxo)) %>% mutate(AAs_auxo=ifelse(is.na(AAs_auxo),"Not assayed",ifelse(AAs_auxo==1,"Auxotroph","Prototroph"))) %>% mutate(AAs_auxo=factor(AAs_auxo,levels=c("Not assayed","Prototroph","Auxotroph"))) %>% mutate(size=size/1000000) %>%
+    wilcox_test(size ~ AAs_auxo,p.adjust.method="BH") %>%
+    add_significance() -> stat.test
+stat.test %>% add_xy_position(x = "AAs_auxo") -> stat.test
+save_y = stat.test$y.position[3]
+stat.test$y.position[3] = stat.test$y.position[2] -0.33
+stat.test$y.position[2] = save_y - 0.33
+stat.test = stat.test %>% mutate(p.adj.signif=gsub("ns","NS",p.adj.signif))
+bxp_size + stat_pvalue_manual(stat.test, label = "p.adj.signif",size=5) + theme_bw() + theme(legend.position = "none") -> bxp_size
+
+
+# Non normalised 
+ggplot(genes_count %>% mutate(AAs_auxo=as.factor(AAs_auxo)) %>% mutate(AAs_auxo=ifelse(is.na(AAs_auxo),"Not assayed",ifelse(AAs_auxo==1,"Auxotroph","Prototroph"))),aes(x=reorder(AAs_auxo,count),y=count)) + geom_boxplot(outlier.alpha = 0,alpha=0.5,aes(fill=AAs_auxo)) + scale_fill_manual(values=c("#DAC883","gray","black")) + geom_jitter(alpha=0.8,aes(color=AAs_auxo)) +scale_color_manual(values=c("#DAC883","gray","black")) + xlab("\nAmino acid auxotrophy status") + ylab("Number of annotated genes per genome") + scale_y_continuous(labels = comma,breaks=c(1500,3000,4500,6000,7500,9000)) -> bxp3
+genes_count %>% mutate(AAs_auxo=as.factor(AAs_auxo)) %>% mutate(AAs_auxo=ifelse(is.na(AAs_auxo),"Not assayed",ifelse(AAs_auxo==1,"Auxotroph","Prototroph"))) %>%
+    wilcox_test(count ~ AAs_auxo,p.adjust.method="BH") %>%
+    add_significance() -> stat.test
+stat.test %>% add_xy_position(x = "AAs_auxo") -> stat.test
+# fix reordering to properly place pvals
+stat.test[1,13]=3
+stat.test[2,12]=2
+stat.test[3,12]=1
+stat.test[3,13]=2
+save_y = stat.test$y.position[3]
+stat.test$y.position[3] = stat.test$y.position[1]
+stat.test$y.position[1] = save_y - 150
+stat.test$y.position[2] = stat.test$y.position[2] - 150
+stat.test = stat.test %>% mutate(p.adj.signif=gsub("ns","NS",p.adj.signif))
+bxp3 + stat_pvalue_manual(stat.test, label = "p.adj.signif",size=5) + theme_bw() + theme(legend.position = "none") -> bxp3
+
+# Normalised counts now
+ggplot(genes_count %>% mutate(AAs_auxo=as.factor(AAs_auxo)) %>% mutate(AAs_auxo=ifelse(is.na(AAs_auxo),"Not assayed",ifelse(AAs_auxo==1,"Auxotroph","Prototroph"))) %>% mutate(AAs_auxo=factor(AAs_auxo,levels=c("Not assayed","Prototroph","Auxotroph"))),aes(x=AAs_auxo,y=count_norm/1000)) + stat_boxplot(color =c("#464646","#000000","#C19D73"),geom="errorbar",width=0.25) + geom_boxplot(color =c("#464646","#000000","#C19D73"),width=0.5,outlier.alpha = 0,alpha=0.5,aes(fill=AAs_auxo)) + scale_fill_manual(values=c("#D6D6D6","#6C6C6C","#E7DDB4")) + geom_jitter(width=0.4,alpha=0.8,size=3,aes(color=AAs_auxo)) +scale_color_manual(values=c("#656565","#3C3C3C","#D6C884")) + xlab("\nAmino acid auxotrophy status") + ylab(expression(Annotated~genes~(10^3~Mbp^-1))) -> bxp4
+genes_count %>% mutate(AAs_auxo=as.factor(AAs_auxo)) %>% mutate(AAs_auxo=ifelse(is.na(AAs_auxo),"Not assayed",ifelse(AAs_auxo==1,"Auxotroph","Prototroph"))) %>% mutate(count_norm=count_norm/1000) %>%
+    wilcox_test(count_norm ~ AAs_auxo,p.adjust.method="BH") %>%
+    add_significance() -> stat.test
+stat.test %>% add_xy_position(x = "AAs_auxo") -> stat.test
+# fix reordering to properly place pvals
+stat.test[1,13]=3
+stat.test[2,12]=1
+stat.test[2,13]=2
+save_y = stat.test$y.position[3]
+stat.test$y.position[3] = stat.test$y.position[1] + 0.060
+stat.test$y.position[1] = save_y + 0.02
+stat.test$y.position[2] = stat.test$y.position[2]
+stat.test = stat.test %>% mutate(p.adj.signif=gsub("ns","NS",p.adj.signif))
+bxp4 + stat_pvalue_manual(stat.test, label = "p.adj",size=5) + theme_bw() + theme(legend.position = "none") + scale_y_continuous(breaks=c(0.8,1.0,1.2,1.4),limits=c(NA,1.4)) -> bxp4
+
+# bxp IS final version
+ggplot(isfinder_count %>% mutate(AAs_auxo=ifelse(is.na(AAs_auxo),"Not assayed",ifelse(AAs_auxo==1,"Auxotroph","Prototroph")),AAs_auxo=factor(AAs_auxo,levels=c("Not assayed","Prototroph","Auxotroph")),count_norm=1000000*count_norm),aes(x=AAs_auxo,y=count_norm/1000)) + stat_boxplot(geom="errorbar",width=0.25,color =c("#464646","#000000","#C19D73")) + geom_boxplot(color =c("#464646","#000000","#C19D73"),width= 0.5,outlier.alpha = 0,alpha=0.5,aes(fill=AAs_auxo)) + scale_fill_manual(values=c("#D6D6D6","#6C6C6C","#E7DDB4")) + geom_jitter(width=0.4,alpha=0.8,size=3,aes(color=AAs_auxo)) +scale_color_manual(values=c("#656565","#3C3C3C","#D6C884"))+ xlab("\nAmino acid auxotrophy status") + ylab(expression(Insertion~sequences~(10^3~Mbp^-1))) -> bxpIS
+isfinder_count %>% mutate(AAs_auxo=ifelse(is.na(AAs_auxo),"Not assayed",ifelse(AAs_auxo==1,"Auxotroph","Prototroph")),AAs_auxo=factor(AAs_auxo,levels=c("Not assayed","Prototroph","Auxotroph")),count_norm=1000000*count_norm) %>% ungroup() %>% mutate(count_norm=count_norm/1000) %>%
+    wilcox_test(count_norm ~ AAs_auxo,p.adjust.method="BH") %>%
+    add_significance() -> stat.test
+stat.test %>% add_xy_position(x = "AAs_auxo") -> stat.test
+save_y = stat.test$y.position[3]
+stat.test$y.position[3] = stat.test$y.position[1]
+stat.test$y.position[1] = save_y - 0.25
+stat.test$y.position[2] = stat.test$y.position[2] - 0.03
+stat.test = stat.test %>% mutate(p.adj.signif=gsub("ns","NS",p.adj.signif))
+bxpIS + stat_pvalue_manual(stat.test, label = "p.adj",size=5) + theme_bw()+ theme(legend.position = "none") +scale_y_continuous(breaks=c(0,0.4,0.8,1.2),limits=c(NA,1.2))  -> bxpIS
+
+#fig 4 final
+
+ggarrange(bxp4+theme(text=element_text(size=18),panel.border = element_blank(),panel.grid.major = element_blank(),panel.grid.minor = element_blank(),axis.line = element_line(color = "black")),ggplot()+theme_void(),
+          bxpIS+theme(text=element_text(size=18),panel.border = element_blank(),panel.grid.major = element_blank(),panel.grid.minor = element_blank(),axis.line = element_line(color = "black")),
+          labels = c("a","","b"),widths = c(1,0.1,1),nrow=1, font.label = list(size=18))
+
+ggsave("outputs/fig4_final.png",height = 6,width = 10)
+ggsave("outputs/fig4_final.pdf",height = 6,width = 10)
+
+pdf("outputs/fig4_final.pdf",height = 6,width = 10,family = "arial")
+
+#######################################################################################################################################
+################################################### STATISTICAL TESTS FOR RESULTS SECTION  ###################################################
+#######################################################################################################################################
+
+# Compare normalised gene count between auxo and proto
+genes_count %>% 
+    mutate(AAs_auxo==as.factor(AAs_auxo)) %>% 
+    wilcox_test(count_norm ~ AAs_auxo,p.adjust.method="BH") %>% add_significance() -> stat.test
+
+# Get median, IQR values for auxos proto
+genes_count %>% group_by(AAs_auxo) %>% summarize(median=median(count_norm),iqr=IQR(count_norm))
+
+# Compare normalised gene count between metagenomic and isolates
+genes_count %>% filter(Type!="Polymorphism") %>%
+    mutate(Type==as.factor(Type)) %>% 
+    mutate(Type=ifelse(Type=="Deep_isolate","Isolate",Type)) %>% 
+    wilcox_test(count_norm ~ Type,p.adjust.method="BH") %>% add_significance() -> stat.test
+
+# Get median values for type
+genes_count %>% 
+  mutate(Type=ifelse(Type=="Deep_isolate","Isolate",Type)) %>% 
+  group_by(Type) %>% summarize(median=median(count_norm), iqr= IQR(count_norm))
+
+# Compare normalisd gene count with E annotation between types, NOT SIGNIFICANT
+eggnog %>% filter(grepl("E",COG_category)) %>% 
+  group_by(genome) %>% summarize(count=n()) %>% 
+  left_join(.,checkm,by="genome") %>% mutate(count_norm = 1000000*count/size) %>% 
+  filter(Type!="Polymorphism") %>%
+    mutate(Type==as.factor(Type)) %>% 
+    mutate(Type=ifelse(Type=="Deep_isolate","Isolate",Type)) %>% 
+    wilcox_test(count_norm ~ Type,p.adjust.method="BH") %>% add_significance() -> stat.test
+
+# Compare normalisd gene count with E annotation between axuos, NOT SIGNIFICANT
+eggnog %>% filter(grepl("E",COG_category)) %>% 
+  group_by(genome) %>% summarize(count=n()) %>% 
+  left_join(.,checkm,by="genome") %>% mutate(count_norm = 1000000*count/size) %>% mutate(AAs_auxo==as.factor(AAs_auxo)) %>% 
+    wilcox_test(count_norm ~ AAs_auxo,p.adjust.method="BH") %>% add_significance() -> stat.test
+
+
+eggnog %>% filter(.,grepl("E",COG_category)) %>% group_by(genome) %>% summarize(count=n()) %>% left_join(.,checkm,by="genome") %>% 
+  ungroup() %>% mutate(count_norm = 1000000*count/size) %>% ungroup() %>%
+  wilcox_test(count_norm ~ AAs_auxo,p.adjust.method="BH") %>% add_significance()
+
+#######################################################################################################################################
+
+# now redo same thing but with habitats instead of type
+### CHECK SIZE COMPARISONS JUST BP
+ggplot(genes_count %>% mutate(Habitats=as.factor(Habitats)),aes(x=Habitats,y=size/1000000)) + geom_boxplot(outlier.alpha = 0,alpha=0.8) + geom_jitter(alpha=0.5) + xlab("Habitats") + ylab("Genome size (Mbp)") -> bxp_size_hab
+genes_count %>% mutate(Habitats=as.factor(Habitats),size=size/1000000) %>%
+    wilcox_test(size ~ Habitats,p.adjust.method="BH") %>%
+    add_significance() -> stat.test
+stat.test %>% add_xy_position(x = "Habitats") -> stat.test
+bxp_size_hab + stat_pvalue_manual(stat.test, label = "p.adj") + theme_bw() + theme(axis.text.x = element_text(angle = 20,hjust=1))-> bxp_size_hab
+# non normalised
+ggplot(genes_count %>% mutate(Habitats=as.factor(Habitats)),aes(x=Habitats,y=count)) + geom_boxplot(outlier.alpha = 0,alpha=0.8) + geom_jitter(alpha=0.5) + xlab("Habitats") + ylab("Number of annotated\ngenes per genome") -> bxp_3_hab
+genes_count %>% mutate(Habitats=as.factor(Habitats)) %>%
+    wilcox_test(count ~ Habitats,p.adjust.method="BH") %>%
+    add_significance() -> stat.test
+stat.test %>% add_xy_position(x = "Habitats") -> stat.test
+bxp_3_hab + stat_pvalue_manual(stat.test, label = "p.adj") + theme_bw()+ theme(axis.text.x = element_text(angle = 20,hjust=1)) -> bxp_3_hab
+# normalised
+ggplot(genes_count %>% mutate(Habitats=as.factor(Habitats)),aes(x=Habitats,y=count_norm)) + geom_boxplot(outlier.alpha = 0,alpha=0.8) + geom_jitter(alpha=0.5) + xlab("Habitats") + ylab("Number of annotated genes\nper genome megabasepair") -> bxp_4_hab
+genes_count %>% mutate(Habitats=as.factor(Habitats)) %>%
+    wilcox_test(count_norm ~ Habitats,p.adjust.method="BH") %>%
+    add_significance() -> stat.test
+stat.test %>% add_xy_position(x = "Habitats") -> stat.test
+bxp_4_hab + stat_pvalue_manual(stat.test, label = "p.adj") + theme_bw() + theme(axis.text.x = element_text(angle = 20,hjust=1)) -> bxp_4_hab
+
+# combine
+ggarrange(ggarrange(bxp_size,bxp3,bxp4,ncol=1,labels=c("A","C","E")),
+          ggarrange(bxp_size_hab,bxp_3_hab,bxp_4_hab,ncol=1,labels = c("B","D","F")),
+          ncol = 2)
+
+ggsave("outputs/gene_counts_supp.pdf",height = 10 ,width = 8)
+ggsave("outputs/gene_counts_supp.png",height = 10 ,width = 8)
+
+# final sup fig s5
+
+ggarrange(bxp_size+theme(text=element_text(size=18),panel.border = element_blank(),panel.grid.major = element_blank(),panel.grid.minor = element_blank(),axis.line = element_line(color = "black")),ggplot()+theme_void(),bxp3+theme(text=element_text(size=18),panel.border = element_blank(),panel.grid.major = element_blank(),panel.grid.minor = element_blank(),axis.line = element_line(color = "black")),ncol = 3,labels=c("a","","b"),widths = c(1.2,0.1,1.2),font.label = list(size=18))
+
+ggsave("outputs/sup_fig6_final.pdf",height = 6 ,width = 9)
+ggsave("outputs/sup_fig6_final.png",height = 6 ,width = 9)
+
+ggsave("outputs/s5_final.pdf",height = 6 ,width = 9)
+ggsave("outputs/s5_final.png",height = 6 ,width = 9)
+#### DO THIS FOR OTHER SUP FIG
+
+################
+
+#cogs overview, good to see a many amino acid genes, and also many unknowns suggesting unnanotated genes perhaps
+ggplot(eggnog %>% 
+           group_by(COG_category) %>% 
+           summarize(count=n())) + geom_point(aes(y=reorder(COG_category,count),x=count)) + scale_x_log10()
+
+# summarize and compare across auxo/proto, could use this for supplementary
+eggnog %>% group_by(genome,COG_category) %>% summarize(count=n()) %>% pivot_wider(names_from = "COG_category",values_from = "count",values_fill = 0) %>% pivot_longer(!genome,names_to = "COG_category",values_to = "count") %>% left_join(.,checkm) %>% drop_na() %>% ungroup() -> eggnog_sum
+compare_means(count ~ AAs_auxo ,eggnog_sum,method="wilcox.test",group.by = "COG_category",p.adjust.method = "BH") %>% filter(p.adj<=0.05) -> eggnog_sum_comp
+ggplot(data=eggnog_sum %>% mutate(AAs_auxo=as.factor(AAs_auxo)) %>% filter(COG_category %in% eggnog_sum_comp$COG_category),aes(x=COG_category,y=count+1)) + geom_boxplot(aes(fill=AAs_auxo)) + scale_y_log10()
+ggsave("outputs/enriched_COGs.pdf",height = 8,width = 12)
+
+# regulators overview
+eggnog %>% filter(grepl("^cody$|^ccpa$|^lrp|^cra$|^lysr|^argr|^glnr|^gltc|^metj|^trpr|^purr|^cysb",Preferred_name,ignore.case=TRUE)) %>% group_by(genome,Preferred_name) %>% summarise(count=n()) %>% pivot_wider(names_from = "Preferred_name",values_from = "count",values_fill = 0) %>% pivot_longer(!genome,names_to = "Preferred_name",values_to = "count") %>% left_join(.,checkm) %>% drop_na() %>% ungroup() -> regulators_sum
+compare_means(count ~ AAs_auxo ,regulators_sum,method="wilcox.test",group.by = "Preferred_name",p.adjust.method = "BH") %>% filter(p.adj<=0.05) -> regulator_sum_comp
+
+#all PCA PLOT
+eggnog %>% group_by(genome,Preferred_name) %>% summarise(count=n()) %>% pivot_wider(names_from = "Preferred_name",values_from = "count",values_fill = 0) %>% pivot_longer(!genome,names_to = "Preferred_name",values_to = "count") %>% left_join(.,checkm) %>% drop_na() %>% ungroup() -> egg_sum
+compare_means(count ~ AAs_auxo ,egg_sum,method="wilcox.test",group.by = "Preferred_name",p.adjust.method = "BH") %>% filter(p.adj<=0.05) -> egg_sum_comp
+
+#check descriprions of which genes are up/down in auxo
+egg_sum %>% filter(Preferred_name %in% egg_sum_comp$Preferred_name) %>% group_by(AAs_auxo,Preferred_name) %>% summarize(average=mean(count)) %>% pivot_wider(names_from = AAs_auxo,values_from = average)%>% mutate(change=as.factor(ifelse(`1`>`0`,"enriched in auxo","depleted in auxo")),fc=`1`/`0`) %>% left_join(.,eggnog%>%ungroup()%>%select(Preferred_name,Description)%>% unique()) %>% View()
+
+## DIFFERENTIAL GENE EXPRESSION ANALYSIS
+## WRITE SUPFILE EGG SUM COMP WITH 260 sig dif genes
+write_delim(egg_sum %>% filter(Preferred_name %in% egg_sum_comp$Preferred_name) %>% group_by(AAs_auxo,Preferred_name) %>% summarize(average=mean(count)) %>% pivot_wider(names_from = AAs_auxo,values_from = average)%>% mutate(change=as.factor(ifelse(`1`>`0`,"enriched in auxo","depleted in auxo")),fc=`1`/`0`) ,"data/figure_data/diff_genes.tsv",delim = "\t")
+
+# with pval
+write_delim(egg_sum %>% filter(Preferred_name %in% egg_sum_comp$Preferred_name) %>% group_by(AAs_auxo,Preferred_name) %>% summarize(average=mean(count)) %>% pivot_wider(names_from = AAs_auxo,values_from = average)%>% mutate(change=as.factor(ifelse(`1`>`0`,"enriched in auxo","depleted in auxo")),fc=`1`/`0`) %>% left_join(.,egg_sum_comp%>%select(Preferred_name,p.adj)) ,"data/figure_data/diff_genes_pval.tsv",delim = "\t")
+
+#pca on all gene counts
+eggnog %>% group_by(genome,Preferred_name) %>% summarise(count=n()) %>% pivot_wider(names_from = "Preferred_name",values_from = "count",values_fill = 0) %>% column_to_rownames(.,var="genome") %>% scale() %>% prcomp() -> res.pca
+gtdbtk %>% ungroup() %>% select(AAs_auxo) %>% mutate(AAs_auxo=ifelse(is.na(AAs_auxo),"Not assayed",ifelse(AAs_auxo==1,"Auxotroph","Prototroph"))) -> auxo_cols
+fviz_pca_ind(res.pca,
+             col.ind = auxo_cols$AAs_auxo, repel = TRUE, addEllipses = TRUE, label="var"
+)+ theme_bw(base_size = 20) + theme(legend.title = element_blank(),legend.position = "bottom") + scale_color_manual(values=c("#DAC883","gray","black")) + xlab("PC1 (13.7%)") + ylab("PC2 (10.8%)")
+ggsave("outputs/eggnog_PCA.pdf",height = 6,width = 6)
+ggsave("outputs/eggnog_PCA.png",height = 6,width = 6)
+
+#same as above but with IS, find which are enriched/depleted: NONE, no specific  IS
+isfinder_hits %>% group_by(genome,query) %>% summarise(count=n()) %>% pivot_wider(names_from = "query",values_from = "count",values_fill = 0) %>% pivot_longer(!genome,names_to = "query",values_to = "count") %>% left_join(.,checkm) %>% drop_na() %>% ungroup() -> is_sum
+compare_means(count ~ AAs_auxo ,is_sum,method="wilcox.test",group.by = "query",p.adjust.method = "BH") %>% filter(p.adj<=0.05) -> is_sum_comp
+
+
+#same as above but with plasmid? 159 differentially present genes ALL depleted genes in auxo, is it using all genomes info or just 45?
+# its true, currently missing around 15 genomes that probs had no plasmid hits so dont show up, e.g. lane122s000537_shovill
+# when adding the zeros then we get no specific plasmids that are sig diff between auxo and proto
+genomad_plasmid_genes %>% mutate(Sample_ID=gsub("_.*$","",gene),genome=gsub("^([^_]+_[^_]+).*", "\\1",gene)) %>% full_join(.,checkm) %>% group_by(annotation_accessions,genome) %>% summarize(count=n()) %>% pivot_wider(names_from = "annotation_accessions",values_from = "count",values_fill = 0) %>% pivot_longer(!genome,names_to = "annotation_accessions",values_to = "count") %>% left_join(.,checkm) %>% ungroup() %>% drop_na() -> plas_sum
+compare_means(count ~ AAs_auxo ,plas_sum,method="wilcox.test",group.by = "annotation_accessions",p.adjust.method = "BH") %>% filter(p.adj<=0.05) -> plas_sum_comp
+plas_sum %>% filter(annotation_accessions %in% plas_sum_comp$annotation_accessions) %>% group_by(AAs_auxo,annotation_accessions) %>% summarize(average=mean(count)) %>% pivot_wider(names_from = AAs_auxo,values_from = average)%>% mutate(change=as.factor(ifelse(`1`>`0`,"enriched in auxo","depleted in auxo")),fc=`1`/`0`) %>% left_join(.,genomad_plasmid_genes%>%ungroup()%>%select(annotation_accessions,annotation_description)%>% unique()) %>% View()
+
+
+#same as above but with viruses, no specific differences between the two when it comes to auxo/proto
+genomad_virus_genes %>% mutate(Sample_ID=gsub("_.*$","",gene),genome=gsub("^([^_]+_[^_]+).*", "\\1",gene)) %>% full_join(.,checkm) %>% group_by(annotation_accessions,genome) %>% summarize(count=n()) %>% pivot_wider(names_from = "annotation_accessions",values_from = "count",values_fill = 0) %>% pivot_longer(!genome,names_to = "annotation_accessions",values_to = "count") %>% left_join(.,checkm) %>% ungroup() %>% drop_na() -> vir_sum
+compare_means(count ~ AAs_auxo ,vir_sum,method="wilcox.test",group.by = "annotation_accessions",p.adjust.method = "BH") %>% filter(p.adj<=0.05) -> vir_sum_comp
+vir_sum %>% filter(annotation_accessions %in% plas_sum_comp$annotation_accessions) %>% group_by(AAs_auxo,annotation_accessions) %>% summarize(average=mean(count)) %>% pivot_wider(names_from = AAs_auxo,values_from = average)%>% mutate(change=as.factor(ifelse(`1`>`0`,"enriched in auxo","depleted in auxo")),fc=`1`/`0`) %>% left_join(.,genomad_plasmid_genes%>%ungroup()%>%select(annotation_accessions,annotation_description)%>% unique()) %>% View()
+
+#### PLASMID S5 SUP FILE SAVE THIS BUT FIX DUPLICATES, GOOD TO KNOW WHICH 159 ARE DEPLETED IN AUXO
+
+# can also try with uniquie genomad ID instead of non-unique annotation_accession
+genomad_plasmid_genes %>% mutate(Sample_ID=gsub("_.*$","",gene),genome=gsub("^([^_]+_[^_]+).*", "\\1",gene)) %>% left_join(.,metadata) %>% group_by(marker,genome) %>% summarize(count=n()) %>% pivot_wider(names_from = "marker",values_from = "count",values_fill = 0) %>% pivot_longer(!genome,names_to = "marker",values_to = "count") %>% left_join(.,checkm) %>% drop_na() %>% ungroup() -> plas_sum
+compare_means(count ~ AAs_auxo ,plas_sum,method="wilcox.test",group.by = "marker",p.adjust.method = "BH") %>% filter(p.adj<=0.05) -> plas_sum_comp
+plas_sum %>% filter(marker %in% plas_sum_comp$marker) %>% group_by(AAs_auxo,marker) %>% summarize(average=mean(count)) %>% pivot_wider(names_from = AAs_auxo,values_from = average)%>% mutate(change=as.factor(ifelse(`1`>`0`,"enriched in auxo","depleted in auxo")),fc=`1`/`0`) %>% left_join(.,genomad_plasmid_genes%>%ungroup()%>%select(marker,annotation_description)%>% unique()) %>% View()
+
+# cogs overview subsetting anything with E annotation
+ggplot(eggnog %>% 
+           group_by(COG_category) %>% 
+           summarize(count=n()) %>% filter(.,grepl("E",COG_category))) + geom_point(aes(y=reorder(COG_category,count),x=count)) + scale_x_log10()
+# E = 39,099 genes annotated with this category out of 422,284 total genes across 102 genomes
+## suggesting that ~9.2589% of each genome is encoding for amino acid metabolism
+# S/- = unknown function = 128,239 genes annotated with either S/- category out of 422284 total genes across 102 genomes
+## suggesting that ~30.36795% of each genome is encoding genes with unknown function
+
+#subset cogs & plot to get idea of most common gene categories, NOTE THAT THIS FILTERING WILL AFFECT DOWNSTREAM PLOTS
+#MAKE COUNT CUTOFF TO FILTER OUT COGS THAT OCCUR RARELY, e.g. EGPT
+eggnog %>% 
+    group_by(genome,cog_name) %>% 
+    summarize(count=n()) %>% 
+    filter(count>=40) %>% ungroup() %>%
+    select(cog_name) %>% unique() -> cogs_count
+
+# new plot to reorganize how we show cog annotations across genomes, this way makes it easier to get overall picture
+# previous plot was very confusing to collaborators, STACKED BAR PLOT
+ggplot(eggnog %>% 
+           group_by(genome,cog_name) %>% 
+           summarize(count=n()) %>% 
+           filter(cog_name%in%cogs$cog_name), aes(y=reorder(genome,count),x=count,fill=cog_name)) + 
+    geom_bar(stat="identity",position = "stack") +  
+    scale_x_log10()
+
+# new plot to reorganize how we show cog annotations across genomes, this way makes it easier to get overall picture
+# previous plot was very confusing to collaborators, HEATMAP
+ggplot(eggnog %>% 
+           group_by(genome,cog_name) %>% 
+           summarize(count=n()) %>% 
+           filter(cog_name%in%cogs$cog_name), aes(y=reorder(genome,count),fill=count,x=cog_name)) + 
+    geom_tile() + theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+# check to see if unknown function count is well separated by site/habitat, we saw this with the humann3 output in the pilot
+ggplot(eggnog %>% 
+         mutate(across(Habitats, factor, levels=c("Meadow","Conifer forest","Deciduous forest"))) %>%
+         filter(Habitats!="Lab strain") %>%
+         filter(grepl("-|S",COG_category)) %>% 
+         group_by(genome,cog_name,Sites,Habitats) %>% 
+         summarize(count=n()) %>% 
+         left_join(.,checkm %>% group_by(Sites) %>% 
+         summarize(genome_count=n())) ,aes(x=Sites,y=count/genome_count)) + 
+         geom_boxplot(alpha=0.5,outlier.alpha = 0) + 
+         geom_jitter(alpha=0.3) +
+         facet_wrap(~Habitats,nrow=1,scales="free_x") + 
+         theme(axis.text.x = element_text(angle = 45, hjust = 1)) + xlab("Sampling sites") + ylab("# unknown genes / # isolates assembled from site")
+# Had a discussion with rui to see if this makes sense, it is true that it can be somewhat confusing to normalize by number of genomes per site,
+# but what this is really telling us is that, for example if we were to isolate a genome from a meadow habitat then we would expect less than 100 unknonw genes
+# from the conifer between 100 - 200 genes, and from the deciduous more than 200. Would normalizing for sequencing depth perhaps explain this difference?
+# Actually, that is not correct about the number of expected unknown genes, and Rui is correct that it is not appropriate to normalize like this. To do it properly
+# need to sum unknown genes across genomes per site, and then divide
+
+# Look at branched chain amino acid annotations
+eggnog %>% filter(grepl("valine|leucine|branched",ignore.case = TRUE,Description)) -> bcaa_egg
+
+# scatter plot evalue vs bitscore for these bcaa
+ggplot(bcaa_egg, aes(x=score)) + 
+    geom_density()
+
+#bar plot
+ggplot(bcaa_egg %>% 
+           group_by(genome,cog_name,Habitats,Sites) %>% 
+           summarize(count=n()) , aes(y=reorder(genome,count),x=count,fill=cog_name)) + 
+    geom_bar(stat="identity",position = "stack") +  
+    scale_x_log10() + facet_wrap(~Habitats,scales = "free",ncol = 1)
+#heatmap
+ggplot(bcaa_egg %>% 
+           group_by(genome,COG_category) %>% 
+           summarize(count=n()), aes(y=reorder(genome,count),fill=count,x=COG_category)) + 
+    geom_tile() + theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+# Check EC numbers, many have very few ~300 ec annotations
+eggnog %>% group_by(genome) %>% filter(EC!="-") %>% summarise(count=n())%>% View()
+#plot
+ggplot(eggnog %>% group_by(genome) %>% filter(EC!="-") %>% summarise(count=n())%>% left_join(.,gtdbtk,by="genome") %>% left_join(.,checkm,by="genome"),aes(x=reorder(genome,count),y=count,color=Type.x)) + geom_point()+ coord_flip() + facet_wrap (~Phylum,ncol=1,scales = "free_y")
+
+# Check BiGG IDs, theres an e coli with many annotated ids, whereas most genomes have very few bigg ids
+eggnog %>% group_by(genome) %>% filter(BiGG_Reaction!="-") %>% summarise(count=n())%>% View()
+#plot
+ggplot(eggnog %>% group_by(genome) %>% filter(BiGG_Reaction!="-") %>% summarise(count=n())%>% left_join(.,gtdbtk,by="genome") %>% left_join(.,checkm,by="genome"),aes(x=reorder(genome,count),y=count,color=Type.x)) + geom_point()+ coord_flip() + facet_wrap (~Phylum,ncol=1,scales = "free_y") 
+
+#check correlation between ec nubmer and bigg ids?
+
+# Looks like some correlation between # unknwon genes and # amino aicd metabolism genes
+eggnog %>% 
+  filter(COG_category=="S"|COG_category=="E")%>% group_by(COG_category,genome) %>% 
+  summarize(count=n()) %>% 
+  pivot_wider(.,values_from = "count",names_from = "COG_category") %>% 
+  ggplot(aes(x=E,y=S)) + 
+  geom_point()
+
+### Load memote data with tests run on GEMs
+memote = read.delim("data/gem_curation/memote_summary.tsv") %>% 
+  mutate(numeric=as.numeric(numeric)) %>% 
+  rename(genome=model) %>% 
+  select(-status,-time) %>%
+  pivot_longer(!c(genome,test,title,section),values_to = "value",names_to = "names")
+
+# take subset of tests of interest, noted down here then plot. will be useful for detailed inspection of indibidual models for assessing predicted vs observed auxos
+
+# "Unrealistic Growth Rate In Default Medium", "Universally Blocked Reactions", "Unique Metabolites", "Transport Reactions", "Total Reactions", "Total Metabolites", "Total Genes", "Reactions without GPR", "Ratio of Direct Metabolites in Biomass Reaction", "Ratio Min/Max Non-Zero Coefficients", "Purely Metabolic Reactions", "Orphan Metabolites", "Number of Reversible Oxygen-Containing Reactions", "Number of Missing Essential Biomass Precursors", "Metabolite Production In Complete Medium", "Metabolite Consumption In Complete Medium", "Metabolite Connectivity", "Metabolic Coverage", "Medium Components", "Growth Prediction - experiment0", "Fraction of Transport Reactions without", "GPR", "Enzyme Complexes", "Degrees Of Freedom", "Dead-end Metabolites", "Blocked Biomass Precursors In Default Medium", "Blocked Biomass Precursors In Complete Medium", "Biomass Production In Default Medium", "Biomass Production In Complete Medium")
+
+#remove duplicate bigg compounds: name = 1-deoxy-1-(N6-lysino)-D-fructose,DL-Glutamate,Hydrochloric acid,N-acetyl-seryl-aspartate
+
+### Load auxotophy prediction based on reframed + MMAB informed gapfilled gems, these results were re-generated and tested a
+### a few different parameters of auxo prediciton min_abs_growth and min_rel_growth
+auxopred5 = read.delim("archive/auxopred_max_lenient.tsv") %>% 
+    mutate(present=1) %>% filter(metabolite!="") %>%
+    pivot_wider(names_from = "metabolite",values_from = "present",values_fill = 0) %>% 
+    rename(genome=model) %>%
+    left_join(.,bigg_mets %>% select(name,compound),by="compound") %>%
+    mutate(Sample_ID = gsub("_.*$","",genome), auxo_model = as.factor(auxo_model)) %>%
+    mutate(name=gsub("L-Glutamic acid","L-Glutamate",name))
+
+auxopred4 = read.delim("archive/auxopred_very_lenient.tsv") %>% 
+    mutate(present=1) %>% filter(metabolite!="") %>%
+    pivot_wider(names_from = "metabolite",values_from = "present",values_fill = 0) %>% 
+    mutate(ala__L=0,asp__L=0,cys__L=0,leu__L=0,met__L=0,ser__L=0,tyr__L=0) %>% 
+    pivot_longer(!model,values_to = "auxo_model",names_to = "compound") %>% 
+    rename(genome=model) %>%
+    left_join(.,bigg_mets %>% select(name,compound),by="compound") %>%
+    mutate(Sample_ID = gsub("_.*$","",genome), auxo_model = as.factor(auxo_model)) %>%
+    mutate(name=gsub("L-Glutamic acid","L-Glutamate",name))
+
+auxopred3 = read.delim("archive/auxopred_lenient.tsv") %>% 
+    mutate(present=1) %>% filter(metabolite!="") %>%
+    pivot_wider(names_from = "metabolite",values_from = "present",values_fill = 0) %>% 
+    mutate(ala__L=0,arg__L=0,asp__L=0,cys__L=0,gly=0,leu__L=0,met__L=0,ser__L=0,tyr__L=0) %>% 
+    pivot_longer(!model,values_to = "auxo_model",names_to = "compound") %>% 
+    rename(genome=model) %>%
+    left_join(.,bigg_mets %>% select(name,compound),by="compound") %>%
+    mutate(Sample_ID = gsub("_.*$","",genome), auxo_model = as.factor(auxo_model)) %>%
+    mutate(name=gsub("L-Glutamic acid","L-Glutamate",name))
+
+### Load auxotophy prediction based on reframed + MMAB informed gapfilled gems and metagenomic GEMs, add cols for amino acids that were not auxo predicted
+auxopred2 = read.delim("archive/auxopred_all.tsv") %>% 
+    mutate(present=1) %>% filter(metabolite!="") %>%
+    pivot_wider(names_from = "metabolite",values_from = "present",values_fill = 0) %>% 
+    mutate(asp__L=0,cys__L=0,glu__L=0,ser__L=0) %>% 
+    pivot_longer(!model,values_to = "auxo_model",names_to = "compound") %>% 
+    rename(genome=model) %>%
+    left_join(.,bigg_mets %>% select(name,compound),by="compound") %>%
+    mutate(Sample_ID = gsub("_.*$","",genome), auxo_model = as.factor(auxo_model)) %>%
+    mutate(name=gsub("L-Glutamic acid","L-Glutamate",name)) %>% filter(!compound %in% ions)
+
+### Load auxotrophy predictions based on reframed function + MMAB gapfilled GEMs from genomic sequencing data
+auxopred = read.delim("archive/auxopred_summary.tsv") %>% 
+  mutate(present=1) %>% 
+  pivot_wider(names_from = "metabolite",values_from = "present",values_fill = 0) %>% 
+  mutate(asp__L=0,cys__L=0,glu__L=0,ser__L=0) %>% 
+  pivot_longer(!model,values_to = "auxo_model",names_to = "compound") %>% 
+  rename(genome=model) %>%
+  left_join(.,bigg_mets %>% select(name,compound),by="compound") %>%
+  mutate(Sample_ID = gsub("_.*$","",genome), auxo_model = as.factor(auxo_model)) %>%
+    mutate(name=gsub("L-Glutamic acid","L-Glutamate",name))
+
+# exclude ions
+ions = c("zn2","so4","k","pi","o2","mn2","mg2","ca2","cl","h","cobalt2","cu2","fe2")
+
+# plot heatmap
+ggplot(auxopred %>% filter(!compound%in%ions)) + 
+    geom_tile(aes(y=genome,x=name,fill=auxo_model)) + 
+    theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+    scale_fill_manual(values=c("black","gold"))
+
+# plot frequency of AAs, phenylalanine is top predicted with 32 then valine with 23 and lysine with 21
+ggplot(auxopred %>% filter(!compound%in%ions) %>% group_by(name,auxo_model) %>% summarize(count=n()) %>% filter(auxo_model==1)) + 
+    geom_bar(aes(y=count,x=reorder(name,count)),stat = "identity") + 
+    theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+### Load auxotrophy data from ghada's lab experiments, add column for merging with CarveMe/BiGG metabolites
+auxolab = read.delim("data/figure_data/auxolab_summary.tsv") %>% 
+  replace(is.na(.), 0) %>% 
+  select(c(Sample_ID,AAs_auxo:Nucleotide_auxo,Ala:Val)) %>%
+  pivot_longer(!Sample_ID,values_to = "auxo_lab", names_to = "metabolite") %>%
+  mutate(name=gsub("Ala","L-Alanine",metabolite)) %>%
+  mutate(name=gsub("Arg","L-Arginine",name)) %>%
+  mutate(name=gsub("Asp","L-Aspartic acid",name)) %>%
+  mutate(name=gsub("Asn","L-Asparagine",name)) %>%
+  mutate(name=gsub("Cys","L-Cysteine",name)) %>%
+  mutate(name=gsub("Glu","L-Glutamate",name)) %>%
+  mutate(name=gsub("Gln","L-Glutamine",name)) %>%
+  mutate(name=gsub("Gly","Glycine",name)) %>%
+  mutate(name=gsub("His","L-Histidine",name)) %>%
+  mutate(name=gsub("Ile","L-Isoleucine",name)) %>%
+  mutate(name=gsub("Leu","L-Leucine",name)) %>%
+  mutate(name=gsub("Lys","L-Lysine",name)) %>%
+  mutate(name=gsub("Met","L-Methionine",name)) %>%
+  mutate(name=gsub("Phe","L-Phenylalanine",name)) %>%
+  mutate(name=gsub("Pro","L-Proline",name)) %>%
+  mutate(name=gsub("Ser","L-Serine",name)) %>%
+  mutate(name=gsub("Thr","L-Threonine",name)) %>%
+  mutate(name=gsub("Trp","L-Tryptophan",name)) %>%
+  mutate(name=gsub("Tyr","L-Tyrosine",name)) %>%
+  mutate(name=gsub("Val","L-Valine",name)) %>%
+  mutate(name=gsub("AAs_auxo","*aminoacids",name)) %>%
+  mutate(name=gsub("Vitamin_auxo","*vitamins",name)) %>%
+  mutate(name=gsub("Nucleotide_auxo","*nucleotides",name)) %>%
+  mutate(auxo_lab=as.factor(auxo_lab))
+
+# plot heatmap
+ggplot(auxolab) + 
+    geom_tile(aes(y=Sample_ID,x=name,fill=auxo_lab)) + 
+    theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+    scale_fill_manual(values=c("black","gold"))
+
+# plot frequency of AAs
+ggplot(auxolab %>% group_by(name,auxo_lab) %>% summarize(count=n()) %>% filter(auxo_lab==1)) + 
+    geom_bar(aes(y=count,x=reorder(name,count)),stat = "identity") + 
+    theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+# plot frequency of auxos per genome
+ggplot(auxolab %>% group_by(Sample_ID,auxo_lab) %>% summarize(count=n()) %>% filter(auxo_lab==1)) + 
+    geom_bar(aes(y=count,x=reorder(name,count)),stat = "identity") + 
+    theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+### Combine experimental + computational, drop_na() removes metagenomic samples without ground truth as well as unmeasured/untested compounds
+# contains a total of 62 genomes from 58 samples & 992 comparisons between 16 amino acids predicted/measured to be required
+auxo = left_join(auxolab,auxopred %>% filter(!compound%in%ions) ,by=c("name","Sample_ID")) %>% 
+  drop_na() %>%
+  mutate(agree=as.numeric(ifelse(auxo_lab==auxo_model,"1","0")))
+
+auxo2 = left_join(auxopred2 %>% filter(!compound%in%ions),auxolab,by=c("name","Sample_ID")) %>% 
+    drop_na() %>%
+    mutate(agree=as.numeric(ifelse(auxo_lab==auxo_model,"1","0")))
+
+auxo2_all = left_join(auxopred2 %>% filter(!compound%in%ions),auxolab ,by=c("name","Sample_ID")) %>% 
+    mutate(agree=as.numeric(ifelse(auxo_lab==auxo_model,"1","0")))
+
+ggplot(auxo2 %>% left_join(.,metadata,by="Sample_ID") %>% mutate(state=ifelse(agree=="1" & auxo_lab=="1","TP",
+                                                                              ifelse(agree=="1" & auxo_lab=="0","TN",
+                                                                                     ifelse(agree=="0" & auxo_lab=="1", "FN", "FP")))), aes(x=genome,y=name,fill=state)) + 
+    geom_tile() + scale_fill_manual(values=c("#e41a1c","#377eb8","#4daf4a")) +facet_grid(Type~Habitats,scales = "free",space="free") +
+    theme(axis.text.x = element_text(angle = 45, hjust = 1))
+ggsave("outputs/AA_heatmap_discrepancies.pdf",width = 10,height = 6)
+ggsave("outputs/AA_heatmap_discrepancies.png",width = 10,height = 6)
+
+# inset plot summing across genomes to highlight which AAs are TP
+ggplot(auxo2 %>% left_join(.,metadata,by="Sample_ID") %>% mutate(state=ifelse(agree=="1" & auxo_lab=="1","TP",
+                                                                       ifelse(agree=="1" & auxo_lab=="0","TN",
+                                                                              ifelse(agree=="0" & auxo_lab=="1", "FN", "FP")))) %>% group_by(state,name) %>% summarize(count=n()),aes(x=state,y=name,fill=count)) + geom_tile()
+
+auxo3 = left_join(auxolab,auxopred3 %>% filter(!compound%in%ions) ,by=c("name","Sample_ID")) %>% 
+    drop_na() %>%
+    mutate(agree=as.numeric(ifelse(auxo_lab==auxo_model,"1","0")))
+
+auxo4 = left_join(auxolab,auxopred4 %>% filter(!compound%in%ions) ,by=c("name","Sample_ID")) %>% 
+    drop_na() %>%
+    mutate(agree=as.numeric(ifelse(auxo_lab==auxo_model,"1","0")))
+
+auxo5 = left_join(auxolab,auxopred5 %>% filter(!compound%in%ions) ,by=c("name","Sample_ID")) %>% 
+    drop_na() %>%
+    mutate(agree=as.numeric(ifelse(auxo_lab==auxo_model,"1","0")))
+
+auxo5 %>% group_by(name) %>% summarize(count=n())
+
+
+# save file of TP hits with informed models
+auxo2 %>% filter(auxo_model==1,agree==1) %>% left_join(.,checkm) -> true_positives
+write_delim(true_positives,"data/figure_data/true_positives.tsv",delim = "\t")
+
+# this shows how only a handful of models ever get amino acid auxotrophy predictions right, while they predict prototrophies most of the time
+auxo %>% filter(agree==1) %>% group_by(auxo_model,name) %>% summarise(count=n()) 
+
+###### MANUALLY
+# 77% agreement/accuracy doesnt seem so bad, however lets have a look at the confusion matrix ... 
+
+#true positives and true negatives
+auxo %>% group_by(auxo_model) %>% summarize(count=sum(agree))
+#false positives and false negatives
+auxo %>% filter(agree==0) %>% group_by(auxo_model) %>% summarise(count=n())
+
+## CONFUSION MATRIX
+#
+#     P   N
+# T  17  747
+# F  53  175
+
+TN = 747 # model correctly thinks that species is proto
+FP = 53 # model incorrectly thinks that species is auxo, while the lab said it was proto
+# with 800 total protos detected in the lab, the models are able to pick up 747
+# representing 93.375% specificity, meaning that its pretty good at detecting prototrophs
+
+FN = 175 # model incorrectly thinks that species is proto, while the lab said it was auxo
+TP = 17 # model correctly thinks that species is auxo
+# with 192 total auxos detected in the lab, the models were only able to pick up 17
+# representing only 8.85% recall, meaning that you are better off flipping a coin than 
+# relying on the models :(
+
+# precision = TP / TP + FP, considers false positives
+prec = TP/(TP+FP)
+prec
+
+# recall = TP / TP + FN, considers false negatives
+rec = TP/(TP+FN)
+rec
+
+# f1 score = 2(precision*recall)/(precision+ recall)
+f1 = (2*TP) / (2*TP + FP + FN)
+
+#####AUTOMATIC, do this per amino acid
+confusionMatrix(auxo$auxo_model,auxo$auxo_lab,mode="everything",positive = "1")
+
+
+confusionMatrix(auxo2$auxo_model,auxo2$auxo_lab,mode="everything",positive = "1")
+#see what amino acids are most wrong
+ggplot(auxo2 %>% filter(agree=="0",auxo_model=="0",auxo_lab=="1") %>% group_by(name) %>% summarise(count=n())) + geom_point(aes(y=reorder(name,count),x=count))
+#see what genomes are most wrong
+ggplot(auxo2 %>% filter(agree=="0",auxo_model=="0",auxo_lab=="1") %>% group_by(Sample_ID,genome) %>% summarise(count=n()) %>% left_join(.,gtdbtk,by="genome")) + geom_point(aes(y=reorder(genome,count),x=count,color=Type,shape=Phylum)) + facet_wrap(~Habitats,ncol = 1,scales = "free_y")
+
+confusionMatrix(auxo3$auxo_model,auxo3$auxo_lab,mode="everything",positive = "1")
+confusionMatrix(auxo4$auxo_model,auxo4$auxo_lab,mode="everything",positive = "1")
+confusionMatrix(auxo5$auxo_model,auxo5$auxo_lab,mode="everything",positive = "1")
+
+auxo_phe = auxo %>% filter(compound=="phe__L")
+confusionMatrix(auxo_phe$auxo_model,auxo_phe$auxo_lab,mode="everything",positive = "1")
+
+auxo_leu = auxo %>% filter(compound=="leu__L")
+confusionMatrix(auxo_leu$auxo_model,auxo_leu$auxo_lab,mode="everything",positive = "1")
+
+auxo_val = auxo %>% filter(compound=="val__L")
+confusionMatrix(auxo_val$auxo_model,auxo_val$auxo_lab,mode="everything",positive = "1")
+
+auxo_lys = auxo %>% filter(compound=="lys__L")
+confusionMatrix(auxo_lys$auxo_model,auxo_lys$auxo_lab,mode="everything",positive = "1")
+
+
+# PER BUG
+auxo_eco = auxo %>% filter(genome=="lane121s003972_bin.2.s")
+confusionMatrix(auxo_eco$auxo_model,auxo_eco$auxo_lab,mode="everything",positive = "1")
+
+auxo_lane821s003037 = auxo %>% filter(Sample_ID=="lane821s003037")
+confusionMatrix(auxo_lane821s003037$auxo_model,auxo_lane821s003037$auxo_lab,mode="everything",positive = "1")
+
+auxo_lane821s003042 = auxo %>% filter(Sample_ID=="lane821s003042")
+confusionMatrix(auxo_lane821s003042$auxo_model,auxo_lane821s003042$auxo_lab,mode="everything",positive = "1")
+
+```
+
+
+```{r}
+
+library(tidyverse)
+library(ggalluvial)
+
+# setwd("~/Documents/soil_auxo")  # repointed: run from repo root
+
+bigg_mets = read.delim("data/figure_data/bigg_classes.tsv")
+
+smetana_m2= read.delim("data/smetana/global_detailed.tsv.gz") %>% 
+  group_by(medium,receiver,donor,compound) %>% 
+  summarize(smet_ave=mean(smetana),smet_sd=sd(smetana),smet_med=median(smetana)) %>% 
+  mutate(compound = gsub("M_","",compound),compound = gsub("_e","",compound)) %>%
+         left_join(.,bigg_mets) %>%
+         filter(smet_ave>= 0.5, compound!="pi",compound!="h",compound!="fe2",compound!="h2s",compound!="s",compound!="glyc",compound!="rib__D",compound!="nh4") %>% unique()
+
+ggplot(smetana_m2, aes(axis1 = donor, axis2 = name, axis3 = receiver,
+           y = smet_ave)) +
+    scale_x_discrete(limits = c("Donor", "Metabolite", "Reciever")) +
+    xlab("Interaction") +
+    geom_alluvium(aes(fill = name)) +
+    geom_stratum(width=0.3) +
+    theme_minimal() + geom_text(stat = "stratum", aes(label = after_stat(stratum)),min.y=0.2)+theme_bw() + 
+    theme(panel.border = element_blank(), panel.grid.major = element_blank(),panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),axis.line.y = element_blank(),axis.ticks.y = element_blank(),axis.text.y = element_blank(),axis.title.y = element_blank(),axis.line.x = element_blank(),axis.ticks.x = element_blank(),legend.position = "none") + facet_wrap(~medium)
+
+ggsave("outputs/meadow_2_minimal.pdf",height = 10,width = 18)
+write_delim(smetana_m2,"outputs/filtered_meadow2_detailedt.tsv",delim = "\t")
+
+```
+
+
+
+```{r}
+
+
+bigg_rxns=read.delim("data/gem_curation/bigg_models_reactions.txt",sep="\t",quote="")
+
+gapfilled = read.delim("data/gem_curation/gapfilled_curated.tsv",header=FALSE) %>% rename(model=V1,bigg_id=V2) %>% mutate(bigg_id=gsub("R_","",bigg_id)) %>% left_join(.,bigg_rxns,by="bigg_id")
+
+#identified 3 gapfilled reactions with BCAA
+ggplot(data=gapfilled %>% filter(grepl("leu__L|ile__L|val__L",reaction_string)) %>% mutate(gapfilled=1),aes(x=model,y=reaction_string,fill=gapfilled)) + geom_tile() + theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+gprs = read.delim("data/gem_curation/reaction_GPRs.tsv") %>% left_join(.,bigg_rxns,by="bigg_id") %>% rename(genome=model) %>% left_join(checkm)
+
+#identify reactions without GPR, show this for each set of AAs
+ggplot(data=gprs %>% filter(grepl("leu__L|ile__L|val__L",reaction_string)) %>% mutate(has_GPR=as.factor(has_GPR)),aes(x=genome,y=reaction_string,fill=has_GPR)) + geom_tile() + theme(axis.text.x = element_text(angle = 45, hjust = 1)) + facet_grid(~Type,scales = "free_x",space="free")
+
+ggsave("outputs/gapfillled_BCAA.pdf",height = 8,width=14)
+ggsave("outputs/gapfillled_BCAA.png",height = 8,width=14)
+
+#overall, not looking just at BCAA
+ggplot(gprs %>% group_by(genome,has_GPR,Sites,Type,Habitats) %>% summarize(count=n())%>%mutate(has_GPR=as.factor(has_GPR)),aes(x=Sites,y=count,fill=has_GPR)) + geom_boxplot(alpha=0.5,outlier.alpha = 0) + geom_jitter(alpha=0.3) + facet_wrap(~Habitats,nrow = 1,scales = "free_x")
+
+gprs %>% filter(grepl("bracnhed",database_links,ignore.case = TRUE)) %>% View()
+```
+
+
+
+```{r}
+
+library(gggenes)
+
+# subsample using isolates to test
+seqs_sub = seqs %>% head(n=10)
+
+# genome info
+genome_info=read_csv("WiDb.csv")
+
+# genes dataframe made from eggnog and gff summary
+eggnog %>% unite("feat_id",c(genome,query)) %>% left_join(.,genes,by="feat_id") %>% mutate(strand = ifelse(strand=="+","TRUE","FALSE")) -> soil_genes
+
+#plot
+ggplot(soil_genes %>% filter(grepl("M00535|M00019|M00570|M00432",KEGG_Module),seq_id %in% seqs_sub$seq_id), 
+    aes(xmin = start, xmax = end, y = contig, fill = Preferred_name, forward= strand)) +
+    geom_gene_arrow() +
+    facet_wrap(~ seq_id, scales = "free", ncol = 1)
+
+# working toy example
+ggplot(example_genes, aes(xmin = start, xmax = end, y = molecule, fill = gene)) +
+    geom_gene_arrow() +
+    facet_wrap(~ molecule, scales = "free", ncol = 1) +
+    scale_fill_brewer(palette = "Set3") +
+    theme_genes()
+```
+
+
+```{r}
+
+library(gggenomes)
+
+# here we carry out a visualization analysis inspired by https://github.com/thackl/gggenomes/blob/master/data-raw/emales.org
+# idea is to plot our genomes and show BCAA genes across assemblies and show which are auxo and which are proto, hopefully
+# revealing some inserted element responsible for BCAA auxo
+
+# subsample using isolates to test
+metadata %>% filter(grepl("isolate",Type,ignore.case = TRUE)) %>% select(Sample_ID) ->sub_samples
+
+#1. read in sequences (genome information) 
+# taken from drep output, has genome id and length
+
+#test
+#seqs = read_fai("lane122s000517_bin.2.s.fa.fna")
+#seqs2 = read_seq_len("lane122s000517_bin.2.s.fa.fna")
+
+genome_info=read_csv("WiDb.csv")
+
+seqs = genome_info %>% select(genome,size) %>% rename(seq_id=genome,length=size) %>% mutate(seq_id=gsub("\\.fa","",seq_id)) %>% arrange(length) %>% mutate(Sample_ID=gsub("_.*$","",seq_id))
+
+seqs_sub = seqs %>% filter(seq_id=="lane122s000599_bin.1.p") %>% mutate(length="29529")
+
+gggenomes(seqs=seqs_sub) +
+    geom_seq() + geom_bin_label()
+
+#2. read in gene annotations
+# generated from prodigal output where each genome was trained against itself in normal mode
+# terminal: 
+# $ while read file;do prodigal -f gff -i $file -o prodigal_gff/$(basename ${file%.*}.gff);done< <(ls dna/*|grep fa)
+# $ while read file;do cat $file|grep -v '#'|sed "s/^/$(basename ${file%.*})_/g";done< <(ls prodigal_gff/*.gff) > soil_mags.gff
+
+
+# this read_gff3 function seems to filter out many gene hits? try reading in manually
+#genes=read_gff3("data/annotations/soil_mags.gff.gz")
+#genes_readgff3 = genes
+
+# read in file
+genes = read.delim("data/annotations/soil_mags.gff.gz",header=FALSE)
+# add colnames
+colnames(genes) = c("contig","source","type","start","end","score.1","strand","zero","details")
+# split details into individul cols and name them, from https://github.com/hyattpd/prodigal/wiki/understanding-the-prodigal-output#gene-coordinates altho some were missing
+genes <- genes %>% separate(.,details,into = c("ID","partial","start_type","rbs_motif","rbs_spacer","gc_cont","conf","score","cscore","sscore","rscore","uscore","tscore","mscore"),sep = ";")
+# create seq_id for genome ID and feat_id for protein ID
+genes <- genes %>% mutate(seq_id=gsub("^([^_]+_[^_]+).*", "\\1",contig),feat_id=gsub("^.*_","",ID),contig2=contig) %>% unite("feat_id",c(contig2,feat_id))
+
+genes_sub <- genes %>% filter(contig=="lane122s000599_bin.1.p_NODE_1_length_29529_cov_2.542136")
+
+#test
+# genes = read.delim("outputs/lane122s000517_bin.2.genes.tsv",header=FALSE) %>% rename(seq_id=V1,start=V2,end=V3,strand=V4) %>% mutate(length=end-start)
+
+gggenomes(seqs=seqs_sub,genes=genes_sub) +
+    geom_seq() + geom_bin_label() +
+  geom_gene(aes(fill=strand), position="strand") 
+
+ ggsave("outputs/test.pdf",height=20,width=20)
+
+# works with toy data
+gggenomes(emale_genes, emale_seqs_proper) +
+    geom_seq() + geom_bin_label() +
+    geom_gene(aes(fill=strand), position="strand") 
+
+```
+
+
+
+```{r}
+
+genomad_plasmid_genes = read.delim("data/annotations/genomad/cat_mags_plasmid_genes.tsv")
+#genomad plasmids
+genomad_plasmid = read.delim("data/annotations/genomad/cat_mags_plasmid_summary.tsv") %>% mutate(Sample_ID=gsub("_.*$","",seq_name),genome=gsub("^([^_]+_[^_]+).*", "\\1",seq_name)) %>% left_join(.,metadata)
+
+#quick view
+ggplot(genomad_plasmid,aes(x=length,y=n_genes,size=marker_enrichment,color=topology,shape=Type)) + geom_point()
+
+# overview, yes to plasmids evidence, apparently enriched in isolate genomes
+ggplot(genomad_plasmid %>% group_by(genome,Type,Habitats) %>% summarize(hits=n(),length=sum(length),genes=sum(n_genes)) %>% full_join(.,checkm,by="genome") %>% mutate(hits=replace_na(hits,0),length=replace_na(length,0),genes=replace_na(genes,0))%>% rename(total_bp=length) ,aes(x=reorder(genome,genes),y=genes,color=total_bp))+ theme_bw(base_size = 12) + geom_point() + theme(axis.text.x = element_text(angle = 45, hjust = 1),strip.text.y = element_text(angle = 0)) + facet_grid(Type.y~.,space="free",scales="free") + ylab("Plasmid genes") + xlab("Genomes") + coord_flip() -> genomad_panel_a
+ggsave("outputs/plasmids_genomad.pdf",height=12,width = 8)
+ggsave("outputs/plasmids_genomad.png",height=12,width = 8)
+
+######## new supp plasmid plot with summary
+ggplot(genomad_plasmid %>% group_by(genome,Type,Habitats) %>% summarize(hits=n(),length=sum(length),genes=sum(n_genes)) %>% full_join(.,checkm,by="genome") %>% mutate(hits=replace_na(hits,0),length=replace_na(length,0),genes=replace_na(genes,0))%>% rename(total_bp=length) %>% mutate(AAs_auxo=ifelse(is.na(AAs_auxo),"Not assayed",ifelse(AAs_auxo==1,"Auxotroph","Prototroph"))),aes(x=reorder(AAs_auxo,genes),y=1000000*genes/size)) + geom_boxplot(outlier.alpha = 0,alpha=0.5,aes(fill=AAs_auxo)) +scale_fill_manual(values=c("#DAC883","gray","black")) + geom_jitter(alpha=0.8,aes(color=AAs_auxo)) + scale_color_manual(values=c("#DAC883","gray","black")) + xlab("\nAmino acid auxotrophy status") + ylab(expression(Plasmid*-encoded~genes~(Mbp^-1)~phantom(" "))) -> bxp1
+genomad_plasmid %>% group_by(genome,Type,Habitats) %>% summarize(hits=n(),length=sum(length),genes=sum(n_genes)) %>% full_join(.,checkm,by="genome") %>% mutate(hits=replace_na(hits,0),length=replace_na(length,0),genes=replace_na(genes,0))%>% rename(total_bp=length) %>% mutate(AAs_auxo=ifelse(is.na(AAs_auxo),"Not assayed",ifelse(AAs_auxo==1,"Auxotroph","Prototroph"))) %>% ungroup() %>% mutate(genes_norm=1000000*genes/size) %>%
+    wilcox_test(genes_norm ~ AAs_auxo,p.adjust.method="BH") %>%
+    add_significance() -> stat.test
+stat.test %>% add_xy_position(x = "AAs_auxo") -> stat.test
+# fix reordering to properly place pvals
+stat.test[1,13]=3
+stat.test[2,12]=2
+stat.test[3,12]=1
+stat.test[3,13]=2
+save_y = stat.test$y.position[3]
+stat.test$y.position[3] = stat.test$y.position[1] + 30
+stat.test$y.position[1] = save_y - 15
+stat.test = stat.test %>% mutate(p.adj.signif=gsub("ns","NS",p.adj.signif))
+bxp1 + stat_pvalue_manual(stat.test, label = "p.adj.signif",size=5) + theme_bw() + theme(legend.position = "none",text=element_text(size=15)) -> bxp1
+
+# test for plasmid encoded genes per megabasepair: MAGs vs SAGs
+genomad_plasmid %>% group_by(genome,Type,Habitats) %>% summarize(hits=n(),length=sum(length),genes=sum(n_genes)) %>% full_join(.,checkm,by="genome") %>% mutate(hits=replace_na(hits,0),length=replace_na(length,0),genes=replace_na(genes,0))%>% rename(total_bp=length) %>% mutate(AAs_auxo=ifelse(is.na(AAs_auxo),"Not assayed",ifelse(AAs_auxo==1,"Auxotroph","Prototroph"))) %>% mutate(count_norm=1000000*genes/size) %>% group_by(AAs_auxo) %>% mutate(Type.y=ifelse(Type.y!="Metagenomic","Isolate",Type.y),Type.y=as.factor(Type.y)) %>% ungroup() %>% wilcox_test(count_norm ~ Type.y)
+
+# fetch stats
+genomad_plasmid %>% group_by(genome,Type,Habitats) %>% summarize(hits=n(),length=sum(length),genes=sum(n_genes)) %>% full_join(.,checkm,by="genome") %>% mutate(hits=replace_na(hits,0),length=replace_na(length,0),genes=replace_na(genes,0))%>% rename(total_bp=length) %>% mutate(AAs_auxo=ifelse(is.na(AAs_auxo),"Not assayed",ifelse(AAs_auxo==1,"Auxotroph","Prototroph"))) %>% mutate(count_norm=1000000*genes/size) %>% ungroup() %>% summarize(median=median(count_norm),iqr=IQR(count_norm))
+
+# by auxo type
+genomad_plasmid %>% group_by(genome,Type,Habitats) %>% summarize(hits=n(),length=sum(length),genes=sum(n_genes)) %>% full_join(.,checkm,by="genome") %>% mutate(hits=replace_na(hits,0),length=replace_na(length,0),genes=replace_na(genes,0))%>% rename(total_bp=length) %>% mutate(AAs_auxo=ifelse(is.na(AAs_auxo),"Not assayed",ifelse(AAs_auxo==1,"Auxotroph","Prototroph"))) %>% mutate(count_norm=1000000*genes/size) %>% group_by(AAs_auxo) %>% summarize(median=median(count_norm),iqr=IQR(count_norm))
+
+
+
+######## new supp virus plot with summary
+ggplot(genomad_virus %>% group_by(genome,Type,Habitats) %>% summarize(hits=n(),length=sum(length),genes=sum(n_genes)) %>% full_join(.,checkm,by="genome") %>% mutate(hits=replace_na(hits,0),length=replace_na(length,0),genes=replace_na(genes,0))%>% rename(total_bp=length) %>% mutate(AAs_auxo=ifelse(is.na(AAs_auxo),"Not assayed",ifelse(AAs_auxo==1,"Auxotroph","Prototroph")),AAs_auxo=factor(AAs_auxo,levels=c("Not assayed","Prototroph","Auxotroph"))),aes(x=AAs_auxo,y=1000000*genes/size)) + geom_boxplot(outlier.alpha = 0,alpha=0.5,aes(fill=AAs_auxo)) +scale_fill_manual(values=c("gray","black","#DAC883")) + geom_jitter(alpha=0.8,aes(color=AAs_auxo)) +scale_color_manual(values=c("gray","black","#DAC883")) + xlab("\nAmino acid auxotrophy status") + ylab(expression(Virus*-encoded~genes~(Mbp^-1))) -> bxp2
+genomad_virus %>% group_by(genome,Type,Habitats) %>% summarize(hits=n(),length=sum(length),genes=sum(n_genes)) %>% full_join(.,checkm,by="genome") %>% mutate(hits=replace_na(hits,0),length=replace_na(length,0),genes=replace_na(genes,0))%>% rename(total_bp=length) %>% mutate(AAs_auxo=ifelse(is.na(AAs_auxo),"Not assayed",ifelse(AAs_auxo==1,"Auxotroph","Prototroph"))) %>% ungroup() %>% mutate(genes_norm=1000000*genes/size) %>%
+    wilcox_test(genes_norm ~ AAs_auxo,p.adjust.method="BH") %>%
+    add_significance() -> stat.test
+stat.test %>% add_xy_position(x = "AAs_auxo") -> stat.test
+save_y = stat.test$y.position[3]
+stat.test$y.position[3] = stat.test$y.position[2] -15
+stat.test$y.position[2] = save_y -25
+stat.test = stat.test %>% mutate(p.adj.signif=gsub("ns","NS",p.adj.signif))
+bxp2 + stat_pvalue_manual(stat.test, label = "p.adj.signif",size=5) + theme_bw() + theme(legend.position = "none",text=element_text(size=15)) -> bxp2
+
+ggarrange(bxp1,bxp2,labels = c("A","B"),nrow=1)
+
+ggsave("outputs/summary_genomad.png",height = 4,width = 8)
+ggsave("outputs/summary_genomad.pdf",height = 4,width = 8)
+
+### fetch stats
+genomad_virus %>% group_by(genome,Type,Habitats) %>% summarize(hits=n(),length=sum(length),genes=sum(n_genes)) %>% full_join(.,checkm,by="genome") %>% mutate(hits=replace_na(hits,0),length=replace_na(length,0),genes=replace_na(genes,0))%>% rename(total_bp=length) %>% mutate(AAs_auxo=ifelse(is.na(AAs_auxo),"Not assayed",ifelse(AAs_auxo==1,"Auxotroph","Prototroph"))) %>% mutate(count_norm=1000000*genes/size) %>% ungroup() %>% summarize(median=median(count_norm),iqr=IQR(count_norm))
+
+# feth stats by auxo tupe
+genomad_virus %>% group_by(genome,Type,Habitats) %>% summarize(hits=n(),length=sum(length),genes=sum(n_genes)) %>% full_join(.,checkm,by="genome") %>% mutate(hits=replace_na(hits,0),length=replace_na(length,0),genes=replace_na(genes,0))%>% rename(total_bp=length) %>% mutate(AAs_auxo=ifelse(is.na(AAs_auxo),"Not assayed",ifelse(AAs_auxo==1,"Auxotroph","Prototroph"))) %>% mutate(count_norm=1000000*genes/size) %>% group_by(AAs_auxo) %>% summarize(median=median(count_norm),iqr=IQR(count_norm))
+
+
+
+##########
+
+genomad_virus_genes = read.delim("data/annotations/genomad/cat_mags_virus_genes.tsv")
+#genomad virus
+genomad_virus = read.delim("data/annotations/genomad/cat_mags_virus_summary.tsv") %>% mutate(Sample_ID=gsub("_.*$","",seq_name),genome=gsub("^([^_]+_[^_]+).*", "\\1",seq_name)) %>% left_join(.,metadata)
+
+#quick view
+ggplot(genomad_virus,aes(x=length,y=n_genes,size=marker_enrichment,color=topology,shape=Type)) + geom_point()
+
+# overview, yes to voris evidence, apparently enriched in metagenomic (could be side effect of binning??)
+ggplot(genomad_virus %>% group_by(genome,Sample_ID,Type,Habitats) %>% summarize(hits=n(),length=sum(length),genes=sum(n_genes)) %>% full_join(.,checkm,by="genome") %>% mutate(hits=replace_na(hits,0),length=replace_na(length,0),genes=replace_na(genes,0)) %>% rename(total_bp=length) ,aes(x=reorder(genome,genes),y=genes,color=total_bp)) + geom_point() + theme_bw(base_size = 12) + theme(axis.text.x = element_text(angle = 45, hjust = 1),strip.text.y = element_text(angle = 0)) + facet_grid(Type.y~.,space="free",scales="free") + ylab("Viral genes") + xlab("Genomes") + coord_flip() -> genomad_panel_b
+
+ggsave("outputs/virus_genomad.pdf",height=12,width = 8)
+ggsave("outputs/virus_genomad.png",height=12,width = 8)
+
+# no difference in gene count
+genomad_virus %>% group_by(genome,Sample_ID,Type,Habitats) %>% summarize(hits=n(),length=sum(length),genes=sum(n_genes)) %>% full_join(.,checkm,by="genome") %>% mutate(hits=replace_na(hits,0),length=replace_na(length,0),genes=replace_na(genes,0)) %>% select(genome,AAs_auxo,genes) %>% drop_na() -> virus_gene_counts
+
+compare_means(genes ~ AAs_auxo , virus_gene_counts,method="wilcox.test",p.adjust.method = "BH")
+
+# make summary overview of which models have evidence for plasmid/virus, plot over discrepancies!
+genomad_virus %>% group_by(genome) %>% summarize(viral_hits=n(),viral_bp=sum(length),viral_genes=sum(n_genes)) -> gv_sum
+genomad_plasmid %>% group_by(genome) %>% summarize(plasmid_hits=n(),plasmid_bp=sum(length),plasmid_genes=sum(n_genes)) -> gp_sum
+genomad_summary = left_join(checkm,gv_sum,by="genome") %>% 
+  left_join(.,gp_sum,by="genome") %>% 
+  mutate(viral_hits=coalesce(viral_hits,0), viral_bp=coalesce(viral_bp,0), viral_genes=coalesce(viral_genes,0),
+         plasmid_hits=coalesce(plasmid_hits,0),plasmid_bp=coalesce(plasmid_bp,0),plasmid_genes=coalesce(plasmid_genes,0)) %>%
+  left_join(.,auxo2 %>% filter(agree==0 & auxo_lab==1) %>% group_by(genome) %>% summarize(false_negatives=n()),by="genome") %>%
+  mutate(false_negatives= coalesce(false_negatives,0)) %>% filter(Type!="Metagenomic")
+
+# lets have a detailed look at lane821s003037_bin.1.p, indicating MGEs that are associated with amino acids
+
+# has contig Id and length
+lane37_contigs = eggnog %>% filter(genome=="lane821s003037_bin.1.p") %>% mutate(query=gsub("_cov.*$","",query),length = gsub("^.*length_","",query),length=as.numeric(length),query=gsub("_length.*$","",query)) %>% dplyr::select(query,length) %>% dplyr::select(query,length) %>% unique() %>% dplyr::rename(contig=query)
+
+# plot on top of thos
+ggplot(lane37_contigs) + 
+  geom_bar(aes(y=length,x=reorder(contig,length)),stat="identity")+ 
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+ggsave("outputs/lane821s003037_contigs.pdf",height = 3,width = 8)
+ggsave("outputs/lane821s003037_contigs.png",height = 3,width = 8)
+
+
+#has eggnogg annotations associated with amino acid biosytnehsos
+lane37_egg = eggnog %>% filter(genome=="lane821s003037_bin.1.p",grepl("M00019|M00535|M00570|M00432",KEGG_Module)) %>% mutate(contig=gsub("_length.*$","",query))
+#lane37_egg = eggnog %>% filter(genome=="lane821s003037_bin.1.p",grepl("map01230",KEGG_Pathway)) %>% mutate(contig=gsub("_length.*$","",query))
+
+#has locations of genes associated with AA biosynth
+lane37_genes = genes %>% filter(grepl("lane821s003037_bin.1.p",contig)) %>% dplyr::rename(query=feat_id) %>% mutate(query=gsub("^.*_bin.1.p_","",query)) %>% filter(query %in% lane37_egg$query) %>% mutate(contig=gsub("^.*p_NODE","NODE",contig),contig=gsub("_length.*$","",contig)) %>% left_join(.,lane37_egg %>% dplyr::select(query,Preferred_name))
+
+# has AA annotations, need to add virus + plasmid but not super easy to see whats going on!!!
+gggenomes(genes=lane37_genes%>% mutate(seq_id=contig), seqs = lane37_contigs %>% dplyr::rename(seq_id=contig)) +
+    geom_seq() + geom_bin_label() +
+    geom_gene(aes(fill=Preferred_name,color=Preferred_name), position="strand")
+
+# try looking at BCAA operon specifically wiuth gggnges, shows brojken patheway
+ggplot(lane37_genes , aes(xmin = start, xmax = end, y = contig, fill = Preferred_name)) +
+    geom_gene_arrow() + 
+    facet_wrap(~ contig, scales = "free", ncol = 1)
+
+# lets have a detailed look at lane821s003042_shovill, indicating MGEs that are associated with amino acids
+lane42_contigs = read.delim("outputs/lane42_contigs.tsv",sep =" ")
+
+#has eggnogg annotations associated with amino acid biosytnehsos
+lane42_egg = eggnog %>% filter(genome=="lane821s003042_shovill",grepl("map01230",KEGG_Pathway)) %>% mutate(contig=gsub("_length.*$","",query))
+
+#has locations of genes associated with AA biosynth
+lane42_genes = genes %>% filter(grepl("lane821s003042_shovill",contig)) %>% dplyr::rename(query=feat_id) %>% mutate(query=gsub("lane821s003042_shovill_","",query)) %>% filter(query %in% lane42_egg$query) %>% mutate(contig=gsub("lane821s003042_shovill_","",contig)) %>% left_join(.,lane42_egg %>% dplyr::select(query,Preferred_name))
+
+gggenomes(lane42_genes%>% mutate(seq_id=contig), lane42_contigs %>% dplyr::rename(seq_id=contig)) +
+    geom_seq() + geom_bin_label() +
+    geom_gene(aes(fill=Preferred_name,color=Preferred_name), position="strand")
+
+
+```
+
+Alanine, aspartate, glutamate, glutamine, asparagine: 
+* "ko00250" or "M00250"
+* short pathways, redundant, close to central carbon, nitrogen assimilation
+
+Serine, Threonine, Glycine : "ko00260" or "M00020|M00018|M00033"
+
+Cysteine, Methionine: "ko00270" or "M00021|M00338|M00609|M00017"
+
+Valine, Leucine, Isoleucine: "ko00280|ko00290" or "M00019|M00535|M00570|M00432"
+
+Lysine: "ko00300|ko00310" or "M00016|M00525|M00526|M00527|M00030|M00433|M00031"
+
+Arginine, Proline: "ko00220|ko00330" or "M00028|M00763|M00844|M00845|M00029|M00015"
+
+Histidine: "ko00340" or "M00026"
+
+Tryptophan, Phenylalanine, Tyrosine: "ko00350|ko00360|ko00380|ko00400" or "M00022|M00023|M00024|M00910|M00025|M00040"
+
+
+```{r}
+
+# detailed look at lane821s003037_bin.1.p
+# viral contigs: NODES 9, 11, 19, 30
+# plasmid contigs: NODES 22, 29, 34, 35
+
+# Alanine, aspartate, glutamate, glutamine, asparagine
+# these mets are not biosynthesized, they are metabolized using short pathways from other carbon metabolism precurseors,
+# in fact, these are missing from the KEGG AA Biosynthesis maps
+# note nodes 9 & 11 have metabolic genes and hits for viral!
+lane37_egg = eggnog %>% filter(genome=="lane821s003037_bin.1.p",grepl("ko00250",KEGG_Pathway)) %>% mutate(contig=gsub("_length.*$","",query))
+lane37_genes = genes %>% filter(grepl("lane821s003037_bin.1.p",contig)) %>% dplyr::rename(query=feat_id) %>% mutate(query=gsub("^.*_bin.1.p_","",query)) %>% filter(query %in% lane37_egg$query) %>% mutate(contig=gsub("^.*p_NODE","NODE",contig),contig=gsub("_length.*$","",contig)) %>% left_join(.,lane37_egg %>% dplyr::select(query,Preferred_name,EC))
+ggplot(lane37_genes , aes(xmin = start, xmax = end, y = contig, fill = Preferred_name,label=Preferred_name)) +
+    geom_gene_arrow() + gggenes::geom_gene_label() +
+    facet_wrap(~ contig, scales = "free", ncol = 2)
+
+# Serine, Threonine, Glycine
+lane37_egg = eggnog %>% filter(genome=="lane821s003037_bin.1.p",grepl("M00020|M00018|M00033",KEGG_Module)) %>% mutate(contig=gsub("_length.*$","",query))
+lane37_genes = genes %>% filter(grepl("lane821s003037_bin.1.p",contig)) %>% dplyr::rename(query=feat_id) %>% mutate(query=gsub("^.*_bin.1.p_","",query)) %>% filter(query %in% lane37_egg$query) %>% mutate(contig=gsub("^.*p_NODE","NODE",contig),contig=gsub("_length.*$","",contig)) %>% left_join(.,lane37_egg %>% dplyr::select(query,Preferred_name,EC))
+ggplot(lane37_genes , aes(xmin = start, xmax = end, y = contig, fill = Preferred_name,label=Preferred_name)) +
+    geom_gene_arrow() + gggenes::geom_gene_label() +
+    facet_wrap(~ contig, scales = "free", ncol = 1)
+
+# Cysteine, methioine
+# note node 19 has metabolic gene and viral hit
+lane37_egg = eggnog %>% filter(genome=="lane821s003037_bin.1.p",grepl("M00021|M00338|M00609|M00017",KEGG_Module)) %>% mutate(contig=gsub("_length.*$","",query))
+lane37_genes = genes %>% filter(grepl("lane821s003037_bin.1.p",contig)) %>% dplyr::rename(query=feat_id) %>% mutate(query=gsub("^.*_bin.1.p_","",query)) %>% filter(query %in% lane37_egg$query) %>% mutate(contig=gsub("^.*p_NODE","NODE",contig),contig=gsub("_length.*$","",contig)) %>% left_join(.,lane37_egg %>% dplyr::select(query,Preferred_name,EC))
+ggplot(lane37_genes , aes(xmin = start, xmax = end, y = contig, fill = Preferred_name,label=Preferred_name)) +
+    geom_gene_arrow() + gggenes::geom_gene_label() +
+    facet_wrap(~ contig, scales = "free", ncol = 1)
+
+# BCAA, kind of clear that operon is broken, seems flipped also?
+lane37_egg = eggnog %>% filter(genome=="lane821s003037_bin.1.p",grepl("M00019|M00535|M00570|M00432",KEGG_Module)) %>% mutate(contig=gsub("_length.*$","",query))
+lane37_genes = genes %>% filter(grepl("lane821s003037_bin.1.p",contig)) %>% dplyr::rename(query=feat_id) %>% mutate(query=gsub("^.*_bin.1.p_","",query)) %>% filter(query %in% lane37_egg$query) %>% mutate(contig=gsub("^.*p_NODE","NODE",contig),contig=gsub("_length.*$","",contig)) %>% left_join(.,lane37_egg %>% dplyr::select(query,Preferred_name,EC))
+ggplot(lane37_genes , aes(xmin = start, xmax = end, y = contig, fill = Preferred_name,label=Preferred_name)) +
+    geom_gene_arrow() + gggenes::geom_gene_label() +
+    facet_wrap(~ contig, scales = "free", ncol = 1)
+
+# Lysine
+# note NODE 9 has viral hit and metabolic genes
+lane37_egg = eggnog %>% filter(genome=="lane821s003037_bin.1.p",grepl("M00016|M00525|M00526|M00527|M00030|M00433|M00031",KEGG_Module)) %>% mutate(contig=gsub("_length.*$","",query))
+lane37_genes = genes %>% filter(grepl("lane821s003037_bin.1.p",contig)) %>% dplyr::rename(query=feat_id) %>% mutate(query=gsub("^.*_bin.1.p_","",query)) %>% filter(query %in% lane37_egg$query) %>% mutate(contig=gsub("^.*p_NODE","NODE",contig),contig=gsub("_length.*$","",contig)) %>% left_join(.,lane37_egg %>% dplyr::select(query,Preferred_name,EC))
+ggplot(lane37_genes , aes(xmin = start, xmax = end, y = contig, fill = Preferred_name,label=Preferred_name)) +
+    geom_gene_arrow() + gggenes::geom_gene_label() +
+    facet_wrap(~ contig, scales = "free", ncol = 1)
+
+# arginine proline
+lane37_egg = eggnog %>% filter(genome=="lane821s003037_bin.1.p",grepl("M00028|M00763|M00844|M00845|M00029|M00015",KEGG_Module)) %>% mutate(contig=gsub("_length.*$","",query))
+lane37_genes = genes %>% filter(grepl("lane821s003037_bin.1.p",contig)) %>% dplyr::rename(query=feat_id) %>% mutate(query=gsub("^.*_bin.1.p_","",query)) %>% filter(query %in% lane37_egg$query) %>% mutate(contig=gsub("^.*p_NODE","NODE",contig),contig=gsub("_length.*$","",contig)) %>% left_join(.,lane37_egg %>% dplyr::select(query,Preferred_name,EC))
+ggplot(lane37_genes , aes(xmin = start, xmax = end, y = contig, fill = Preferred_name,label=Preferred_name)) +
+    geom_gene_arrow() + gggenes::geom_gene_label() +
+    facet_wrap(~ contig, scales = "free", ncol = 1)
+
+# histidine, very nice example!! shows almost complete operon but missing hisC and evidence of 2 transporters
+lane37_egg = eggnog %>% filter(genome=="lane821s003037_bin.1.p",grepl("M00026",KEGG_Module)) %>% mutate(contig=gsub("_length.*$","",query))
+lane37_genes = genes %>% filter(grepl("lane821s003037_bin.1.p",contig)) %>% dplyr::rename(query=feat_id) %>% mutate(query=gsub("^.*_bin.1.p_","",query)) %>% filter(query %in% lane37_egg$query) %>% mutate(contig=gsub("^.*p_NODE","NODE",contig),contig=gsub("_length.*$","",contig)) %>% left_join(.,lane37_egg %>% dplyr::select(query,Preferred_name,EC))
+ggplot(lane37_genes , aes(xmin = start, xmax = end, y = contig, fill = Preferred_name,label=Preferred_name)) +
+    geom_gene_arrow() + gggenes::geom_gene_label() +
+    facet_wrap(~ contig, scales = "free", ncol = 1)
+
+# aromatics, also very nice operon
+# note NODES 9 & 11 have viral hits and metaoblic genes
+lane37_egg = eggnog %>% filter(genome=="lane821s003037_bin.1.p",grepl("M00022|M00023|M00024|M00910|M00025|M00040",KEGG_Module)) %>% mutate(contig=gsub("_length.*$","",query))
+lane37_genes = genes %>% filter(grepl("lane821s003037_bin.1.p",contig)) %>% dplyr::rename(query=feat_id) %>% mutate(query=gsub("^.*_bin.1.p_","",query)) %>% filter(query %in% lane37_egg$query) %>% mutate(contig=gsub("^.*p_NODE","NODE",contig),contig=gsub("_length.*$","",contig)) %>% left_join(.,lane37_egg %>% dplyr::select(query,Preferred_name,EC))
+ggplot(lane37_genes , aes(xmin = start, xmax = end, y = contig, fill = Preferred_name,label=Preferred_name)) +
+    geom_gene_arrow() + gggenes::geom_gene_label() +
+    facet_wrap(~ contig, scales = "free", ncol = 2)
+
+```
+
+
+Very interesting exploration above, do the same for the other problematic genome also to get an idea
+
+Below we take a histidine-centric view to compare the pathway strucutre and relationship with auxotrophy discrepancies.
+This and the trp operon are good examples to look at since they are some of the pathways known to be organized into operons!
+ 
+```{r}
+
+# overview of discrepancies only looking at histidine
+ggplot(auxo2 %>% filter(name=="L-Histidine") %>% left_join(.,metadata,by="Sample_ID") %>% mutate(state=ifelse(agree=="1" & auxo_lab=="1","TP",
+                                                                              ifelse(agree=="1" & auxo_lab=="0","TN",
+                                                                                     ifelse(agree=="0" & auxo_lab=="1", "FN", "FP")))), aes(y=genome,x=name,fill=state)) + 
+    geom_tile() + scale_fill_manual(values=c("#e41a1c","#377eb8","#4daf4a")) +facet_grid(Type~Habitats,scales = "free",space="free") +
+    theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+
+# histidine pathway in problem genome lane37 : discrepancy (FN)
+# has 2 hisJ genes that r part of transport system!
+lane37_egg = eggnog %>% filter(genome=="lane821s003037_bin.1.p",grepl("M00026",KEGG_Module)) %>% mutate(contig=gsub("_length.*$","",query))
+lane37_genes = genes %>% filter(grepl("lane821s003037_bin.1.p",contig)) %>% dplyr::rename(query=feat_id) %>% mutate(query=gsub("^.*_bin.1.p_","",query)) %>% filter(query %in% lane37_egg$query) %>% mutate(contig=gsub("^.*p_NODE","NODE",contig),contig=gsub("_length.*$","",contig)) %>% left_join(.,lane37_egg %>% dplyr::select(query,Preferred_name,EC))
+ggplot(lane37_genes , aes(xmin = start, xmax = end, y = contig, fill = Preferred_name,label=Preferred_name)) +
+    geom_gene_arrow() + gggenes::geom_gene_label() +
+    facet_wrap(~ contig, scales = "free", ncol = 1)
+
+ggsave("outputs/lane821s003037_histidine.pdf",height = 8,width = 6)
+ggsave("outputs/lane821s003037_histidine.png",height = 8,width = 6)
+
+# histidine pathway in genome lane122s000523_bin.1.p : example of agreement (TN)
+# plasmids but no virus
+lane523_egg = eggnog %>% filter(genome=="lane122s000523_bin.1.p",grepl("M00026",KEGG_Module)) %>% mutate(contig=gsub("_length.*$","",query))
+lane523_genes = genes %>% filter(grepl("lane122s000523_bin.1.p",contig)) %>% dplyr::rename(query=feat_id) %>% mutate(query=gsub("^.*_bin.1.p_","",query)) %>% filter(query %in% lane523_egg$query) %>% mutate(contig=gsub("^.*p_NODE","NODE",contig),contig=gsub("_length.*$","",contig)) %>% left_join(.,lane523_egg %>% dplyr::select(query,Preferred_name,EC))
+ggplot(lane523_genes , aes(xmin = start, xmax = end, y = contig, fill = Preferred_name,label=Preferred_name)) +
+    geom_gene_arrow() + gggenes::geom_gene_label() +
+    facet_wrap(~ contig, scales = "free", ncol = 2)
+
+# histidine pathway in genome lane122s000535_bin.1.p : only agreement (TP)
+# virus hit on node 2
+# missing hisZ regulatory gene may explain this, no actually bc carveme wouldnt know about that?
+lane535_egg = eggnog %>% filter(genome=="lane122s000535_bin.1.p",grepl("M00026",KEGG_Module)) %>% mutate(contig=gsub("_length.*$","",query))
+lane535_genes = genes %>% filter(grepl("lane122s000535_bin.1.p",contig)) %>% dplyr::rename(query=feat_id) %>% mutate(query=gsub("^.*_bin.1.p_","",query)) %>% filter(query %in% lane535_egg$query) %>% mutate(contig=gsub("^.*p_NODE","NODE",contig),contig=gsub("_length.*$","",contig)) %>% left_join(.,lane535_egg %>% dplyr::select(query,Preferred_name,EC))
+ggplot(lane535_genes , aes(xmin = start, xmax = end, y = contig, fill = Preferred_name,label=Preferred_name)) +
+    geom_gene_arrow() + gggenes::geom_gene_label() +
+    facet_wrap(~ contig, scales = "free", ncol = 1)
+
+# there is not a clear pattern here, check for viral/plasmid contigs in other genomes + consider taxonomic specific idiosyncrcacies!
+## do certain genera have more discrepancies?
+
+auxo2 %>% left_join(.,metadata,by="Sample_ID") %>% mutate(state=ifelse(agree=="1" & auxo_lab=="1","TP",
+                                                                              ifelse(agree=="1" & auxo_lab=="0","TN",
+                                                                                     ifelse(agree=="0" & auxo_lab=="1", "FN", "FP")))) -> auxo_state
+
+# make a histidine centric analysis including TP genome above + 9 FN + other TN as reference
+hist_genomes = auxo2 %>% left_join(.,metadata,by="Sample_ID") %>% mutate(state=ifelse(agree=="1" & auxo_lab=="1","TP",
+                                                                              ifelse(agree=="1" & auxo_lab=="0","TN",
+                                                                                     ifelse(agree=="0" & auxo_lab=="1", "FN", "FP")))) %>% filter(name=="L-Histidine",auxo_lab==1)
+
+hist_egg = eggnog %>% 
+    filter(genome %in% hist_genomes$genome,grepl("M00026",KEGG_Module)) %>% 
+    mutate(contig=gsub("(^(NODE_\\d+|contig\\d+|k\\d+_\\d+)).*", "\\1", query)) %>% 
+    mutate(genome2=genome,query2=query) %>% unite("feat_id",genome2:query2) %>% left_join(.,genes,by="feat_id")
+
+hist_egg %>% select(genome,Preferred_name) %>% mutate(present=1) %>% group_by(genome,Preferred_name) %>% summarize(count=n()) %>% pivot_wider(names_from = Preferred_name,values_from = count,values_fill = 0) %>% pivot_longer(!genome,names_to = "gene",values_to = "value") %>% left_join(.,auxo_state,by="genome") %>% filter(name=="L-Histidine") -> histidine
+
+ggplot(histidine %>% mutate(value=as.factor(value)),aes(x=gene,y=genome,fill=value)) + geom_tile() + facet_grid(state~.,scales = "free",space="free") + scale_fill_manual(values=c("#f1eef6","#bdc9e1","#74a9cf","#0570b0"))
+
+##try to:
+#define pathway completeness as % of steps in pathway fulfilled by genetic products
+#define pathway robustness as % of steps in pathway guarded by multiple genetic products/gene copies
+#define pathway fragmentation as % of steps in pathway present in highest gene cluster/contig
+
+## Looks like pathways are pretty complete in most genomes, will need to look at fragmentation
+# for histidine pathway we have 9 steps <-> https://www.genome.jp/module/M00026
+# interesting article table 1 shows which gene ko's result in auxo  https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3896937/
+# step 1: hisG/hisZ
+# step 2: hisI/hisE/MA20_20870
+# step 3: hisI
+# step 4: hisA/-
+# step 5: hisF/hisH
+# step 6: hisB
+# step 7: hisC/hisC1/hisC2
+# step 8: hisB/hisN/hisK
+# step 9: hisD/hisD2/hisD_3
+
+# seems like in both FN and TN hisC gene tends to jump out
+# fundamental problem in discerning between assembly idiosyncracies and true genomic re-arrangements, maybe MGEs could tie this together?
+
+#functioning histidine pathway example true negative lane121s003951_bin.1.p
+ggplot(hist_egg %>% mutate(contig=gsub("_[^_]+$","",query)) %>% filter(genome=="lane121s003951_bin.1.p"), aes(xmin = start, xmax = end, y = contig, fill = Preferred_name,label=Preferred_name)) +
+    geom_gene_arrow() + gggenes::geom_gene_label() +
+    facet_wrap(genome~ contig, scales = "free",ncol = 1)
+
+#functioning histidine pathway example true negative lane121s003952_megahit
+ggplot(hist_egg %>% mutate(contig=gsub("_[^_]+$","",query)) %>% filter(genome=="lane121s003952_megahit"), aes(xmin = start, xmax = end, y = contig, fill = Preferred_name,label=Preferred_name)) +
+    geom_gene_arrow() + gggenes::geom_gene_label() +
+    facet_wrap(genome~ contig, scales = "free",ncol = 1)
+
+#functioning histidine pathway example true negative lane121s003953_shovill
+ggplot(hist_egg %>% mutate(contig=gsub("_[^_]+$","",query)) %>% filter(genome=="lane121s003953_shovill"), aes(xmin = start, xmax = end, y = contig, fill = Preferred_name,label=Preferred_name)) +
+    geom_gene_arrow() + gggenes::geom_gene_label() +
+    facet_wrap(genome~ contig, scales = "free",ncol = 1)
+
+#functioning histidine pathway example true negative lane121s003954_shovill
+ggplot(hist_egg %>% mutate(contig=gsub("_[^_]+$","",query)) %>% filter(genome=="lane121s003954_shovill"), aes(xmin = start, xmax = end, y = contig, fill = Preferred_name,label=Preferred_name)) +
+    geom_gene_arrow() + gggenes::geom_gene_label() +
+    facet_wrap(genome~ contig, scales = "free",ncol = 1)
+
+#functioning histidine pathway example true negative lane122s000527_megahit
+ggplot(hist_egg %>% mutate(contig=gsub("_[^_]+$","",query)) %>% filter(genome=="lane122s000527_megahit"), aes(xmin = start, xmax = end, y = contig, fill = Preferred_name,label=Preferred_name)) +
+    geom_gene_arrow() + gggenes::geom_gene_label() +
+    facet_wrap(genome~ contig, scales = "free",ncol = 1)
+
+#functioning histidine pathway example true negative lane121s003955_bin.1.s
+ggplot(hist_egg %>% mutate(contig=gsub("_[^_]+$","",query)) %>% filter(genome=="lane121s003955_bin.1.s"), aes(xmin = start, xmax = end, y = contig, fill = Preferred_name,label=Preferred_name)) +
+    geom_gene_arrow() + gggenes::geom_gene_label() +
+    facet_wrap(genome~ contig, scales = "free",ncol = 1)
+
+# check histidine gapfilled reactions
+# check histidine gpr reactions
+
+#broken histidine pathway example true positive lane122s000535_bin.1.p
+# NODE_2 has hisN gene and provirus hit, not in the same genomic area but same contig
+# but why does model know that its auxo, if all genes are present??
+## is it bc the lab determined it was auxo and so we kept histidine in the gapfilling media, and since carveme probably tries to minimize the number of reactions introduced
+## if there is evidence for transporters and biosynth then it would prioritize the transporter making it auxo?
+ggplot(hist_egg %>% mutate(contig=gsub("_[^_]+$","",query)) %>% filter(genome=="lane122s000535_bin.1.p"), aes(xmin = start, xmax = end, y = contig, fill = Preferred_name,label=Preferred_name)) +
+    geom_gene_arrow() + gggenes::geom_gene_label() +
+    facet_wrap(genome~ contig, scales = "free",ncol = 1)
+
+# false negative lane121s003971_bin.1.s, could be explained by misplaced hisC
+ggplot(hist_egg %>% mutate(contig=gsub("_[^_]+$","",query)) %>% filter(genome=="lane121s003971_bin.1.s"), aes(xmin = start, xmax = end, y = contig, fill = Preferred_name,label=Preferred_name)) +
+    geom_gene_arrow() + gggenes::geom_gene_label() +
+    facet_wrap(genome~ contig, scales = "free",ncol = 1)
+
+# false negative lane121s003995_shovill, could be explained by misplaced hisC
+ggplot(hist_egg %>% mutate(contig=gsub("_[^_]+$","",query)) %>% filter(genome=="lane121s003995_shovill"), aes(xmin = start, xmax = end, y = contig, fill = Preferred_name,label=Preferred_name)) +
+    geom_gene_arrow() + gggenes::geom_gene_label() +
+    facet_wrap(genome~ contig, scales = "free",ncol = 2)
+
+# false negative lane122s000522_shovill, could be explained by misplaced hisC
+ggplot(hist_egg %>% mutate(contig=gsub("_[^_]+$","",query)) %>% filter(genome=="lane122s000522_shovill"), aes(xmin = start, xmax = end, y = contig, fill = Preferred_name,label=Preferred_name)) +
+    geom_gene_arrow() + gggenes::geom_gene_label() +
+    facet_wrap(genome~ contig, scales = "free",ncol = 1)
+
+# false negative lane122s000537_shovill, could be explained by misplaced hisC
+ggplot(hist_egg %>% mutate(contig=gsub("_[^_]+$","",query)) %>% filter(genome=="lane122s000537_shovill"), aes(xmin = start, xmax = end, y = contig, fill = Preferred_name,label=Preferred_name)) +
+    geom_gene_arrow() + gggenes::geom_gene_label() +
+    facet_wrap(genome~ contig, scales = "free",ncol = 1)
+
+# false negative lane821s003035_bin.1.p, could be explained by misplaced hisC
+ggplot(hist_egg %>% mutate(contig=gsub("_[^_]+$","",query)) %>% filter(genome=="lane821s003035_bin.1.p"), aes(xmin = start, xmax = end, y = contig, fill = Preferred_name,label=Preferred_name)) +
+    geom_gene_arrow() + gggenes::geom_gene_label() +
+    facet_wrap(genome~ contig, scales = "free",ncol = 1)
+
+# false negative lane821s003037_bin.1.p, could be explained by misplaced hisC
+ggplot(hist_egg %>% mutate(contig=gsub("_[^_]+$","",query)) %>% filter(genome=="lane821s003037_bin.1.p"), aes(xmin = start, xmax = end, y = contig, fill = Preferred_name,label=Preferred_name)) +
+    geom_gene_arrow() + gggenes::geom_gene_label() +
+    facet_wrap(genome~ contig, scales = "free",ncol = 1)
+
+# false negative lane821s003038_bin.1.o, could be explained by misplaced hisC
+ggplot(hist_egg %>% mutate(contig=gsub("_[^_]+$","",query)) %>% filter(genome=="lane821s003038_bin.1.o"), aes(xmin = start, xmax = end, y = contig, fill = Preferred_name,label=Preferred_name)) +
+    geom_gene_arrow() + gggenes::geom_gene_label() +
+    facet_wrap(genome~ contig, scales = "free",ncol = 1) 
+
+# false negative lane821s003042_shovill, could be explained by misplaced hisC
+ggplot(hist_egg %>% mutate(contig=gsub("_[^_]+$","",query)) %>% filter(genome=="lane821s003042_shovill"), aes(xmin = start, xmax = end, y = contig, fill = Preferred_name,label=Preferred_name)) +
+    geom_gene_arrow() + gggenes::geom_gene_label() +
+    facet_wrap(genome~ contig, scales = "free",ncol = 1) 
+
+# false negative lane821s003043_bin.1.s, could be explained by misplaced hisC
+ggplot(hist_egg %>% mutate(contig=gsub("_[^_]+$","",query)) %>% filter(genome=="lane821s003043_bin.1.s"), aes(xmin = start, xmax = end, y = contig, fill = Preferred_name,label=Preferred_name)) +
+    geom_gene_arrow() + gggenes::geom_gene_label() +
+    facet_wrap(genome~ contig, scales = "free",ncol = 1) 
+
+
+
+### show all virus hits on genomes and specify what AA discrepancies there are
+
+
+
+
+#### Lysine
+
+ggplot(auxo2 %>% left_join(.,metadata,by="Sample_ID") %>% mutate(state=ifelse(agree=="1" & auxo_lab=="1","TP",
+                                                                              ifelse(agree=="1" & auxo_lab=="0","TN",
+                                                                                     ifelse(agree=="0" & auxo_lab=="1", "FN", "FP")))) %>% filter(name=="L-Lysine"), aes(x=genome,y=name,fill=state)) + 
+    geom_tile() + scale_fill_manual(values=c("#e41a1c","#377eb8","#4daf4a")) +facet_grid(Type~Habitats,scales = "free",space="free") +
+    theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+# make a lysine centric analysis
+lysine_genomes = auxo2 %>% left_join(.,metadata,by="Sample_ID") %>% mutate(state=ifelse(agree=="1" & auxo_lab=="1","TP",
+                                                                              ifelse(agree=="1" & auxo_lab=="0","TN",
+                                                                                     ifelse(agree=="0" & auxo_lab=="1", "FN", "FP")))) %>% filter(name=="L-Lysine")
+
+lysine_egg = eggnog %>% 
+    filter(genome %in% lysine_genomes$genome,grepl("M00016|M00525|M00526|M00527|M00030|M00433|M00031",KEGG_Module)) %>% 
+    mutate(contig=gsub("(^(NODE_\\d+|contig\\d+|k\\d+_\\d+)).*", "\\1", query)) %>% 
+    mutate(genome2=genome,query2=query) %>% unite("feat_id",genome2:query2) %>% left_join(.,genes,by="feat_id")
+
+lysine_egg %>% select(genome,Preferred_name) %>% mutate(present=1) %>% group_by(genome,Preferred_name) %>% summarize(count=n()) %>% pivot_wider(names_from = Preferred_name,values_from = count,values_fill = 0) %>% pivot_longer(!genome,names_to = "gene",values_to = "value") %>% left_join(.,auxo_state,by="genome") %>% filter(name=="L-Lysine") -> lysine
+
+ggplot(lysine ,aes(x=gene,y=genome,fill=log(value))) + geom_tile() + facet_grid(state~.,scales = "free",space="free") +scale_fill_gradient(low="#ffffff") 
+
+
+
+### confusion matrix of discrepanices before informed gapfilling
+ggplot(auxo %>% left_join(.,metadata,by="Sample_ID") %>% mutate(state=ifelse(agree=="1" & auxo_lab=="1","TP",
+                                                                              ifelse(agree=="1" & auxo_lab=="0","TN",
+                                                                                     ifelse(agree=="0" & auxo_lab=="1", "FN", "FP")))), aes(x=genome,y=name,fill=state)) + 
+    geom_tile() + scale_fill_manual(values=c("#e41a1c","#FFA500","#377eb8","#4daf4a")) +facet_grid(Type~Habitats,scales = "free",space="free") +
+    theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+### confusion matrix of discrepanices after informed gapfilling
+ggplot(auxo2 %>% left_join(.,metadata,by="Sample_ID") %>% mutate(state=ifelse(agree=="1" & auxo_lab=="1","TP",
+                                                                              ifelse(agree=="1" & auxo_lab=="0","TN",
+                                                                                     ifelse(agree=="0" & auxo_lab=="1", "FN", "FP")))), aes(x=genome,y=name,fill=state)) + 
+    geom_tile() + scale_fill_manual(values=c("#e41a1c","#377eb8","#4daf4a")) +facet_grid(Type~Habitats,scales = "free",space="free") +
+    theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+```
+
+```{r}
+
+#kemet analysis
+
+AA_KEGG_modules_ID = c("M00020","M00018","M00021","M00338","M00609","M00017","M00019","M00535","M00570","M00432","M00016","M00525","M00526","M00527","M00030","M00433","M00031","M00844","M00845","M00015","M00026","M00022","M00023","M00024","M00910","M00025","M00040")
+AA_KEGG_modules_meta = c("ser/thr","ser/thr","cys/met","cys/met","cys/met","cys/met","BCAA","BCAA","BCAA","BCAA","lysine","lysine","lysine","lysine","lysine","lysine","lysine","arg/pro","arg/pro","arg/pro","his","aromatic","aromatic","aromatic","aromatic","aromatic","aromatic")
+AA_KEGG_modules = data.frame(AA_KEGG_modules_ID,AA_KEGG_modules_meta) %>% rename(KEGG_Module=AA_KEGG_modules_ID)
+
+kemet = read.delim("data/figure_data/kemet_summary.tsv",header = FALSE) %>% select(-V8) %>% 
+    rename(genome=V1,KEGG_Module=V2,module_name=V3,completeness=V4,nPresent__nTotal=V5,missing_KEGG_ko=V6,present_KEGG_ko=V7) %>%
+    separate(.,nPresent__nTotal,into=c("n_present","n_total"),sep="__") %>% 
+    mutate(n_present=as.numeric(n_present),n_total=as.numeric(n_total),n_missing=n_total-n_present) %>% 
+    left_join(.,checkm,by="genome")
+
+ggplot(kemet %>% filter(Sample_ID=="lane122s000516") %>% 
+         filter(KEGG_Module %in% AA_KEGG_modules$KEGG_Module) %>% 
+         mutate(completeness = fct_relevel(completeness,"COMPLETE","1 BLOCK MISSING","2 BLOCKS MISSING","INCOMPLETE")) %>%
+         left_join(.,AA_KEGG_modules,by="KEGG_Module"),aes(x=genome,y=module_name,fill=completeness)) + geom_tile() + theme(axis.text.x = element_text(angle = 45, hjust = 1)) + facet_grid(AA_KEGG_modules_meta~Type,space="free",scales="free")  + scale_fill_manual(values=c("#fef0d9","#fdcc8a","#fc8d59","#d7301f"))
+
+ggsave("outputs/kemet_AAs.pdf",height = 8,width = 18)
+ggsave("outputs/kemet_AAs.png",height = 8,width = 18)
+
+```
+
+
+```{r}
+
+# abundance + taxonomy
+
+abund = read.delim("data/qc/abundance.stats",header=FALSE) %>% separate(.,V1,into = c("sample","genome"),sep="\\.",extra = "merge") %>% rename(abs_abund=V2,rel_abund=V3) %>% left_join(.,gtdbtk,by="genome")
+
+write_delim(abund,"outputs/abundance_taxonomy.tsv",delim="\t")
+
+# show only multispecies samples species
+ggplot(abund %>% filter(sample %in% c("lane121s003972","lane122s000517","lane122s000519","lane122s000521","lane122s000540","lane122s000600","lane122s000601","lane122s000603","lane122s000604","lane122s000605","lane122s000606","lane122s000607")),aes(x=sample,y=rel_abund,fill=Species)) + 
+    geom_bar(stat="identity") + theme(axis.text.x = element_text(angle = 45, hjust = 1)) + facet_grid(~Type,scales="free",space="free")
+
+#genus
+ggplot(abund %>% filter(sample %in% c("lane121s003972","lane122s000517","lane122s000519","lane122s000521","lane122s000540","lane122s000600","lane122s000601","lane122s000603","lane122s000604","lane122s000605","lane122s000606","lane122s000607")),aes(x=sample,y=rel_abund,fill=Genus)) + 
+    geom_bar(stat="identity") + theme(axis.text.x = element_text(angle = 45, hjust = 1)) + facet_grid(~Type,scales="free",space="free")
+
+#family
+ggplot(abund %>% filter(sample %in% c("lane121s003972","lane122s000517","lane122s000519","lane122s000521","lane122s000540","lane122s000600","lane122s000601","lane122s000603","lane122s000604","lane122s000605","lane122s000606","lane122s000607")),aes(x=sample,y=rel_abund,fill=Family)) + 
+    geom_bar(stat="identity") + theme(axis.text.x = element_text(angle = 45, hjust = 1)) + facet_grid(~Type,scales="free",space="free")
+
+#order
+ggplot(abund %>% filter(sample %in% c("lane121s003972","lane122s000517","lane122s000519","lane122s000521","lane122s000540","lane122s000600","lane122s000601","lane122s000603","lane122s000604","lane122s000605","lane122s000606","lane122s000607")),aes(x=sample,y=rel_abund,fill=Order)) + 
+    geom_bar(stat="identity") + theme(axis.text.x = element_text(angle = 45, hjust = 1)) + facet_grid(~Type,scales="free",space="free")
+
+#class
+ggplot(abund %>% filter(sample %in% c("lane121s003972","lane122s000517","lane122s000519","lane122s000521","lane122s000540","lane122s000600","lane122s000601","lane122s000603","lane122s000604","lane122s000605","lane122s000606","lane122s000607")),aes(x=sample,y=rel_abund,fill=Class)) + 
+    geom_bar(stat="identity") + theme(axis.text.x = element_text(angle = 45, hjust = 1)) + facet_grid(~Type,scales="free",space="free")
+
+#phylum
+ggplot(abund %>% filter(sample %in% c("lane121s003972","lane122s000517","lane122s000519","lane122s000521","lane122s000540","lane122s000600","lane122s000601","lane122s000603","lane122s000604","lane122s000605","lane122s000606","lane122s000607")),aes(x=sample,y=rel_abund,fill=Phylum)) + 
+    geom_bar(stat="identity") + theme(axis.text.x = element_text(angle = 45, hjust = 1)) + facet_grid(Type~Habitats,scales="free",space="free")
+
+```
+
+
+```{r}
+
+### saturation plot for metabolic complementarity
+
+# create data structure with auxo measurements and sample metadata
+auxo_data = left_join(auxolab,metadata,by="Sample_ID") %>% filter(metabolite!="AAs_auxo",metabolite!="Nucleotide_auxo",metabolite!="Vitamin_auxo") %>% mutate(auxo_lab = as.numeric(auxo_lab)-1)
+write_delim(auxo_data,"analysis/06_saturation/sat_sim/auxo_data.tsv")
+
+# create list of unique sample IDs for randomly creating n-wise combinations
+samples = auxo_data %>% select(Sample_ID) %>% unique()
+
+# single species distribution is already quite flat, lets see where the median goes for pairwise
+one = auxo_data %>% group_by(Sample_ID) %>% summarize(count=sum(auxo_lab))
+ggplot(one,aes(y=count,x=1))+ geom_point() + geom_boxplot(alpha=0.5,outlier.alpha = 0) 
+
+# pairwise species, go to bash for computing count
+two = data.frame(samples$Sample_ID,samples$Sample_ID) %>% expand(samples.Sample_ID,samples.Sample_ID.1) %>% rename(Sample_ID1=samples.Sample_ID,Sample_ID2=samples.Sample_ID.1) %>% filter(Sample_ID1!=Sample_ID2)
+write_delim(two,"analysis/06_saturation/sat_sim/pairwise_samples.tsv")
+
+## run loop in bash and read in results, redo this after removing duplicates
+#while read combo;do 
+#	sample1=$(echo $combo|cut -d ' ' -f1);
+#	sample2=$(echo $combo|cut -d ' ' -f2);
+#	count=0
+#	while read aa;do 
+#		sample1aux=$(less auxo_data.tsv|tail -n +2|grep $sample1|grep $aa|cut -d ' ' -f3);
+#		sample2aux=$(less auxo_data.tsv|tail -n +2|grep $sample2|grep $aa|cut -d ' ' -f3);
+#		num=$((sample1aux + sample2aux))
+#		if [ "$num" -gt 1 ]; then
+#			count=$(($count+1))
+#		fi
+#	done< <(less auxo_data.tsv|tail -n +2|cut -d ' ' -f4|sort|uniq);
+#	echo $count
+#done< <(less pairwise_samples.tsv|tail -n +2) >> pairwise_auxo.tsv
+pairwise_auxo = read.delim("analysis/06_saturation/sat_sim/pairwise_auxo.tsv")
+
+# triplet species sampled down to same as pairwise, go to bash for computing count
+set.seed(42)  # reproducibility: fixed seed for bootstrap/sampling
+three = data.frame(samples$Sample_ID,samples$Sample_ID,samples$Sample_ID) %>% expand(samples.Sample_ID,samples.Sample_ID.1,samples.Sample_ID.2) %>% rename(Sample_ID1=samples.Sample_ID,Sample_ID2=samples.Sample_ID.1,Sample_ID3=samples.Sample_ID.2) %>% filter(Sample_ID1!=Sample_ID2,Sample_ID1!=Sample_ID3,Sample_ID2!=Sample_ID3) %>% sample_n(3364)
+write_delim(three,"analysis/06_saturation/sat_sim/triplet_samples.tsv")
+
+## run loop in bash and read in results
+#while read combo;do 
+#	sample1=$(echo $combo|cut -d ' ' -f1);
+#	sample2=$(echo $combo|cut -d ' ' -f2);
+#	sample3=$(echo $combo|cut -d ' ' -f3);
+#	count=0
+#	while read aa;do 
+#		sample1aux=$(less auxo_data.tsv|tail -n +2|grep $sample1|grep $aa|cut -d ' ' -f3);
+#		sample2aux=$(less auxo_data.tsv|tail -n +2|grep $sample2|grep $aa|cut -d ' ' -f3);
+#		sample3aux=$(less auxo_data.tsv|tail -n +2|grep $sample3|grep $aa|cut -d ' ' -f3);
+#		num=$((sample1aux + sample2aux + sample3aux))
+#		if [ "$num" -gt 2 ]; then
+#			count=$(($count+1))
+#		fi
+#	done< <(less auxo_data.tsv|tail -n +2|cut -d ' ' -f4|sort|uniq);
+#	echo $count
+#done< <(less triplet_samples.tsv|tail -n +2) >> triplet_auxo.tsv
+triplet_auxo = read.delim("analysis/06_saturation/sat_sim/triplet_auxo.tsv")
+
+# quadruplet species sampled down to same as pairwise, go to bash for computing count
+set.seed(42)  # reproducibility: fixed seed for bootstrap/sampling
+four = data.frame(samples$Sample_ID,samples$Sample_ID,samples$Sample_ID,samples$Sample_ID) %>% expand(samples.Sample_ID,samples.Sample_ID.1,samples.Sample_ID.2,samples.Sample_ID.3) %>% rename(Sample_ID1=samples.Sample_ID,Sample_ID2=samples.Sample_ID.1,Sample_ID3=samples.Sample_ID.2,Sample_ID4=samples.Sample_ID.3) %>% filter(Sample_ID1!=Sample_ID2,Sample_ID1!=Sample_ID3,Sample_ID1!=Sample_ID4,Sample_ID2!=Sample_ID3,Sample_ID2!=Sample_ID4,Sample_ID3!=Sample_ID4) %>% sample_n(3364)
+write_delim(four,"analysis/06_saturation/sat_sim/quad_samples.tsv")
+
+## run loop in bash and read in results
+#while read combo;do 
+#	sample1=$(echo $combo|cut -d ' ' -f1);
+#	sample2=$(echo $combo|cut -d ' ' -f2);
+#	sample3=$(echo $combo|cut -d ' ' -f3);
+#	sample4=$(echo $combo|cut -d ' ' -f4);
+#	count=0
+#	while read aa;do 
+#		sample1aux=$(less auxo_data.tsv|tail -n +2|grep $sample1|grep $aa|cut -d ' ' -f3);
+#		sample2aux=$(less auxo_data.tsv|tail -n +2|grep $sample2|grep $aa|cut -d ' ' -f3);
+#		sample3aux=$(less auxo_data.tsv|tail -n +2|grep $sample3|grep $aa|cut -d ' ' -f3);
+#		sample4aux=$(less auxo_data.tsv|tail -n +2|grep $sample4|grep $aa|cut -d ' ' -f3);
+#		num=$((sample1aux + sample2aux + sample3aux + sample4aux))
+#		if [ "$num" -gt 3 ]; then
+#			count=$(($count+1))
+#		fi
+#	done< <(less auxo_data.tsv|tail -n +2|cut -d ' ' -f4|sort|uniq);
+#	echo $count
+#done< <(less quad_samples.tsv|tail -n +2) >> quad_auxo.tsv
+quad_auxo = read.delim("analysis/06_saturation/sat_sim/quad_auxo.tsv")
+
+
+# penta species sampled down to same as pairwise, go to bash for computing count, 5 doesnt want to expand :( 
+set.seed(42)  # reproducibility: fixed seed for bootstrap/sampling
+five = data.frame(samples$Sample_ID,samples$Sample_ID,samples$Sample_ID,samples$Sample_ID,samples$Sample_ID) %>% expand(Sample_ID,Sample_ID.1,Sample_ID.2,Sample_ID.3,Sample_ID.4) %>% filter(Sample_ID1!=Sample_ID2,Sample_ID1!=Sample_ID3,Sample_ID1!=Sample_ID4,Sample_ID1!=Sample_ID5,Sample_ID2!=Sample_ID3,Sample_ID2!=Sample_ID4,Sample_ID2!=Sample_ID5,Sample_ID3!=Sample_ID4,Sample_ID3!=Sample_ID5,Sample_ID4!=Sample_ID5) %>% sample_n(3364)
+write_delim(five,"analysis/06_saturation/sat_sim/penta_samples.tsv")
+
+## run loop in bash and read in results
+#while read combo;do 
+#	sample1=$(echo $combo|cut -d ' ' -f1);
+#	sample2=$(echo $combo|cut -d ' ' -f2);
+#	sample3=$(echo $combo|cut -d ' ' -f3);
+#	sample4=$(echo $combo|cut -d ' ' -f4);
+#	sample5=$(echo $combo|cut -d ' ' -f5);
+#	count=0
+#	while read aa;do 
+#		sample1aux=$(less auxo_data.tsv|tail -n +2|grep $sample1|grep $aa|cut -d ' ' -f3);
+#		sample2aux=$(less auxo_data.tsv|tail -n +2|grep $sample2|grep $aa|cut -d ' ' -f3);
+#		sample3aux=$(less auxo_data.tsv|tail -n +2|grep $sample3|grep $aa|cut -d ' ' -f3);
+#		sample4aux=$(less auxo_data.tsv|tail -n +2|grep $sample4|grep $aa|cut -d ' ' -f3);
+#		sample5aux=$(less auxo_data.tsv|tail -n +2|grep $sample5|grep $aa|cut -d ' ' -f3);
+#		num=$((sample1aux + sample2aux + sample3aux + sample4aux + sample5aux))
+#		if [ "$num" -gt 4 ]; then
+#			count=$(($count+1))
+#		fi
+#	done< <(less auxo_data.tsv|tail -n +2|cut -d ' ' -f4|sort|uniq);
+#	echo $count
+#done< <(less penta_samples.tsv|tail -n +2) >> penta_auxo.tsv
+penta_auxo = read.delim("analysis/06_saturation/sat_sim/penta_auxo.tsv")
+
+
+# combine to plot
+auxo_sat_one = data.frame(one$count,"single") %>% rename(count=one.count,combination=X.single.)
+auxo_sat_two = data.frame(pairwise_auxo,"pairwise") %>% rename(count=X0,combination=X.pairwise.)
+auxo_sat_three = data.frame(triplet_auxo,"triplet") %>% rename(count=X0,combination=X.triplet.)
+auxo_sat_four = data.frame(quad_auxo,"quadruplet") %>% rename(count=X0,combination=X.quadruplet.)
+auxo_sat_five = data.frame(penta_auxo,"quintuplet") %>% rename(count=X0,combination=X.quintuplet.)
+
+auxo_sat = bind_rows(auxo_sat_one,auxo_sat_two,auxo_sat_three,auxo_sat_four,auxo_sat_five) %>% mutate(combination=fct_relevel(combination,c("single","pairwise","triplet","quadruplet","quintuplet")))
+
+ggplot(auxo_sat,aes(x=combination,y=count,fill=combination)) + geom_boxplot()  + ylab("# resulting amino acid auxotrophies") + xlab("combinations")
+
+ggsave("outputs/auxo_sat.pdf",height = 6,width = 8)
+ggsave("outputs/auxo_sat.png",height = 6,width = 8)
+
+write_delim(auxo_sat%>%filter(combination!="quintuplet"),"data/figure_data/auxo_sat_data.tsv",delim = "\t")
+
+
+#recreate plot in terms of % surviving coms
+auxo_data = read.delim("data/figure_data/auxo_sat_data.tsv")
+auxo_data %>% group_by(combination) %>% mutate(count_total=n()) %>% group_by(count,combination) %>% mutate(count_combo=n()) %>% unique() %>% mutate(percent=100*(count_combo/count_total)) %>% filter(count==0) %>% mutate(combo_num=ifelse(combination=="single",1,ifelse(combination=="pairwise",2,ifelse(combination=="triplet",3,4)))) -> auxo_df
+  
+ggplot(auxo_data %>% group_by(combination) %>% mutate(count_total=n()) %>% group_by(count,combination) %>% mutate(count_combo=n()) %>% unique() %>% mutate(percent=100*(count_combo/count_total)) %>% filter(count==0)) + geom_point(aes(x=combination,y=percent))
+
+
+ggscatter(auxo_df,x="combo_num",y="percent",add="reg.line",conf.int = FALSE) + stat_cor(method="pearson") + ylim(0,100) + ylab("Percent of communities\nwith no AA auxotrophies") + xlab("Combination size") + theme_bw(base_size = 15)
+
+ggsave("outputs/auxo_sat.png",height=3,width = 3)
+ggsave("outputs/auxo_sat.pdf",height=6,width = 6)
+
+write_delim(auxo_df,delim="\t",quote = "none",file = "data/figure_data/auxo_df.tsv")
+
+read.delim("data/figure_data/auxo_df.tsv") -> auxo_df
+
+ggscatter(
+  auxo_df %>% 
+    pivot_longer(c(percent_comp,percent_lab),values_to = "percent",names_to = "Screen") %>% 
+    mutate(Screen=gsub("percent_","",Screen),Screen=gsub("comp","Computational",Screen),
+           Screen=gsub("lab","Experimental",Screen)), x="combo_num",y="percent",
+  add="reg.line",conf.int = FALSE,color="Screen") + stat_cor(method="pearson",aes(color=Screen)) + 
+  ylim(0,100) + ylab("Percent of communities with\nfully resolved AA auxotrophies (%)") + 
+  xlab("Community size") + theme_bw() + theme(legend.position = "bottom")-> newfig3a
+
+ggsave("outputs/auxo_sat_combined.png",height=5,width = 5)
+ggsave("outputs/auxo_sat_combined.pdf",height=5,width = 5)
+
+# same as above but with ggplot for merging with others
+ggplot(
+  auxo_df %>% 
+    pivot_longer(c(percent_comp,percent_lab),values_to = "percent",names_to = "Screen") %>% 
+    mutate(Screen=gsub("percent_","",Screen),Screen=gsub("comp","Computational",Screen),
+           Screen=gsub("lab","Experimental",Screen)), aes(x=combo_num,y=percent,color=Screen)) + geom_point() + stat_cor(method="pearson",aes(color=Screen)) + 
+  ylim(0,100) + ylab("Percent of communities with\nfully resolved AA auxotrophies (%)") + 
+  xlab("Community size") + theme_bw(base_size = 15) + theme(legend.position = "top") -> newfig3a
+
+```
+
+
+```{r}
+#media generations, basically create a file that has what amino acids should be removed from each sample due to the fact that it is experimentally determined to be prototrophic
+#then use bash for loops to create a copy of the media file and then go through each amino acid and remove it from the media if it is not needed
+
+experimental_auxo=read.delim("data/gem_curation/experimental_auxo.txt") %>% select(-Habitats,-X,-AAs_auxo,-Vitamin_auxo,-Nucleotide_auxo,-Sample_ID_MinPath,-Type,-Sites,-gapfilling.media,-remove,-keep) %>% filter(Sample_ID!="") %>% pivot_longer(!Sample_ID,names_to = "aa",values_to = "auxo") %>% mutate(auxo=replace_na(auxo,0)) %>% left_join(.,read.delim("data/gem_curation/amino_acids_bigg.tsv")) %>% filter(auxo!=1)
+ write_delim(experimental_auxo,"data/media/media_generator.tsv")
+# in bash
+# while read sample;do cp ghada_media.tsv ${sample}_media.tsv;while read aa;do sed -i '' "/$aa/d" ${sample}_media.tsv;done< <(less media_generator.tsv|grep $sample|awk '{print $NF}');done< <(less media_generator.tsv|tail -n +2|cut -f1|sort|uniq)
+
+```

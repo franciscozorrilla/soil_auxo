@@ -1,0 +1,73 @@
+Sample_ID	Habitats		AAs_auxo	Vitamin_auxo	Nucleotide_auxo	Sample_ID_MinPath	Type	Sites	Ala	Arg	Asp	Asn	Cys	Glu	Gln	Gly	His	Ile	leu	Lys	Met	Phe	Pro	Ser	Thr	Trp	Tyr	Val	gapfilling media	remove	keep
+lane122s000518	Meadow		0	1	0	518	Isolate	Meadow_1					1		1			1											MMAB1	"ala__L,arg__L, asp__L, asn__L, glu__L, lys__L, met__L, phe__L"	"cys__L, gln__L, ile__L"
+lane122s000525	Meadow		0	1	0	525	Isolate	Meadow_1	1		1	1	1	1	1			1		1	1	1				1	1		MMAB2		"ala__L, asp__L, asn__L, cys__L, glu__L, gln__L, ile__L, lys__L, met__L, phe__L"
+lane121s003984	Conifer forest		1	0	0	3984	Isolate	F5																							
+lane121s003986	Conifer forest		1	0	0	3986	Isolate	F5																							
+lane121s003951	Meadow		0	1	0	3951	Isolate	Meadow_1					1		1																
+lane121s003955	Meadow		1	0	0	3955	Isolate	Meadow_1					1		1											1		1			
+lane121s003953	Meadow		1	0	0	3953	Isolate	Meadow_2		1								1			1					1	1	1			
+lane121s003960	Meadow		1	0	0	3960	Isolate	Meadow_2																							
+lane121s003978	Meadow		1	0	0	3978	Isolate	Meadow_3										1										1			
+lane122s000531	Meadow		1	0	0	531	Isolate	Meadow_3																							
+lane121s003954	Meadow		1	0	0	3954	Isolate	Meadow_2																				1			
+lane121s003958	Meadow		1	0	0	3958	Isolate	Meadow_1										1			1		1								
+lane122s000517	Meadow		0	1	0	517	Isolate	Meadow_3																	1		1				
+lane121s003962	Conifer forest		1	0	0	3962	Isolate	F3																							
+lane121s003963	Deciduous forest		1	0	0	3963	Isolate	F8															1								
+lane121s003964	Meadow		1	0	0	3964	Isolate	Meadow_2										1	1									1			
+lane121s003971	Deciduous forest		1	0	0	3971	Isolate	F8		1							1	1	1									1			
+lane121s003968	Conifer forest		1	0	0	3968	Isolate	F3						1					1		1			1							
+lane121s003972	Conifer forest		1	0	0	3972	Isolate	F5																							
+lane121s003976	Meadow		1	0	0	3976	Isolate	Meadow_3																							
+lane121s003979	Meadow		1	0	0	3979	Isolate	Meadow_3																				1			
+lane121s003980	Conifer forest		1	0	0	3980	Isolate	F5																							
+lane121s003995	Meadow		0	1	0	3995	Isolate	Meadow_2			1	1					1	1	1					1	1			1			
+lane121s003996	Meadow		1	0	0	3996	Isolate	Meadow_3			1					1			1						1	1	1	1			
+lane122s000537	Conifer forest		0	1	0	537	Isolate	F5		1			1	1	1	1	1		1			1	1		1	1		1			
+lane122s000536	Meadow		1	0	0	536	Isolate	Meadow_3																							
+lane122s000544	Meadow		1	0	0	544	Isolate	Meadow_2		1								1	1									1			
+lane122s000539	Conifer forest		1	0	0	539	Isolate	F3																							
+lane122s000533	Meadow		1	0	0	533	Isolate	Meadow_1																							
+lane122s000538	Deciduous forest		1	0	0	538	Isolate	F7										1	1					1	1			1			
+lane122s000535	Conifer forest		1	0	0	535	Isolate	F9		1							1			1			1	1							
+lane122s000543	Conifer forest		1	0	0	543	Isolate	F9					1															1			
+lane122s000540	Conifer forest		1	0	0	540	Isolate	F5								1			1												
+lane122s000542	Meadow		0	1	0	542	Isolate	Meadow_1																							
+lane122s000541	Meadow		1	0	0	541	Isolate	Meadow_1		1								1	1									1			
+lane122s000523	Conifer forest		1	0	0	523	Isolate	F9																							
+lane122s000528	Conifer forest		1	0	0	528	Isolate	F5								1			1			1									
+lane122s000522	Conifer forest		1	0	0	522	Isolate	F9			1				1		1	1					1				1	6			
+lane122s000521	Meadow		1	1	0	521	Isolate	Meadow_2		1	1				1			1	1	1	1	1	1				1	1			
+lane122s000529	Meadow		1	0	0	529	Isolate	Meadow_2																1							
+lane122s000545	Conifer forest		1	0	0	545	Isolate	F5																							
+lane122s000515	Meadow		1	0	0	515	Isolate	Meadow_2																							
+lane122s000532	Meadow		1	0	0	532	Isolate	Meadow_2																							
+lane122s000524	Meadow		1	0	0	524	Isolate	Meadow_2																							
+lane122s000530	Meadow		1	0	0	530	Isolate	Meadow_2										1	1		1		1		1			1			
+lane122s000516	Deciduous forest		1	0	0	516	Isolate	F8														1									
+lane821s003035	Meadow		1	0	0	3035	Deep_isolate	Meadow_1		1							1	1	1									1			
+lane821s003036	Meadow		0	1	0	3036	Deep_isolate	Meadow_1					1		1			1													
+lane821s003037	Deciduous forest		1	1	0	3037	Deep_isolate	F8	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1			
+lane821s003038	Conifer forest		1	0	0	3038	Deep_isolate	F3	1	1			1			1	1	1			1		1	1		1		1			
+lane821s003040	Conifer forest		1	1	0	3040	Deep_isolate	F3											1												
+lane821s003041	Meadow		1	0	0	3041	Deep_isolate	Meadow_2																				1			
+lane821s003042	Conifer forest		1	0	1	3042	Deep_isolate	F3	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1			
+lane821s003043	Meadow		1	1	1	3043	Deep_isolate	Meadow_1					1				1		1			1			1	1		1			
+lane821s003044	Conifer forest		1	0	0	3044	Deep_isolate	F9	1	1			1	1	1				1			1	1								
+lane121s003952						3952	Isolate											1	1									1			
+lane121s003965	Conifer forest		1	0	0	3965	Isolate									1		1			1			1							
+lane122s000527	Conifer forest		1	0	0	527	Isolate									1			1						1						
+lane122s000720	Lab strain		1	0	0	720	Polymorphism	NA																							
+lane122s000721	Lab strain		1	0	0	721	Polymorphism	NA																							
+lane122s000520	Meadow		1	0	0	520	Isolate	Meadow_1																							
+lane121s003977	Meadow		1	0	0	3977	Isolate																								
+lane122s000519						519	Isolate																								
+lane122s000519						519	Isolate																								
+																															
+																															
+																															
+																															
+																															
+																															
+																															
+																															

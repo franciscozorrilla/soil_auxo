@@ -1,0 +1,1268 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Cmd+Shift+Enter*. 
+
+```{r setup, message=FALSE, warning=FALSE}
+# Packages used throughout this notebook. MASS is loaded before the tidyverse so that
+# dplyr's select()/filter() take precedence. Tree-plotting packages (ggtree etc.) are
+# loaded where they are first used, further below. This notebook also uses the genome
+# metadata objects `checkm` and `metadata` created in
+# ../04_genome_features/metabolic_modeling_soil.Rmd -- run that notebook first.
+library(MASS)
+library(ape)
+library(phylolm)
+library(rstatix)
+library(ggpubr)
+library(tidyverse)
+```
+
+```{r}
+############ revisions regarding phylogenetic correction for genomic features ############ 
+## 1. check if predictor is normally distributed
+## 2. box-cox transform if necessary
+## 3. run phylogenetic logistic regression model
+
+# load tree
+tree=read.tree("data/figure_data/protein.tre.treefile")
+
+# prune tree, only keep isolates with AA_auxo data
+genomes_with_data <- isfinder_count %>%
+    dplyr::filter(!is.na(AAs_auxo) & !is.na(count_norm), Type!="Polymorphism") %>%
+    dplyr::pull(genome)
+pruned_tree <- drop.tip(tree, setdiff(tree$tip.label, genomes_with_data))
+
+# rescale tree to 1 before running pglm NOTE: this does not affect significance, only alpha estimate
+tree_height <- max(node.depth.edgelength(pruned_tree))
+scaled_tree = pruned_tree
+# Rescale all branch lengths proportionally
+scaled_tree$edge.length <- scaled_tree$edge.length / tree_height
+
+############ normalized insertion sequences ############ looks like it is still signifcant after phylo correction
+
+# filter data to keep only genomes in pruned tree
+filtered_data <- isfinder_count %>% dplyr::filter(genome %in% pruned_tree$tip.label)
+
+# check normality of data
+shapiro.test(filtered_data$count_norm)
+
+# boxcox transform to make more normal
+boxcox(lm(filtered_data$count_norm~1), lambda = seq(-2, 2, length.out = 100)) ->boxcox_val
+
+# find lambda value at the maximum of the profile log-likelihood
+boxcox_val$x[which.max(boxcox_val$y)] -> lambda
+
+# box-cox transform using lambda value
+boxcox_transform <- function(x, lambda) {
+     if (lambda == 0) {
+         return(log(x))
+     } else {
+         return((x^lambda - 1) / lambda)
+     }
+ }
+
+y_transformed <- boxcox_transform(filtered_data$count_norm, lambda)
+
+# looks more normally distributed than before
+hist(filtered_data$count_norm)
+hist(y_transformed)
+
+# still not fully normal but looks better distributed
+shapiro.test(y_transformed)
+
+# run phylogenetic correction model
+model <- phyloglm(data = cbind(filtered_data,y_transformed)%>% column_to_rownames("genome"),AAs_auxo ~ y_transformed, phy = pruned_tree, method = "logistic_MPLE")
+
+# weak phylogenetic signal, box-cox transformed normalized number of IS is statistically signifcant 
+summary(model)
+
+# CI
+set.seed(42)  # reproducibility: fixed seed for bootstrap/sampling
+boot <- phyloglm(data = cbind(filtered_data,y_transformed)%>% column_to_rownames("genome"),AAs_auxo ~ y_transformed, phy = pruned_tree, method = "logistic_MPLE",boot=1000)
+
+boot$bootstrap %>% as.data.frame() %>% mutate(half_life=log(2)/alpha) ->boot_alpha
+
+# alpha
+median(boot_alpha$alpha)
+quantile(boot_alpha$alpha, probs = c(0.025, 0.975))
+
+# half life
+median(boot_alpha$half_life)
+quantile(boot_alpha$half_life, probs = c(0.025, 0.975))
+
+ggplot(boot_alpha) + geom_density(aes(x=half_life)) + scale_x_log10()
+
+############ repeat for genome streamlining ############ count_norm is marginally not signifcant but alpha is very high suggesting weak phylogenetic signal
+
+filtered_data_streamlining <- genes_count %>% dplyr::filter(genome %in% pruned_tree$tip.label)
+
+# looks better than IS_count but still not normally distributed
+hist(filtered_data_streamlining$count_norm)
+shapiro.test(filtered_data_streamlining$count_norm)
+
+# boxcox transform to make more normal
+boxcox(lm(filtered_data_streamlining$count_norm~1),lambda = seq(0, 10, 0.01)) ->boxcox_val_streamlining
+# find lambda value
+boxcox_val_streamlining$x[which.max(boxcox_val_streamlining$y)] -> lambda_streamlining
+# boxcox transform using lamda value collapses all variance
+y_transformed_streamlining <- boxcox_transform(filtered_data_streamlining$count_norm, lambda_streamlining)
+# more normally but not fully
+hist(y_transformed_streamlining)
+shapiro.test(y_transformed_streamlining)
+
+# run phylogenetic correction model
+model <- phyloglm(data = cbind(filtered_data_streamlining,y_transformed_streamlining)%>% column_to_rownames("genome"),AAs_auxo ~ y_transformed_streamlining, phy = scaled_tree, method = "logistic_MPLE")
+
+# weak phylogenetic signal, box-cox transformed normalized number
+summary(model)
+
+# very high value i.e. close to -4 suggests low phylogenetic structure
+-log(73.14562)
+
+# very low half-life
+log(2)/73.14562
+
+# CI
+set.seed(42)  # reproducibility: fixed seed for bootstrap/sampling
+boot_2 <- phyloglm(data = cbind(filtered_data_streamlining,y_transformed_streamlining)%>% column_to_rownames("genome"),AAs_auxo ~ y_transformed_streamlining, phy = scaled_tree, method = "logistic_MPLE",boot=1000)
+
+boot_2$bootstrap %>% as.data.frame() %>% mutate(half_life=log(2)/alpha) ->boot_2_alpha
+
+quantile(boot_2_alpha$alpha, probs = c(0.025, 0.975))
+
+median(boot_2_alpha$half_life)
+quantile(boot_2_alpha$half_life, probs = c(0.025, 0.975))
+
+ggplot(boot_2_alpha) + geom_density(aes(x=half_life)) + scale_x_log10()
+
+############ repeat for IS in annotated genes ############ 
+
+filtered_data_eggnog_IS <- eggnog_IS_count %>% mutate(count_norm = 1000000*count/size) %>% dplyr::filter(genome %in% pruned_tree$tip.label)
+  
+# skewed data
+hist(filtered_data_eggnog_IS$count_norm)
+shapiro.test(filtered_data_eggnog_IS$count_norm)
+
+# boxcox transform to make more normal
+boxcox(lm(filtered_data_eggnog_IS$count_norm~1),lambda = seq(-5, 5, 0.1)) ->boxcox_val_eggnog_IS
+# find lambda value
+boxcox_val_eggnog_IS$x[which.max(boxcox_val_eggnog_IS$y)] -> lambda_eggnog_IS
+# boxcox transform using lamda value collapses all variance
+y_transformed_eggnog_IS <- boxcox_transform(filtered_data_eggnog_IS$count_norm, lambda_eggnog_IS)
+# normally distributed after transform
+hist(y_transformed_eggnog_IS)
+shapiro.test(y_transformed_eggnog_IS)
+
+# run phylogenetic correction model
+model <- phyloglm(data = cbind(filtered_data_eggnog_IS,y_transformed_eggnog_IS)%>% column_to_rownames("genome"),AAs_auxo ~ y_transformed_eggnog_IS, phy = scaled_tree, method = "logistic_MPLE")
+
+# weak phylogenetic signal, box-cox transformed normalized number
+summary(model)
+
+# very low phylogenetic halflife
+log(2)/model$alpha
+
+# CI
+set.seed(42)  # reproducibility: fixed seed for bootstrap/sampling
+boot_3 <- phyloglm(data = cbind(filtered_data_eggnog_IS,y_transformed_eggnog_IS)%>% column_to_rownames("genome"),AAs_auxo ~ y_transformed_eggnog_IS, phy = scaled_tree, method = "logistic_MPLE",boot=1000)
+
+boot_3$bootstrap %>% as.data.frame() %>% mutate(half_life=log(2)/alpha) ->boot_3_alpha
+
+quantile(boot_3_alpha$alpha, probs = c(0.025, 0.975))
+
+median(boot_3_alpha$half_life)
+quantile(boot_3_alpha$half_life, probs = c(0.025, 0.975))
+
+ggplot(boot_3_alpha) + geom_density(aes(x=half_life)) + scale_x_log10()
+
+############ repeat for IS in amino acid annotated genes ############ 
+ 
+filtered_data_eggnog_IS_AA <- eggnog_IS_AA_count %>% mutate(count_norm = 1000000*count/size) %>% dplyr::filter(genome %in% pruned_tree$tip.label)
+
+# skewed data
+hist(filtered_data_eggnog_IS_AA$count_norm)
+shapiro.test(filtered_data_eggnog_IS_AA$count_norm)
+
+# boxcox transform to make more normal
+boxcox(lm(filtered_data_eggnog_IS_AA$count_norm+1~1),lambda = seq(-5, 5, 0.1)) -> boxcox_val_eggnog_IS_AA
+# find lambda value
+boxcox_val_eggnog_IS_AA$x[which.max(boxcox_val_eggnog_IS_AA$y)] -> lambda_eggnog_IS_AA
+# boxcox transform using lamda value collapses all variance
+y_transformed_eggnog_IS_AA <- boxcox_transform(filtered_data_eggnog_IS_AA$count_norm+1, lambda_eggnog_IS_AA)
+# not normally distributed after transform
+hist(y_transformed_eggnog_IS_AA)
+shapiro.test(y_transformed_eggnog_IS_AA)
+
+# run phylogenetic correction model
+model <- phyloglm(data = cbind(filtered_data_eggnog_IS_AA,y_transformed_eggnog_IS_AA)%>% column_to_rownames("genome"),AAs_auxo ~ y_transformed_eggnog_IS_AA, phy = scaled_tree, method = "logistic_MPLE")
+
+# weak phylogenetic signal, box-cox transformed normalized number
+summary(model)
+
+# very low phylogenetic halflife
+log(2)/model$alpha
+
+# CI
+set.seed(42)  # reproducibility: fixed seed for bootstrap/sampling
+boot_4 <- phyloglm(data = cbind(filtered_data_eggnog_IS_AA,y_transformed_eggnog_IS_AA)%>% column_to_rownames("genome"),AAs_auxo ~ y_transformed_eggnog_IS_AA, phy = scaled_tree, method = "logistic_MPLE",boot=1000)
+
+boot_4$bootstrap %>% as.data.frame() %>% mutate(half_life=log(2)/alpha) ->boot_4_alpha
+
+quantile(boot_4_alpha$alpha, probs = c(0.025, 0.975))
+
+median(boot_4_alpha$half_life)
+quantile(boot_4_alpha$half_life, probs = c(0.025, 0.975))
+
+ggplot(boot_4_alpha) + geom_density(aes(x=half_life)) + scale_x_log10()
+
+############ repeat for differentially abundant genes? ############ 
+### MAYBE THIS NEEDS TO BE DONE PER COG RATHER THAN PER GENE (Preferred_name)
+### e.g. COG1748 would capture (lysDH, LYS1, lyS1, -) which all correspond to:
+#.  COG1748: Lys9 
+#.  Saccharopine dehydrogenase, NADP-dependent [Amino acid transport and metabolism]
+#.  Saccharopine dehydrogenase, NADP-dependent is part of the Pathway/BioSystem: Lysine biosynthesis
+#. need to parse eggnog annotations to extract root COG and repeat procedure based on that, should
+#. also be much quicker to run
+
+eggnog %>% group_by(genome,Preferred_name) %>% summarise(count=n()) %>% pivot_wider(names_from = "Preferred_name",values_from = "count",values_fill = 0) %>% pivot_longer(!genome,names_to = "Preferred_name",values_to = "count") %>% left_join(.,checkm) %>% drop_na() %>% ungroup() %>% mutate(presence=ifelse(count>0,1,0)) -> egg_sum
+
+egg_sum%>%dplyr::select("Preferred_name") %>% unique() -> gene_list
+
+eggnog %>% mutate(cog=gsub("@.*$","",eggNOG_OGs)) %>% group_by(genome,cog) %>% summarise(count=n()) %>% pivot_wider(names_from = "cog",values_from = "count",values_fill = 0) %>% pivot_longer(!genome,names_to = "cog",values_to = "count") %>% left_join(.,checkm) %>% drop_na() %>% ungroup() %>% mutate(presence=ifelse(count>0,1,0)) -> egg_sum_cog
+
+egg_sum_cog %>% ungroup() %>% dplyr::select(cog) %>% unique() -> cog_list
+
+results <- data.frame(
+  gene = character(),
+  p.value = numeric(),
+  alpha = numeric(),
+  alpha_low= numeric(),
+  alpha_high=numeric(),
+  stringsAsFactors = FALSE
+)
+
+
+for (i in seq_along(gene_list$Preferred_name)) {
+
+gene= gene_list$Preferred_name[i]
+data=egg_sum%>% filter(Preferred_name==gene,genome %in% scaled_tree$tip.label) %>% column_to_rownames("genome")
+
+ if (length(unique(data$presence)) < 2 || length(unique(data$AAs_auxo)) < 2) {
+    next  # skip genes without variability
+  }
+
+set.seed(42)  # reproducibility: fixed seed for bootstrap/sampling
+phyloglm(
+    formula = AAs_auxo ~ count, # use presence for binary, count for copy number
+    data = data ,
+    phy = scaled_tree, method = "logistic_MPLE",boot = 100) -> test
+    
+sum_test = summary(test)
+    #print(gene)
+    #print(test$coefficients[2,4])
+
+    results <- rbind(results, data.frame(gene = gene, p.value = sum_test$coefficients[2,6], alpha = test$bootstrap %>% as.data.frame() %>% dplyr::select(alpha) %>% summarize(median=median(alpha)) %>% as.numeric(), alpha_low=test$bootconfint95[1,3],alpha_high=test$bootconfint95[2,3]))
+}
+
+results$p.adj <- p.adjust(results$p.value, method = "BH")
+
+write_delim(results,"data/figure_data/genes_plr.tsv")
+
+# The per-gene loop above is slow (a bootstrapped phyloglm per gene). To reproduce the
+# downstream summaries and Supplementary Fig. 11 without re-running it, load the committed
+# results instead:
+# results <- read.delim("data/figure_data/genes_plr.tsv")
+
+# results_backup = results
+
+# get some number for revisions
+results %>% filter(p.value<0.05) %>% dim() # 537 genes
+results %>% filter(p.value<0.05) %>% left_join(.,diff_genes%>% rename(gene=Preferred_name)) %>% drop_na() %>% dim() # 209 genes from the 260 original
+# including glnA2 , glnA4, gluA, gluB, gluC, lysX, proX, proZ, trpE, pepO
+
+# use media alpha/phylogenetic halflife to filter 260 genes
+diff_genes = read.delim("data/figure_data/diff_genes.tsv")
+
+diff_genes %>% rename(gene=Preferred_name) %>% left_join(.,results %>% mutate(phy_hl_median=log(2)/alpha, phy_hl_low=log(2)/alpha_low, phy_hl_high=log(2)/alpha_high)) %>% View()
+
+# vast majority of 260 IDd genes have half-life less than 0.1, suggesting weak phylogenetic strucutre even tho underpowered stat test (no significant pvals after adjusting)
+ggplot(diff_genes %>% rename(gene=Preferred_name) %>% 
+         left_join(.,results %>% mutate(phy_hl_median=log(2)/alpha, phy_hl_low=log(2)/alpha_low, phy_hl_high=log(2)/alpha_high))) + 
+  geom_density(aes(x=phy_hl_median)) + scale_x_log10()
+
+AA_KEGG_modules_ID = c("M00020","M00018","M00021","M00338","M00609","M00017","M00019","M00535","M00570","M00432","M00016","M00525","M00526","M00527","M00030","M00433","M00031","M00844","M00845","M00015","M00026","M00022","M00023","M00024","M00910","M00025","M00040")
+
+# aa metabolism genes have less phylogenetic strucutre than other genes
+ggplot(results %>% 
+           mutate(phy_hl_median=log(2)/alpha,
+                  phy_hl_low=log(2)/alpha_low,
+                  phy_hl_high=log(2)/alpha_high) %>% left_join(aa_kegg %>% rename(gene=Preferred_name) %>% mutate(gene_cat=ifelse(is.na(KEGG_Module),"other","AA")))) + 
+    geom_boxplot(aes(y=phy_hl_median,x=gene_cat))+
+    stat_compare_means(aes(x = gene_cat, y = phy_hl_median), 
+                       method = "wilcox.test", 
+                       label = "p.format") + scale_y_log10()
+
+# diff genes have lower unadjustd p val compared to other genes
+ggplot(results %>% 
+           mutate(group=ifelse(gene%in%diff_genes$Preferred_name,"Enriched/depleted without phylogenetic correction","Other"))) + 
+    geom_boxplot(aes(y=p.value,x=group),alpha=1,outlier.alpha = 0) + geom_jitter(aes(y=p.value,x=group),alpha=0.1) + 
+  ylab("P-value of phyloglm model (not adjusted for multiple hypothesis testing)") + xlab("Gene type") + 
+    stat_compare_means(aes(x = group, y = p.value), 
+                       method = "wilcox.test", 
+                       label = "p.format") + scale_y_log10() + theme_bw() + 
+  theme(panel.grid.major=element_blank(),panel.grid.minor = element_blank())
+
+## update final version
+# get stat test
+results %>% 
+           mutate(group=ifelse(gene%in%diff_genes$Preferred_name,"Enriched/depleted without phylogenetic correction","Other")) %>% 
+  wilcox_test(p.value ~ group,p.adjust.method="BH") %>%
+    add_significance() -> stat.test
+stat.test %>% add_xy_position(x = "group") -> stat.test
+stat.test[1,9] = 0.15
+#plot
+ggplot(results %>% 
+           mutate(group=ifelse(gene%in%diff_genes$Preferred_name,"Enriched/depleted without phylogenetic correction","Other"))) + 
+  geom_jitter(aes(y=p.value,x=group,color=group),alpha=0.8) + 
+    geom_boxplot(aes(y=p.value,x=group,fill=group),alpha=0.5,outlier.alpha = 0) + 
+  ylab("P-value of phyloglm model (not adjusted for multiple hypothesis testing)") + xlab("Gene type") +  scale_y_log10() + theme_bw() + 
+  theme(panel.grid.major=element_blank(),panel.grid.minor = element_blank(),legend.position = "none")  + scale_fill_manual(values=c("#DAC883","gray")) + scale_color_manual(values=c("#DAC883","gray")) + stat_pvalue_manual(stat.test, label = "p.signif")
+
+
+ggsave("outputs/sup_figS11.pdf",height=6, width = 6)
+ggsave("outputs/sup_figS11.png",height=6, width = 6)
+
+#ggsave("outputs/sup_figS11.pdf",height=3.2, width = 5)
+#ggsave("outputs/sup_figS11.png",height=3.2, width = 5)
+
+# aa metabolism genes have lower unadjustd p val compared to other genes
+ggplot(results %>% 
+           mutate(phy_hl_median=log(2)/alpha,
+                  phy_hl_low=log(2)/alpha_low,
+                  phy_hl_high=log(2)/alpha_high) %>% left_join(aa_kegg %>% rename(gene=Preferred_name) %>% mutate(gene_cat=ifelse(is.na(KEGG_Module),"other","AA")))) + 
+    geom_boxplot(aes(y=p.value,x=gene_cat))+
+    stat_compare_means(aes(x = gene_cat, y = p.value), 
+                       method = "wilcox.test", 
+                       label = "p.format") + scale_y_log10()
+
+# discrepancy found between 1st auxo experiment (general) and 2nd specific auxo experiment
+auxolab %>% mutate(auxo_lab=as.numeric(auxo_lab)-1) %>% filter(!grepl("_auxo",metabolite)) %>% group_by(Sample_ID) %>% summarize(count=sum(auxo_lab)) %>% left_join(auxolab %>% filter(metabolite=="AAs_auxo") %>% dplyr::select(Sample_ID,auxo_lab) %>% unique()) %>% mutate(count=ifelse(count>0,1,0),agreement=ifelse(count==auxo_lab,1,0),how=ifelse(count>as.numeric(auxo_lab)-1,"specific_auxo","general_auxo")) %>% View()
+
+```
+
+
+
+```{r}
+
+library(ggtree)
+library(ggtreeExtra)
+library(ggnewscale)
+library(ggrepel)
+
+# go to data folder
+# setwd("~/Documents/soil_auxo/manual_curation/protein_phylophlan")  # repointed: run from repo root
+
+# load tree file
+tree=read.tree("data/figure_data/protein.tre.treefile")
+
+# create genome metadata from checkm file
+grp <- list(isolate = checkm %>% filter(Type=="Isolate") %>% select(genome) %>% as.matrix(),
+            metagenomic = checkm %>% filter(Type=="Metagenomic") %>% select(genome) %>% as.matrix(),
+            deep_isolate=checkm%>%filter(Type=="Deep_isolate") %>% select(genome) %>% as.matrix(),
+            polymorphism=checkm%>%filter(Type=="Polymorphism") %>% select(genome) %>% as.matrix())
+
+# create genome taxonomy from gtdbtk file
+grp2 <- list(p__Thermoproteota = gtdbtk %>% filter(Phylum=="p__Thermoproteota") %>% select(genome) %>% as.matrix(),
+            p__Actinobacteriota = gtdbtk %>% filter(Phylum=="p__Actinobacteriota") %>% select(genome) %>% as.matrix(),
+            p__Firmicutes = gtdbtk %>%filter(Phylum=="p__Firmicutes") %>% select(genome) %>% as.matrix(),
+            p__Proteobacteria=gtdbtk %>%filter(Phylum=="p__Proteobacteria") %>% select(genome) %>% as.matrix(),
+            p__Bacteroidota = gtdbtk %>% filter(Phylum=="p__Bacteroidota") %>% select(genome) %>% as.matrix(),
+            p__Myxococcota = gtdbtk %>% filter(Phylum=="p__Myxococcota") %>% select(genome) %>% as.matrix(),
+            p__Verrucomicrobiota=gtdbtk %>%filter(Phylum=="p__Verrucomicrobiota") %>% select(genome) %>% as.matrix(),
+            p__Gemmatimonadota=gtdbtk %>%filter(Phylum=="p__Gemmatimonadota") %>% select(genome) %>% as.matrix(),
+            p__Planctomycetota = gtdbtk %>% filter(Phylum=="p__Planctomycetota") %>% select(genome) %>% as.matrix(),
+            p__Tectomicrobia = gtdbtk %>% filter(Phylum=="p__Tectomicrobia") %>% select(genome) %>% as.matrix(),
+            p__Nitrospirota=gtdbtk %>%filter(Phylum=="p__Nitrospirota") %>% select(genome) %>% as.matrix())
+
+# plot sample type
+groupOTU(ggtree(tree,layout = "circular") + geom_tiplab(aes(angle=angle),hjust = -0.25), grp, 'Type') + aes(color=Type) +
+    theme(legend.position="right")
+
+# plot taxonomy phylum level
+groupOTU(ggtree(tree,layout = "circular") + geom_tiplab(aes(angle=angle),hjust = -0.25), grp2, 'Phylum') + aes(color=Phylum) +
+    theme(legend.position="right")
+
+# all in one
+ggtree(tree,layout = "circular") %<+% gtdbtk  + geom_tiplab(aes(angle=angle),hjust = -0.25) +geom_tippoint(aes(shape = Type, color = Phylum))
+
+```
+
+
+```{r}
+# new figure 3 idea
+
+ggarrange(ggarrange(newfig3a,bxpIS,nrow=1,labels=c("A","B")),
+          ggarrange(bxp1,bxp2,nrow=1,labels = c("C","D")),
+          ggarrange(scatter_2,scatter_1,nrow=1,labels=c("E","F")),ncol=1)
+
+ggsave("outputs/newfig3.pdf",height = 10,width = 8)
+ggsave("outputs/newfig3.png",height = 10,width = 8)
+
+
+# updated figure 3
+
+ggarrange(ggarrange(scatter_1,scatter_2,nrow=1,labels=c("A","B")),
+          ggarrange(bxp4,bxpIS,nrow=1,labels = c("C","D")),ncol = 1)
+
+ggsave("outputs/updated_fig3.pdf",height = 8,width = 8)
+ggsave("outputs/updated_fig3.png",height = 8,width = 8)
+
+# moved virus + plasmids to supplementary
+
+ggarrange(bxp1,bxp2,nrow=1,labels = c("A","B"))
+ggsave("outputs/mges_supfig.pdf",height = 4,width = 8)
+ggsave("outputs/mges_supfig.png",height = 4,width = 8)
+
+```
+
+
+```{r}
+
+# TRANSPOSONS - ISfinder DB search
+
+#load hits
+isfinder_hits = read.delim("data/annotations/ISfinder_k1000.tsv") %>%
+  mutate(genome=gsub("_shovill.*$","_shovill",reference),genome=gsub("_NODE.*$","",genome),genome=gsub("_k.*$","",genome)) %>%
+  left_join(.,checkm,by="genome")
+
+# get count of hits across genomes for statistical testing
+isfinder_hits %>% group_by(genome)%>% filter(seqid>=40) %>% dplyr::summarize(count=n()) %>% full_join(checkm,by="genome") %>% mutate_at("count", ~replace_na(.,0)) %>% mutate(count_norm=count/size) -> isfinder_count
+isfinder_hits%>% filter(seqid>=40) %>% group_by(genome,query) %>% dplyr::summarize(count=n()) -> isfinder_count_per
+
+#### WE DONT YET HAVE PLOT FOR INSERTION SEQS!!!
+
+ggplot(isfinder_count %>% mutate(AAs_auxo=ifelse(is.na(AAs_auxo),"Not assayed",ifelse(AAs_auxo==1,"Auxotroph","Prototroph")),AAs_auxo=factor(AAs_auxo,levels=c("Not assayed","Prototroph","Auxotroph")),count_norm=1000000*count_norm),aes(x=AAs_auxo,y=count_norm)) + geom_boxplot(outlier.alpha = 0,alpha=0.8) + geom_jitter(alpha=0.5) + xlab("Amino acid auxotrophy status") + ylab(expression(Insertion~sequences~(Mbp^-1))) -> bxpIS
+isfinder_count %>% mutate(AAs_auxo=ifelse(is.na(AAs_auxo),"Not assayed",ifelse(AAs_auxo==1,"Auxotroph","Prototroph")),AAs_auxo=factor(AAs_auxo,levels=c("Not assayed","Prototroph","Auxotroph")),count_norm=1000000*count_norm) %>% ungroup() %>% 
+    wilcox_test(count_norm ~ AAs_auxo,p.adjust.method="BH") %>%
+    add_significance() -> stat.test
+stat.test %>% add_xy_position(x = "AAs_auxo") -> stat.test
+bxpIS + stat_pvalue_manual(stat.test, label = "p.adj") + theme_bw() -> bxpIS
+
+# get mdian,iqr of seqid, only considering hits with >40% seqid
+isfinder_hits %>% filter(seqid>=40) %>% summarize(median=median(seqid),iqr=IQR(seqid))
+
+# get median,iqr of normalisd IS
+isfinder_count %>% mutate(AAs_auxo=ifelse(is.na(AAs_auxo),"Not assayed",ifelse(AAs_auxo==1,"Auxotroph","Prototroph")),AAs_auxo=factor(AAs_auxo,levels=c("Not assayed","Prototroph","Auxotroph")),count_norm=1000000*count_norm) %>% summarize(median=median(count_norm),iqr=IQR(count_norm))
+
+# get median,iqr of normalisd IS for auxo/proto
+isfinder_count %>% mutate(AAs_auxo=ifelse(is.na(AAs_auxo),"Not assayed",ifelse(AAs_auxo==1,"Auxotroph","Prototroph")),AAs_auxo=factor(AAs_auxo,levels=c("Not assayed","Prototroph","Auxotroph")),count_norm=1000000*count_norm) %>% group_by(AAs_auxo) %>% summarize(median=median(count_norm),iqr=IQR(count_norm))
+
+# get test statitics
+isfinder_count %>% mutate(AAs_auxo=ifelse(is.na(AAs_auxo),"Not assayed",ifelse(AAs_auxo==1,"Auxotroph","Prototroph")),AAs_auxo=factor(AAs_auxo,levels=c("Not assayed","Prototroph","Auxotroph")),count_norm=1000000*count_norm) %>% wilcox_test(count_norm ~ AAs_auxo,p.adjust.method="BH") %>% add_significance()
+
+# do for type instead
+isfinder_count %>% 
+  filter(Type!="Polymorphism") %>%
+    mutate(Type==as.factor(Type)) %>% 
+    mutate(Type=ifelse(Type=="Deep_isolate","Isolate",Type)) %>% 
+    wilcox_test(count_norm ~ Type,p.adjust.method="BH") %>% add_significance() -> stat.test
+
+# do for habitats instead
+isfinder_count %>% mutate(Habitats=as.factor(Habitats)) %>% filter(Type!="Polymorphism") %>%
+    wilcox_test(count_norm ~ Habitats,p.adjust.method="BH") %>%
+    add_significance() -> stat.test
+
+# get stats for phyla test
+isfinder_count%>% left_join(.,gtdbtk,by="genome") %>% mutate(count_norm=1000000*count_norm) %>% wilcox_test(count_norm ~ Phylum,p.adjust.method="BH") %>% add_significance()
+
+# get median, IQR
+isfinder_count%>% left_join(.,gtdbtk,by="genome") %>% mutate(count_norm=1000000*count_norm) %>% group_by(Phylum) %>% summarize(median = median(count_norm), iqr=IQR(count_norm))
+
+#############
+
+
+# plot phyla, SHOWS ENRICHMENT IN FIRMICUTES AND PROTEOBACTERIA BUT NOT ACTINOBACTERIA
+ggplot(isfinder_count%>% left_join(.,gtdbtk,by="genome"),aes(x=reorder(Phylum,count),y=count)) + geom_boxplot(alpha=0.4,outlier.alpha = 0) + 
+    geom_jitter(alpha=0.7) + coord_flip() + scale_y_log10() + ylab("IS hits per genome") + xlab("Phylum")
+
+# statistically significant too!!
+stat.test <- isfinder_count%>% drop_na() %>% left_join(gtdbtk,by="genome") %>% filter(Phylum =="p__Actinobacteriota"|Phylum=="p__Proteobacteria"|Phylum=="p__Firmicutes") %>%
+    wilcox_test(.,count ~ Phylum, paired = FALSE,p.adjust.method = "BH") 
+stat.test 
+
+# no correlation between completeness and count, so can include comparison of low completenss archaea against bacteria
+cor.test(isfinder_count$count,isfinder_count$Completeness)
+
+# plot
+ggplot(isfinder_count%>% left_join(.,gtdbtk,by="genome"),aes(x=reorder(Domain,count),y=count)) + geom_boxplot(alpha=0.4,outlier.alpha = 0) + 
+    geom_jitter(alpha=0.7) + coord_flip() + scale_y_log10()
+stat.test <- isfinder_count %>% left_join(gtdbtk,by="genome")  %>%
+    wilcox_test(.,count ~ Domain, paired = FALSE) 
+stat.test
+
+# get intersect of IS and eggNOG
+isfinder_hits_filt = isfinder_hits %>% filter(seqid>=40)
+eggnog %>% unite("gene",genome:query) %>% 
+  filter(gene %in% isfinder_hits_filt$reference) %>% 
+  mutate(genome=gsub("^([^_]*_[^_]*)_.*$", "\\1", gene),gene=gsub("^([^_]*_[^_]*)_","",gene))%>% 
+  relocate(genome,gene) %>% group_by(genome) %>% dplyr::summarise(count=n()) %>% 
+  full_join(.,checkm,by="genome") %>% mutate_at("count", ~replace_na(.,0)) -> eggnog_IS_count
+
+
+# get intersect of IS sequences and eggNOG, not enriched in E specifically, but indeed in L and overall
+isfinder_hits_filt = isfinder_hits %>% filter(seqid>=40)
+eggnog %>% unite("gene",genome:query) %>% 
+  filter(gene %in% isfinder_hits_filt$reference) %>% 
+  mutate(genome=gsub("^([^_]*_[^_]*)_.*$", "\\1", gene),gene=gsub("^([^_]*_[^_]*)_","",gene))%>%  filter(grepl("E",COG_category)) %>%
+  relocate(genome,gene) %>% group_by(genome) %>% dplyr::summarise(count=n()) %>% 
+  full_join(.,checkm,by="genome") %>% mutate_at("count", ~replace_na(.,0)) -> eggnog_IS_AA_count
+
+##### POSSIBLE NEW PLOT
+#plot looks good, add STATS
+
+ggplot(eggnog_IS_AA_count %>% mutate(AAs_auxo=ifelse(is.na(AAs_auxo),"Not assayed",ifelse(AAs_auxo==1,"Auxotroph","Prototroph")),AAs_auxo=factor(AAs_auxo,levels=c("Not assayed","Prototroph","Auxotroph")),count_norm=1000000*count/size),aes(x=AAs_auxo,y=count_norm)) + geom_boxplot(outlier.alpha = 0,alpha=0.5,aes(fill=AAs_auxo)) + scale_fill_manual(values=c("gray","black","#DAC883")) + geom_jitter(alpha=0.8,aes(color=AAs_auxo)) + scale_color_manual(values=c("gray","black","#DAC883")) + xlab("\nAmino acid auxotrophy status") + ylab(expression(atop(Insertion~sequences~"in"~amino,~acid~metabolism~genes~(Mbp^-1))   )) -> bxpISAA
+
+eggnog_IS_AA_count %>% mutate(AAs_auxo=ifelse(is.na(AAs_auxo),"Not assayed",ifelse(AAs_auxo==1,"Auxotroph","Prototroph")),AAs_auxo=factor(AAs_auxo,levels=c("Not assayed","Prototroph","Auxotroph")),count_norm=1000000*count/size) %>% ungroup() %>% 
+    wilcox_test(count_norm ~ AAs_auxo,p.adjust.method="BH") %>%
+    add_significance() -> stat.test
+stat.test %>% add_xy_position(x = "AAs_auxo") -> stat.test
+stat.test[1,10]=1.2
+stat.test[2,10]=1.4
+stat.test[3,10]=1.6
+save_y = stat.test$y.position[3]
+stat.test$y.position[3] = stat.test$y.position[2] + 0.1
+stat.test$y.position[1] = stat.test$y.position[1] + 0.25
+stat.test$y.position[2] = save_y
+stat.test = stat.test %>% mutate(p.adj.signif=gsub("ns","NS",p.adj.signif))
+bxpISAA + stat_pvalue_manual(stat.test, label = "p.adj.signif",size=5) + theme_bw()+ theme(legend.position = "none",text=element_text(size=15)) -> bxpISAA
+
+ggsave("outputs/IS_AA_boxplot.pdf",height = 4,width = 4)
+ggsave("outputs/IS_AA_boxplot.png",height = 4,width = 4)
+
+##### POSSIBLE NEW PLOT
+#plot looks good, add STATS
+
+ggplot(eggnog_IS_count %>% mutate(AAs_auxo=ifelse(is.na(AAs_auxo),"Not assayed",ifelse(AAs_auxo==1,"Auxotroph","Prototroph")),AAs_auxo=factor(AAs_auxo,levels=c("Not assayed","Prototroph","Auxotroph")),count_norm=1000000*count/size),aes(x=AAs_auxo,y=count_norm)) + geom_boxplot(outlier.alpha = 0,alpha=0.5,aes(fill=AAs_auxo)) + scale_fill_manual(values=c("gray","black","#DAC883"))+ geom_jitter(alpha=0.8,aes(color=AAs_auxo)) + scale_color_manual(values=c("gray","black","#DAC883")) + xlab("\nAmino acid auxotrophy status") + ylab(expression(atop(Insertion~sequences~"in",~annotated~genes~(Mbp^-1)))) -> bxpIS_anno
+
+eggnog_IS_count %>% mutate(AAs_auxo=ifelse(is.na(AAs_auxo),"Not assayed",ifelse(AAs_auxo==1,"Auxotroph","Prototroph")),AAs_auxo=factor(AAs_auxo,levels=c("Not assayed","Prototroph","Auxotroph")),count_norm=1000000*count/size) %>% ungroup() %>% 
+    wilcox_test(count_norm ~ AAs_auxo,p.adjust.method="BH") %>%
+    add_significance() -> stat.test
+stat.test %>% add_xy_position(x = "AAs_auxo") -> stat.test
+save_y = stat.test$y.position[3]
+stat.test$y.position[3] = stat.test$y.position[2] - 5.5
+stat.test$y.position[2] = save_y - 9
+stat.test = stat.test %>% mutate(p.adj.signif=gsub("ns","NS",p.adj.signif))
+bxpIS_anno + stat_pvalue_manual(stat.test, label = "p.adj.signif",size=5) + theme_bw() + theme(legend.position = "none",text=element_text(size=15)) -> bxpIS_anno
+
+ggsave("outputs/IS_all_boxplot.pdf",height = 4,width = 4)
+ggsave("outputs/IS_all_boxplot.png",height = 4,width = 4)
+
+#combine 2 above plots + mges_supfig
+
+ggarrange(bxp1+theme(text=element_text(size=18),panel.border = element_blank(),panel.grid.major = element_blank(),panel.grid.minor = element_blank(),axis.line = element_line(color = "black")),ggplot()+theme_void(),
+          bxp2+theme(text=element_text(size=18),panel.border = element_blank(),panel.grid.major = element_blank(),panel.grid.minor = element_blank(),axis.line = element_line(color = "black")), ggplot()+theme_void(),ggplot()+theme_void(),ggplot()+theme_void(),
+          bxpIS_anno+theme(text=element_text(size=18),panel.border = element_blank(),panel.grid.major = element_blank(),panel.grid.minor = element_blank(),axis.line = element_line(color = "black")), ggplot()+theme_void(),
+          bxpISAA+theme(text=element_text(size=18),panel.border = element_blank(),panel.grid.major = element_blank(),panel.grid.minor = element_blank(),axis.line = element_line(color = "black")),
+          nrow = 3,ncol=3,labels=c("a","","b","","","","c","","d"),font.label = list(size=25),heights = c(1,0.1,1),widths = c(1,0.1,1))
+
+ggsave("outputs/sup_fig5_final.pdf",height = 11,width = 10)
+ggsave("outputs/sup_fig5_final.png",height = 11,width = 10)
+
+ggsave("outputs/new_mges_sup_final.pdf",height = 11,width = 10)
+ggsave("outputs/new_mges_sup_final.png",height = 11,width = 10)
+
+# fetch stats
+eggnog_IS_count %>% mutate(AAs_auxo=ifelse(is.na(AAs_auxo),"Not assayed",ifelse(AAs_auxo==1,"Auxotroph","Prototroph")),AAs_auxo=factor(AAs_auxo,levels=c("Not assayed","Prototroph","Auxotroph")),count_norm=1000000*count/size) %>% group_by(AAs_auxo) %>% summarize(median=median(count_norm),iqr=IQR(count_norm))
+
+
+# get percentages by category
+eggnog %>% unite("gene",genome:query) %>% 
+    filter(gene %in% isfinder_hits_filt$reference) %>% 
+    mutate(genome=gsub("^([^_]*_[^_]*)_.*$", "\\1", gene),gene=gsub("^([^_]*_[^_]*)_","",gene))%>% 
+    relocate(genome,gene) %>% group_by(COG_category) %>% dplyr::summarise(count=n()*100/5549) %>% View()
+
+#plot
+ggplot(eggnog_IS_AA_count %>% drop_na(),aes(x=AAs_auxo,group=AAs_auxo,y=count)) + geom_boxplot(alpha=0.4,outlier.alpha = 0) + 
+    geom_jitter(alpha=0.7) 
+stat.test <- eggnog_IS_AA_count %>% drop_na() %>%
+    wilcox_test(.,count ~ AAs_auxo, paired = FALSE) 
+stat.test
+
+#eggnog stats
+get_summary_stats(eggnog %>% group_by(genome) %>% summarise(count=n()))
+eggnog %>% group_by(genome) %>% summarise(count=n()) %>% left_join(.,checkm,by="genome") %>% wilcox_test(.,count~Habitats,paired = FALSE,p.adjust.method = "BH")
+eggnog %>% group_by(genome) %>% summarise(count=n()) %>% left_join(.,checkm,by="genome") %>% wilcox_test(.,count~AAs_auxo,paired = FALSE,p.adjust.method = "BH")
+eggnog %>% group_by(genome) %>% summarise(count=n()) %>% left_join(.,checkm,by="genome") %>% wilcox_test(.,count~Type,paired = FALSE,p.adjust.method = "BH")
+eggnog %>% group_by(genome) %>% summarise(count=n()) %>% left_join(.,gtdbtk,by="genome") %>% wilcox_test(.,count~Phylum,paired = FALSE,p.adjust.method = "BH") -> stat.test
+
+# all genes
+ggplot(eggnog %>% group_by(genome) %>% summarise(count=n()) %>% left_join(.,gtdbtk,by="genome") ,aes(x=reorder(Phylum,count),y=count)) + geom_boxplot(alpha=0.4,outlier.alpha = 0) +geom_jitter(alpha=0.7) + coord_flip() + scale_y_log10() + ylab("Genes per genome") + xlab("Phylum")
+eggnog %>% group_by(genome) %>% summarise(count=n()) %>% left_join(.,checkm,by="genome") %>% wilcox_test(.,count~Type,paired = FALSE,p.adjust.method = "BH")
+
+# just E COG genes
+ggplot(eggnog %>% filter(grepl("E",COG_category)) %>% group_by(genome) %>% summarise(count=n()) %>% left_join(.,checkm,by="genome") ,aes(x=Type,y=count)) + geom_boxplot(alpha=0.4,outlier.alpha = 0) +geom_jitter(alpha=0.7)
+eggnog %>% filter(grepl("E",COG_category)) %>% group_by(genome) %>% summarise(count=n()) %>% left_join(.,checkm,by="genome") %>% wilcox_test(.,count~Type,paired = FALSE,p.adjust.method = "BH")
+
+# check IS per genes in genome, not surprising that there is enrichment in 
+eggnog %>% group_by(genome) %>% summarise(count=n()) %>% left_join(.,gtdbtk,by="genome") %>% left_join(.,isfinder_count %>% rename(iscount=count) %>% select(genome,iscount),by="genome") %>% mutate(ispergene=iscount/count)%>% relocate(ispergene) %>% wilcox_test(.,ispergene~AAs_auxo)
+
+ggplot(eggnog %>% group_by(genome) %>% summarise(count=n()) %>% left_join(.,gtdbtk,by="genome") %>% left_join(.,isfinder_count %>% rename(iscount=count) %>% select(genome,iscount),by="genome") %>% mutate(ispergene=iscount/count)%>% relocate(ispergene) ,aes(x=AAs_auxo,y=ispergene,group=AAs_auxo)) + geom_boxplot(alpha=0.4,outlier.alpha = 0) +geom_jitter(alpha=0.7)  + ylab("IS/total number of genes in genome") + xlab("Auxotrophy status")
+
+## STATISTICAL CHECKS TO ALLOW USING MWU / WRST
+# significant, counts are not normally distributed
+shapiro.test(isfinder_count$count)
+# no significant difference in the variance of transposon count between AAs_auxo=1 and AAs_auxo=0, can use  
+res <- var.test(count ~ AAs_auxo, data = isfinder_count%>% drop_na())
+res
+# wilcoxon rank sum test says transposons count is siginificantly different between amino acid auxo and not
+stat.test <- isfinder_count%>% drop_na() %>% mutate(AAs_auxo=as.factor(AAs_auxo),count=as.numeric(count)) %>%
+    wilcox_test(.,count ~ AAs_auxo, paired = FALSE) 
+stat.test
+
+# plot distrubutions
+ggplot(isfinder_count %>% drop_na(),aes(x=AAs_auxo,group=AAs_auxo,y=count)) + 
+    geom_boxplot(alpha=0.4,outlier.alpha = 0) + 
+    geom_jitter(alpha=0.7)
+
+# check sequid vs bitscore distributions
+ggplot(isfinder_hits,aes(x=seqid)) + geom_density()
+ggplot(isfinder_hits,aes(x=bitscore)) + geom_density()
+
+
+# TRANSPOSONS - 18 sequences search
+
+#load hits
+transposon_hits = read.delim("data/annotations/transposon_hits_k500.tsv") %>%
+  mutate(genome=gsub("_shovill.*$","_shovill",reference),genome=gsub("_NODE.*$","",genome),genome=gsub("_k.*$","",genome)) %>%
+  left_join(.,checkm,by="genome")
+
+# get count of hits across genomes for statistical testing, good that lane821s003042_shovill with 20 AA discrepancies has at least 4 hits,
+# other 20 AA disc. bug lane821s003042_shovill has no hits here
+transposon_hits %>% group_by(genome) %>% dplyr::summarize(count=n()) %>% full_join(checkm,by="genome") %>% mutate_at("count", ~replace_na(.,0)) -> transposon_count
+transposon_hits %>% group_by(genome,query) %>% dplyr::summarize(count=n()) %>% pivot_wider(.,names_from = "query",values_from = count,values_fill=0) %>% pivot_longer(!genome,names_to = "query",values_to = "count") %>% left_join(.,checkm,by="genome") -> transposon_count_per
+
+
+# cool standout phylum tectomicrobia with many hits
+ggplot(transposon_count%>% left_join(.,gtdbtk,by="genome"),aes(x=reorder(Phylum,count),y=count)) + geom_boxplot(alpha=0.4,outlier.alpha = 0) + 
+geom_jitter(alpha=0.7) + coord_flip()
+
+## STATISTICAL CHECKS TO ALLOW USING MWU / WRST
+# significant, counts are not normally distributed
+shapiro.test(transposons_no_na$count)
+# no significant difference in the variance of transposon count between AAs_auxo=1 and AAs_auxo=0, can use  
+res <- var.test(count ~ AAs_auxo, data = transposon_count%>% drop_na())
+res
+# wilcoxon rank sum test says transposons count is siginificantly different between amino acid auxo and not
+stat.test <- transposon_count%>% drop_na() %>% mutate(AAs_auxo=as.factor(AAs_auxo),count=as.numeric(count)) %>%
+    wilcox_test(.,count ~ AAs_auxo, paired = FALSE) 
+stat.test
+
+# plot distrubutions
+ggplot(transposon_hits %>% group_by(genome) %>% dplyr::summarize(count=n()) %>% full_join(checkm,by="genome") %>% mutate_at("count", ~replace_na(.,0)) %>% drop_na(),aes(x=AAs_auxo,group=AAs_auxo,y=count)) + 
+    geom_boxplot(alpha=0.4,outlier.alpha = 0) + 
+    geom_jitter(alpha=0.7)
+
+# good to see the label of hits, gives interesting overview of high sequence diversity in metagenomics
+ggplot(transposon_hits,aes(x=seqid,y=bitscore,color=Type,shape=Habitats,label=query)) + geom_point() + geom_label_repel()
+
+# top 4 hits are from same MAG, 2 of them are in the same contig right next to each other
+# lane121s003972_bin.2.s_NODE_208_length_3991_cov_2.763924_3 & _4 are next to GntP_permease & Sugar-bind genes
+# lane121s003972_bin.2.s_NODE_627_length_2162_cov_4.077218_1 is next to DUF & Deoxyribodipyrimidine photo-lyase
+# lane121s003972_bin.2.s_NODE_6_length_12053_cov_3.093854_12 
+
+#even better, subset eggnog annotations using genomad plasmid gene hits, Looks like no significant difference between auxo and proto in the counts of 
+#AA biosynthesis genes in plasmids
+eggnog %>% unite("gene",genome:query) %>% filter(gene %in% genomad_plasmid_genes$gene,grepl("E",COG_category))%>% mutate(genome=gsub("^([^_]*_[^_]*)_.*$", "\\1", gene),gene=gsub("^([^_]*_[^_]*)_","",gene))%>% relocate(genome,gene) -> eggnog_plasmid_AA
+eggnog %>% unite("gene",genome:query) %>% filter(gene %in% genomad_plasmid_genes$gene,grepl("E",COG_category))%>% mutate(genome=gsub("^([^_]*_[^_]*)_.*$", "\\1", gene),gene=gsub("^([^_]*_[^_]*)_","",gene))%>% relocate(genome,gene) %>% group_by(genome) %>% dplyr::summarise(count=n()) %>% full_join(.,checkm,by="genome") %>% mutate_at("count", ~replace_na(.,0)) -> eggnog_plasmid_AA_count
+stat.test <-eggnog_plasmid_AA_count %>%
+    wilcox_test(.,count ~ AAs_auxo, paired = FALSE) 
+stat.test
+ggplot(eggnog_plasmid_AA_count %>% drop_na(),aes(x=AAs_auxo,group=AAs_auxo,y=count)) + 
+    geom_boxplot(alpha=0.4,outlier.alpha = 0) + 
+    geom_jitter(alpha=0.7)
+
+# even tho plasmid hits in general are not enriched in isolates vs metagenomic genomes, AA related genes in plasmids are!
+stat.test <-eggnog_plasmid_AA_count %>%
+    wilcox_test(.,count ~ Type, paired = FALSE,p.adjust.method = "BH") 
+stat.test
+ggplot(eggnog_plasmid_AA_count,aes(x=Type,group=Type,y=count)) + 
+    geom_boxplot(alpha=0.4,outlier.alpha = 0) + 
+    geom_jitter(alpha=0.7)
+
+# now with viruses, also no big difference
+eggnog %>% unite("gene",genome:query) %>% filter(gene %in% genomad_virus_genes$gene,grepl("E",COG_category)) %>% mutate(genome=gsub("^([^_]*_[^_]*)_.*$", "\\1", gene),gene=gsub("^([^_]*_[^_]*)_","",gene))%>% relocate(genome,gene)  -> eggnog_virus_AA
+eggnog %>% unite("gene",genome:query) %>% filter(gene %in% genomad_virus_genes$gene,grepl("E",COG_category)) %>% mutate(genome=gsub("^([^_]*_[^_]*)_.*$", "\\1", gene),gene=gsub("^([^_]*_[^_]*)_","",gene))%>% relocate(genome,gene) %>% group_by(genome) %>% dplyr::summarise(count=n()) %>% full_join(.,checkm,by="genome") %>% mutate_at("count", ~replace_na(.,0)) -> eggnog_virus_AA_count
+ggplot(eggnog_virus_AA_count %>% drop_na(),aes(x=AAs_auxo,group=AAs_auxo,y=count)) + 
+    geom_boxplot(alpha=0.4,outlier.alpha = 0) + 
+    geom_jitter(alpha=0.7)
+
+# deep isolates and metagenomic genomes enriched in AA related virus genes
+ggplot(eggnog_virus_AA_count,aes(x=Type,group=Type,y=count)) + 
+    geom_boxplot(alpha=0.4,outlier.alpha = 0) + 
+    geom_jitter(alpha=0.7)
+stat.test <- eggnog_virus_AA_count %>%
+    wilcox_test(.,count ~ Type, paired = FALSE, p.adjust.method = "BH") 
+stat.test
+
+# also enriched by habitats
+stat.test <- eggnog_virus_AA_count %>%
+    wilcox_test(.,count ~ Habitats, paired = FALSE, p.adjust.method = "BH") 
+stat.test
+
+#do similar as below but start from eggnog dirctly, not statistically significant 
+eggnog %>% filter(grepl("E",COG_category)) %>% group_by(genome) %>% dplyr::summarise(count=n()) %>% left_join(.,checkm,by="genome") -> eggnog_bcaa_count
+ggplot(eggnog_bcaa_count,aes(x=AAs_auxo,group=AAs_auxo,y=count)) + 
+    geom_boxplot(alpha=0.4,outlier.alpha = 0) + 
+    geom_jitter(alpha=0.7)
+stat.test <- eggnog_bcaa_count %>%
+    wilcox_test(.,count ~ AAs_auxo, paired = FALSE) 
+stat.test
+
+
+### check to see if genomad results are consistent, should be more comprehensive NO THERE IS NO SEPARATION BY COUNTS
+
+
+## start with plasmids
+# create data frames
+genomad_plasmid_genes %>% mutate(genome=gsub("_shovill.*$","_shovill",gene),genome=gsub("_NODE.*$","",genome),genome=gsub("_k.*$","",genome)) %>% left_join(.,checkm,by="genome") -> genomad_plasmid_hits
+genomad_plasmid_hits %>% group_by(genome) %>% dplyr::summarize(count=n()) %>% full_join(checkm,by="genome") %>% mutate_at("count", ~replace_na(.,0)) -> genomad_plasmid_count
+# get median and iqe
+genomad_plasmid_count %>% summarize(med=median(count),iqr=IQR(count))
+
+# plot count hits by phylum
+ggplot(genomad_plasmid_count%>% left_join(.,gtdbtk,by="genome"),aes(x=reorder(Phylum,count),y=count)) + geom_boxplot(alpha=0.4,outlier.alpha = 0) + 
+geom_jitter(alpha=0.7) + coord_flip()
+## STATISTICAL CHECKS TO ALLOW USING MWU / WRST
+# significant, counts are not normally distributed
+shapiro.test(genomad_plasmid_count$count)
+# no significant difference in the variance of transposon count between AAs_auxo=1 and AAs_auxo=0, can use  
+res <- var.test(count ~ AAs_auxo, data = genomad_plasmid_count)
+res
+# wilcoxon rank sum test says plasmidss count is ARE NOT different between amino acid auxo and not!!
+stat.test <- genomad_plasmid_count %>% mutate(AAs_auxo=as.factor(AAs_auxo),count=as.numeric(count)) %>%
+    wilcox_test(.,count ~ AAs_auxo, paired = FALSE) 
+stat.test
+# plot distributions
+ggplot(genomad_plasmid_count%>% left_join(.,gtdbtk,by="genome") %>% drop_na(),aes(x=AAs_auxo.x,group=AAs_auxo.x,y=count)) + 
+    geom_boxplot(alpha=0.4,outlier.alpha = 0) + 
+    geom_jitter(alpha=0.7)
+
+# also, plasmids counts are not enriched in isolates vs metagenomic genomes
+ggplot(genomad_plasmid_count,aes(x=Type,group=Type,y=count)) + 
+    geom_boxplot(alpha=0.4,outlier.alpha = 0) + 
+    geom_jitter(alpha=0.7)
+stat.test <- genomad_plasmid_count %>%
+    wilcox_test(.,count ~ Type, paired = FALSE, p.adjust.method = "BH") 
+stat.test
+
+# also check fraction of E annotated genes on plasmid vs total in genome, enriched in isolates where up to 50% of E metabolism on plasmids!
+ggplot(eggnog_plasmid_AA %>% group_by(genome) %>% dplyr::summarise(on_plas=n()) %>% full_join(.,checkm,by="genome") %>% mutate_at("on_plas", ~replace_na(.,0)) %>% left_join(.,eggnog %>% group_by(genome,COG_category) %>% dplyr::summarize(count=n()) %>% filter(grepl("E",COG_category))%>% ungroup() %>% group_by(genome) %>% dplyr::summarise(total=sum(count))) %>% mutate(percent=100*on_plas/total),aes(x=Type,y=percent,group=Type)) +geom_boxplot()
+stat.test <- eggnog_plasmid_AA %>% group_by(genome) %>% dplyr::summarise(on_plas=n()) %>% full_join(.,checkm,by="genome") %>% mutate_at("on_plas", ~replace_na(.,0)) %>% left_join(.,eggnog %>% group_by(genome,COG_category) %>% dplyr::summarize(count=n()) %>% filter(grepl("E",COG_category))%>% ungroup() %>% group_by(genome) %>% dplyr::summarise(total=sum(count))) %>% mutate(percent=100*on_plas/total) %>%
+    wilcox_test(.,percent ~ Type, paired = FALSE,p.adjust.method = "BH") 
+stat.test
+
+## check viruses
+genomad_virus_genes %>% mutate(genome=gsub("_shovill.*$","_shovill",gene),genome=gsub("_NODE.*$","",genome),genome=gsub("_k.*$","",genome)) %>% left_join(.,checkm,by="genome") -> genomad_virus_hits
+genomad_virus_hits %>% group_by(genome) %>% dplyr::summarize(count=n()) %>% full_join(checkm,by="genome") %>% mutate_at("count", ~replace_na(.,0)) -> genomad_virus_count
+# plot count hits by phylum
+ggplot(genomad_virus_count%>% left_join(.,gtdbtk,by="genome"),aes(x=reorder(Phylum,count),y=count)) + geom_boxplot(alpha=0.4,outlier.alpha = 0) + 
+geom_jitter(alpha=0.7) + coord_flip()
+## STATISTICAL CHECKS TO ALLOW USING MWU / WRST
+# significant, counts are not normally distributed
+shapiro.test(genomad_virus_count$count)
+# no significant difference in the variance of virus count between AAs_auxo=1 and AAs_auxo=0, can use  
+res <- var.test(count ~ AAs_auxo, data = genomad_virus_count)
+res
+# wilcoxon rank sum test says viruses count is ARE NOT different between amino acid auxo and not!!
+stat.test <- genomad_virus_count %>% mutate(AAs_auxo=as.factor(AAs_auxo),count=as.numeric(count)) %>%
+    wilcox_test(.,count ~ AAs_auxo, paired = FALSE) 
+stat.test
+# plot distributions
+ggplot(genomad_virus_count%>% left_join(.,gtdbtk,by="genome") %>% drop_na(),aes(x=AAs_auxo.x,group=AAs_auxo.x,y=count)) + 
+    geom_boxplot(alpha=0.4,outlier.alpha = 0) + 
+    geom_jitter(alpha=0.7)
+
+# check if virus hits enriched in sample types, they are not!
+stat.test <- genomad_virus_count %>% 
+    wilcox_test(.,count ~ Type, paired = FALSE, p.adjust.method = "BH") 
+stat.test
+# plot distributions
+ggplot(genomad_virus_count,aes(x=Type,group=Type,y=count)) + 
+    geom_boxplot(alpha=0.4,outlier.alpha = 0) + 
+    geom_jitter(alpha=0.7)
+
+
+# get some overall percetnages for distribution of MGEs
+
+get_summary_stats(genomad_plasmid_count) # ave 284 +- sd 546
+# long tail distribution for plasmid hits
+ggplot(genomad_plasmid_count,aes(x=count)) + geom_density()
+
+get_summary_stats(genomad_virus_count) # ave 109 +- sd 194
+# also long tail distribution for virus hits
+ggplot(genomad_virus_count,aes(x=count)) + geom_density()
+
+
+## load data from metabolic modeling soil notebook previously analyzed
+#genomad plasmids
+genomad_plasmid_genes = read.delim("data/annotations/genomad/cat_mags_plasmid_genes.tsv")
+genomad_plasmid = read.delim("data/annotations/genomad/cat_mags_plasmid_summary.tsv") %>% mutate(Sample_ID=gsub("_.*$","",seq_name),genome=gsub("^([^_]+_[^_]+).*", "\\1",seq_name)) %>% left_join(.,metadata)
+#genomad viruses
+genomad_virus_genes = read.delim("data/annotations/genomad/cat_mags_virus_genes.tsv")
+genomad_virus = read.delim("data/annotations/genomad/cat_mags_virus_summary.tsv") %>% mutate(Sample_ID=gsub("_.*$","",seq_name),genome=gsub("^([^_]+_[^_]+).*", "\\1",seq_name)) %>% left_join(.,metadata)
+#gtdbtk
+gtdbtk = read.delim("data/figure_data/gtdbtk_summary.tsv") %>% 
+  rename(genome=user_genome) %>% 
+  separate(.,classification,sep = ";",c("Domain","Phylum","Class","Order","Family","Genus","Species")) %>%
+  left_join(.,checkm,by="genome")
+#eggnog
+eggnog = read.delim("data/annotations/eggnog_summary.tsv.gz") %>%
+  mutate(cog_name=gsub("^A$","rna processing and modification",COG_category)) %>%
+  mutate(cog_name=gsub("^B$","chromatin structure and dynamics",cog_name)) %>%
+  mutate(cog_name=gsub("^C$","energy production and conversion",cog_name)) %>%
+  mutate(cog_name=gsub("^D$","cell cycle control and mitosis",cog_name)) %>%
+  mutate(cog_name=gsub("^E$","amino acid metabolism and transport",cog_name)) %>%
+  mutate(cog_name=gsub("^F$","nucleotide metabolism and transport",cog_name)) %>%
+  mutate(cog_name=gsub("^G$","carbohydrate metabolism and transport",cog_name)) %>%
+  mutate(cog_name=gsub("^H$","coenzyme metabolism",cog_name)) %>%
+  mutate(cog_name=gsub("^I$","lipid metabolism",cog_name)) %>%
+  mutate(cog_name=gsub("^J$","tranlsation",cog_name)) %>%
+  mutate(cog_name=gsub("^K$","transcription",cog_name)) %>%
+  mutate(cog_name=gsub("^L$","replication and repair",cog_name)) %>%
+  mutate(cog_name=gsub("^M$","cell wall/membrane/envelop biogenesis",cog_name)) %>%
+  mutate(cog_name=gsub("^N$","cell motility",cog_name)) %>%
+  mutate(cog_name=gsub("^O$","post-translational modification, protein turnover, chaperone functions",cog_name)) %>%
+  mutate(cog_name=gsub("^P$","inorganic ion transport and metabolism",cog_name)) %>%
+  mutate(cog_name=gsub("^Q$","secondary structure",cog_name)) %>%
+  mutate(cog_name=gsub("^T$","signal transduction",cog_name)) %>%
+  mutate(cog_name=gsub("^U$","intracellular trafficing and secretion",cog_name)) %>%
+  mutate(cog_name=gsub("^V$","defense mechanism",cog_name)) %>%
+  mutate(cog_name=gsub("^Y$","nuclear structure",cog_name)) %>%
+  mutate(cog_name=gsub("^Z$","cytoskeleton",cog_name)) %>%
+  mutate(cog_name=gsub("^R$","general functional prediction only",cog_name)) %>%
+  mutate(cog_name=gsub("^S$","function unknown ",cog_name)) %>%
+  mutate(cog_name=gsub("-","function unknown ",cog_name)) %>%
+  left_join(.,gtdbtk,by="genome")
+```
+
+
+```{r}
+
+#with ggtreeextra
+library(ggtree)
+
+# setwd("~/Documents/soil_auxo/manual_curation/protein_phylophlan")  # repointed: run from repo root
+
+# load tree file
+tree=read.tree("data/figure_data/protein.tre.treefile")
+
+# We use ggtree to create fan layout tree, add taxonomy data from gtdbtk object
+p <- ggtree(tree, layout="circular") %<+% (gtdbtk %>% 
+                                             mutate(Type=ifelse(Type!="Metagenomic","Isolate","Metagenomic")) %>% 
+                                             rename(`Genome Type`=Type) %>%
+                                             mutate(Phylum=gsub("p__","",Phylum))) + 
+#  geom_tiplab(aes(angle=angle,label=Genus),size=3,hjust = -0.15) + # this adds labels to tips, makes too cluttered
+  geom_tippoint(aes(shape = `Genome Type`, color = Phylum)) + guides(color = guide_legend(ncol = 3), shape = guide_legend(ncol = 2)) +
+  scale_color_manual(values=c("#a6cee3","#1f78b4","#b2df8a","#33a02c","#fb9a99","#e31a1c","#fdbf6f","#ff7f00","#cab2d6","#6a3d9a","#b15928"))
+
+p
+
+# Use geom fruit to add heatmap of amino acid experimental hits
+p2 <- p + 
+      new_scale_fill() +
+      geom_fruit(
+          data=auxo2%>% rename(Auxotrophy=name,Hit=auxo_lab),
+          geom=geom_tile,
+          mapping=aes(y=genome, x=Auxotrophy, fill=Auxotrophy ,alpha=Hit),
+          offset=0.04,   # The distance between external layers, default is 0.03 times of x range of tree.
+          pwidth=0.4 # width of the external layer, default is 0.2 times of x range of tree.
+      ) + guides(fill = guide_legend(ncol = 4), alpha = guide_legend(ncol=2)) + scale_fill_manual(values=c("#8DD3C7", "#FFFFB3", "#BEBADA", "#FB8072", "#80B1D3",
+    "#FDB462", "#B3DE69", "#FCCDE5", "#D9D9D9", "#BC80BD",
+    "#CCEBC5", "#FFED6F", "#8C8C8C", "#1F78B4", "#33A02C",
+    "#E31A1C", "#FF7F00", "#A6CEE3", "#6A3D9A", "#B2DF8A")) + geom_text(x=-1, y=18, label="Lab",angle=-23)
+
+p2
+
+# Use geom fruit to add heatmap of amino acid model predictions
+p3 <- p2 + 
+      geom_fruit(
+          data=auxo2,
+          geom=geom_tile,
+          mapping=aes(y=genome, x=name, fill=name ,alpha=as.factor(auxo_model)),
+          offset=0.08,   # The distance between external layers, default is 0.03 times of x range of tree.
+          pwidth=0.4 # width of the external layer, default is 0.2 times of x range of tree.
+      ) + geom_text(x=-1.4, y=18, label="GEMs",angle=-23)
+
+p3 
+
+# Use geom fruit to add heatmap of amino acid model predictions and lab agreement/disagreement
+p4 <- p3 + 
+      new_scale_fill() +
+      geom_fruit(
+          data=auxo2 %>% left_join(.,metadata,by="Sample_ID") %>% mutate(state=ifelse(agree=="1" & auxo_lab=="1","True Positive",
+                                                                              ifelse(agree=="1" & auxo_lab=="0","True Negative",
+                                                                                     ifelse(agree=="0" & auxo_lab=="1", "False Negative", "False Positive")))) %>% rename(Result=state),
+          geom=geom_tile,
+          mapping=aes(y=genome, x=name, fill=Result), alpha=0.75,
+          offset=0.08,   # The distance between external layers, default is 0.03 times of x range of tree.
+          pwidth=0.4 # width of the external layer, default is 0.2 times of x range of tree.
+      )  + scale_fill_manual(values=c("#e41a1c","#377eb8","#4daf4a")) + guides(fill = guide_legend(ncol = 3)) + geom_text(x=-1.8, y=18, label="Evaluation",angle=-23)
+
+p4
+
+# Use geom fruit to add presence of regulators ccpa and cody based on eggnog annotation of genomes
+p5 <- p4 + 
+    new_scale_fill() +
+      geom_fruit(
+          data=eggnog %>% group_by(genome,Preferred_name) %>% filter(grepl("codY|ccpA",Preferred_name)) %>% summarize(count=n()) %>% rename(Regulators=Preferred_name),
+          geom=geom_tile(),
+          mapping=aes(y=genome, x=Regulators,fill=Regulators),
+          offset=0.08,   # The distance between external layers, default is 0.03 times of x range of tree.
+          pwidth=0.025 # width of the external layer, default is 0.2 times of x range of tree.
+      ) + guides(fill = guide_legend(ncol = 2)) + scale_fill_manual(values=(c("#cab2d6","#6a3d9a")))
+
+p5
+
+# Use geom fruit to add plasmid gene hits based on genomad annotations
+p6 <- p5 + 
+    new_scale_fill() +
+      geom_fruit(
+          data=genomad_plasmid %>% group_by(genome) %>% summarize(hits=n(),length=sum(length),genes=sum(n_genes)) %>% rename(`Annotated MGE genes`=genes), # renamed just for legend, it is plotting plasmid 
+          geom=geom_point(),
+          mapping=aes(y=genome, x=1,size=`Annotated MGE genes`),
+          offset=0.08,   # The distance between external layers, default is 0.03 times of x range of tree.
+          pwidth=0.025 # width of the external layer, default is 0.2 times of x range of tree.
+      ) + guides(size=guide_legend(ncol=2)) # + geom_text(x=-1.6, y=5, label="Plasmid",angle=-23)
+
+p6
+
+# Use geom fruit to add virus gene hits based on genomad annotations
+p7 <- p6 + 
+      geom_fruit(
+          data=genomad_virus %>% group_by(genome) %>% summarize(hits=n(),length=sum(length),genes=sum(n_genes))%>% rename(`Virus genes`=genes),
+          geom=geom_point(),
+          mapping=aes(y=genome, x=1,size=`Virus genes`),
+          offset=0.08,   # The distance between external layers, default is 0.03 times of x range of tree.
+          pwidth=0.025 # width of the external layer, default is 0.2 times of x range of tree.
+      ) # + geom_text(x=1.1, y=2, label="Virus",angle=-23)
+
+p7
+
+#laod kemet, bad processing do not use this one, just here for documentation
+kemet = read.delim("data/figure_data/kemet_summary.tsv",header = FALSE) %>% select(-V8) %>% 
+    rename(genome=V1,KEGG_Module=V2,module_name=V3,completeness=V4,nPresent__nTotal=V5,missing_KEGG_ko=V6,present_KEGG_ko=V7) %>%
+    separate(.,nPresent__nTotal,into=c("n_present","n_total"),sep="__") %>% 
+    mutate(n_present=as.numeric(n_present),n_total=as.numeric(n_total),n_missing=n_total-n_present) %>% 
+    left_join(.,checkm,by="genome") %>% filter(KEGG_Module %in% AA_KEGG_modules$KEGG_Module) %>% 
+         mutate(completeness = fct_relevel(completeness,"COMPLETE","1 BLOCK MISSING","2 BLOCKS MISSING","INCOMPLETE")) %>%
+         left_join(.,AA_KEGG_modules,by="KEGG_Module") %>%  mutate(incomplete=as.numeric(ifelse(completeness=="COMPLETE","0","1"))) %>% mutate(complete=as.numeric(ifelse(completeness=="COMPLETE","1","0"))) %>% select(module_name,KEGG_Module,complete,genome) %>% 
+  mutate(`Auxotrophy KEGG`=gsub(" .*$","",module_name)) %>% 
+  mutate(`Auxotrophy KEGG`=gsub("Phenylalanine_biosynthesis","Phenylalanine",`Auxotrophy KEGG`)) %>%
+  group_by(`Auxotrophy KEGG`,genome) %>% summarize(auxo_kegg=sum(complete)) %>% mutate(auxo_kegg=ifelse(auxo_kegg < 1, "1", "0"))
+
+#aes(x=genome,y=module_name,fill=completeness)) + geom_tile() + theme(axis.text.x = element_text(angle = 45, hjust = 1)) + facet_grid(AA_KEGG_modules_meta~Type,space="free",scales="free")  + scale_fill_manual(values=c("#fef0d9","#fdcc8a","#fc8d59","#d7301f"))
+
+ggsave("outputs/phylogenetic_tree.pdf",height = 10,width = 16)
+ggsave("outputs/phylogenetic_tree.png",height = 10,width = 16)
+
+# make rectangular tree with gggenes faceted next to each one for operns?
+
+# a bit extra for now, also not sure what the message is here and could confuse the evaluation aspect
+# add another heatmap for kemet annotations based on eggnog for AA biosynth pathway completeness
+p8 <- p7 + 
+      geom_fruit(
+          data=kemet,
+          geom=geom_tile(),
+          mapping=aes(y=genome, x=module_name,fill=completeness),
+          offset=0.08,   # The distance between external layers, default is 0.03 times of x range of tree.
+          pwidth=0.4 # width of the external layer, default is 0.2 times of x range of tree.
+      ) # + geom_text(x=1.1, y=2, label="Virus",angle=-23)
+
+p8
+
+
+```
+
+
+In this version below I try adding the KEMET stuff in between lab + and GEMs
+need to also add text label for genome level, and clarify Evaluation is specific to GEMs not genomes
+
+
+```{r}
+
+library(ggtree)
+library(ggtreeExtra)
+library(ggnewscale)
+library(tidyverse)
+
+# setwd("~/Documents/soil_auxo/manual_curation/protein_phylophlan")  # repointed: run from repo root
+
+# load tree file
+tree=read.tree("data/figure_data/protein.tre.treefile")
+
+# for thesis
+
+# We use ggtree to create fan layout tree, add taxonomy data from gtdbtk object
+p <- ggtree(tree, layout="rectangular") %<+% (gtdbtk %>% 
+                                             mutate(Type=ifelse(Type!="Metagenomic","Isolate","Metagenomic")) %>% 
+                                             rename(`Genome Type`=Type) %>%
+                                             mutate(Phylum=gsub("p__","",Phylum),Genus=gsub("g__","    ",Genus))) + 
+  geom_tiplab(aes(label=Genus),align = FALSE,size=3,fontface="italic") + # this adds labels to tips, makes too cluttered
+  geom_tippoint(aes( color = Phylum,size=5)) +
+  scale_color_manual(values=c("#F2B701","#7F3C8D","#E73F74","#11A579","#3969AC","#E68310","#008695","#80BA5A","#CF1C90","#f97b72","#4b4b8f")) + theme(legend.position = "bottom") +
+  guides(color = guide_legend(ncol = 2), shape = guide_legend(ncol = 1),size="none")
+
+p
+
+# Use geom fruit to add heatmap of amino acid experimental hits
+p2 <- p + 
+    new_scale_fill() +
+    geom_fruit(
+        data=auxo2%>% rename(Auxotrophy=name,Hit=auxo_lab),
+        geom=geom_tile,
+        mapping=aes(y=genome, x=Auxotrophy, fill=Auxotrophy, alpha=Hit),
+        offset=0.03,   # The distance between external layers, default is 0.03 times of x range of tree.
+        pwidth=0.3, # width of the external layer, default is 0.2 times of x range of tree.
+        axis.params = list(axis="x",title="\nExperimental\nobservations",title.size=6,text.size=0,vjust=10000,title.height=0.045)
+    ) + guides(fill = guide_legend(ncol = 3), alpha = guide_legend(ncol=1)) + 
+    scale_fill_manual(values=c("#8DD3C7", "#FFFFB3", "#BEBADA", "#FB8072", "#80B1D3",
+                               "#FDB462", "#B3DE69", "#FCCDE5", "#D9D9D9", "#BC80BD",
+                               "#CCEBC5", "#FFED6F", "#8C8C8C", "#1F78B4", "#33A02C",
+                               "#E31A1C", "#FF7F00", "#A6CEE3", "#6A3D9A", "#B2DF8A")) + guides(alpha = FALSE,color=guide_legend(order=1,ncol = 2,title.position="top",title.hjust = 0.5),fill=guide_legend(title.position="top",ncol=3,title.hjust = 0.5))
+
+p2
+
+# add genome level completeness based on eggnong + KEMET + KEGG
+p3 <- p2 + 
+    geom_fruit(
+        data=kemet_auxo_all %>% rename(`Auxotrophy KEGG`=name,auxo_kegg=auxo_kemet),
+        geom=geom_tile(),
+        mapping=aes(y=genome, x=`Auxotrophy KEGG`,fill=`Auxotrophy KEGG`, alpha= auxo_kegg),
+        offset=0.04,   # The distance between external layers, default is 0.03 times of x range of tree.
+        pwidth=0.4, # width of the external layer, default is 0.2 times of x range of tree.
+        axis.params = list(axis="x",title="\nGenomic\npredictions",title.size=6,text.size=0,vjust=10000,title.height=0.045)
+    ) 
+
+p3
+
+# Use geom fruit to add heatmap of amino acid model predictions
+p4 <- p3 + 
+      geom_fruit(
+          data=auxopred2 %>% filter(!grepl("ura|thm|ribflv|pydxn|csn|ade",compound),!grepl("N-acetyl-seryl-aspartate|1-deoxy-1|DL-Glutamate",name)),
+          geom=geom_tile,
+          mapping=aes(y=genome, x=name, fill=name ,alpha=as.factor(auxo_model)),
+          offset=0.04,   # The distance between external layers, default is 0.03 times of x range of tree.
+          pwidth=0.4, # width of the external layer, default is 0.2 times of x range of tree.
+          axis.params = list(axis="x",title="\nMetabolic model\npredictions",title.size=6,text.size=0,vjust=10000,title.height=0.045)
+      ) + geom_text(x=-1.8, y=18, label="GEMs",angle=-23) +guides(fill=guide_legend(ncol = 3,title.position="top",title.hjust = 0.5))
+
+p4 
+
+# add ccpa/cody regulators based on eggnog annotations
+p5 <- p4 + 
+    geom_fruit(
+        data=eggnog %>% group_by(genome,Preferred_name) %>% filter(grepl("codY|ccpA|cpdA|carD|catR|hfq$|hprK$",Preferred_name)) %>% summarize(count=n()) %>% rename(Regulators=Preferred_name),
+        geom=geom_point(),
+        mapping=aes(y=genome, x=Regulators,shape=Regulators),
+        offset=0.02,   # The distance between external layers, default is 0.03 times of x range of tree.
+        pwidth=0.1 # width of the external layer, default is 0.2 times of x range of tree.
+    ) + scale_shape_manual(values=c(1,2,3,4,5,6,7))+guides(shape=guide_legend(ncol = 1,title.position="top",title.hjust = 0.5,override.aes = list(size=5))) + theme(legend.text = element_text(size=15),legend.title=element_text(size=15))
+
+p5
+
+ggsave("outputs/tree_test.pdf",p5,height = 15,width = 12)
+
+# for paper 
+
+# We use ggtree to create fan layout tree, add taxonomy data from gtdbtk object
+p <- ggtree(tree, layout="rectangular") %<+% (gtdbtk %>% 
+                                             mutate(Type=ifelse(Type!="Metagenomic","Isolate","Metagenomic")) %>% 
+                                             rename(`Genome Type`=Type) %>%
+                                             mutate(Phylum=gsub("p__","",Phylum),Genus=gsub("g__","    ",Genus))) + 
+  geom_tiplab(aes(label=Genus),align = FALSE,size=4,fontface="italic") + # this adds labels to tips, makes too cluttered
+  geom_tippoint(aes( color = Phylum,size=5)) +
+  scale_color_manual(values=c("#F2B701","#7F3C8D","#E73F74","#11A579","#3969AC","#E68310","#008695","#80BA5A","#CF1C90","#f97b72","#4b4b8f")) + theme(legend.position = "bottom") +
+  guides(color = guide_legend(ncol = 2), shape = guide_legend(ncol = 1),size="none")
+
+p
+
+# Use geom fruit to add heatmap of amino acid experimental hits
+p2 <- p + 
+    new_scale_fill() +
+    geom_fruit(
+        data=auxo2%>% rename(Auxotrophy=name,Hit=auxo_lab),
+        geom=geom_tile,
+        mapping=aes(y=genome, x=Auxotrophy, fill=Auxotrophy, alpha=Hit),
+        offset=0.03,   # The distance between external layers, default is 0.03 times of x range of tree.
+        pwidth=0.3, # width of the external layer, default is 0.2 times of x range of tree.
+        axis.params = list(axis="x",title="\n\nExperimental\nobservations",title.size=6,text.size=0,vjust=10000,title.height=0.06)
+    ) + guides(fill = guide_legend(ncol = 3), alpha = guide_legend(ncol=1)) + 
+    scale_fill_manual(values=c("#8DD3C7", "#FFFFB3", "#BEBADA", "#FB8072", "#80B1D3",
+                               "#FDB462", "#B3DE69", "#FCCDE5", "#D9D9D9", "#BC80BD",
+                               "#CCEBC5", "#FFED6F", "#8C8C8C", "#1F78B4", "#33A02C",
+                               "#E31A1C", "#FF7F00", "#A6CEE3", "#6A3D9A", "#B2DF8A")) + guides(alpha = FALSE,color=guide_legend(override.aes = list(size=5),order=1,ncol = 2,title.position="top",title.hjust = 0.5),fill=guide_legend(title.position="top",ncol=3,title.hjust = 0.5))
+
+p2
+
+# add genome level completeness based on eggnong + KEMET + KEGG
+p3 <- p2 + 
+    geom_fruit(
+        data=kemet_auxo_all %>% rename(`Auxotrophy KEGG`=name,auxo_kegg=auxo_kemet),
+        geom=geom_tile(),
+        mapping=aes(y=genome, x=`Auxotrophy KEGG`,fill=`Auxotrophy KEGG`, alpha= auxo_kegg),
+        offset=0.04,   # The distance between external layers, default is 0.03 times of x range of tree.
+        pwidth=0.4, # width of the external layer, default is 0.2 times of x range of tree.
+        axis.params = list(axis="x",title="\n\nGenomic\npredictions",title.size=6,text.size=0,vjust=10000,title.height=0.06)
+    ) 
+
+p3
+
+# Use geom fruit to add heatmap of amino acid model predictions
+p4 <- p3 + 
+      geom_fruit(
+          data=auxopred2 %>% filter(!grepl("ura|thm|ribflv|pydxn|csn|ade",compound),!grepl("N-acetyl-seryl-aspartate|1-deoxy-1|DL-Glutamate",name)),
+          geom=geom_tile,
+          mapping=aes(y=genome, x=name, fill=name ,alpha=as.factor(auxo_model)),
+          offset=0.04,   # The distance between external layers, default is 0.03 times of x range of tree.
+          pwidth=0.4, # width of the external layer, default is 0.2 times of x range of tree.
+          axis.params = list(axis="x",title="\n\nMetabolic model\npredictions",title.size=6,text.size=0,vjust=10000,title.height=0.06)
+      ) + geom_text(x=-1.8, y=18, label="GEMs",angle=-23) +guides(fill=guide_legend(ncol = 3,title.position="top",title.hjust = 0.5))
+
+p4 
+
+# add ccpa/cody regulators based on eggnog annotations
+p5 <- p4 + 
+    geom_fruit(
+        data=eggnog %>% group_by(genome,Preferred_name) %>% filter(grepl("codY|ccpA|cpdA|carD|catR|hfq$|hprK$",Preferred_name)) %>% summarize(count=n()) %>% rename(Regulators=Preferred_name),
+        geom=geom_point(),
+        mapping=aes(y=genome, x=Regulators,shape=Regulators,size=4),
+        offset=0.02,   # The distance between external layers, default is 0.03 times of x range of tree.
+        pwidth=0.1 # width of the external layer, default is 0.2 times of x range of tree.
+    ) + scale_shape_manual(values=c(1,2,3,4,5,6,7))+guides(shape=guide_legend(ncol = 1,title.position="top",title.hjust = 0.5,override.aes = list(size=5))) + theme(legend.text = element_text(size=15),legend.title=element_text(size=15))
+
+p5
+
+ggsave("outputs/tree_final.pdf",p5,height = 15,width = 12)
+ggsave("outputs/tree_final.png",p5,height = 15,width = 12)
+
+#ggsave("outputs/tree.pdf",p5,height = 14.6,width = 10.4)
+#ggsave("outputs/tree.png",p5,height = 14.6,width = 10.4)
+
+# add IS hits on genes, point plot is not a good vis tho
+p6 <- p5 + 
+    new_scale_fill() +
+      geom_fruit(
+          data=is_sum%>%group_by(genome) %>% summarize(count=sum(count)),
+          geom=geom_barplot(),
+          mapping=aes(y=genome,x=count),
+          offset=0.04,   # The distance between external layers, default is 0.03 times of x range of tree.
+          pwidth=0.4 # width of the external layer, default is 0.2 times of x range of tree.
+      )
+
+p6
+
+ggsave("outputs/phylogenetic_tree_v3.pdf",height = 10,width = 16)
+ggsave("outputs/phylogenetic_tree_v3.png",height = 10,width = 16)
+
+
+# Use geom fruit to add heatmap of amino acid model predictions and lab agreement/disagreement
+p5 <- p4 + 
+      new_scale_fill() +
+      geom_fruit(
+          data=auxo2 %>% left_join(.,metadata,by="Sample_ID") %>% mutate(state=ifelse(agree=="1" & auxo_lab=="1","True Positive",
+                                                                              ifelse(agree=="1" & auxo_lab=="0","True Negative",
+                                                                                     ifelse(agree=="0" & auxo_lab=="1", "False Negative", "False Positive")))) %>% rename(Result=state),
+          geom=geom_tile,
+          mapping=aes(y=genome, x=name, fill=Result),
+          offset=0.08,   # The distance between external layers, default is 0.03 times of x range of tree.
+          pwidth=0.4 # width of the external layer, default is 0.2 times of x range of tree.
+      )  + scale_fill_manual(values=c("#FB8072","#F1F1F1","#A7D3D4")) + guides(fill = guide_legend(ncol = 3)) + geom_text(x=-2.2, y=18, label="Evaluation",angle=-23)
+
+p5
+
+
+# Use geom fruit to add presence of regulators ccpa and cody based on eggnog annotation of genomes
+p6 <- p5 + 
+    new_scale_fill() +
+      geom_fruit(
+          data=eggnog %>% group_by(genome,Preferred_name) %>% filter(grepl("codY|ccpA",Preferred_name)) %>% summarize(count=n()) %>% rename(Regulators=Preferred_name),
+          geom=geom_tile(),
+          mapping=aes(y=genome, x=Regulators,fill=Regulators),
+          offset=0.08,   # The distance between external layers, default is 0.03 times of x range of tree.
+          pwidth=0.025 # width of the external layer, default is 0.2 times of x range of tree.
+      ) + guides(fill = guide_legend(ncol = 2)) + scale_fill_manual(values=(c("#cab2d6","#6a3d9a")))
+
+p6
+
+# Use geom fruit to add plasmid gene hits based on genomad annotations
+p7 <- p6 + 
+    new_scale_fill() +
+      geom_fruit(
+          data=genomad_plasmid %>% group_by(genome) %>% summarize(hits=n(),length=sum(length),genes=sum(n_genes)) %>% rename(`Annotated MGE genes`=genes), # renamed just for legend, it is plotting plasmid 
+          geom=geom_point(),
+          mapping=aes(y=genome, x=1,size=`Annotated MGE genes`),
+          offset=0.08,   # The distance between external layers, default is 0.03 times of x range of tree.
+          pwidth=0.025 # width of the external layer, default is 0.2 times of x range of tree.
+      ) + guides(size=guide_legend(ncol=2)) # + geom_text(x=-1.6, y=5, label="Plasmid",angle=-23)
+
+p7
+
+# Use geom fruit to add virus gene hits based on genomad annotations
+p8 <- p7 + 
+      geom_fruit(
+          data=genomad_virus %>% group_by(genome) %>% summarize(hits=n(),length=sum(length),genes=sum(n_genes))%>% rename(`Virus genes`=genes),
+          geom=geom_point(),
+          mapping=aes(y=genome, x=1,size=`Virus genes`),
+          offset=0.08,   # The distance between external layers, default is 0.03 times of x range of tree.
+          pwidth=0.025 # width of the external layer, default is 0.2 times of x range of tree.
+      ) # + geom_text(x=1.1, y=2, label="Virus",angle=-23)
+
+p8
+
+ggsave("outputs/phylogenetic_tree.pdf",height = 10,width = 16)
+ggsave("outputs/phylogenetic_tree.png",height = 10,width = 16)
+
+```
+
+
+```{r}
+
+# gant chart for personal background
+
+library(tidyverse)
+
+# load sample timeline data
+read.delim("fz_timeline.tsv") -> fzt
+
+# Convert start_year and end_year to Date format
+fzt$Start <- as.Date(as.character(fzt$Start), format = "%Y")
+fzt$End <- as.Date(as.character(fzt$End), format = "%Y")
+
+# Create the timeline plot
+ggplot(fzt) +
+    geom_segment(aes(x = Start, xend = End, y = reorder(Country,Start), yend = Country, ,color=City), size = 5) +
+    geom_text(aes(x = Start, y = Country, label = Event), vjust = -1, hjust = 0, size = 5) +
+    labs(x = "Year", y = "Country", title = "FZ Timeline") +
+    scale_x_date(date_labels = "%Y", date_breaks = "1 year") +
+    theme_minimal() + 
+    scale_color_manual(values=c("#d9d9d9","#8dd3c7","#bebada","#fb8072","#80b1d3","#fdb462","#b3de69","#fccde5","#ffffb3","#bc80bd")) + 
+    theme(axis.text.x = element_text(angle = 45, hjust = 1,size=14),
+          axis.text.y = element_text(size=16),
+          legend.text = element_text(size=16),
+          axis.title = element_text(size=20),
+          title = element_text(size=20),
+          legend.title = element_text(size=20))
+
+
+```
+
+Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Cmd+Option+I*.
+
+When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Cmd+Shift+K* to preview the HTML file). 
+
+The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
+

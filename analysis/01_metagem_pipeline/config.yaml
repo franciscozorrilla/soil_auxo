@@ -1,0 +1,29 @@
+# Configuration for the metaGEM Snakefile (soil_auxo run).
+# The pipeline takes raw metagenomic reads (ENA PRJEB80563) through quality filtering,
+# assembly, binning, refinement, GEM reconstruction, SMETANA, GTDB-Tk, and abundance.
+# It runs on an HPC cluster with the metaGEM conda environments installed.
+# Full setup + environment files: https://github.com/franciscozorrilla/metaGEM
+#
+# Edit the paths below for your system before running. Raw reads are on ENA, not in this repo.
+
+path:
+  root: /path/to/soil_auxo_run        # working root that holds the folders below
+  scratch: /path/to/scratch           # fast scratch space for intermediate files
+
+folder:
+  data: dataset                       # raw paired reads: {ID}/{ID}_R1.fastq.gz, _R2.fastq.gz
+  qfiltered: qfiltered                # fastp-filtered reads
+  assemblies: assemblies              # MEGAHIT assemblies
+  reassembled: reassembled_bins       # refined + reassembled bins (MAGs)
+  GEMs: GEMs                          # CarveMe genome-scale models (*.xml)
+  SMETANA: SMETANA                    # SMETANA cross-feeding predictions
+  abundance: abundance                # bin abundance across samples
+  classification: GTDBTk              # GTDB-Tk taxonomy
+  benchmarks: benchmarks              # Snakemake benchmarks
+
+cores:
+  abundance: 4
+  gtdbtk: 8
+
+envs:
+  metagem: metagem                    # name of the metaGEM conda environment

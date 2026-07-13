@@ -1,0 +1,48 @@
+# macOS
+.DS_Store
+.DS_Store?
+._*
+.AppleDouble
+.LSOverride
+.Spotlight-V100
+.Trashes
+.fseventsd
+Icon?
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+Desktop.ini
+
+# Linux
+*~
+.directory
+.Trash-*
+
+# Editors / IDEs
+*.swp
+*.swo
+*.swn
+.vscode/
+.idea/
+*.sublime-workspace
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.ipynb_checkpoints/
+.pytest_cache/
+.virtual_documents/
+
+# R
+.Rhistory
+.Rapp.history
+.Rproj.user/
+.RData
+.Ruserdata
+
+# Office lock/temp files
+~$*
+outputs/
