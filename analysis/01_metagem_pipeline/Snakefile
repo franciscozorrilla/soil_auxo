@@ -293,18 +293,24 @@ rule assembly_mapping:
 # maintained source for the complete, up-to-date workflow.
 rule carveme:
     input:
-        f'{config["path"]["root"]}/{config["folder"]["assemblies"]}/{{IDs}}/contigs.fasta.gz'
+        bins = f'{config["path"]["root"]}/{config["folder"]["reassembled"]}/{{IDs}}'
     output:
-        directory(f'{config["path"]["root"]}/{config["folder"]["abundance"]}/{{IDs}}')
+        directory(f'{config["path"]["root"]}/{config["folder"]["GEMs"]}/{{IDs}}')
     benchmark:
-        f'{config["path"]["root"]}/{config["folder"]["benchmarks"]}/{{IDs}}.abundance.benchmark.txt'
+        f'{config["path"]["root"]}/{config["folder"]["benchmarks"]}/{{IDs}}.carveme.benchmark.txt'
     message:
         """
-        carveme
+        CarveMe: reconstruct genome-scale metabolic models (SBML) from the genome
+        protein sequences, gap-filled on the MMAB medium.
         """
     shell:
-        """     
-        carve -g MMAB -v --mediadb $(basename {input.media}) --fbc2 -o $(echo $(basename {input.bin}) | sed 's/.faa/.xml/g') $(basename {input.bin})
+        """
+        source activate {config[envs][metagem]}
+        mkdir -p {output}
+        for faa in {input.bins}/*.faa ; do
+            carve -g MMAB -v --fbc2 --mediadb {config[path][root]}/media_db.tsv \
+                  -o {output}/$(basename ${{faa%.faa}}).xml $faa
+        done
         """
 
 rule abundance:

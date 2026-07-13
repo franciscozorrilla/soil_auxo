@@ -1,5 +1,6 @@
 library(ggplot2)
 library(gridExtra)
+library(dplyr)
 
 assembly = read.delim("data/qc/assembly.stats",stringsAsFactors = FALSE,header = FALSE,sep = " ")
 colnames(assembly) = c("Sample_ID","contigs","length_total")
