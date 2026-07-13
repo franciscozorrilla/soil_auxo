@@ -296,7 +296,7 @@ results %>% filter(p.value<0.05) %>% left_join(.,diff_genes%>% rename(gene=Prefe
 # use media alpha/phylogenetic halflife to filter 260 genes
 diff_genes = read.delim("data/figure_data/diff_genes.tsv")
 
-diff_genes %>% rename(gene=Preferred_name) %>% left_join(.,results %>% mutate(phy_hl_median=log(2)/alpha, phy_hl_low=log(2)/alpha_low, phy_hl_high=log(2)/alpha_high)) %>% View()
+diff_genes %>% rename(gene=Preferred_name) %>% left_join(.,results %>% mutate(phy_hl_median=log(2)/alpha, phy_hl_low=log(2)/alpha_low, phy_hl_high=log(2)/alpha_high))
 
 # vast majority of 260 IDd genes have half-life less than 0.1, suggesting weak phylogenetic strucutre even tho underpowered stat test (no significant pvals after adjusting)
 ggplot(diff_genes %>% rename(gene=Preferred_name) %>% 
@@ -359,7 +359,7 @@ if (FALSE) ggplot(results %>%
                        label = "p.format") + scale_y_log10()
 
 # discrepancy found between 1st auxo experiment (general) and 2nd specific auxo experiment
-auxolab %>% mutate(auxo_lab=as.numeric(auxo_lab)-1) %>% filter(!grepl("_auxo",metabolite)) %>% group_by(Sample_ID) %>% summarize(count=sum(auxo_lab)) %>% left_join(auxolab %>% filter(metabolite=="AAs_auxo") %>% dplyr::select(Sample_ID,auxo_lab) %>% unique()) %>% mutate(count=ifelse(count>0,1,0),agreement=ifelse(count==auxo_lab,1,0),how=ifelse(count>as.numeric(auxo_lab)-1,"specific_auxo","general_auxo")) %>% View()
+auxolab %>% mutate(auxo_lab=as.numeric(auxo_lab)-1) %>% filter(!grepl("_auxo",metabolite)) %>% group_by(Sample_ID) %>% summarize(count=sum(auxo_lab)) %>% left_join(auxolab %>% filter(metabolite=="AAs_auxo") %>% dplyr::select(Sample_ID,auxo_lab) %>% unique()) %>% mutate(count=ifelse(count>0,1,0),agreement=ifelse(count==auxo_lab,1,0),how=ifelse(count>as.numeric(auxo_lab)-1,"specific_auxo","general_auxo"))
 
 ```
 
@@ -373,7 +373,7 @@ library(ggnewscale)
 library(ggrepel)
 
 # go to data folder
-# setwd("~/Documents/soil_auxo/manual_curation/protein_phylophlan")  # repointed: run from repo root
+# run from the repository root (paths resolve to data/)
 
 # load tree file
 tree=read.tree("data/figure_data/protein.tre.treefile")
@@ -600,7 +600,7 @@ eggnog_IS_count %>% mutate(AAs_auxo=ifelse(is.na(AAs_auxo),"Not assayed",ifelse(
 eggnog %>% unite("gene",genome:query) %>% 
     filter(gene %in% isfinder_hits_filt$reference) %>% 
     mutate(genome=gsub("^([^_]*_[^_]*)_.*$", "\\1", gene),gene=gsub("^([^_]*_[^_]*)_","",gene))%>% 
-    relocate(genome,gene) %>% group_by(COG_category) %>% dplyr::summarise(count=n()*100/5549) %>% View()
+    relocate(genome,gene) %>% group_by(COG_category) %>% dplyr::summarise(count=n()*100/5549)
 
 #plot
 ggplot(eggnog_IS_AA_count %>% drop_na(),aes(x=AAs_auxo,group=AAs_auxo,y=count)) + geom_boxplot(alpha=0.4,outlier.alpha = 0) + 
@@ -873,7 +873,7 @@ eggnog = read.delim("data/annotations/eggnog_summary.tsv.gz") %>%
 #with ggtreeextra
 library(ggtree)
 
-# setwd("~/Documents/soil_auxo/manual_curation/protein_phylophlan")  # repointed: run from repo root
+# run from the repository root (paths resolve to data/)
 
 # load tree file
 tree=read.tree("data/figure_data/protein.tre.treefile")
@@ -1018,7 +1018,7 @@ library(ggtreeExtra)
 library(ggnewscale)
 library(tidyverse)
 
-# setwd("~/Documents/soil_auxo/manual_curation/protein_phylophlan")  # repointed: run from repo root
+# run from the repository root (paths resolve to data/)
 
 # load tree file
 tree=read.tree("data/figure_data/protein.tre.treefile")

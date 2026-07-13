@@ -31,7 +31,7 @@ source("analysis/00_load_data.R")
 
 ```{r}
 # get FN determined by GEMs but look into the KEGG biosynthesis modules for the 14/20 AAs with dedicated KEGG module
-full_join(kemet_auxo_all %>%drop_na() %>% filter(agree==0,auxo_kemet==1) %>% group_by(name) %>% summarise(count=n()),kemet_auxo_all %>%drop_na() %>% filter(agree==0,auxo_kemet==0) %>% group_by(name) %>% summarise(count=n()),by="name") %>% rename(no_genomic=count.x,yes_genomic=count.y) %>% mutate(yes_genomic = replace_na(yes_genomic, 0),no_genomic = replace_na(no_genomic, 0)) %>% group_by(name) %>% mutate(total_fp = sum(no_genomic,yes_genomic),percent=100*yes_genomic/total_fp) %>% full_join(.,auxo2 %>% group_by(name) %>% summarize(count=n())) %>% select(-count) %>% relocate(name,total_fp,percent,yes_genomic,no_genomic) %>% left_join(.,auxo2 %>% filter(auxo_lab==1,auxo_model==0) %>% group_by(name) %>% summarize(count=n())) %>% View()
+full_join(kemet_auxo_all %>%drop_na() %>% filter(agree==0,auxo_kemet==1) %>% group_by(name) %>% summarise(count=n()),kemet_auxo_all %>%drop_na() %>% filter(agree==0,auxo_kemet==0) %>% group_by(name) %>% summarise(count=n()),by="name") %>% rename(no_genomic=count.x,yes_genomic=count.y) %>% mutate(yes_genomic = replace_na(yes_genomic, 0),no_genomic = replace_na(no_genomic, 0)) %>% group_by(name) %>% mutate(total_fp = sum(no_genomic,yes_genomic),percent=100*yes_genomic/total_fp) %>% full_join(.,auxo2 %>% group_by(name) %>% summarize(count=n())) %>% select(-count) %>% relocate(name,total_fp,percent,yes_genomic,no_genomic) %>% left_join(.,auxo2 %>% filter(auxo_lab==1,auxo_model==0) %>% group_by(name) %>% summarize(count=n()))
 ```
 
 ```{r}
@@ -137,28 +137,6 @@ kemet = read.delim("data/figure_data/kemet_summary.tsv",header = FALSE) %>% sele
     mutate(n_present=as.numeric(n_present),n_total=as.numeric(n_total),n_missing=n_total-n_present) %>% 
     left_join(.,checkm,by="genome")
 
-# forgot M00432 for leucine biosynthesis
-#kemet %>% filter(KEGG_Module %in% AA_KEGG_modules$KEGG_Module) %>% 
-#    mutate(metabolite=ifelse(KEGG_Module=="M00017","Met",
-#                      ifelse(KEGG_Module=="M00015","Pro",
-#                      ifelse(grepl("M00016|M00030|M00031|M00525|M00526|M00527",KEGG_Module),"Lys",
-#                      ifelse(KEGG_Module=="M00018","Thr",
-#                      ifelse(KEGG_Module=="M00019","Ile,Val",
-#                      ifelse(KEGG_Module=="M00020","Ser",
-#                      ifelse(grepl("M00021|M00338|M00609",KEGG_Module),"Cys",
-#                      ifelse(KEGG_Module=="M00023","Trp",
-#                      ifelse(grepl("M00024|M00910",KEGG_Module),"Phe",
-#                      ifelse(grepl("M00025|M00040",KEGG_Module),"Tyr",
-#                      ifelse(KEGG_Module=="M00026","His",
-#                      ifelse(KEGG_Module=="M00570","Ile",
-#                      ifelse(grepl("M00844|M00845",KEGG_Module),"Arg","other")))))))))))))) %>% 
-#    relocate(metabolite) %>% filter(metabolite!="other",Sample_ID %in% auxo2$Sample_ID) %>% 
-#    separate_rows(metabolite,sep=",") %>% mutate(comp_num=ifelse(completeness=="COMPLETE",1,0)) %>% 
-#    group_by(genome,metabolite) %>% summarize(proto=sum(comp_num)) %>% mutate(auxo_kemet=ifelse(proto>0,0,1)) %>%
-#    mutate(Sample_ID = gsub("_.*$","",genome), auxo_kemet=as.factor(auxo_kemet)) %>%
-#  left_join(.,auxo2,by=c("Sample_ID","metabolite")) %>% select(-genome.x,-genome.y,-agree) %>% unique() -> kemet_auxo
-
-#fix
 kemet %>% filter(KEGG_Module %in% AA_KEGG_modules$KEGG_Module) %>% 
     mutate(metabolite=ifelse(KEGG_Module=="M00017","Met",
                       ifelse(KEGG_Module=="M00015","Pro",
@@ -274,7 +252,7 @@ MCC
 library(tidyverse)
 
 ### Set wd
-# setwd("~/Documents/soil_auxo/manual_curation/")  # repointed: run from repo root
+# run from the repository root (paths resolve to data/)
 
 ### Load supp data files
 bigg_mets = read.delim("data/figure_data/bigg_classes.tsv")
@@ -454,8 +432,6 @@ ggarrange(bxp4+theme(text=element_text(size=18),panel.border = element_blank(),p
 ggsave("outputs/fig4_final.png",height = 6,width = 10)
 ggsave("outputs/fig4_final.pdf",height = 6,width = 10)
 
-pdf("outputs/fig4_final.pdf",height = 6,width = 10,family = "sans")
-
 #######################################################################################################################################
 ################################################### STATISTICAL TESTS FOR RESULTS SECTION  ###################################################
 #######################################################################################################################################
@@ -569,7 +545,7 @@ eggnog %>% group_by(genome,Preferred_name) %>% summarise(count=n()) %>% pivot_wi
 compare_means(count ~ AAs_auxo ,egg_sum,method="wilcox.test",group.by = "Preferred_name") %>% mutate(p.adj=p.adjust(p,method="BH")) %>% filter(p.adj<=0.05) -> egg_sum_comp
 
 #check descriprions of which genes are up/down in auxo
-egg_sum %>% filter(Preferred_name %in% egg_sum_comp$Preferred_name) %>% group_by(AAs_auxo,Preferred_name) %>% summarize(average=mean(count)) %>% pivot_wider(names_from = AAs_auxo,values_from = average)%>% mutate(change=as.factor(ifelse(`1`>`0`,"enriched in auxo","depleted in auxo")),fc=`1`/`0`) %>% left_join(.,eggnog%>%ungroup()%>%select(Preferred_name,Description)%>% unique()) %>% View()
+egg_sum %>% filter(Preferred_name %in% egg_sum_comp$Preferred_name) %>% group_by(AAs_auxo,Preferred_name) %>% summarize(average=mean(count)) %>% pivot_wider(names_from = AAs_auxo,values_from = average)%>% mutate(change=as.factor(ifelse(`1`>`0`,"enriched in auxo","depleted in auxo")),fc=`1`/`0`) %>% left_join(.,eggnog%>%ungroup()%>%select(Preferred_name,Description)%>% unique())
 
 ## DIFFERENTIAL GENE EXPRESSION ANALYSIS
 ## WRITE SUPFILE EGG SUM COMP WITH 260 sig dif genes
@@ -597,20 +573,20 @@ compare_means(count ~ AAs_auxo ,is_sum,method="wilcox.test",group.by = "query",p
 # when adding the zeros then we get no specific plasmids that are sig diff between auxo and proto
 genomad_plasmid_genes %>% mutate(Sample_ID=gsub("_.*$","",gene),genome=gsub("^([^_]+_[^_]+).*", "\\1",gene)) %>% full_join(.,checkm) %>% group_by(annotation_accessions,genome) %>% summarize(count=n()) %>% pivot_wider(names_from = "annotation_accessions",values_from = "count",values_fill = 0) %>% pivot_longer(!genome,names_to = "annotation_accessions",values_to = "count") %>% left_join(.,checkm) %>% ungroup() %>% drop_na() -> plas_sum
 compare_means(count ~ AAs_auxo ,plas_sum,method="wilcox.test",group.by = "annotation_accessions",p.adjust.method = "BH") %>% filter(p.adj<=0.05) -> plas_sum_comp
-plas_sum %>% filter(annotation_accessions %in% plas_sum_comp$annotation_accessions) %>% group_by(AAs_auxo,annotation_accessions) %>% summarize(average=mean(count)) %>% pivot_wider(names_from = AAs_auxo,values_from = average)%>% mutate(change=as.factor(ifelse(`1`>`0`,"enriched in auxo","depleted in auxo")),fc=`1`/`0`) %>% left_join(.,genomad_plasmid_genes%>%ungroup()%>%select(annotation_accessions,annotation_description)%>% unique()) %>% View()
+plas_sum %>% filter(annotation_accessions %in% plas_sum_comp$annotation_accessions) %>% group_by(AAs_auxo,annotation_accessions) %>% summarize(average=mean(count)) %>% pivot_wider(names_from = AAs_auxo,values_from = average)%>% mutate(change=as.factor(ifelse(`1`>`0`,"enriched in auxo","depleted in auxo")),fc=`1`/`0`) %>% left_join(.,genomad_plasmid_genes%>%ungroup()%>%select(annotation_accessions,annotation_description)%>% unique())
 
 
 #same as above but with viruses, no specific differences between the two when it comes to auxo/proto
 genomad_virus_genes %>% mutate(Sample_ID=gsub("_.*$","",gene),genome=gsub("^([^_]+_[^_]+).*", "\\1",gene)) %>% full_join(.,checkm) %>% group_by(annotation_accessions,genome) %>% summarize(count=n()) %>% pivot_wider(names_from = "annotation_accessions",values_from = "count",values_fill = 0) %>% pivot_longer(!genome,names_to = "annotation_accessions",values_to = "count") %>% left_join(.,checkm) %>% ungroup() %>% drop_na() -> vir_sum
 compare_means(count ~ AAs_auxo ,vir_sum,method="wilcox.test",group.by = "annotation_accessions",p.adjust.method = "BH") %>% filter(p.adj<=0.05) -> vir_sum_comp
-vir_sum %>% filter(annotation_accessions %in% plas_sum_comp$annotation_accessions) %>% group_by(AAs_auxo,annotation_accessions) %>% summarize(average=mean(count)) %>% pivot_wider(names_from = AAs_auxo,values_from = average)%>% mutate(change=as.factor(ifelse(`1`>`0`,"enriched in auxo","depleted in auxo")),fc=`1`/`0`) %>% left_join(.,genomad_plasmid_genes%>%ungroup()%>%select(annotation_accessions,annotation_description)%>% unique()) %>% View()
+vir_sum %>% filter(annotation_accessions %in% plas_sum_comp$annotation_accessions) %>% group_by(AAs_auxo,annotation_accessions) %>% summarize(average=mean(count)) %>% pivot_wider(names_from = AAs_auxo,values_from = average)%>% mutate(change=as.factor(ifelse(`1`>`0`,"enriched in auxo","depleted in auxo")),fc=`1`/`0`) %>% left_join(.,genomad_plasmid_genes%>%ungroup()%>%select(annotation_accessions,annotation_description)%>% unique())
 
 #### PLASMID S5 SUP FILE SAVE THIS BUT FIX DUPLICATES, GOOD TO KNOW WHICH 159 ARE DEPLETED IN AUXO
 
 # can also try with uniquie genomad ID instead of non-unique annotation_accession
 genomad_plasmid_genes %>% mutate(Sample_ID=gsub("_.*$","",gene),genome=gsub("^([^_]+_[^_]+).*", "\\1",gene)) %>% left_join(.,metadata) %>% group_by(marker,genome) %>% summarize(count=n()) %>% pivot_wider(names_from = "marker",values_from = "count",values_fill = 0) %>% pivot_longer(!genome,names_to = "marker",values_to = "count") %>% left_join(.,checkm) %>% drop_na() %>% ungroup() -> plas_sum
 compare_means(count ~ AAs_auxo ,plas_sum,method="wilcox.test",group.by = "marker",p.adjust.method = "BH") %>% filter(p.adj<=0.05) -> plas_sum_comp
-plas_sum %>% filter(marker %in% plas_sum_comp$marker) %>% group_by(AAs_auxo,marker) %>% summarize(average=mean(count)) %>% pivot_wider(names_from = AAs_auxo,values_from = average)%>% mutate(change=as.factor(ifelse(`1`>`0`,"enriched in auxo","depleted in auxo")),fc=`1`/`0`) %>% left_join(.,genomad_plasmid_genes%>%ungroup()%>%select(marker,annotation_description)%>% unique()) %>% View()
+plas_sum %>% filter(marker %in% plas_sum_comp$marker) %>% group_by(AAs_auxo,marker) %>% summarize(average=mean(count)) %>% pivot_wider(names_from = AAs_auxo,values_from = average)%>% mutate(change=as.factor(ifelse(`1`>`0`,"enriched in auxo","depleted in auxo")),fc=`1`/`0`) %>% left_join(.,genomad_plasmid_genes%>%ungroup()%>%select(marker,annotation_description)%>% unique())
 
 # cogs overview subsetting anything with E annotation
 ggplot(eggnog %>% 
@@ -685,12 +661,12 @@ ggplot(bcaa_egg %>%
     geom_tile() + theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
 # Check EC numbers, many have very few ~300 ec annotations
-eggnog %>% group_by(genome) %>% filter(EC!="-") %>% summarise(count=n())%>% View()
+eggnog %>% group_by(genome) %>% filter(EC!="-") %>% summarise(count=n())
 #plot
 ggplot(eggnog %>% group_by(genome) %>% filter(EC!="-") %>% summarise(count=n())%>% left_join(.,gtdbtk,by="genome") %>% left_join(.,checkm,by="genome"),aes(x=reorder(genome,count),y=count,color=Type.x)) + geom_point()+ coord_flip() + facet_wrap (~Phylum,ncol=1,scales = "free_y")
 
 # Check BiGG IDs, theres an e coli with many annotated ids, whereas most genomes have very few bigg ids
-eggnog %>% group_by(genome) %>% filter(BiGG_Reaction!="-") %>% summarise(count=n())%>% View()
+eggnog %>% group_by(genome) %>% filter(BiGG_Reaction!="-") %>% summarise(count=n())
 #plot
 ggplot(eggnog %>% group_by(genome) %>% filter(BiGG_Reaction!="-") %>% summarise(count=n())%>% left_join(.,gtdbtk,by="genome") %>% left_join(.,checkm,by="genome"),aes(x=reorder(genome,count),y=count,color=Type.x)) + geom_point()+ coord_flip() + facet_wrap (~Phylum,ncol=1,scales = "free_y") 
 
@@ -717,242 +693,6 @@ memote = read.delim("data/gem_curation/memote_summary.tsv") %>%
 
 #remove duplicate bigg compounds: name = 1-deoxy-1-(N6-lysino)-D-fructose,DL-Glutamate,Hydrochloric acid,N-acetyl-seryl-aspartate
 
-if (FALSE) {  # --- Exploratory sensitivity analysis using lenient auxotrophy-call variants
-              #     (not a published figure; kept for reference). The published Fig 3 uses the
-              #     default calls. Set to TRUE to run. ---
-### Load auxotophy prediction based on reframed + MMAB informed gapfilled gems, these results were re-generated and tested a
-### a few different parameters of auxo prediciton min_abs_growth and min_rel_growth
-auxopred5 = read.delim("archive/auxopred_max_lenient.tsv") %>%
-    mutate(present=1) %>% filter(metabolite!="") %>%
-    pivot_wider(names_from = "metabolite",values_from = "present",values_fill = 0) %>% 
-    rename(genome=model) %>%
-    left_join(.,bigg_mets %>% select(name,compound),by="compound") %>%
-    mutate(Sample_ID = gsub("_.*$","",genome), auxo_model = as.factor(auxo_model)) %>%
-    mutate(name=gsub("L-Glutamic acid","L-Glutamate",name))
-
-auxopred4 = read.delim("archive/auxopred_very_lenient.tsv") %>% 
-    mutate(present=1) %>% filter(metabolite!="") %>%
-    pivot_wider(names_from = "metabolite",values_from = "present",values_fill = 0) %>% 
-    mutate(ala__L=0,asp__L=0,cys__L=0,leu__L=0,met__L=0,ser__L=0,tyr__L=0) %>% 
-    pivot_longer(!model,values_to = "auxo_model",names_to = "compound") %>% 
-    rename(genome=model) %>%
-    left_join(.,bigg_mets %>% select(name,compound),by="compound") %>%
-    mutate(Sample_ID = gsub("_.*$","",genome), auxo_model = as.factor(auxo_model)) %>%
-    mutate(name=gsub("L-Glutamic acid","L-Glutamate",name))
-
-auxopred3 = read.delim("archive/auxopred_lenient.tsv") %>% 
-    mutate(present=1) %>% filter(metabolite!="") %>%
-    pivot_wider(names_from = "metabolite",values_from = "present",values_fill = 0) %>% 
-    mutate(ala__L=0,arg__L=0,asp__L=0,cys__L=0,gly=0,leu__L=0,met__L=0,ser__L=0,tyr__L=0) %>% 
-    pivot_longer(!model,values_to = "auxo_model",names_to = "compound") %>% 
-    rename(genome=model) %>%
-    left_join(.,bigg_mets %>% select(name,compound),by="compound") %>%
-    mutate(Sample_ID = gsub("_.*$","",genome), auxo_model = as.factor(auxo_model)) %>%
-    mutate(name=gsub("L-Glutamic acid","L-Glutamate",name))
-
-### Load auxotophy prediction based on reframed + MMAB informed gapfilled gems and metagenomic GEMs, add cols for amino acids that were not auxo predicted
-auxopred2 = read.delim("archive/auxopred_all.tsv") %>% 
-    mutate(present=1) %>% filter(metabolite!="") %>%
-    pivot_wider(names_from = "metabolite",values_from = "present",values_fill = 0) %>% 
-    mutate(asp__L=0,cys__L=0,glu__L=0,ser__L=0) %>% 
-    pivot_longer(!model,values_to = "auxo_model",names_to = "compound") %>% 
-    rename(genome=model) %>%
-    left_join(.,bigg_mets %>% select(name,compound),by="compound") %>%
-    mutate(Sample_ID = gsub("_.*$","",genome), auxo_model = as.factor(auxo_model)) %>%
-    mutate(name=gsub("L-Glutamic acid","L-Glutamate",name)) %>% filter(!compound %in% ions)
-
-### Load auxotrophy predictions based on reframed function + MMAB gapfilled GEMs from genomic sequencing data
-auxopred = read.delim("archive/auxopred_summary.tsv") %>% 
-  mutate(present=1) %>% 
-  pivot_wider(names_from = "metabolite",values_from = "present",values_fill = 0) %>% 
-  mutate(asp__L=0,cys__L=0,glu__L=0,ser__L=0) %>% 
-  pivot_longer(!model,values_to = "auxo_model",names_to = "compound") %>% 
-  rename(genome=model) %>%
-  left_join(.,bigg_mets %>% select(name,compound),by="compound") %>%
-  mutate(Sample_ID = gsub("_.*$","",genome), auxo_model = as.factor(auxo_model)) %>%
-    mutate(name=gsub("L-Glutamic acid","L-Glutamate",name))
-
-# exclude ions
-ions = c("zn2","so4","k","pi","o2","mn2","mg2","ca2","cl","h","cobalt2","cu2","fe2")
-
-# plot heatmap
-ggplot(auxopred %>% filter(!compound%in%ions)) + 
-    geom_tile(aes(y=genome,x=name,fill=auxo_model)) + 
-    theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
-    scale_fill_manual(values=c("black","gold"))
-
-# plot frequency of AAs, phenylalanine is top predicted with 32 then valine with 23 and lysine with 21
-ggplot(auxopred %>% filter(!compound%in%ions) %>% group_by(name,auxo_model) %>% summarize(count=n()) %>% filter(auxo_model==1)) + 
-    geom_bar(aes(y=count,x=reorder(name,count)),stat = "identity") + 
-    theme(axis.text.x = element_text(angle = 45, hjust = 1))
-
-### Load auxotrophy data from ghada's lab experiments, add column for merging with CarveMe/BiGG metabolites
-auxolab = read.delim("data/figure_data/auxolab_summary.tsv") %>% 
-  replace(is.na(.), 0) %>% 
-  select(c(Sample_ID,AAs_auxo:Nucleotide_auxo,Ala:Val)) %>%
-  pivot_longer(!Sample_ID,values_to = "auxo_lab", names_to = "metabolite") %>%
-  mutate(name=gsub("Ala","L-Alanine",metabolite)) %>%
-  mutate(name=gsub("Arg","L-Arginine",name)) %>%
-  mutate(name=gsub("Asp","L-Aspartic acid",name)) %>%
-  mutate(name=gsub("Asn","L-Asparagine",name)) %>%
-  mutate(name=gsub("Cys","L-Cysteine",name)) %>%
-  mutate(name=gsub("Glu","L-Glutamate",name)) %>%
-  mutate(name=gsub("Gln","L-Glutamine",name)) %>%
-  mutate(name=gsub("Gly","Glycine",name)) %>%
-  mutate(name=gsub("His","L-Histidine",name)) %>%
-  mutate(name=gsub("Ile","L-Isoleucine",name)) %>%
-  mutate(name=gsub("Leu","L-Leucine",name)) %>%
-  mutate(name=gsub("Lys","L-Lysine",name)) %>%
-  mutate(name=gsub("Met","L-Methionine",name)) %>%
-  mutate(name=gsub("Phe","L-Phenylalanine",name)) %>%
-  mutate(name=gsub("Pro","L-Proline",name)) %>%
-  mutate(name=gsub("Ser","L-Serine",name)) %>%
-  mutate(name=gsub("Thr","L-Threonine",name)) %>%
-  mutate(name=gsub("Trp","L-Tryptophan",name)) %>%
-  mutate(name=gsub("Tyr","L-Tyrosine",name)) %>%
-  mutate(name=gsub("Val","L-Valine",name)) %>%
-  mutate(name=gsub("AAs_auxo","*aminoacids",name)) %>%
-  mutate(name=gsub("Vitamin_auxo","*vitamins",name)) %>%
-  mutate(name=gsub("Nucleotide_auxo","*nucleotides",name)) %>%
-  mutate(auxo_lab=as.factor(auxo_lab))
-
-# plot heatmap
-ggplot(auxolab) + 
-    geom_tile(aes(y=Sample_ID,x=name,fill=auxo_lab)) + 
-    theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
-    scale_fill_manual(values=c("black","gold"))
-
-# plot frequency of AAs
-ggplot(auxolab %>% group_by(name,auxo_lab) %>% summarize(count=n()) %>% filter(auxo_lab==1)) + 
-    geom_bar(aes(y=count,x=reorder(name,count)),stat = "identity") + 
-    theme(axis.text.x = element_text(angle = 45, hjust = 1))
-
-# plot frequency of auxos per genome
-ggplot(auxolab %>% group_by(Sample_ID,auxo_lab) %>% summarize(count=n()) %>% filter(auxo_lab==1)) + 
-    geom_bar(aes(y=count,x=reorder(name,count)),stat = "identity") + 
-    theme(axis.text.x = element_text(angle = 45, hjust = 1))
-
-### Combine experimental + computational, drop_na() removes metagenomic samples without ground truth as well as unmeasured/untested compounds
-# contains a total of 62 genomes from 58 samples & 992 comparisons between 16 amino acids predicted/measured to be required
-auxo = left_join(auxolab,auxopred %>% filter(!compound%in%ions) ,by=c("name","Sample_ID")) %>% 
-  drop_na() %>%
-  mutate(agree=as.numeric(ifelse(auxo_lab==auxo_model,"1","0")))
-
-auxo2 = left_join(auxopred2 %>% filter(!compound%in%ions),auxolab,by=c("name","Sample_ID")) %>% 
-    drop_na() %>%
-    mutate(agree=as.numeric(ifelse(auxo_lab==auxo_model,"1","0")))
-
-auxo2_all = left_join(auxopred2 %>% filter(!compound%in%ions),auxolab ,by=c("name","Sample_ID")) %>% 
-    mutate(agree=as.numeric(ifelse(auxo_lab==auxo_model,"1","0")))
-
-ggplot(auxo2 %>% left_join(.,metadata,by="Sample_ID") %>% mutate(state=ifelse(agree=="1" & auxo_lab=="1","TP",
-                                                                              ifelse(agree=="1" & auxo_lab=="0","TN",
-                                                                                     ifelse(agree=="0" & auxo_lab=="1", "FN", "FP")))), aes(x=genome,y=name,fill=state)) + 
-    geom_tile() + scale_fill_manual(values=c("#e41a1c","#377eb8","#4daf4a")) +facet_grid(Type~Habitats,scales = "free",space="free") +
-    theme(axis.text.x = element_text(angle = 45, hjust = 1))
-ggsave("outputs/AA_heatmap_discrepancies.pdf",width = 10,height = 6)
-ggsave("outputs/AA_heatmap_discrepancies.png",width = 10,height = 6)
-
-# inset plot summing across genomes to highlight which AAs are TP
-ggplot(auxo2 %>% left_join(.,metadata,by="Sample_ID") %>% mutate(state=ifelse(agree=="1" & auxo_lab=="1","TP",
-                                                                       ifelse(agree=="1" & auxo_lab=="0","TN",
-                                                                              ifelse(agree=="0" & auxo_lab=="1", "FN", "FP")))) %>% group_by(state,name) %>% summarize(count=n()),aes(x=state,y=name,fill=count)) + geom_tile()
-
-auxo3 = left_join(auxolab,auxopred3 %>% filter(!compound%in%ions) ,by=c("name","Sample_ID")) %>% 
-    drop_na() %>%
-    mutate(agree=as.numeric(ifelse(auxo_lab==auxo_model,"1","0")))
-
-auxo4 = left_join(auxolab,auxopred4 %>% filter(!compound%in%ions) ,by=c("name","Sample_ID")) %>% 
-    drop_na() %>%
-    mutate(agree=as.numeric(ifelse(auxo_lab==auxo_model,"1","0")))
-
-auxo5 = left_join(auxolab,auxopred5 %>% filter(!compound%in%ions) ,by=c("name","Sample_ID")) %>% 
-    drop_na() %>%
-    mutate(agree=as.numeric(ifelse(auxo_lab==auxo_model,"1","0")))
-
-auxo5 %>% group_by(name) %>% summarize(count=n())
-
-
-# save file of TP hits with informed models
-auxo2 %>% filter(auxo_model==1,agree==1) %>% left_join(.,checkm) -> true_positives
-write_delim(true_positives,"outputs/true_positives.tsv",delim = "\t")
-
-# this shows how only a handful of models ever get amino acid auxotrophy predictions right, while they predict prototrophies most of the time
-auxo %>% filter(agree==1) %>% group_by(auxo_model,name) %>% summarise(count=n()) 
-
-###### MANUALLY
-# 77% agreement/accuracy doesnt seem so bad, however lets have a look at the confusion matrix ... 
-
-#true positives and true negatives
-auxo %>% group_by(auxo_model) %>% summarize(count=sum(agree))
-#false positives and false negatives
-auxo %>% filter(agree==0) %>% group_by(auxo_model) %>% summarise(count=n())
-
-## CONFUSION MATRIX
-#
-#     P   N
-# T  17  747
-# F  53  175
-
-TN = 747 # model correctly thinks that species is proto
-FP = 53 # model incorrectly thinks that species is auxo, while the lab said it was proto
-# with 800 total protos detected in the lab, the models are able to pick up 747
-# representing 93.375% specificity, meaning that its pretty good at detecting prototrophs
-
-FN = 175 # model incorrectly thinks that species is proto, while the lab said it was auxo
-TP = 17 # model correctly thinks that species is auxo
-# with 192 total auxos detected in the lab, the models were only able to pick up 17
-# representing only 8.85% recall, meaning that you are better off flipping a coin than 
-# relying on the models :(
-
-# precision = TP / TP + FP, considers false positives
-prec = TP/(TP+FP)
-prec
-
-# recall = TP / TP + FN, considers false negatives
-rec = TP/(TP+FN)
-rec
-
-# f1 score = 2(precision*recall)/(precision+ recall)
-f1 = (2*TP) / (2*TP + FP + FN)
-
-#####AUTOMATIC, do this per amino acid
-confusionMatrix(auxo$auxo_model,auxo$auxo_lab,mode="everything",positive = "1")
-
-
-confusionMatrix(auxo2$auxo_model,auxo2$auxo_lab,mode="everything",positive = "1")
-#see what amino acids are most wrong
-ggplot(auxo2 %>% filter(agree=="0",auxo_model=="0",auxo_lab=="1") %>% group_by(name) %>% summarise(count=n())) + geom_point(aes(y=reorder(name,count),x=count))
-#see what genomes are most wrong
-ggplot(auxo2 %>% filter(agree=="0",auxo_model=="0",auxo_lab=="1") %>% group_by(Sample_ID,genome) %>% summarise(count=n()) %>% left_join(.,gtdbtk,by="genome")) + geom_point(aes(y=reorder(genome,count),x=count,color=Type,shape=Phylum)) + facet_wrap(~Habitats,ncol = 1,scales = "free_y")
-
-confusionMatrix(auxo3$auxo_model,auxo3$auxo_lab,mode="everything",positive = "1")
-confusionMatrix(auxo4$auxo_model,auxo4$auxo_lab,mode="everything",positive = "1")
-confusionMatrix(auxo5$auxo_model,auxo5$auxo_lab,mode="everything",positive = "1")
-
-auxo_phe = auxo %>% filter(compound=="phe__L")
-confusionMatrix(auxo_phe$auxo_model,auxo_phe$auxo_lab,mode="everything",positive = "1")
-
-auxo_leu = auxo %>% filter(compound=="leu__L")
-confusionMatrix(auxo_leu$auxo_model,auxo_leu$auxo_lab,mode="everything",positive = "1")
-
-auxo_val = auxo %>% filter(compound=="val__L")
-confusionMatrix(auxo_val$auxo_model,auxo_val$auxo_lab,mode="everything",positive = "1")
-
-auxo_lys = auxo %>% filter(compound=="lys__L")
-confusionMatrix(auxo_lys$auxo_model,auxo_lys$auxo_lab,mode="everything",positive = "1")
-
-
-# PER BUG
-auxo_eco = auxo %>% filter(genome=="lane121s003972_bin.2.s")
-confusionMatrix(auxo_eco$auxo_model,auxo_eco$auxo_lab,mode="everything",positive = "1")
-
-auxo_lane821s003037 = auxo %>% filter(Sample_ID=="lane821s003037")
-confusionMatrix(auxo_lane821s003037$auxo_model,auxo_lane821s003037$auxo_lab,mode="everything",positive = "1")
-
-auxo_lane821s003042 = auxo %>% filter(Sample_ID=="lane821s003042")
-confusionMatrix(auxo_lane821s003042$auxo_model,auxo_lane821s003042$auxo_lab,mode="everything",positive = "1")
-}  # --- end exploratory sensitivity analysis ---
 
 ```
 
@@ -962,7 +702,7 @@ confusionMatrix(auxo_lane821s003042$auxo_model,auxo_lane821s003042$auxo_lab,mode
 library(tidyverse)
 library(ggalluvial)
 
-# setwd("~/Documents/soil_auxo")  # repointed: run from repo root
+# run from the repository root (paths resolve to data/)
 
 bigg_mets = read.delim("data/figure_data/bigg_classes.tsv")
 
@@ -1010,7 +750,7 @@ ggsave("outputs/gapfillled_BCAA.png",height = 8,width=14)
 #overall, not looking just at BCAA
 ggplot(gprs %>% group_by(genome,has_GPR,Sites,Type,Habitats) %>% summarize(count=n())%>%mutate(has_GPR=as.factor(has_GPR)),aes(x=Sites,y=count,fill=has_GPR)) + geom_boxplot(alpha=0.5,outlier.alpha = 0) + geom_jitter(alpha=0.3) + facet_wrap(~Habitats,nrow = 1,scales = "free_x")
 
-gprs %>% filter(grepl("bracnhed",database_links,ignore.case = TRUE)) %>% View()
+gprs %>% filter(grepl("bracnhed",database_links,ignore.case = TRUE))
 ```
 
 
@@ -1625,186 +1365,6 @@ ggplot(abund %>% filter(sample %in% c("lane121s003972","lane122s000517","lane122
 #phylum
 ggplot(abund %>% filter(sample %in% c("lane121s003972","lane122s000517","lane122s000519","lane122s000521","lane122s000540","lane122s000600","lane122s000601","lane122s000603","lane122s000604","lane122s000605","lane122s000606","lane122s000607")),aes(x=sample,y=rel_abund,fill=Phylum)) + 
     geom_bar(stat="identity") + theme(axis.text.x = element_text(angle = 45, hjust = 1)) + facet_grid(Type~Habitats,scales="free",space="free")
-
-```
-
-
-```{r}
-
-### saturation plot for metabolic complementarity
-
-# create data structure with auxo measurements and sample metadata
-auxo_data = left_join(auxolab,metadata,by="Sample_ID") %>% filter(metabolite!="AAs_auxo",metabolite!="Nucleotide_auxo",metabolite!="Vitamin_auxo") %>% mutate(auxo_lab = as.numeric(auxo_lab)-1)
-write_delim(auxo_data,"outputs/auxo_data.tsv")
-
-# create list of unique sample IDs for randomly creating n-wise combinations
-samples = auxo_data %>% select(Sample_ID) %>% unique()
-
-# single species distribution is already quite flat, lets see where the median goes for pairwise
-one = auxo_data %>% group_by(Sample_ID) %>% summarize(count=sum(auxo_lab))
-ggplot(one,aes(y=count,x=1))+ geom_point() + geom_boxplot(alpha=0.5,outlier.alpha = 0) 
-
-# pairwise species, go to bash for computing count
-two = data.frame(samples$Sample_ID,samples$Sample_ID) %>% expand(samples.Sample_ID,samples.Sample_ID.1) %>% rename(Sample_ID1=samples.Sample_ID,Sample_ID2=samples.Sample_ID.1) %>% filter(Sample_ID1!=Sample_ID2)
-write_delim(two,"outputs/pairwise_samples.tsv")
-
-## run loop in bash and read in results, redo this after removing duplicates
-#while read combo;do 
-#	sample1=$(echo $combo|cut -d ' ' -f1);
-#	sample2=$(echo $combo|cut -d ' ' -f2);
-#	count=0
-#	while read aa;do 
-#		sample1aux=$(less auxo_data.tsv|tail -n +2|grep $sample1|grep $aa|cut -d ' ' -f3);
-#		sample2aux=$(less auxo_data.tsv|tail -n +2|grep $sample2|grep $aa|cut -d ' ' -f3);
-#		num=$((sample1aux + sample2aux))
-#		if [ "$num" -gt 1 ]; then
-#			count=$(($count+1))
-#		fi
-#	done< <(less auxo_data.tsv|tail -n +2|cut -d ' ' -f4|sort|uniq);
-#	echo $count
-#done< <(less pairwise_samples.tsv|tail -n +2) >> pairwise_auxo.tsv
-pairwise_auxo = read.delim("analysis/06_saturation/sat_sim/pairwise_auxo.tsv")
-
-# triplet species sampled down to same as pairwise, go to bash for computing count
-set.seed(42)  # reproducibility: fixed seed for bootstrap/sampling
-three = data.frame(samples$Sample_ID,samples$Sample_ID,samples$Sample_ID) %>% expand(samples.Sample_ID,samples.Sample_ID.1,samples.Sample_ID.2) %>% rename(Sample_ID1=samples.Sample_ID,Sample_ID2=samples.Sample_ID.1,Sample_ID3=samples.Sample_ID.2) %>% filter(Sample_ID1!=Sample_ID2,Sample_ID1!=Sample_ID3,Sample_ID2!=Sample_ID3) %>% sample_n(3364)
-write_delim(three,"outputs/triplet_samples.tsv")
-
-## run loop in bash and read in results
-#while read combo;do 
-#	sample1=$(echo $combo|cut -d ' ' -f1);
-#	sample2=$(echo $combo|cut -d ' ' -f2);
-#	sample3=$(echo $combo|cut -d ' ' -f3);
-#	count=0
-#	while read aa;do 
-#		sample1aux=$(less auxo_data.tsv|tail -n +2|grep $sample1|grep $aa|cut -d ' ' -f3);
-#		sample2aux=$(less auxo_data.tsv|tail -n +2|grep $sample2|grep $aa|cut -d ' ' -f3);
-#		sample3aux=$(less auxo_data.tsv|tail -n +2|grep $sample3|grep $aa|cut -d ' ' -f3);
-#		num=$((sample1aux + sample2aux + sample3aux))
-#		if [ "$num" -gt 2 ]; then
-#			count=$(($count+1))
-#		fi
-#	done< <(less auxo_data.tsv|tail -n +2|cut -d ' ' -f4|sort|uniq);
-#	echo $count
-#done< <(less triplet_samples.tsv|tail -n +2) >> triplet_auxo.tsv
-triplet_auxo = read.delim("analysis/06_saturation/sat_sim/triplet_auxo.tsv")
-
-# quadruplet species sampled down to same as pairwise, go to bash for computing count
-set.seed(42)  # reproducibility: fixed seed for bootstrap/sampling
-four = data.frame(samples$Sample_ID,samples$Sample_ID,samples$Sample_ID,samples$Sample_ID) %>% expand(samples.Sample_ID,samples.Sample_ID.1,samples.Sample_ID.2,samples.Sample_ID.3) %>% rename(Sample_ID1=samples.Sample_ID,Sample_ID2=samples.Sample_ID.1,Sample_ID3=samples.Sample_ID.2,Sample_ID4=samples.Sample_ID.3) %>% filter(Sample_ID1!=Sample_ID2,Sample_ID1!=Sample_ID3,Sample_ID1!=Sample_ID4,Sample_ID2!=Sample_ID3,Sample_ID2!=Sample_ID4,Sample_ID3!=Sample_ID4) %>% sample_n(3364)
-write_delim(four,"outputs/quad_samples.tsv")
-
-## run loop in bash and read in results
-#while read combo;do 
-#	sample1=$(echo $combo|cut -d ' ' -f1);
-#	sample2=$(echo $combo|cut -d ' ' -f2);
-#	sample3=$(echo $combo|cut -d ' ' -f3);
-#	sample4=$(echo $combo|cut -d ' ' -f4);
-#	count=0
-#	while read aa;do 
-#		sample1aux=$(less auxo_data.tsv|tail -n +2|grep $sample1|grep $aa|cut -d ' ' -f3);
-#		sample2aux=$(less auxo_data.tsv|tail -n +2|grep $sample2|grep $aa|cut -d ' ' -f3);
-#		sample3aux=$(less auxo_data.tsv|tail -n +2|grep $sample3|grep $aa|cut -d ' ' -f3);
-#		sample4aux=$(less auxo_data.tsv|tail -n +2|grep $sample4|grep $aa|cut -d ' ' -f3);
-#		num=$((sample1aux + sample2aux + sample3aux + sample4aux))
-#		if [ "$num" -gt 3 ]; then
-#			count=$(($count+1))
-#		fi
-#	done< <(less auxo_data.tsv|tail -n +2|cut -d ' ' -f4|sort|uniq);
-#	echo $count
-#done< <(less quad_samples.tsv|tail -n +2) >> quad_auxo.tsv
-quad_auxo = read.delim("analysis/06_saturation/sat_sim/quad_auxo.tsv")
-
-
-# penta species sampled down to same as pairwise, go to bash for computing count, 5 doesnt want to expand :( 
-set.seed(42)  # reproducibility: fixed seed for bootstrap/sampling
-if (FALSE) {  # the 5-way (quintuplet) expansion references bare Sample_ID columns and does not run;
-              # it is not needed because penta_auxo is read from the committed file below and
-              # quintuplet is excluded from the published figure.
-five = data.frame(samples$Sample_ID,samples$Sample_ID,samples$Sample_ID,samples$Sample_ID,samples$Sample_ID) %>% expand(Sample_ID,Sample_ID.1,Sample_ID.2,Sample_ID.3,Sample_ID.4) %>% filter(Sample_ID1!=Sample_ID2,Sample_ID1!=Sample_ID3,Sample_ID1!=Sample_ID4,Sample_ID1!=Sample_ID5,Sample_ID2!=Sample_ID3,Sample_ID2!=Sample_ID4,Sample_ID2!=Sample_ID5,Sample_ID3!=Sample_ID4,Sample_ID3!=Sample_ID5,Sample_ID4!=Sample_ID5) %>% sample_n(3364)
-write_delim(five,"outputs/penta_samples.tsv")
-}
-
-## run loop in bash and read in results
-#while read combo;do 
-#	sample1=$(echo $combo|cut -d ' ' -f1);
-#	sample2=$(echo $combo|cut -d ' ' -f2);
-#	sample3=$(echo $combo|cut -d ' ' -f3);
-#	sample4=$(echo $combo|cut -d ' ' -f4);
-#	sample5=$(echo $combo|cut -d ' ' -f5);
-#	count=0
-#	while read aa;do 
-#		sample1aux=$(less auxo_data.tsv|tail -n +2|grep $sample1|grep $aa|cut -d ' ' -f3);
-#		sample2aux=$(less auxo_data.tsv|tail -n +2|grep $sample2|grep $aa|cut -d ' ' -f3);
-#		sample3aux=$(less auxo_data.tsv|tail -n +2|grep $sample3|grep $aa|cut -d ' ' -f3);
-#		sample4aux=$(less auxo_data.tsv|tail -n +2|grep $sample4|grep $aa|cut -d ' ' -f3);
-#		sample5aux=$(less auxo_data.tsv|tail -n +2|grep $sample5|grep $aa|cut -d ' ' -f3);
-#		num=$((sample1aux + sample2aux + sample3aux + sample4aux + sample5aux))
-#		if [ "$num" -gt 4 ]; then
-#			count=$(($count+1))
-#		fi
-#	done< <(less auxo_data.tsv|tail -n +2|cut -d ' ' -f4|sort|uniq);
-#	echo $count
-#done< <(less penta_samples.tsv|tail -n +2) >> penta_auxo.tsv
-penta_auxo = read.delim("analysis/06_saturation/sat_sim/penta_auxo.tsv")
-
-
-# combine to plot
-auxo_sat_one = data.frame(one$count,"single") %>% rename(count=one.count,combination=X.single.)
-auxo_sat_two = data.frame(pairwise_auxo,"pairwise") %>% rename(count=X0,combination=X.pairwise.)
-auxo_sat_three = data.frame(triplet_auxo,"triplet") %>% rename(count=X0,combination=X.triplet.)
-auxo_sat_four = data.frame(quad_auxo,"quadruplet") %>% rename(count=X0,combination=X.quadruplet.)
-auxo_sat_five = data.frame(penta_auxo,"quintuplet") %>% rename(count=X0,combination=X.quintuplet.)
-
-auxo_sat = bind_rows(auxo_sat_one,auxo_sat_two,auxo_sat_three,auxo_sat_four,auxo_sat_five) %>% mutate(combination=fct_relevel(combination,c("single","pairwise","triplet","quadruplet","quintuplet")))
-
-ggplot(auxo_sat,aes(x=combination,y=count,fill=combination)) + geom_boxplot()  + ylab("# resulting amino acid auxotrophies") + xlab("combinations")
-
-ggsave("outputs/auxo_sat.pdf",height = 6,width = 8)
-ggsave("outputs/auxo_sat.png",height = 6,width = 8)
-
-write_delim(auxo_sat%>%filter(combination!="quintuplet"),"outputs/auxo_sat_data.tsv",delim = "\t")
-
-
-#recreate plot in terms of % surviving coms
-auxo_data = read.delim("data/figure_data/auxo_sat_data.tsv")
-auxo_data %>% group_by(combination) %>% mutate(count_total=n()) %>% group_by(count,combination) %>% mutate(count_combo=n()) %>% unique() %>% mutate(percent=100*(count_combo/count_total)) %>% filter(count==0) %>% mutate(combo_num=ifelse(combination=="single",1,ifelse(combination=="pairwise",2,ifelse(combination=="triplet",3,4)))) -> auxo_df
-  
-ggplot(auxo_data %>% group_by(combination) %>% mutate(count_total=n()) %>% group_by(count,combination) %>% mutate(count_combo=n()) %>% unique() %>% mutate(percent=100*(count_combo/count_total)) %>% filter(count==0)) + geom_point(aes(x=combination,y=percent))
-
-
-ggscatter(auxo_df,x="combo_num",y="percent",add="reg.line",conf.int = FALSE) + stat_cor(method="pearson") + ylim(0,100) + ylab("Percent of communities\nwith no AA auxotrophies") + xlab("Combination size") + theme_bw(base_size = 15)
-
-ggsave("outputs/auxo_sat.png",height=3,width = 3)
-ggsave("outputs/auxo_sat.pdf",height=6,width = 6)
-
-# Write the computed table to outputs/ rather than overwriting the committed
-# data/figure_data/auxo_df.tsv, which additionally carries the hand-merged experimental
-# complementarity columns used for the Fig 6b experimental line (read back on the next line).
-write_delim(auxo_df,delim="\t",quote = "none",file = "outputs/auxo_df.tsv")
-
-read.delim("data/figure_data/auxo_df.tsv") -> auxo_df
-
-ggscatter(
-  auxo_df %>% 
-    pivot_longer(c(percent_comp,percent_lab),values_to = "percent",names_to = "Screen") %>% 
-    mutate(Screen=gsub("percent_","",Screen),Screen=gsub("comp","Computational",Screen),
-           Screen=gsub("lab","Experimental",Screen)), x="combo_num",y="percent",
-  add="reg.line",conf.int = FALSE,color="Screen") + stat_cor(method="pearson",aes(color=Screen)) + 
-  ylim(0,100) + ylab("Percent of communities with\nfully resolved AA auxotrophies (%)") + 
-  xlab("Community size") + theme_bw() + theme(legend.position = "bottom")-> newfig3a
-
-ggsave("outputs/auxo_sat_combined.png",height=5,width = 5)
-ggsave("outputs/auxo_sat_combined.pdf",height=5,width = 5)
-
-# same as above but with ggplot for merging with others
-ggplot(
-  auxo_df %>% 
-    pivot_longer(c(percent_comp,percent_lab),values_to = "percent",names_to = "Screen") %>% 
-    mutate(Screen=gsub("percent_","",Screen),Screen=gsub("comp","Computational",Screen),
-           Screen=gsub("lab","Experimental",Screen)), aes(x=combo_num,y=percent,color=Screen)) + geom_point() + stat_cor(method="pearson",aes(color=Screen)) + 
-  ylim(0,100) + ylab("Percent of communities with\nfully resolved AA auxotrophies (%)") + 
-  xlab("Community size") + theme_bw(base_size = 15) + theme(legend.position = "top") -> newfig3a
 
 ```
 
