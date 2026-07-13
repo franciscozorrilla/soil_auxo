@@ -6,4 +6,4 @@
 | Fig. 6b | Metabolic complementarity of the 58 focal isolates: computational prediction (red) vs experimental coculture (blue) | F. Zorrilla (analysis); L. Oña (Python render) | analysis/06_saturation/sat_sim/sat_sim_notebook.Rmd; code/plots.ipynb | analysis/06_saturation/sat_sim/*_auxo.tsv, data/figure_data/auxo_df.tsv | Computational complementarity 29/65/87/95%; experimental 44/57/75% |
 
 *Run the analysis scripts from the repository root; figures regenerate into `outputs/`. The committed PDFs/PNGs in this folder are the published versions.*
-*See `../../REPO_MAP.md` and `../../MANIFEST.tsv` for the full map.*
+*See `../../README.md` and `../../MANIFEST.tsv` for the full map.*
