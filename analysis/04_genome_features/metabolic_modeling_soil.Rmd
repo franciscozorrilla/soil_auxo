@@ -680,20 +680,6 @@ eggnog %>%
   ggplot(aes(x=E,y=S)) + 
   geom_point()
 
-### Load memote data with tests run on GEMs
-memote = read.delim("data/gem_curation/memote_summary.tsv") %>% 
-  mutate(numeric=as.numeric(numeric)) %>% 
-  rename(genome=model) %>% 
-  select(-status,-time) %>%
-  pivot_longer(!c(genome,test,title,section),values_to = "value",names_to = "names")
-
-# take subset of tests of interest, noted down here then plot. will be useful for detailed inspection of indibidual models for assessing predicted vs observed auxos
-
-# "Unrealistic Growth Rate In Default Medium", "Universally Blocked Reactions", "Unique Metabolites", "Transport Reactions", "Total Reactions", "Total Metabolites", "Total Genes", "Reactions without GPR", "Ratio of Direct Metabolites in Biomass Reaction", "Ratio Min/Max Non-Zero Coefficients", "Purely Metabolic Reactions", "Orphan Metabolites", "Number of Reversible Oxygen-Containing Reactions", "Number of Missing Essential Biomass Precursors", "Metabolite Production In Complete Medium", "Metabolite Consumption In Complete Medium", "Metabolite Connectivity", "Metabolic Coverage", "Medium Components", "Growth Prediction - experiment0", "Fraction of Transport Reactions without", "GPR", "Enzyme Complexes", "Degrees Of Freedom", "Dead-end Metabolites", "Blocked Biomass Precursors In Default Medium", "Blocked Biomass Precursors In Complete Medium", "Biomass Production In Default Medium", "Biomass Production In Complete Medium")
-
-#remove duplicate bigg compounds: name = 1-deoxy-1-(N6-lysino)-D-fructose,DL-Glutamate,Hydrochloric acid,N-acetyl-seryl-aspartate
-
-
 ```
 
 
