@@ -34,7 +34,7 @@ soil_auxo/
 │   ├── 04_genome_features/       metabolic_modeling_soil.Rmd → Fig 4, eggNOG, geNomad, gene counts, 260-gene set
 │   ├── 05_smetana_crossfeeding/  SMETANA cross-feeding data + README (Fig 5c, Supp Fig 10)
 │   ├── 06_saturation/            sat_sim/sat_sim_notebook.Rmd → complementarity vs community size (Fig 6b)
-│   └── 07_community_composition/ assembly / binning / qfilter / drep / composition Vis scripts (Supp Fig 3)
+│   └── 07_community_composition/ assembly / binning / qfilter / drep Vis scripts (Supp Fig 3)
 ├── code/                     Python figure renders (plots.ipynb, image-analysis notebook)
 ├── figures/                  one folder per display item (each with a README)
 │   ├── fig1 … fig6/              main figures
@@ -148,3 +148,4 @@ Superseded drafts and exploratory material are kept in `archive/` rather than pr
 | `archive/scatter_annotations_GEMs.*` | earlier GEM-vs-annotation scatter, superseded by the published Fig. 3 |
 | `archive/enriched_COGs.pdf` | gene-enrichment plot supporting the Supplementary Notes; not a display item |
 | `archive/get_auxo_*lenient.py`, `archive/auxopred_*.tsv` | lenient auxotrophy-call variants used for sensitivity analysis |
+| `archive/compositionVis.R` (+ `assembled_vs_binned*.pdf`, `percent_mapping.pdf`) | exploratory community-composition / mapping QC script; its outputs are not published-figure panels |
