@@ -11,13 +11,12 @@ This README maps **every figure, supplementary figure, table, and analysis** to 
 - [Abstract](#-abstract)
 - [Contributions](#-contributions)
 - [Repository layout](#-repository-layout)
-- [Reproducing the analysis](#️-reproducing-the-analysis)
+- [Reproducing the analysis](#-reproducing-the-analysis)
 - [Main figures](#-main-figures)
 - [Supplementary figures](#-supplementary-figures)
 - [Supplementary tables](#-supplementary-tables)
 - [Analysis pipeline](#-analysis-pipeline-upstream-of-the-figures)
 - [Data availability](#-data-availability)
-- [Not in the paper → archive/](#-not-in-the-paper--archive)
 - [Licence & citation](#-licence)
 
 ## 🧬 Abstract
@@ -65,8 +64,7 @@ soil_auxo/
 │   ├── gem_curation/             GEM curation inputs (GPRs, media, memote)
 │   ├── qc/                       assembly / binning statistics
 │   └── smetana/                  SMETANA cross-feeding output
-├── supplementary_tables/     Supplementary_Tables.xlsx (S1–S4) + 260-gene table
-└── archive/                  superseded drafts and exploratory analyses (not in the paper)
+└── supplementary_tables/     Supplementary_Tables.xlsx (S1–S4) + 260-gene table
 ```
 
 ## ▶️ Reproducing the analysis
@@ -130,7 +128,7 @@ The 260-gene set is built on n = 51 genomes; the two additional genomes used in 
 | Stage | Code | Produces | Notes |
 |---|---|---|---|
 | Metagenomic pipeline | `analysis/01_metagem_pipeline/Snakefile` + `config.yaml` (metaGEM) | assembly, binning, GEMs | reconstructed GEMs are deposited in `data/models/`; rerunning the full pipeline needs an HPC cluster and the raw reads (ENA PRJEB80563) |
-| GEM auxotrophy prediction | `analysis/02_gem_auxotrophy/get_auxo.py` | `auxopred_default.tsv` (Fig 3a) | default/canonical calls; sensitivity-analysis variants are in `archive/` |
+| GEM auxotrophy prediction | `analysis/02_gem_auxotrophy/get_auxo.py` | `auxopred_default.tsv` (Fig 3a) | default/canonical calls used in Fig 3a |
 | Phylogenetics + phyloglm | `analysis/03_phylogenetics/phylogenetic.Rmd` | tree (S4), MGE/IS (S5), gene associations, Supp Table 2, S11 | bootstraps use `set.seed(42)` |
 | Genome features | `analysis/04_genome_features/metabolic_modeling_soil.Rmd` | Fig 4, S6, S7, geNomad (S5), 260-gene set, SMETANA plots | master analysis notebook |
 | SMETANA cross-feeding | `analysis/05_smetana_crossfeeding/` | Fig 5c, S10 | site-based community models: `data/smetana/` (SMETANA v1.1.0 `--detailed`, AA + vitamins; see analysis/05 README) |
@@ -144,19 +142,6 @@ The 260-gene set is built on n = 51 genomes; the two additional genomes used in 
 - Several figures report experimental measurements (coculture assays for Fig. 5a/b and Supplementary Fig. 8; LC-MS/MS for Supplementary Fig. 9; microscopy) or were contributed by co-authors (Fig. 1a–d, 2a/2b, 6a; Supplementary Figs 1, 2, 10). Their underlying measurements are provided as source data with the paper or are available from the corresponding authors.
 - Data are released under CC-BY-4.0; code under MIT.
 
-## 🗄️ Not in the paper → `archive/`
-
-Superseded drafts and exploratory material are kept in `archive/` rather than presented as figures:
-
-| Item | Reason |
-|---|---|
-| `archive/plots.Rmd` (+ `plots.nb.html`) | earlier plotting notebook, superseded by `metabolic_modeling_soil.Rmd` + `code/plots.ipynb` |
-| `archive/newfig3.*`, `archive/updated_fig3.*` | superseded composite figure drafts |
-| `archive/scatter_annotations_GEMs.*` | earlier GEM-vs-annotation scatter, superseded by the published Fig. 3 |
-| `archive/enriched_COGs.pdf` | gene-enrichment plot supporting the Supplementary Notes; not a display item |
-| `archive/get_auxo_*lenient.py`, `archive/auxopred_*.tsv` | lenient auxotrophy-call variants used for sensitivity analysis |
-| `archive/compositionVis.R` (+ `assembled_vs_binned*.pdf`, `percent_mapping.pdf`) | exploratory community-composition / mapping QC script; its outputs are not published-figure panels |
-
 ## 📄 Licence
 
 Code is released under the MIT Licence ([LICENSE](LICENSE)); data under CC-BY-4.0 ([DATA_LICENSE](DATA_LICENSE)).
@@ -165,4 +150,4 @@ Code is released under the MIT Licence ([LICENSE](LICENSE)); data under CC-BY-4.
 
 If you use this resource, please cite:
 
-> Obligate cross-feeding of metabolites is common in soil microbial communities. Ghada Yousif*, Francisco Zorrilla*, Swagatika Dash, Leonardo Oña, Aditi Shekhar, Samir Giri, Rui Guan, Sharvari Harshe, Michael Itermann, Daphne Welter, Vladimir Benes, Kiran R. Patil, Christian Kost. bioRxiv 2025.01.29.635426; doi: https://doi.org/10.1101/2025.01.29.635426
+> Obligate cross-feeding of metabolites is common in soil microbial communities. Ghada Yousif*, Francisco Zorrilla*, Swagatika Dash, Leonardo Oña, Aditi Shekhar, Samir Giri, Rui Guan, Sharvari Harshe, Michael Itermann, Daphne Welter, Vladimir Benes, Kiran R. Patil, Christian Kost. Nature Microbiology (2026), in press.

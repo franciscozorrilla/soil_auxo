@@ -33,7 +33,7 @@ cobra  reframed        # plus a linear-programming solver (e.g. CPLEX) at runtim
 ```
 tidyverse   ape        caret      ggalluvial  gggenes    gggenomes   ggnewscale
 ggpubr      ggrepel     ggtree     ggtreeExtra gridExtra  MASS        phylolm
-rstatix     tidytext
+rstatix     factoextra
 ```
 
 `ggtree` / `ggtreeExtra` are from Bioconductor; the rest are on CRAN. The phylogenetic

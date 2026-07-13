@@ -5,7 +5,8 @@ For each model this writes a per-model `<model>.xml.aux` file holding the ReFram
 auxotrophy call. Those per-model calls are collated into the long-format table
 `data/figure_data/auxopred_default.tsv` (columns: `model`, `metabolite` — one row per
 predicted auxotrophy), which is the committed input consumed by the downstream R notebooks
-(Fig. 3a). The lenient sensitivity-analysis variants of this script are in archive/.
+(Fig. 3a). Lenient sensitivity-analysis variants of this script (used for a
+robustness check) are available on request.
 """
 import glob
 import cobra
