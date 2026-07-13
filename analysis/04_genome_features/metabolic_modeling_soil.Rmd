@@ -1814,7 +1814,7 @@ ggplot(
 #then use bash for loops to create a copy of the media file and then go through each amino acid and remove it from the media if it is not needed
 
 experimental_auxo=read.delim("data/gem_curation/experimental_auxo.txt") %>% select(-Habitats,-X,-AAs_auxo,-Vitamin_auxo,-Nucleotide_auxo,-Sample_ID_MinPath,-Type,-Sites,-gapfilling.media,-remove,-keep) %>% filter(Sample_ID!="") %>% pivot_longer(!Sample_ID,names_to = "aa",values_to = "auxo") %>% mutate(auxo=replace_na(auxo,0)) %>% left_join(.,read.delim("data/gem_curation/amino_acids_bigg.tsv")) %>% filter(auxo!=1)
- write_delim(experimental_auxo,"data/media/media_generator.tsv")
+ write_delim(experimental_auxo,"outputs/media_generator.tsv")
 # in bash
 # while read sample;do cp ghada_media.tsv ${sample}_media.tsv;while read aa;do sed -i '' "/$aa/d" ${sample}_media.tsv;done< <(less media_generator.tsv|grep $sample|awk '{print $NF}');done< <(less media_generator.tsv|tail -n +2|cut -f1|sort|uniq)
 
