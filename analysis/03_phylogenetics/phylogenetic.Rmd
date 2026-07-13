@@ -10,15 +10,18 @@ Try executing this chunk by clicking the *Run* button within the chunk or by pla
 ```{r setup, message=FALSE, warning=FALSE}
 # Packages used throughout this notebook. MASS is loaded before the tidyverse so that
 # dplyr's select()/filter() take precedence. Tree-plotting packages (ggtree etc.) are
-# loaded where they are first used, further below. This notebook also uses the genome
-# metadata objects `checkm` and `metadata` created in
-# ../04_genome_features/metabolic_modeling_soil.Rmd -- run that notebook first.
+# loaded where they are first used, further below.
 library(MASS)
 library(ape)
 library(phylolm)
 library(rstatix)
 library(ggpubr)
 library(tidyverse)
+
+# Load the shared data objects (checkm, metadata, auxolab, auxo2, kemet_auxo_all, eggnog,
+# isfinder_count, genes_count, diff_genes, etc.) built from the committed data under data/.
+# Run all notebooks from the repository root.
+source("analysis/00_load_data.R")
 ```
 
 ```{r}
@@ -652,7 +655,7 @@ geom_jitter(alpha=0.7) + coord_flip()
 
 ## STATISTICAL CHECKS TO ALLOW USING MWU / WRST
 # significant, counts are not normally distributed
-shapiro.test(transposons_no_na$count)
+shapiro.test((transposon_count %>% drop_na())$count)
 # no significant difference in the variance of transposon count between AAs_auxo=1 and AAs_auxo=0, can use  
 res <- var.test(count ~ AAs_auxo, data = transposon_count%>% drop_na())
 res

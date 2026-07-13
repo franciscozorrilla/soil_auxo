@@ -8,9 +8,10 @@ This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute
 Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Cmd+Shift+Enter*. 
 
 ```{r setup, message=FALSE, warning=FALSE}
-# This notebook uses the tidyverse; it also relies on the `auxolab` and `metadata` objects
-# created in ../../04_genome_features/metabolic_modeling_soil.Rmd -- run that notebook first.
+# This notebook uses the tidyverse and the shared `auxolab` and `metadata` objects built from
+# the committed data under data/. Run all notebooks from the repository root.
 library(tidyverse)
+source("analysis/00_load_data.R")
 ```
 
 ```{r}

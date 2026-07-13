@@ -20,6 +20,11 @@ library(rstatix)
 library(ggpubr)
 library(ggrepel)
 library(tidyverse)
+
+# Load the shared data objects (reads the committed data under data/ and builds the objects
+# used across the analysis notebooks: checkm, metadata, auxolab, auxo2, kemet, kemet_auxo_all,
+# eggnog, isfinder_count, genes_count, etc.). Run all notebooks from the repository root.
+source("analysis/00_load_data.R")
 ```
 
 ```{r}
@@ -623,7 +628,7 @@ eggnog %>%
 ggplot(eggnog %>% 
            group_by(genome,cog_name) %>% 
            summarize(count=n()) %>% 
-           filter(cog_name%in%cogs$cog_name), aes(y=reorder(genome,count),x=count,fill=cog_name)) + 
+           filter(cog_name%in%cogs_count$cog_name), aes(y=reorder(genome,count),x=count,fill=cog_name)) + 
     geom_bar(stat="identity",position = "stack") +  
     scale_x_log10()
 
@@ -632,7 +637,7 @@ ggplot(eggnog %>%
 ggplot(eggnog %>% 
            group_by(genome,cog_name) %>% 
            summarize(count=n()) %>% 
-           filter(cog_name%in%cogs$cog_name), aes(y=reorder(genome,count),fill=count,x=cog_name)) + 
+           filter(cog_name%in%cogs_count$cog_name), aes(y=reorder(genome,count),fill=count,x=cog_name)) + 
     geom_tile() + theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
 # check to see if unknown function count is well separated by site/habitat, we saw this with the humann3 output in the pilot
