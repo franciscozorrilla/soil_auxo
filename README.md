@@ -131,7 +131,7 @@ The 260-gene set is built on n = 51 genomes; the two additional genomes used in 
 | Metagenomic pipeline | `analysis/01_metagem_pipeline/Snakefile` + `config.yaml` (metaGEM) | assembly, binning, GEMs | reconstructed GEMs are deposited in `data/models/`; rerunning the full pipeline needs an HPC cluster and the raw reads (ENA PRJEB80563) |
 | GEM auxotrophy prediction | `analysis/02_gem_auxotrophy/get_auxo.py` | `auxopred_default.tsv` (Fig 3a) | default/canonical calls used in Fig 3a |
 | Phylogenetics + phyloglm | `analysis/03_phylogenetics/phylogenetic.Rmd` | tree (S4), MGE/IS (S5), gene associations, Supp Table 2, S11 | bootstraps use `set.seed(42)` |
-| Genome features | `analysis/04_genome_features/metabolic_modeling_soil.Rmd` | Fig 4, S6, S7, geNomad (S5), 260-gene set, SMETANA plots | master analysis notebook |
+| Genome features | `analysis/04_genome_features/metabolic_modeling_soil.Rmd` | Fig 4, S6, S7, geNomad (S5), 260-gene set, SMETANA plots, GEM size stats | master analysis notebook |
 | SMETANA cross-feeding | `analysis/05_smetana_crossfeeding/` | Fig 5c, S10 | site-based community models: `data/smetana/` (SMETANA v1.1.0 `--detailed`, AA + vitamins; see analysis/05 README) |
 | Saturation | `analysis/06_saturation/sat_sim/sat_sim_notebook.Rmd` | Fig 6b | sampling uses `set.seed(42)` |
 | Assembly / binning QC | `analysis/07_community_composition/{assembly,binning,qfilter,drep}Vis.R` | Supp Fig 3 | genomes reconstructed, completeness/contamination, basepairs/contigs |

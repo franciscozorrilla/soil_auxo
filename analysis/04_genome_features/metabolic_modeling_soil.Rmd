@@ -509,16 +509,12 @@ ggarrange(ggarrange(bxp_size,bxp3,bxp4,ncol=1,labels=c("A","C","E")),
 ggsave("outputs/gene_counts_supp.pdf",height = 10 ,width = 8)
 ggsave("outputs/gene_counts_supp.png",height = 10 ,width = 8)
 
-# final sup fig s5
+# final sup fig 6 (genome size + annotated gene number)
 
 ggarrange(bxp_size+theme(text=element_text(size=18),panel.border = element_blank(),panel.grid.major = element_blank(),panel.grid.minor = element_blank(),axis.line = element_line(color = "black")),ggplot()+theme_void(),bxp3+theme(text=element_text(size=18),panel.border = element_blank(),panel.grid.major = element_blank(),panel.grid.minor = element_blank(),axis.line = element_line(color = "black")),ncol = 3,labels=c("a","","b"),widths = c(1.2,0.1,1.2),font.label = list(size=18))
 
 ggsave("outputs/sup_fig6_final.pdf",height = 6 ,width = 9)
 ggsave("outputs/sup_fig6_final.png",height = 6 ,width = 9)
-
-ggsave("outputs/s5_final.pdf",height = 6 ,width = 9)
-ggsave("outputs/s5_final.png",height = 6 ,width = 9)
-#### DO THIS FOR OTHER SUP FIG
 
 ################
 
