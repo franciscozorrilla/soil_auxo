@@ -2,7 +2,7 @@
 
 Code and data for the publication *Obligate cross-feeding of metabolites is common in soil microbial communities*.
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.13847512.svg)](https://doi.org/10.5281/zenodo.13847512)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21380369.svg)](https://doi.org/10.5281/zenodo.21380369)
 
 This README maps **every figure, supplementary figure, table, and analysis** to the code that produces it, the data it consumes, and who produced it, so a reader can locate the code and data behind any panel without guesswork. [`MANIFEST.tsv`](MANIFEST.tsv) is the same map in machine-readable form, and each folder under `figures/` has its own README.
 
