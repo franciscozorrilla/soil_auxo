@@ -1,0 +1,14 @@
+# Python dependencies for the figure-rendering and image-analysis notebooks in code/.
+# Authored under Python 3.9. See ENVIRONMENT.md for R packages and external tools.
+matplotlib
+numpy
+pandas
+Pillow
+pycirclize
+scikit-image
+scipy
+
+# GEM auxotrophy prediction (analysis/02_gem_auxotrophy/get_auxo.py) additionally needs:
+#   cobra
+#   reframed
+# plus a linear-programming solver (e.g. CPLEX) at runtime.

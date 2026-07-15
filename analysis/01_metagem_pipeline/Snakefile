@@ -1,0 +1,426 @@
+configfile: "config.yaml"
+
+import os
+import glob
+
+def get_ids_from_path_pattern(path_pattern):
+    ids = sorted([os.path.basename(os.path.splitext(val)[0])
+                  for val in (glob.glob(path_pattern))])
+    return ids
+
+
+gemIDs = get_ids_from_path_pattern('GEMs/*.xml')
+binIDs = get_ids_from_path_pattern('protein_bins/*.faa')
+IDs = get_ids_from_path_pattern('reassembled_bins/*')
+speciesIDs = get_ids_from_path_pattern('pangenome/speciesBinIDs/*.txt')
+DATA_READS_1 = f'{config["path"]["root"]}/{config["folder"]["data"]}/{{IDs}}/{{IDs}}_R1.fastq.gz'
+DATA_READS_2 = f'{config["path"]["root"]}/{config["folder"]["data"]}/{{IDs}}/{{IDs}}_R2.fastq.gz'
+focal = get_ids_from_path_pattern('dataset/*')
+
+rule all:
+    input:
+        expand(f'{config["path"]["root"]}/{config["folder"]["abundance"]}/{{IDs}}', IDs = IDs)
+    message:
+        """
+        WARNING: Be very careful when adding/removing any lines above this message.
+        The metaGEM.sh parser is presently hardcoded to edit line 22 of this Snakefile to expand target rules accordingly,
+        therefore adding/removing any lines before this message will likely result in parser malfunction.
+        """
+    shell:
+        """
+        echo "Gathering {input} ... "
+        """
+
+rule GTDBTk:
+    input:
+        f'{config["path"]["root"]}/Whole_Genome_14_Species'
+    output:
+        directory(f'{config["path"]["root"]}/GTDBTk/')
+    message:
+        """
+        Please make sure that the GTDB-Tk database was downloaded and configured.
+        """
+    shell:
+        """
+        # Activate metagem environment
+        set +u;source activate {config[envs][metagem]};set -u;
+        # Make sure output folder exists
+        mkdir -p {output}
+        # Make job specific scratch dir
+        sampleID=$(echo $(basename $(dirname {input})))
+        echo -e "\nCreating temporary directory {config[path][scratch]}/{config[folder][classification]}/${{sampleID}} ... "
+        mkdir -p {config[path][scratch]}/{config[folder][classification]}/${{sampleID}}
+        # Move into scratch dir
+        cd {config[path][scratch]}/{config[folder][classification]}/${{sampleID}}
+        # Copy files
+        echo -e "\nCopying files to tmp dir ... "
+        cp -r {input} .
+        
+        # In case you GTDBTk is not properly configured you may need to export the GTDBTK_DATA_PATH variable,
+        # Simply uncomment the following line and fill in the path to your GTDBTk database:
+        # export GTDBTK_DATA_PATH=/path/to/the/gtdbtk/database/you/downloaded
+        # Run GTDBTk
+        gtdbtk classify_wf --genome_dir $(basename {input}) --out_dir GTDBTk -x fasta --cpus {config[cores][gtdbtk]}
+        mv GTDBTk/* {output}
+        """
+
+rule smetana_global:
+    input:
+        f'{config["path"]["root"]}/{config["folder"]["GEMs"]}/{{IDs}}'
+    output:
+        f'{config["path"]["root"]}/{config["folder"]["SMETANA"]}/{{IDs}}/global/global.tsv'
+    shell:
+        """
+        # Activate metagem env
+        set +u;source activate {config[envs][metagem]};set -u
+
+        # Make sure we are in root folder
+        cd {config[path][root]}
+
+        # Create tmp dir
+        mkdir -p tmp/SMETANA/global/$(basename {input})
+
+        # Move into tmp dir
+        cd tmp/SMETANA/global/$(basename {input})
+
+        # Copy models
+        cp {input}/*.xml .
+
+        # Run smetana
+        for i in {{1..100}}; do 
+    smetana --molweight -g -v --debug -o sim_${{i}} *.xml
+    done
+
+    # Summarize
+    cat *debug.tsv|grep -v key1 > minimal_media.tsv
+    cat *global.tsv|grep -v size > global.tsv
+
+    # Create output folder
+    mkdir -p {output}
+
+    # Move files
+    mv minimal_media.tsv global.tsv {output}
+        """
+
+
+rule smetana_detailed:
+    input:
+        f'{config["path"]["root"]}/{config["folder"]["GEMs"]}/{{IDs}}'
+    output:
+        f'{config["path"]["root"]}/{config["folder"]["SMETANA"]}/{{IDs}}/detailed/detailed.tsv'
+    shell:
+        """
+        # Activate metagem env
+        set +u;source activate {config[envs][metagem]};set -u
+
+        # Make sure we are in root folder
+        cd {config[path][root]}
+
+        # Create tmp dir
+        mkdir -p tmp/SMETANA/detailed/$(basename {input})
+
+        # Move into tmp dir
+        cd tmp/SMETANA/detailed/$(basename {input})
+
+        # Copy models
+        cp {input}/*.xml .
+
+        # Run smetana
+        for i in {{1..100}}; do 
+            smetana -o sim_${{i}} -v -d --molweight --zeros *.xml;
+        done
+
+        # Summarize
+        while read file;do 
+            sim=$(basename $file|sed 's/_detailed.tsv//g'|sed 's/sim_//g');
+            cat $file|grep -v smetana|sed "s/^all/$COMM/g"|sed "s/^/$sim\t/g" >> detailed.tsv;
+        done< <(find . -name "sim*detailed.tsv"|grep -v simulations)
+
+        # Create output folder
+        mkdir -p {output}
+
+        # Move files
+        mv detailed.tsv {output}
+        """
+        
+
+rule shovill:
+    input:
+        f'{config["path"]["root"]}/qfiltered/{{IDs}}'
+    output:
+        directory(f'{config["path"]["root"]}/shovill/{{IDs}}')  
+    benchmark:
+        f'{config["path"]["root"]}/{config["folder"]["benchmarks"]}/{{IDs}}.shovill.benchmark.txt'
+    message:
+        """
+        Shovill assembly of genomes
+        """
+    shell:
+        """
+        # load perl module to work around shovill perl errors (HPC-specific);
+        # if you still hit perl library errors, point PERL5LIB at your perl install
+        module load perl/5.10.1
+
+        # thread count is HPC-specific; adjust for your system
+        export OMP_NUM_THREADS=56
+
+        # Activate the shovill environment
+        set +u;source activate {config[envs][shovill]};set -u;
+
+        # Make sure output folder exists
+        mkdir -p {output}
+
+        # Make job specific scratch dir
+        sampleID=$(echo $(basename {input}))
+        echo -e "\nCreating temporary directory {config[path][scratch]}/shovill/${{sampleID}} ... "
+        mkdir -p {config[path][scratch]}/shovill/${{sampleID}}
+
+        # Move into scratch dir
+        cd {config[path][scratch]}/shovill/${{sampleID}}
+
+        # Copy files
+        echo -e "\nCopying input files {config[path][scratch]} ... "
+        cp -r {input}/*fastq.gz .
+
+        # run shovill
+        shovill --ram 370 --keepfiles --trim --cpus 0 --outdir out --R1 *_R1.fastq.gz --R2 *_R2.fastq.gz
+
+        # copy files
+        cp -r out/* {output}
+        """
+
+rule drep_best:
+    input:
+        f'{config["path"]["root"]}/drep/input/{{IDs}}'
+    output:
+        directory(f'{config["path"]["root"]}/drep/output/{{IDs}}')
+    benchmark:
+        f'{config["path"]["root"]}/{config["folder"]["benchmarks"]}/{{IDs}}.drep.benchmark.txt'
+    message:
+        """
+        Compare megahit assembly, binned & reassemlbed MAGs, and shovill assembly to determine best candidate
+        """
+    shell:
+        """     
+        # Activate the dRep environment
+        set +u;source activate {config[envs][drep]};set -u;
+
+        # Make sure output folder exists
+        mkdir -p {output}
+
+        # Make job specific scratch dir
+        sampleID=$(echo $(basename {input}))
+        echo -e "\nCreating temporary directory {config[path][scratch]}/drep/${{sampleID}} ... "
+        mkdir -p {config[path][scratch]}/drep/${{sampleID}}
+
+        # Move into scratch dir
+        cd {config[path][scratch]}/drep/${{sampleID}}
+
+        # Copy files
+        echo -e "\nCopying input files {config[path][scratch]} ... "
+        cp -r {input} .
+
+        # run drep
+        dRep dereplicate -comp 50 -con 10 -p 28 output_skipsmash/ --SkipMash -d -g $(basename {input})/*.fa
+
+        # copy files
+        cp -r output_skipsmash/* {output}
+
+        """
+
+rule assembly_mapping:
+    input:
+        bins = f'{config["path"]["root"]}/{config["folder"]["assemblies"]}/{{IDs}}/contigs.fasta.gz',
+        R1 = f'{config["path"]["root"]}/{config["folder"]["qfiltered"]}/{{IDs}}/{{IDs}}_R1.fastq.gz',
+        R2 = f'{config["path"]["root"]}/{config["folder"]["qfiltered"]}/{{IDs}}/{{IDs}}_R2.fastq.gz'
+    output:
+        directory(f'{config["path"]["root"]}/{config["folder"]["abundance"]}/{{IDs}}')
+    benchmark:
+        f'{config["path"]["root"]}/{config["folder"]["benchmarks"]}/{{IDs}}.abundance.benchmark.txt'
+    message:
+        """
+        Calculate assembly mapping
+        """
+    shell:
+        """     
+        # Activate metagem environment
+        set +u;source activate {config[envs][metagem]};set -u;
+
+        # Make sure output folder exists
+        mkdir -p {output}
+
+        # Make job specific scratch dir
+        sampleID=$(echo $(basename $(dirname {input.R1})))
+        echo -e "\nCreating temporary directory {config[path][scratch]}/{config[folder][abundance]}/${{sampleID}} ... "
+        mkdir -p {config[path][scratch]}/{config[folder][abundance]}/${{sampleID}}
+
+        # Move into scratch dir
+        cd {config[path][scratch]}/{config[folder][abundance]}/${{sampleID}}
+
+        # Copy files
+        echo -e "\nCopying quality filtered paired end reads and generated MAGs to {config[path][scratch]} ... "
+        cp {input.R1} {input.R2} {input.bins} .
+
+        # unzip and rename contigs
+        gunzip contigs.fasta.gz
+        mv contigs.fasta $(basename {output}).fa
+
+        echo -e "\nCreating bwa index for concatenated FASTA file ... "
+        bwa index $(basename {output}).fa
+
+        echo -e "\nMapping quality filtered paired end reads to concatenated FASTA file with bwa mem ... "
+        bwa mem -t {config[cores][abundance]} $(basename {output}).fa \
+            $(basename {input.R1}) $(basename {input.R2}) > $(basename {output}).sam
+
+        echo -e "\nConverting SAM to BAM with samtools view ... "
+        samtools view -@ {config[cores][abundance]} -Sb $(basename {output}).sam > $(basename {output}).bam
+
+        echo -e "\nSorting BAM file with samtools sort ... "
+        samtools sort -@ {config[cores][abundance]} -o $(basename {output}).sort.bam $(basename {output}).bam
+
+        echo -e "\nExtracting stats from sorted BAM file with samtools flagstat ... "
+        samtools flagstat $(basename {output}).sort.bam > map.stats
+
+        echo -e "\nCopying sample_map.stats file to root/abundance/sample for bin concatenation and deleting temporary FASTA file ... "
+        cp map.stats {output}/$(basename {output})_map.stats
+        rm $(basename {output}).fa
+        """
+
+
+# The reconstructed genome-scale metabolic models are deposited in data/models/, so the
+# downstream analyses do not require re-running CarveMe. This rule reflects the CarveMe step
+# of the metaGEM pipeline (https://github.com/franciscozorrilla/metaGEM), which is the
+# maintained source for the complete, up-to-date workflow.
+rule carveme:
+    input:
+        bins = f'{config["path"]["root"]}/{config["folder"]["reassembled"]}/{{IDs}}'
+    output:
+        directory(f'{config["path"]["root"]}/{config["folder"]["GEMs"]}/{{IDs}}')
+    benchmark:
+        f'{config["path"]["root"]}/{config["folder"]["benchmarks"]}/{{IDs}}.carveme.benchmark.txt'
+    message:
+        """
+        CarveMe: reconstruct genome-scale metabolic models (SBML) from the genome
+        protein sequences, gap-filled on the MMAB medium.
+        """
+    shell:
+        """
+        source activate {config[envs][metagem]}
+        mkdir -p {output}
+        for faa in {input.bins}/*.faa ; do
+            carve -g MMAB -v --fbc2 --mediadb {config[path][root]}/media_db.tsv \
+                  -o {output}/$(basename ${{faa%.faa}}).xml $faa
+        done
+        """
+
+rule abundance:
+    input:
+        bins = f'{config["path"]["root"]}/{config["folder"]["reassembled"]}/{{IDs}}',
+        R1 = f'{config[path][root]}/qfiltered/{{IDs}}/{{IDs}}_R1.fastq.gz', 
+        R2 = f'{config[path][root]}/qfiltered/{{IDs}}/{{IDs}}_R2.fastq.gz'
+    output:
+        directory(f'{config["path"]["root"]}/{config["folder"]["abundance"]}/{{IDs}}')
+    benchmark:
+        f'{config["path"]["root"]}/{config["folder"]["benchmarks"]}/{{IDs}}.abundance.benchmark.txt'
+    message:
+        """
+        Calculate bin abundance fraction using the following:
+        binAbundanceFraction = ( X / Y / Z) * 1000000
+        X = # of reads mapped to bin_i from sample_k
+        Y = length of bin_i (bp)
+        Z = # of reads mapped to all bins in sample_k
+        Note: 1000000 scaling factor converts length in bp to Mbp
+        """
+    shell:
+        """     
+        # Activate metagem environment
+        set +u;source activate {config[envs][metagem]};set -u;
+
+        # Make sure output folder exists
+        mkdir -p {output}
+
+        # Make job specific scratch dir
+        sampleID=$(echo $(basename {input.R1}))
+        echo -e "\nCreating temporary directory {config[path][scratch]}/{config[folder][abundance]}/${{sampleID}} ... "
+        mkdir -p {config[path][scratch]}/{config[folder][abundance]}/${{sampleID}}
+
+        # Move into scratch dir
+        cd {config[path][scratch]}/{config[folder][abundance]}/${{sampleID}}
+
+        # Copy files
+        echo -e "\nCopying quality filtered paired end reads and generated MAGs to {config[path][scratch]} ... "
+        cp {input.R1} {input.R2} {input.bins}/* .
+        echo -e "\nConcatenating all bins into one FASTA file ... "
+        cat *.fa > $(basename {output}).fa
+        echo -e "\nCreating bwa index for concatenated FASTA file ... "
+        bwa index $(basename {output}).fa
+        echo -e "\nMapping quality filtered paired end reads to concatenated FASTA file with bwa mem ... "
+        bwa mem -t {config[cores][abundance]} $(basename {output}).fa \
+            $(basename {input.R1}) $(basename {input.R2}) > $(basename {output}).sam
+        echo -e "\nConverting SAM to BAM with samtools view ... "
+        samtools view -@ {config[cores][abundance]} -Sb $(basename {output}).sam > $(basename {output}).bam
+        echo -e "\nSorting BAM file with samtools sort ... "
+        samtools sort -@ {config[cores][abundance]} -o $(basename {output}).sort.bam $(basename {output}).bam
+        echo -e "\nExtracting stats from sorted BAM file with samtools flagstat ... "
+        samtools flagstat $(basename {output}).sort.bam > map.stats
+        echo -e "\nCopying sample_map.stats file to root/abundance/sample for bin concatenation and deleting temporary FASTA file ... "
+        cp map.stats {output}/$(basename {output})_map.stats
+        rm $(basename {output}).fa
+        
+        echo -e "\nRepeat procedure for each bin ... "
+        for bin in *.fa;do
+            echo -e "\nSetting up temporary sub-directory to map against bin $bin ... "
+            mkdir -p $(echo "$bin"| sed "s/.fa//")
+            # Move bin into subirectory
+            mv $bin $(echo "$bin"| sed "s/.fa//")
+            cd $(echo "$bin"| sed "s/.fa//")
+            echo -e "\nCreating bwa index for bin $bin ... "
+            bwa index $bin
+            echo -e "\nMapping quality filtered paired end reads to bin $bin with bwa mem ... "
+            bwa mem -t {config[cores][abundance]} $bin \
+                ../$(basename {input.R1}) ../$(basename {input.R2}) > $(echo "$bin"|sed "s/.fa/.sam/")
+            echo -e "\nConverting SAM to BAM with samtools view ... "
+            samtools view -@ {config[cores][abundance]} -Sb $(echo "$bin"|sed "s/.fa/.sam/") > $(echo "$bin"|sed "s/.fa/.bam/")
+            echo -e "\nSorting BAM file with samtools sort ... "
+            samtools sort -@ {config[cores][abundance]} -o $(echo "$bin"|sed "s/.fa/.sort.bam/") $(echo "$bin"|sed "s/.fa/.bam/")
+            echo -e "\nExtracting stats from sorted BAM file with samtools flagstat ... "
+            samtools flagstat $(echo "$bin"|sed "s/.fa/.sort.bam/") > $(echo "$bin"|sed "s/.fa/.map/")
+            echo -e "\nAppending bin length to bin.map stats file ... "
+            echo -n "Bin Length = " >> $(echo "$bin"|sed "s/.fa/.map/")
+            # Check if bins are original (megahit-assembled) or strict/permissive (metaspades-assembled)
+            if [[ $bin == *.strict.fa ]] || [[ $bin == *.permissive.fa ]] || [[ $bin == *.s.fa ]] || [[ $bin == *.p.fa ]];then
+                less $bin |grep ">"|cut -d '_' -f4|awk '{{sum+=$1}}END{{print sum}}' >> $(echo "$bin"|sed "s/.fa/.map/")
+            else
+                less $bin |grep ">"|cut -d '-' -f4|sed 's/len_//g'|awk '{{sum+=$1}}END{{print sum}}' >> $(echo "$bin"|sed "s/.fa/.map/")
+            fi
+            paste $(echo "$bin"|sed "s/.fa/.map/")
+            echo -e "\nCalculating abundance for bin $bin ... "
+            echo -n "$bin"|sed "s/.fa//" >> $(echo "$bin"|sed "s/.fa/.abund/")
+            echo -n $'\t' >> $(echo "$bin"|sed "s/.fa/.abund/")
+            X=$(less $(echo "$bin"|sed "s/.fa/.map/")|grep "mapped ("|awk -F' ' '{{print $1}}')
+            Y=$(less $(echo "$bin"|sed "s/.fa/.map/")|tail -n 1|awk -F' ' '{{print $4}}')
+            Z=$(less "../map.stats"|grep "mapped ("|awk -F' ' '{{print $1}}')
+            awk -v x="$X" -v y="$Y" -v z="$Z" 'BEGIN{{print (x/y/z) * 1000000}}' >> $(echo "$bin"|sed "s/.fa/.abund/")
+            
+            paste $(echo "$bin"|sed "s/.fa/.abund/")
+            
+            echo -e "\nRemoving temporary files for bin $bin ... "
+            rm $bin
+            cp $(echo "$bin"|sed "s/.fa/.map/") {output}
+            mv $(echo "$bin"|sed "s/.fa/.abund/") ../
+            cd ..
+            rm -r $(echo "$bin"| sed "s/.fa//")
+        done
+        echo -e "\nDone processing all bins, summarizing results into sample.abund file ... "
+        cat *.abund > $(basename {output}).abund
+        echo -ne "\nSumming calculated abundances to obtain normalization value ... "
+        norm=$(less $(basename {output}).abund |awk '{{sum+=$2}}END{{print sum}}');
+        echo $norm
+        echo -e "\nGenerating column with abundances normalized between 0 and 1 ... "
+        awk -v NORM="$norm" '{{printf $1"\t"$2"\t"$2/NORM"\\n"}}' $(basename {output}).abund > abundance.txt
+        rm $(basename {output}).abund
+        mv abundance.txt $(basename {output}).abund
+        mv $(basename {output}).abund {output}
+        """
+
+
